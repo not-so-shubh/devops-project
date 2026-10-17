@@ -1,0 +1,56 @@
+{
+  "source_sha": "688da4e999f1336228d2ea1c8475ea5a4accfc22",
+  "run_id": "39045204460",
+  "run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39045204460",
+  "files": [
+    "bandit.json",
+    "compose-ci.log",
+    "compose-ci.txt",
+    "compose-smoke.txt",
+    "metrics.txt",
+    "persistence-ci.txt",
+    "pytest-postgres.txt",
+    "secrets.json",
+    "terraform-ci-mock-test.txt",
+    "terraform-ci-validate.txt"
+  ],
+  "artifact_origins": {
+    "terraform-ci-mock-test.txt": "infrastructure-evidence/terraform-ci-mock-test.txt",
+    "terraform-ci-validate.txt": "infrastructure-evidence/terraform-ci-validate.txt",
+    "compose-smoke.txt": "compose-browser-evidence/docs/evidence/compose-smoke.txt",
+    "compose-ci.txt": "compose-browser-evidence/docs/evidence/compose-ci.txt",
+    "persistence-ci.txt": "compose-browser-evidence/docs/evidence/persistence-ci.txt",
+    "metrics.txt": "compose-browser-evidence/docs/evidence/metrics.txt",
+    "compose-ci.log": "compose-browser-evidence/docs/evidence/compose-ci.log",
+    "secrets.json": "quality-evidence/docs/evidence/secrets.json",
+    "pytest-postgres.txt": "quality-evidence/docs/evidence/pytest-postgres.txt",
+    "bandit.json": "quality-evidence/docs/evidence/bandit.json"
+  },
+  "scope": "Actual CI evidence; consult job results for success/failure. AWS apply/destroy not performed.",
+  "job_results": {
+    "quality": {
+      "result": "success",
+      "outputs": {}
+    },
+    "infrastructure": {
+      "result": "success",
+      "outputs": {}
+    },
+    "compose": {
+      "result": "cancelled",
+      "outputs": {}
+    },
+    "build-security": {
+      "result": "cancelled",
+      "outputs": {}
+    },
+    "publish": {
+      "result": "cancelled",
+      "outputs": {}
+    },
+    "kubernetes": {
+      "result": "cancelled",
+      "outputs": {}
+    }
+  }
+}
