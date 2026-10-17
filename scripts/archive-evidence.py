@@ -1,8 +1,8 @@
 """Copy only an explicit allowlist of synthetic CI evidence into the repository."""
 
+import importlib.util
 import json
 import os
-import shutil
 from pathlib import Path
 
 names = set(
@@ -30,12 +30,18 @@ names = set(
         "trivy-frontend.json",
     ]
 )
+spec = importlib.util.spec_from_file_location("evidence_redactor", "scripts/redact-evidence.py")
+redactor = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(redactor)
 destination = Path("docs/evidence")
 destination.mkdir(parents=True, exist_ok=True)
 written = []
 for source in Path(os.environ["EVIDENCE_DOWNLOAD_DIR"]).rglob("*"):
     if source.is_file() and source.name in names:
-        shutil.copy2(source, destination / source.name)
+        if source.suffix == ".png":
+            (destination / source.name).write_bytes(source.read_bytes())
+        else:
+            (destination / source.name).write_text(redactor.redact(source.read_text()))
         written.append(source.name)
 metadata = {
     "source_sha": os.environ["GITHUB_SHA"],

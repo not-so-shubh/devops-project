@@ -1,0 +1,45 @@
+Source: https://github.com/not-so-shubh/devops-project/actions/runs/38997526583
+Stack and HTTP smoke passed; full browser acceptance failed and was corrected in a later commit.
+2026-10-17T03:08:07.2747214Z  Network stockpilot_default  Created
+2026-10-17T03:08:07.2812830Z  Volume "stockpilot_postgres-data"  Created
+2026-10-17T03:08:07.2814806Z  Container stockpilot-postgres-1  Creating
+2026-10-17T03:08:07.3042523Z  Container stockpilot-postgres-1  Created
+2026-10-17T03:08:07.3136923Z  Container stockpilot-migrate-1  Created
+2026-10-17T03:08:07.3137564Z  Container stockpilot-backend-1  Creating
+2026-10-17T03:08:07.3236563Z  Container stockpilot-backend-1  Created
+2026-10-17T03:08:07.3236991Z  Container stockpilot-frontend-1  Creating
+2026-10-17T03:08:07.3340603Z  Container stockpilot-frontend-1  Created
+2026-10-17T03:08:07.3353918Z  Container stockpilot-postgres-1  Starting
+2026-10-17T03:08:07.4944772Z  Container stockpilot-postgres-1  Started
+2026-10-17T03:08:07.4945545Z  Container stockpilot-postgres-1  Waiting
+2026-10-17T03:08:12.9959379Z  Container stockpilot-postgres-1  Healthy
+2026-10-17T03:08:14.1388783Z  Container stockpilot-backend-1  Starting
+2026-10-17T03:08:14.2790462Z  Container stockpilot-backend-1  Started
+2026-10-17T03:08:14.2791055Z  Container stockpilot-backend-1  Waiting
+2026-10-17T03:08:19.7801531Z  Container stockpilot-backend-1  Healthy
+2026-10-17T03:08:19.7802192Z  Container stockpilot-frontend-1  Starting
+2026-10-17T03:08:19.9041628Z  Container stockpilot-frontend-1  Started
+2026-10-17T03:08:19.9042367Z  Container stockpilot-postgres-1  Waiting
+2026-10-17T03:08:19.9043509Z  Container stockpilot-backend-1  Waiting
+2026-10-17T03:08:19.9044115Z  Container stockpilot-frontend-1  Waiting
+2026-10-17T03:08:20.4060117Z  Container stockpilot-postgres-1  Healthy
+2026-10-17T03:08:20.4062885Z  Container stockpilot-backend-1  Healthy
+2026-10-17T03:08:25.4052852Z  Container stockpilot-frontend-1  Healthy
+2026-10-17T03:08:26.2903912Z Seeded 8 new products (existing SKUs preserved).
+2026-10-17T03:08:26.4353594Z stockpilot-backend-1    stockpilot-backend:local                                                                     "uvicorn app.main:ap…"   backend    19 seconds ago   Up 12 seconds (healthy)   127.0.0.1:8000->8000/tcp
+2026-10-17T03:08:26.4355183Z stockpilot-frontend-1   stockpilot-frontend:local                                                                    "nginx -g 'daemon of…"   frontend   19 seconds ago   Up 6 seconds (healthy)    127.0.0.1:3000->8080/tcp
+2026-10-17T03:08:26.4356884Z stockpilot-postgres-1   postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24   "docker-entrypoint.s…"   postgres   19 seconds ago   Up 19 seconds (healthy)   5432/tcp
+2026-10-17T03:08:26.5511045Z PASS: frontend-origin API proxy, create, stock decrement, persistent retrieval and stats
+2026-10-17T03:08:26.5511697Z Cleaned up smoke product; audit history retained
+2026-10-17T03:10:58.7629003Z  Container stockpilot-frontend-1  Stopping
+2026-10-17T03:10:58.8878549Z  Container stockpilot-frontend-1  Stopped
+2026-10-17T03:10:58.8880192Z  Container stockpilot-frontend-1  Removing
+2026-10-17T03:10:58.9006841Z  Container stockpilot-frontend-1  Removed
+2026-10-17T03:10:58.9010620Z  Container stockpilot-backend-1  Stopping
+2026-10-17T03:10:59.2868313Z  Container stockpilot-backend-1  Stopped
+2026-10-17T03:10:59.2874715Z  Container stockpilot-backend-1  Removing
+2026-10-17T03:10:59.2933069Z  Container stockpilot-backend-1  Removed
+2026-10-17T03:10:59.2978228Z  Container stockpilot-postgres-1  Stopping
+2026-10-17T03:10:59.3804999Z  Container stockpilot-postgres-1  Stopped
+2026-10-17T03:10:59.3808028Z  Container stockpilot-postgres-1  Removing
+2026-10-17T03:10:59.3862400Z  Container stockpilot-postgres-1  Removed
