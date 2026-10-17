@@ -1,0 +1,8 @@
+Selected genuine validation output from run 38997526583. Runner metadata omitted.
+Source: https://github.com/not-so-shubh/devops-project/actions/runs/38997526583/job/117293235952
+
+Terraform has been successfully initialized!
+Success! The configuration is valid.
+Success! 1 passed, 0 failed.
+1 chart(s) linted, 0 chart(s) failed
+PASS: 10 resources; selectors, ports, probes, storage, HPA, migration Job and ServiceMonitor wiring

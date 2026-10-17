@@ -1000,7 +1000,7 @@ function App() {
                     <div className="form-grid">
                       <label>
                         Movement
-                        <select name="direction" defaultValue="in">
+                        <select name="direction" aria-label="Movement" defaultValue="in">
                           <option value="in">Receive stock (+)</option>
                           <option value="out">Remove stock (−)</option>
                         </select>
