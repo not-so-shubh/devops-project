@@ -14,7 +14,7 @@ Only actual command output, real screenshots, and real run/resource links belong
 | Helm schema and wiring | Lint/template passed; 10 rendered resources and cross-resource wiring checked | [helm-lint.txt](evidence/helm-lint.txt), [helm-wiring.txt](evidence/helm-wiring.txt) |
 | Git history | Public destination with more than ten meaningful commits | [main history](https://github.com/not-so-shubh/devops-project/commits/main/) |
 
-First run [38997526583](https://github.com/not-so-shubh/devops-project/actions/runs/38997526583) failed full browser acceptance after passing the stack and HTTP checks. The modal/direction-control defects were corrected; it must not be presented as a green pipeline. The subsequent runtime checks are being verified before this index is finalized.
+First run [38997526583](https://github.com/not-so-shubh/devops-project/actions/runs/38997526583) failed full browser acceptance after passing the stack and HTTP checks. The mobile scroller containment defect was corrected, and all four Compose browser tests passed in run 38999948371 and again after the runtime base change in run 39000262612. The earlier runs must not be presented as green pipelines. Both latter image scans and GHCR publication passed; Kubernetes verification remains tracked independently.
 
 ## Durable CI evidence
 
@@ -24,12 +24,12 @@ Runs archive an explicit allowlist of screenshots, test/Compose/Helm/Kubernetes 
 
 | Required evidence | How to capture honestly | Current blocker/status |
 |---|---|---|
-| Running desktop/mobile frontend | Playwright's `frontend-desktop.png` and `frontend-mobile.png` from actual Compose/Ingress | CI acceptance recheck pending |
+| Running desktop/mobile frontend | Actual screenshots on [evidence/800b7b7](https://github.com/not-so-shubh/devops-project/tree/evidence/800b7b72c86042474e2245c529ecf798d7267d0b/docs/evidence); [successful browser output](evidence/compose-browser-success.txt) | Four scenarios passed; Ingress proof tracked separately |
 | Passing pytest terminal screenshot | Run `pytest -v` or screenshot the successful quality job; genuine text already saved | Optional screenshot still needs capture |
-| Git history screenshot | Open main history and include >=10 descriptive commits | History exists; screenshot pending |
+| Git history screenshot | [github-commit-history.jpg](evidence/github-commit-history.jpg), captured from real public main history (earlier checkpoint) | More than ten real descriptive commits; current history linked above |
 | Healthy Compose terminal screenshot | Show `docker compose ps` and actual startup output, then localhost:3000 | Stack output exists in CI; screenshot pending |
-| Green Actions and GHCR SHA packages | Open final successful run and both package versions | Scan/publish still pending verification |
-| Trivy output | Both real JSON reports plus job output; explain actual clean/findings result | Scans pending |
+| Green Actions and GHCR SHA packages | Open final successful run and both package versions | Both SHA images published in run 39000262612; final complete pipeline pending |
+| Trivy output | Both real JSON reports plus job output; explain actual clean/findings result | Both Alpine images passed HIGH/CRITICAL gate in run 39000262612; earlier Debian failure preserved |
 | Real Terraform plan | In approved account, `terraform plan -out=stockpilot.tfplan`; screenshot non-empty proposed resources | AWS credentials/account and cost review needed; mock test is not this evidence |
 | AWS VPC and EKS | Console region ap-south-1; show VPC/subnets and EKS with managed nodes; redact account identifiers | Explicit paid-resource approval and credentials required |
 | Kubernetes Pods/Services/Helm/Ingress | Actual cluster commands and browser through Traefik, captured by CI for kind | CI kind pending; EKS separately requires AWS |

@@ -23,6 +23,8 @@ names = set(
         "kubernetes-ci.txt",
         "troubleshooting-ci.json",
         "gitops-ci.json",
+        "ghcr-backend.json",
+        "ghcr-frontend.json",
         "helm-release-ci.txt",
         "hpa-metrics-ci.txt",
         "cluster-pods-ci.txt",
