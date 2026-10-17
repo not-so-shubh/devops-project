@@ -1,0 +1,2 @@
+NAME      	NAMESPACE 	REVISION	UPDATED                                	STATUS  	CHART           	APP VERSION
+stockpilot	stockpilot	1       	2026-10-17 21:43:35.280794512 +0000 UTC	deployed	stockpilot-1.0.0	1.0.0      

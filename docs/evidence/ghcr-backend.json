@@ -1,9 +1,9 @@
 {
-  "image": "ghcr.io/not-so-shubh/stockpilot-backend:fd742527c4a57d9c63d1445cb5e835220d6b77d9",
-  "manifest_digest": "sha256:8908f863760c2d893b99e6ba1c19a73686285b6adc5745e9a3197e0e48df5ba8",
+  "image": "ghcr.io/not-so-shubh/stockpilot-backend:952128e01e9afed9a0349faf7c7b58d04e5a96b5",
+  "manifest_digest": "sha256:a7db54c82ff2383c38f8d6d0d5e86d8c3d4ca12b395a8fdb4d441a2f9b3f5f0d",
   "anonymous_manifest": true,
   "all_layers_anonymously_accessible": true,
   "layer_count": 10,
-  "source_revision": "fd742527c4a57d9c63d1445cb5e835220d6b77d9",
+  "source_revision": "952128e01e9afed9a0349faf7c7b58d04e5a96b5",
   "runtime_user": "10001:10001"
 }
