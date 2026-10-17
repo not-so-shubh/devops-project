@@ -1,0 +1,110 @@
+NAMESPACE            LAST SEEN   TYPE      REASON                    OBJECT                                                         MESSAGE
+default              9m13s       Normal    Starting                  node/stockpilot-control-plane                                  
+kube-system          9m22s       Normal    LeaderElection            lease/kube-controller-manager                                  stockpilot-control-plane_<REDACTED_RUNNER_ID> became leader
+kube-system          9m21s       Normal    LeaderElection            lease/kube-scheduler                                           stockpilot-control-plane_<REDACTED_RUNNER_ID> became leader
+default              9m21s       Normal    NodeAllocatableEnforced   node/stockpilot-control-plane                                  Updated Node Allocatable limit across pods
+default              9m21s       Normal    NodeHasSufficientMemory   node/stockpilot-control-plane                                  Node stockpilot-control-plane status is now: NodeHasSufficientMemory
+default              9m21s       Normal    NodeHasNoDiskPressure     node/stockpilot-control-plane                                  Node stockpilot-control-plane status is now: NodeHasNoDiskPressure
+default              9m21s       Normal    NodeHasSufficientPID      node/stockpilot-control-plane                                  Node stockpilot-control-plane status is now: NodeHasSufficientPID
+default              9m21s       Normal    Starting                  node/stockpilot-control-plane                                  Starting kubelet.
+default              9m16s       Normal    RegisteredNode            node/stockpilot-control-plane                                  Node stockpilot-control-plane event: Registered Node stockpilot-control-plane in Controller
+kube-system          9m16s       Warning   NodeNotReady              pod/etcd-stockpilot-control-plane                              Node is not ready
+kube-system          9m16s       Warning   NodeNotReady              pod/kube-scheduler-stockpilot-control-plane                    Node is not ready
+local-path-storage   9m15s       Normal    SuccessfulCreate          replicaset/local-path-provisioner-75f7fc7dc5                   Created pod: local-path-provisioner-75f7fc7dc5-h4xmk
+kube-system          9m15s       Normal    Scheduled                 pod/kindnet-xwvnk                                              Successfully assigned kube-system/kindnet-xwvnk to stockpilot-control-plane
+local-path-storage   9m15s       Warning   FailedScheduling          pod/local-path-provisioner-75f7fc7dc5-h4xmk                    0/1 nodes are available: 1 node(s) had untolerated taint(s). preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+kube-system          9m15s       Normal    SuccessfulCreate          daemonset/kindnet                                              Created pod: kindnet-xwvnk
+kube-system          9m15s       Warning   FailedScheduling          pod/coredns-559f6c778d-dg6md                                   0/1 nodes are available: 1 node(s) had untolerated taint(s). preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+local-path-storage   9m15s       Normal    ScalingReplicaSet         deployment/local-path-provisioner                              Scaled up replica set local-path-provisioner-75f7fc7dc5 from 0 to 1
+kube-system          9m15s       Normal    ScalingReplicaSet         deployment/coredns                                             Scaled up replica set coredns-559f6c778d from 0 to 2
+kube-system          9m15s       Normal    Scheduled                 pod/kube-proxy-qrzkt                                           Successfully assigned kube-system/kube-proxy-qrzkt to stockpilot-control-plane
+kube-system          9m15s       Normal    SuccessfulCreate          daemonset/kube-proxy                                           Created pod: kube-proxy-qrzkt
+kube-system          9m15s       Warning   FailedScheduling          pod/coredns-559f6c778d-xs85n                                   0/1 nodes are available: 1 node(s) had untolerated taint(s). preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+kube-system          9m15s       Normal    SuccessfulCreate          replicaset/coredns-559f6c778d                                  Created pod: coredns-559f6c778d-xs85n
+kube-system          9m15s       Normal    SuccessfulCreate          replicaset/coredns-559f6c778d                                  Created pod: coredns-559f6c778d-dg6md
+kube-system          9m14s       Normal    Started                   pod/kube-proxy-qrzkt                                           Container started
+kube-system          9m14s       Normal    Created                   pod/kube-proxy-qrzkt                                           Container created
+kube-system          9m14s       Normal    Pulled                    pod/kube-proxy-qrzkt                                           Container image "registry.k8s.io/kube-proxy:v1.37.0" already present on machine and can be accessed by the pod
+kube-system          9m14s       Normal    Started                   pod/kindnet-xwvnk                                              Container started
+kube-system          9m14s       Normal    Created                   pod/kindnet-xwvnk                                              Container created
+kube-system          9m14s       Normal    Pulled                    pod/kindnet-xwvnk                                              Container image "docker.io/kindest/kindnetd:v20260820-69b56db7" already present on machine and can be accessed by the pod
+kube-system          9m4s        Normal    Scheduled                 pod/coredns-559f6c778d-dg6md                                   Successfully assigned kube-system/coredns-559f6c778d-dg6md to stockpilot-control-plane
+local-path-storage   9m4s        Normal    Scheduled                 pod/local-path-provisioner-75f7fc7dc5-h4xmk                    Successfully assigned local-path-storage/local-path-provisioner-75f7fc7dc5-h4xmk to stockpilot-control-plane
+kube-system          9m4s        Normal    Scheduled                 pod/coredns-559f6c778d-xs85n                                   Successfully assigned kube-system/coredns-559f6c778d-xs85n to stockpilot-control-plane
+default              9m4s        Normal    NodeReady                 node/stockpilot-control-plane                                  Node stockpilot-control-plane status is now: NodeReady
+kube-system          9m3s        Normal    Pulled                    pod/coredns-559f6c778d-dg6md                                   Container image "registry.k8s.io/coredns/coredns:v1.14.6" already present on machine and can be accessed by the pod
+kube-system          9m3s        Normal    Pulled                    pod/coredns-559f6c778d-xs85n                                   Container image "registry.k8s.io/coredns/coredns:v1.14.6" already present on machine and can be accessed by the pod
+local-path-storage   9m3s        Normal    Pulled                    pod/local-path-provisioner-75f7fc7dc5-h4xmk                    Container image "docker.io/kindest/local-path-provisioner:v20260820-69b56db7" already present on machine and can be accessed by the pod
+local-path-storage   9m1s        Normal    Created                   pod/local-path-provisioner-75f7fc7dc5-h4xmk                    Container created
+kube-system          9m1s        Warning   Unhealthy                 pod/coredns-559f6c778d-xs85n                                   Readiness probe failed: Get "http://<REDACTED_CLUSTER_IP>:8181/ready": dial tcp <REDACTED_CLUSTER_IP>:8181: connect: connection refused
+kube-system          9m1s        Normal    Started                   pod/coredns-559f6c778d-xs85n                                   Container started
+kube-system          9m1s        Normal    Created                   pod/coredns-559f6c778d-xs85n                                   Container created
+kube-system          9m1s        Normal    Started                   pod/coredns-559f6c778d-dg6md                                   Container started
+kube-system          9m1s        Normal    Created                   pod/coredns-559f6c778d-dg6md                                   Container created
+local-path-storage   9m1s        Normal    Started                   pod/local-path-provisioner-75f7fc7dc5-h4xmk                    Container started
+ingress-system       8m46s       Normal    SuccessfulCreate          replicaset/traefik-7c5f695765                                  Created pod: traefik-7c5f695765-pwxwl
+ingress-system       8m46s       Normal    Scheduled                 pod/traefik-7c5f695765-pwxwl                                   Successfully assigned ingress-system/traefik-7c5f695765-pwxwl to stockpilot-control-plane
+ingress-system       8m46s       Normal    Pulling                   pod/traefik-7c5f695765-pwxwl                                   Pulling image "docker.io/traefik:v3.7.14"
+ingress-system       8m46s       Normal    ScalingReplicaSet         deployment/traefik                                             Scaled up replica set traefik-7c5f695765 from 0 to 1
+ingress-system       8m44s       Normal    Pulled                    pod/traefik-7c5f695765-pwxwl                                   Successfully pulled image "docker.io/traefik:v3.7.14" in 2.219s (2.219s including waiting). Image size: 55397211 bytes.
+ingress-system       8m44s       Normal    Created                   pod/traefik-7c5f695765-pwxwl                                   Container created
+ingress-system       8m44s       Normal    Started                   pod/traefik-7c5f695765-pwxwl                                   Container started
+kube-system          8m32s       Normal    Scheduled                 pod/metrics-server-6bf8c95d48-tscf9                            Successfully assigned kube-system/metrics-server-6bf8c95d48-tscf9 to stockpilot-control-plane
+kube-system          8m32s       Normal    ScalingReplicaSet         deployment/metrics-server                                      Scaled up replica set metrics-server-6bf8c95d48 from 0 to 1
+kube-system          8m32s       Normal    SuccessfulCreate          replicaset/metrics-server-6bf8c95d48                           Created pod: metrics-server-6bf8c95d48-tscf9
+kube-system          8m31s       Normal    Created                   pod/metrics-server-6bf8c95d48-tscf9                            Container created
+kube-system          8m31s       Normal    Pulled                    pod/metrics-server-6bf8c95d48-tscf9                            Successfully pulled image "registry.k8s.io/metrics-server/metrics-server:v0.9.0" in 862ms (862ms including waiting). Image size: 23258428 bytes.
+kube-system          8m31s       Normal    Pulling                   pod/metrics-server-6bf8c95d48-tscf9                            Pulling image "registry.k8s.io/metrics-server/metrics-server:v0.9.0"
+kube-system          8m30s       Normal    Started                   pod/metrics-server-6bf8c95d48-tscf9                            Container started
+monitoring           8m6s        Normal    SuccessfulCreate          job/monitoring-kube-prometheus-admission-create                Created pod: monitoring-kube-prometheus-admission-create-kj6sb
+monitoring           8m6s        Normal    Scheduled                 pod/monitoring-kube-prometheus-admission-create-kj6sb          Successfully assigned monitoring/monitoring-kube-prometheus-admission-create-kj6sb to stockpilot-control-plane
+monitoring           8m5s        Normal    Pulling                   pod/monitoring-kube-prometheus-admission-create-kj6sb          Pulling image "ghcr.io/jkroepke/kube-webhook-certgen:1.11.0"
+monitoring           8m4s        Normal    Started                   pod/monitoring-kube-prometheus-admission-create-kj6sb          Container started
+monitoring           8m4s        Normal    Created                   pod/monitoring-kube-prometheus-admission-create-kj6sb          Container created
+monitoring           8m4s        Normal    Pulled                    pod/monitoring-kube-prometheus-admission-create-kj6sb          Successfully pulled image "ghcr.io/jkroepke/kube-webhook-certgen:1.11.0" in 1.525s (1.525s including waiting). Image size: 9490613 bytes.
+monitoring           8m1s        Normal    SuccessfulCreate          replicaset/monitoring-grafana-6d8cb9b8fc                       Created pod: monitoring-grafana-6d8cb9b8fc-2wvsq
+monitoring           8m1s        Normal    SuccessfulCreate          daemonset/monitoring-prometheus-node-exporter                  Created pod: monitoring-prometheus-node-exporter-rfbww
+monitoring           8m1s        Normal    Scheduled                 pod/monitoring-kube-prometheus-operator-7d667c54c-rc75l        Successfully assigned monitoring/monitoring-kube-prometheus-operator-7d667c54c-rc75l to stockpilot-control-plane
+monitoring           8m1s        Normal    Completed                 job/monitoring-kube-prometheus-admission-create                Job completed
+monitoring           8m1s        Normal    Scheduled                 pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Successfully assigned monitoring/monitoring-grafana-6d8cb9b8fc-2wvsq to stockpilot-control-plane
+monitoring           8m1s        Normal    Scheduled                 pod/monitoring-prometheus-node-exporter-rfbww                  Successfully assigned monitoring/monitoring-prometheus-node-exporter-rfbww to stockpilot-control-plane
+monitoring           8m1s        Normal    ScalingReplicaSet         deployment/monitoring-kube-prometheus-operator                 Scaled up replica set monitoring-kube-prometheus-operator-7d667c54c from 0 to 1
+monitoring           8m1s        Normal    ScalingReplicaSet         deployment/monitoring-grafana                                  Scaled up replica set monitoring-grafana-6d8cb9b8fc from 0 to 1
+monitoring           8m1s        Normal    SuccessfulCreate          replicaset/monitoring-kube-prometheus-operator-7d667c54c       Created pod: monitoring-kube-prometheus-operator-7d667c54c-rc75l
+monitoring           8m          Normal    Pulling                   pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Pulling image "quay.io/kiwigrid/k8s-sidecar:2.14.1"
+monitoring           8m          Normal    Pulling                   pod/monitoring-kube-prometheus-operator-7d667c54c-rc75l        Pulling image "quay.io/prometheus-operator/prometheus-operator:v0.94.1"
+monitoring           8m          Normal    Pulling                   pod/monitoring-prometheus-node-exporter-rfbww                  Pulling image "quay.io/prometheus/node-exporter:v1.12.1-distroless"
+monitoring           7m59s       Normal    Created                   pod/monitoring-prometheus-node-exporter-rfbww                  Container created
+monitoring           7m59s       Normal    Pulled                    pod/monitoring-prometheus-node-exporter-rfbww                  Successfully pulled image "quay.io/prometheus/node-exporter:v1.12.1-distroless" in 1.017s (1.017s including waiting). Image size: 13123706 bytes.
+monitoring           7m59s       Normal    Started                   pod/monitoring-prometheus-node-exporter-rfbww                  Container started
+monitoring           7m59s       Warning   Unhealthy                 pod/monitoring-prometheus-node-exporter-rfbww                  Readiness probe failed: Get "http://<REDACTED_CLUSTER_IP>:9100/": dial tcp <REDACTED_CLUSTER_IP>:9100: connect: connection refused
+monitoring           7m58s       Normal    Started                   pod/monitoring-kube-prometheus-operator-7d667c54c-rc75l        Container started
+monitoring           7m58s       Normal    Created                   pod/monitoring-kube-prometheus-operator-7d667c54c-rc75l        Container created
+monitoring           7m58s       Warning   Unhealthy                 pod/monitoring-kube-prometheus-operator-7d667c54c-rc75l        Readiness probe failed: Get "https://<REDACTED_CLUSTER_IP>:10250/healthz": dial tcp <REDACTED_CLUSTER_IP>:10250: connect: connection refused
+monitoring           7m58s       Normal    Pulled                    pod/monitoring-kube-prometheus-operator-7d667c54c-rc75l        Successfully pulled image "quay.io/prometheus-operator/prometheus-operator:v0.94.1" in 1.44s (2.429s including waiting). Image size: 22572616 bytes.
+monitoring           7m56s       Normal    Started                   pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Container started
+monitoring           7m56s       Normal    Pulled                    pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Successfully pulled image "quay.io/kiwigrid/k8s-sidecar:2.14.1" in 1.901s (4.287s including waiting). Image size: 29200776 bytes.
+monitoring           7m56s       Normal    Created                   pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Container created
+monitoring           7m56s       Normal    Started                   pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Container started
+monitoring           7m56s       Normal    Pulled                    pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Container image "quay.io/kiwigrid/k8s-sidecar:2.14.1" already present on machine and can be accessed by the pod
+monitoring           7m56s       Normal    Created                   pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Container created
+monitoring           7m56s       Normal    SuccessfulCreate          statefulset/prometheus-monitoring-kube-prometheus-prometheus   Create Pod prometheus-monitoring-kube-prometheus-prometheus-0 in StatefulSet prometheus-monitoring-kube-prometheus-prometheus successful
+monitoring           7m56s       Normal    Pulling                   pod/prometheus-monitoring-kube-prometheus-prometheus-0         Pulling image "quay.io/prometheus-operator/prometheus-config-reloader:v0.94.1"
+monitoring           7m56s       Normal    Scheduled                 pod/prometheus-monitoring-kube-prometheus-prometheus-0         Successfully assigned monitoring/prometheus-monitoring-kube-prometheus-prometheus-0 to stockpilot-control-plane
+monitoring           7m56s       Normal    Pulling                   pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Pulling image "docker.io/grafana/grafana:13.2.4-distroless"
+monitoring           7m55s       Normal    Created                   pod/prometheus-monitoring-kube-prometheus-prometheus-0         Container created
+monitoring           7m55s       Normal    Started                   pod/prometheus-monitoring-kube-prometheus-prometheus-0         Container started
+monitoring           7m55s       Normal    Pulled                    pod/prometheus-monitoring-kube-prometheus-prometheus-0         Successfully pulled image "quay.io/prometheus-operator/prometheus-config-reloader:v0.94.1" in 1.163s (1.199s including waiting). Image size: 14893664 bytes.
+monitoring           7m53s       Normal    Pulling                   pod/prometheus-monitoring-kube-prometheus-prometheus-0         Pulling image "quay.io/prometheus/prometheus:v3.15.0-distroless"
+monitoring           7m44s       Normal    Pulled                    pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Successfully pulled image "docker.io/grafana/grafana:13.2.4-distroless" in 10.367s (11.362s including waiting). Image size: 464079275 bytes.
+monitoring           7m41s       Normal    Pulled                    pod/prometheus-monitoring-kube-prometheus-prometheus-0         Successfully pulled image "quay.io/prometheus/prometheus:v3.15.0-distroless" in 3.354s (11.8s including waiting). Image size: 113793870 bytes.
+monitoring           7m41s       Normal    Created                   pod/prometheus-monitoring-kube-prometheus-prometheus-0         Container created
+monitoring           7m40s       Normal    Started                   pod/prometheus-monitoring-kube-prometheus-prometheus-0         Container started
+monitoring           7m40s       Normal    Pulled                    pod/prometheus-monitoring-kube-prometheus-prometheus-0         Container image "quay.io/prometheus-operator/prometheus-config-reloader:v0.94.1" already present on machine and can be accessed by the pod
+monitoring           7m40s       Normal    Created                   pod/prometheus-monitoring-kube-prometheus-prometheus-0         Container created
+monitoring           7m39s       Normal    Started                   pod/prometheus-monitoring-kube-prometheus-prometheus-0         Container started
+monitoring           5m54s       Normal    Started                   pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Container started
+monitoring           4m28s       Normal    Created                   pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Container created
+monitoring           4m27s       Warning   Unhealthy                 pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Readiness probe failed: Get "http://<REDACTED_CLUSTER_IP>:3000/api/health": dial tcp <REDACTED_CLUSTER_IP>:3000: connect: connection refused
+monitoring           105s        Warning   BackOff                   pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Back-off restarting failed container grafana in pod monitoring-grafana-6d8cb9b8fc-2wvsq_monitoring(<REDACTED_RUNNER_ID>)
+monitoring           103s        Normal    Pulled                    pod/monitoring-grafana-6d8cb9b8fc-2wvsq                        Container image "docker.io/grafana/grafana:13.2.4-distroless" already present on machine and can be accessed by the pod
