@@ -811,6 +811,7 @@ h1 {
   outline: 0;
 }
 .table-scroll {
+  position: relative;
   overflow: auto;
 }
 table {
