@@ -1,0 +1,61 @@
+{
+  "checked_utc": "2026-10-17T21:48:32.878393+00:00",
+  "source_sha": "952128e01e9afed9a0349faf7c7b58d04e5a96b5",
+  "run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39071726194",
+  "original_ci_evidence_commit": "36f198a7082645add272a32548d3b4fd6d172ae2",
+  "scope": "Actual disposable CI kind deployment, now deleted. No AWS plan/apply/EKS/destroy or student presentation occurred.",
+  "checks": {
+    "manifest_jobs_success": true,
+    "postgres_tests": 44,
+    "coverage_percent": 97.67,
+    "trivy": {
+      "backend": {
+        "image": "ghcr.io/not-so-shubh/stockpilot-backend:952128e01e9afed9a0349faf7c7b58d04e5a96b5",
+        "high_critical": 0,
+        "runtime_user": "10001:10001",
+        "digest": "sha256:a7db54c82ff2383c38f8d6d0d5e86d8c3d4ca12b395a8fdb4d441a2f9b3f5f0d"
+      },
+      "frontend": {
+        "image": "ghcr.io/not-so-shubh/stockpilot-frontend:952128e01e9afed9a0349faf7c7b58d04e5a96b5",
+        "high_critical": 0,
+        "runtime_user": "101:101",
+        "digest": "sha256:d1c29e606556b0e93bc893d4c86933d2710e977b24bc5e7d221a0420e0386051"
+      }
+    },
+    "libexpat_version": "2.9.0-r0",
+    "frontend_sca": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "dependencies": {
+        "prod": 5,
+        "dev": 120,
+        "optional": 27,
+        "peer": 0,
+        "peerOptional": 0,
+        "total": 124
+      }
+    },
+    "ready_running_pods": {
+      "backend": 2,
+      "frontend": 2,
+      "postgres": 1
+    },
+    "flux_revision": "main@sha1:952128e01e9afed9a0349faf7c7b58d04e5a96b5",
+    "helm_upgrade_revision": 2,
+    "prometheus_request_rate_per_second": "1.8748557407407407",
+    "hpa_cpu_metrics": true
+  },
+  "audit_points": {
+    "VERIFIED": 83,
+    "READY FOR DEMO": 4,
+    "BLOCKED": 11,
+    "EXCLUDED": 2
+  },
+  "form": "Student action \u2014 excluded from this task."
+}

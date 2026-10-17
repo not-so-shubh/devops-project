@@ -1,0 +1,32 @@
+{
+  "scope": "Browser screenshots of actual CI progress/failure/success, not a student presentation recording and not AWS evidence.",
+  "captures": [
+    {
+      "file": "ci-in-progress-bd40732.jpg",
+      "source_sha": "bd407322dda34ebb5d9b7a0ca05ff57106f13382",
+      "page_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39070263226",
+      "observed_state": "in progress, subsequently failed",
+      "saved_utc": "2026-10-17T21:18:51.612616+00:00",
+      "sha256": "0fa82f2cc8430a812a4212202c1ad9922bf1d68698ce9120b6a695226ee5f281",
+      "method": "Unmodified cloud-browser viewport JPEG; no fabricated logs, status edits, or compositing."
+    },
+    {
+      "file": "ci-blocked-libexpat-bd40732.jpg",
+      "source_sha": "bd407322dda34ebb5d9b7a0ca05ff57106f13382",
+      "page_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39070263226",
+      "observed_state": "failed frontend security gate",
+      "saved_utc": "2026-10-17T21:26:45.658767+00:00",
+      "sha256": "d7cd30556875ab7ace79fe709d320ad4a4eeb1ae29a7ba7bd90bef0987594f1d",
+      "method": "Unmodified cloud-browser viewport JPEG; no fabricated logs, status edits, or compositing."
+    },
+    {
+      "file": "ci-green-952128e.jpg",
+      "source_sha": "952128e01e9afed9a0349faf7c7b58d04e5a96b5",
+      "page_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39071726194",
+      "observed_state": "success; AWS deploy skipped",
+      "saved_utc": "2026-10-17T21:48:27.522687+00:00",
+      "sha256": "c347686a9253fb618ff6d676dda8158bd7cbd1468ca7edf9f3c9d0ddc0153dbd",
+      "method": "Unmodified cloud-browser viewport JPEG; no fabricated logs, status edits, or compositing."
+    }
+  ]
+}
