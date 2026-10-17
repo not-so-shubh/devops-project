@@ -1,0 +1,24 @@
+NAMESPACE            NAME                                                   READY   STATUS      RESTARTS   AGE     IP            NODE                       NOMINATED NODE   READINESS GATES
+flux-system          helm-controller-68cf87bcdb-5pg2l                       1/1     Running     0          32s     <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+flux-system          kustomize-controller-5cbd55fc45-s7pkd                  1/1     Running     0          32s     <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+flux-system          source-controller-96584dff-5bsfc                       1/1     Running     0          32s     <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+ingress-system       traefik-78c8959cf6-wctwk                               1/1     Running     0          4m49s   <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+kube-system          coredns-7d764666f9-62fqx                               1/1     Running     0          5m15s   <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+kube-system          coredns-7d764666f9-9qfhw                               1/1     Running     0          5m15s   <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+kube-system          etcd-stockpilot-control-plane                          1/1     Running     0          5m23s   <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+kube-system          kindnet-znxct                                          1/1     Running     0          5m15s   <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+kube-system          kube-apiserver-stockpilot-control-plane                1/1     Running     0          5m23s   <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+kube-system          kube-controller-manager-stockpilot-control-plane       1/1     Running     0          5m22s   <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+kube-system          kube-proxy-mckpl                                       1/1     Running     0          5m15s   <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+kube-system          kube-scheduler-stockpilot-control-plane                1/1     Running     0          5m23s   <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+kube-system          metrics-server-6cb9fcf6ff-k2b6n                        1/1     Running     0          4m42s   <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+local-path-storage   local-path-provisioner-67b778fdf6-h47jf                1/1     Running     0          5m15s   <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+monitoring           monitoring-grafana-6cd7db856-rk8dj                     3/3     Running     0          4m9s    <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+monitoring           monitoring-kube-prometheus-operator-5c5d48fdd8-vdlh6   1/1     Running     0          4m9s    <REDACTED_CLUSTER_IP>    stockpilot-control-plane   <none>           <none>
+monitoring           prometheus-monitoring-kube-prometheus-prometheus-0     2/2     Running     0          4m6s    <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+stockpilot           stockpilot-backend-856cbd7554-dgfx6                    1/1     Running     0          12s     <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+stockpilot           stockpilot-backend-856cbd7554-rtnnz                    1/1     Running     0          18s     <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+stockpilot           stockpilot-frontend-78546b7fc9-945qw                   1/1     Running     0          12s     <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+stockpilot           stockpilot-frontend-78546b7fc9-ln45x                   1/1     Running     0          18s     <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+stockpilot           stockpilot-migrate-2-cnzkx                             0/1     Completed   0          18s     <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+stockpilot           stockpilot-postgres-0                                  1/1     Running     0          3m33s   <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
