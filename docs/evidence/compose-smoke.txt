@@ -1,0 +1,2 @@
+PASS: frontend-origin API proxy, create, stock decrement, persistent retrieval and stats
+Cleaned up smoke product; audit history retained

@@ -1,0 +1,11 @@
+NAMESPACE            NAME                                               READY   STATUS    RESTARTS   AGE     IP           NODE                       NOMINATED NODE   READINESS GATES
+ingress-system       traefik-7c5f695765-z6pg9                           1/1     Running   0          5m      <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+kube-system          coredns-559f6c778d-dkdrj                           1/1     Running   0          5m36s   <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+kube-system          coredns-559f6c778d-kbn8q                           1/1     Running   0          5m36s   <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+kube-system          etcd-stockpilot-control-plane                      1/1     Running   0          5m49s   <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+kube-system          kindnet-6zhqt                                      1/1     Running   0          5m36s   <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+kube-system          kube-apiserver-stockpilot-control-plane            1/1     Running   0          5m49s   <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+kube-system          kube-controller-manager-stockpilot-control-plane   1/1     Running   0          5m49s   <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+kube-system          kube-proxy-5jbzd                                   1/1     Running   0          5m36s   <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+kube-system          kube-scheduler-stockpilot-control-plane            1/1     Running   0          5m49s   <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>
+local-path-storage   local-path-provisioner-75f7fc7dc5-ggdx9            1/1     Running   0          5m36s   <REDACTED_CLUSTER_IP>   stockpilot-control-plane   <none>           <none>

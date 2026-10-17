@@ -1,0 +1,50 @@
+NAMESPACE            LAST SEEN   TYPE      REASON                    OBJECT                                         MESSAGE
+default              5m35s       Normal    Starting                  node/stockpilot-control-plane                  
+default              5m48s       Normal    NodeAllocatableEnforced   node/stockpilot-control-plane                  Updated Node Allocatable limit across pods
+default              5m48s       Normal    NodeHasSufficientMemory   node/stockpilot-control-plane                  Node stockpilot-control-plane status is now: NodeHasSufficientMemory
+default              5m48s       Normal    NodeHasNoDiskPressure     node/stockpilot-control-plane                  Node stockpilot-control-plane status is now: NodeHasNoDiskPressure
+default              5m48s       Normal    NodeHasSufficientPID      node/stockpilot-control-plane                  Node stockpilot-control-plane status is now: NodeHasSufficientPID
+default              5m48s       Normal    Starting                  node/stockpilot-control-plane                  Starting kubelet.
+kube-system          5m46s       Normal    LeaderElection            lease/kube-scheduler                           stockpilot-control-plane_<REDACTED_RUNNER_ID> became leader
+kube-system          5m46s       Normal    LeaderElection            lease/kube-controller-manager                  stockpilot-control-plane_<REDACTED_RUNNER_ID> became leader
+kube-system          5m46s       Warning   Unhealthy                 pod/kube-scheduler-stockpilot-control-plane    Readiness probe failed: HTTP probe failed with statuscode: 500
+default              5m37s       Normal    RegisteredNode            node/stockpilot-control-plane                  Node stockpilot-control-plane event: Registered Node stockpilot-control-plane in Controller
+kube-system          5m36s       Normal    SuccessfulCreate          replicaset/coredns-559f6c778d                  Created pod: coredns-559f6c778d-dkdrj
+local-path-storage   5m36s       Normal    SuccessfulCreate          replicaset/local-path-provisioner-75f7fc7dc5   Created pod: local-path-provisioner-75f7fc7dc5-ggdx9
+kube-system          5m36s       Normal    SuccessfulCreate          replicaset/coredns-559f6c778d                  Created pod: coredns-559f6c778d-kbn8q
+local-path-storage   5m36s       Warning   FailedScheduling          pod/local-path-provisioner-75f7fc7dc5-ggdx9    0/1 nodes are available: 1 node(s) had untolerated taint(s). preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+kube-system          5m36s       Normal    SuccessfulCreate          daemonset/kube-proxy                           Created pod: kube-proxy-5jbzd
+kube-system          5m36s       Warning   FailedScheduling          pod/coredns-559f6c778d-dkdrj                   0/1 nodes are available: 1 node(s) had untolerated taint(s). preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+local-path-storage   5m36s       Normal    ScalingReplicaSet         deployment/local-path-provisioner              Scaled up replica set local-path-provisioner-75f7fc7dc5 from 0 to 1
+kube-system          5m36s       Normal    Pulled                    pod/kube-proxy-5jbzd                           Container image "registry.k8s.io/kube-proxy:v1.37.0" already present on machine and can be accessed by the pod
+kube-system          5m36s       Normal    Scheduled                 pod/kube-proxy-5jbzd                           Successfully assigned kube-system/kube-proxy-5jbzd to stockpilot-control-plane
+kube-system          5m36s       Normal    ScalingReplicaSet         deployment/coredns                             Scaled up replica set coredns-559f6c778d from 0 to 2
+kube-system          5m36s       Warning   FailedScheduling          pod/coredns-559f6c778d-kbn8q                   0/1 nodes are available: 1 node(s) had untolerated taint(s). preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+kube-system          5m36s       Normal    Pulled                    pod/kindnet-6zhqt                              Container image "docker.io/kindest/kindnetd:v20260820-69b56db7" already present on machine and can be accessed by the pod
+kube-system          5m36s       Normal    Scheduled                 pod/kindnet-6zhqt                              Successfully assigned kube-system/kindnet-6zhqt to stockpilot-control-plane
+kube-system          5m36s       Normal    SuccessfulCreate          daemonset/kindnet                              Created pod: kindnet-6zhqt
+kube-system          5m35s       Normal    Started                   pod/kindnet-6zhqt                              Container started
+kube-system          5m35s       Normal    Created                   pod/kube-proxy-5jbzd                           Container created
+kube-system          5m35s       Normal    Created                   pod/kindnet-6zhqt                              Container created
+kube-system          5m35s       Normal    Started                   pod/kube-proxy-5jbzd                           Container started
+kube-system          5m25s       Normal    Scheduled                 pod/coredns-559f6c778d-dkdrj                   Successfully assigned kube-system/coredns-559f6c778d-dkdrj to stockpilot-control-plane
+default              5m25s       Normal    NodeReady                 node/stockpilot-control-plane                  Node stockpilot-control-plane status is now: NodeReady
+kube-system          5m25s       Normal    Scheduled                 pod/coredns-559f6c778d-kbn8q                   Successfully assigned kube-system/coredns-559f6c778d-kbn8q to stockpilot-control-plane
+local-path-storage   5m25s       Normal    Scheduled                 pod/local-path-provisioner-75f7fc7dc5-ggdx9    Successfully assigned local-path-storage/local-path-provisioner-75f7fc7dc5-ggdx9 to stockpilot-control-plane
+kube-system          5m24s       Normal    Pulled                    pod/coredns-559f6c778d-dkdrj                   Container image "registry.k8s.io/coredns/coredns:v1.14.6" already present on machine and can be accessed by the pod
+kube-system          5m24s       Normal    Pulled                    pod/coredns-559f6c778d-kbn8q                   Container image "registry.k8s.io/coredns/coredns:v1.14.6" already present on machine and can be accessed by the pod
+local-path-storage   5m24s       Normal    Pulled                    pod/local-path-provisioner-75f7fc7dc5-ggdx9    Container image "docker.io/kindest/local-path-provisioner:v20260820-69b56db7" already present on machine and can be accessed by the pod
+kube-system          5m21s       Normal    Created                   pod/coredns-559f6c778d-kbn8q                   Container created
+kube-system          5m21s       Normal    Created                   pod/coredns-559f6c778d-dkdrj                   Container created
+local-path-storage   5m21s       Normal    Created                   pod/local-path-provisioner-75f7fc7dc5-ggdx9    Container created
+kube-system          5m20s       Normal    Started                   pod/coredns-559f6c778d-kbn8q                   Container started
+kube-system          5m20s       Warning   Unhealthy                 pod/coredns-559f6c778d-kbn8q                   Readiness probe failed: Get "http://<REDACTED_CLUSTER_IP>:8181/ready": dial tcp <REDACTED_CLUSTER_IP>:8181: connect: connection refused
+kube-system          5m20s       Normal    Started                   pod/coredns-559f6c778d-dkdrj                   Container started
+local-path-storage   5m20s       Normal    Started                   pod/local-path-provisioner-75f7fc7dc5-ggdx9    Container started
+ingress-system       5m          Normal    ScalingReplicaSet         deployment/traefik                             Scaled up replica set traefik-7c5f695765 from 0 to 1
+ingress-system       5m          Normal    SuccessfulCreate          replicaset/traefik-7c5f695765                  Created pod: traefik-7c5f695765-z6pg9
+ingress-system       5m          Normal    Pulling                   pod/traefik-7c5f695765-z6pg9                   Pulling image "docker.io/traefik:v3.7.14"
+ingress-system       5m          Normal    Scheduled                 pod/traefik-7c5f695765-z6pg9                   Successfully assigned ingress-system/traefik-7c5f695765-z6pg9 to stockpilot-control-plane
+ingress-system       4m57s       Normal    Started                   pod/traefik-7c5f695765-z6pg9                   Container started
+ingress-system       4m57s       Normal    Created                   pod/traefik-7c5f695765-z6pg9                   Container created
+ingress-system       4m57s       Normal    Pulled                    pod/traefik-7c5f695765-z6pg9                   Successfully pulled image "docker.io/traefik:v3.7.14" in 2.279s (2.279s including waiting). Image size: 55397211 bytes.

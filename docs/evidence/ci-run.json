@@ -1,0 +1,48 @@
+{
+  "source_sha": "fd742527c4a57d9c63d1445cb5e835220d6b77d9",
+  "run_id": "39000262612",
+  "run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39000262612",
+  "files": [
+    "bandit.json",
+    "cluster-events-ci.txt",
+    "cluster-pods-ci.txt",
+    "compose-ci.log",
+    "compose-ci.txt",
+    "compose-smoke.txt",
+    "create-dialog-desktop.png",
+    "create-dialog-mobile.png",
+    "frontend-desktop.png",
+    "frontend-mobile.png",
+    "metrics.txt",
+    "migration-ci.log",
+    "pytest-postgres.txt",
+    "secrets.json",
+    "terraform-ci-mock-test.txt",
+    "terraform-ci-validate.txt",
+    "trivy-backend.json",
+    "trivy-frontend.json"
+  ],
+  "scope": "Actual CI evidence; consult job results for success/failure. AWS apply/destroy not performed.",
+  "job_results": {
+    "quality": {
+      "result": "success",
+      "outputs": {}
+    },
+    "infrastructure": {
+      "result": "success",
+      "outputs": {}
+    },
+    "compose": {
+      "result": "success",
+      "outputs": {}
+    },
+    "publish": {
+      "result": "success",
+      "outputs": {}
+    },
+    "kubernetes": {
+      "result": "failure",
+      "outputs": {}
+    }
+  }
+}
