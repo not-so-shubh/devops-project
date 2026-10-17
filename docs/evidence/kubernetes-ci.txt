@@ -1,0 +1,18 @@
+NAME                                       READY   STATUS      RESTARTS   AGE
+pod/stockpilot-backend-687dc964f4-664k8    1/1     Running     0          28s
+pod/stockpilot-backend-687dc964f4-nmfld    1/1     Running     0          13s
+pod/stockpilot-frontend-656fc555f9-m6x6p   1/1     Running     0          28s
+pod/stockpilot-frontend-656fc555f9-tbpdx   1/1     Running     0          28s
+pod/stockpilot-migrate-1-q9dx6             0/1     Completed   0          28s
+pod/stockpilot-postgres-0                  1/1     Running     0          28s
+
+NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/backend    ClusterIP   <REDACTED_CLUSTER_IP>    <none>        8000/TCP   28s
+service/frontend   ClusterIP   <REDACTED_CLUSTER_IP>   <none>        8080/TCP   28s
+service/postgres   ClusterIP   None            <none>        5432/TCP   28s
+
+NAME                                   CLASS     HOSTS       ADDRESS   PORTS   AGE
+ingress.networking.k8s.io/stockpilot   traefik   localhost             80      28s
+
+NAME                                                     REFERENCE                       TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/stockpilot-backend   Deployment/stockpilot-backend   cpu: <unknown>/65%   2         6         1          28s
