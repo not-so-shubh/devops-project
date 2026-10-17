@@ -352,10 +352,16 @@ jobs:
       - name: Upgrade to exact published commit
         env:
           INGRESS_HOST: ${{ vars.INGRESS_HOST }}
+          GHCR_PULL_SECRET: ${{ vars.GHCR_PULL_SECRET }}
         run: |
           test -n "$INGRESS_HOST"
           kubectl get secret stockpilot-db -n stockpilot
-          helm upgrade --install stockpilot helm/stockpilot -n stockpilot -f helm/stockpilot/values-prod.yaml --set backend.tag=${{ github.sha }} --set frontend.tag=${{ github.sha }} --set-string ingress.host="$INGRESS_HOST" --wait --wait-for-jobs --timeout 10m
+          pull_args=()
+          if test -n "$GHCR_PULL_SECRET"; then
+            kubectl get secret "$GHCR_PULL_SECRET" -n stockpilot
+            pull_args+=(--set-string "imagePullSecrets[0].name=$GHCR_PULL_SECRET")
+          fi
+          helm upgrade --install stockpilot helm/stockpilot -n stockpilot -f helm/stockpilot/values-prod.yaml --set backend.tag=${{ github.sha }} --set frontend.tag=${{ github.sha }} --set-string ingress.host="$INGRESS_HOST" "${pull_args[@]}" --wait --wait-for-jobs --timeout 10m
           kubectl rollout status deployment/stockpilot-backend -n stockpilot --timeout=180s
           kubectl rollout status deployment/stockpilot-frontend -n stockpilot --timeout=180s
   archive-evidence:

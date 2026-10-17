@@ -16,7 +16,7 @@ docker pull "ghcr.io/not-so-shubh/stockpilot-backend:$SHA"
 docker pull "ghcr.io/not-so-shubh/stockpilot-frontend:$SHA"
 ```
 
-The initial GHCR packages may be private. In GitHub package settings, either make both public for the public demonstration or create a durable Kubernetes `imagePullSecret` from a least-privilege read:packages token. Do not use the short-lived job GITHUB_TOKEN for future cluster pulls. Confirm access from the actual cluster before calling the deployment successful. Supply `--set 'imagePullSecrets[0].name=ghcr-pull'` if needed. Never put a token in Git or Helm values.
+The initial GHCR packages may be private. In GitHub package settings, either make both public for the public demonstration or create a durable Kubernetes `imagePullSecret` from a least-privilege read:packages token. Do not use the short-lived job GITHUB_TOKEN for future cluster pulls. Confirm access from the actual cluster before calling the deployment successful. Run `python3 scripts/create-registry-secret.py` to create `ghcr-pull` interactively without exposing a token in command arguments. Supply `--set 'imagePullSecrets[0].name=ghcr-pull'` for manual Helm, and set GitHub variable `GHCR_PULL_SECRET=ghcr-pull` for the deployment job if packages remain private. For Flux, add `imagePullSecrets: [{name: ghcr-pull}]` under release values. Never put a token in Git or Helm values.
 
 ## Disposable Kubernetes verification
 

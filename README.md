@@ -94,6 +94,7 @@ docker compose down -v
 | `BASE_URL` | Smoke, load and browser tests | Defaults to `http://localhost:3000` |
 | `AWS_DEPLOY_ENABLED` | GitHub repository variable | Keep unset/false until costs and cluster access are authorized |
 | `AWS_ROLE_ARN`, `EKS_CLUSTER_NAME`, `INGRESS_HOST` | GitHub variables | Required only for enabled EKS deployment |
+| `GHCR_PULL_SECRET` | GitHub variable | Optional existing durable registry Secret name when packages are private |
 | `DEPLOY_RUNNER` | GitHub variable | Optional runner label with access to the EKS endpoint allowlist |
 
 Alembic creates `products` and `stock_movements`. Compose runs a one-shot migration service before the API. Helm runs one ordinary migration Job per release revision; backend readiness checks both connectivity and the migrated table. Replicas do not run migrations independently. Review backwards compatibility before a migration; Helm rollback does not reverse database changes.
