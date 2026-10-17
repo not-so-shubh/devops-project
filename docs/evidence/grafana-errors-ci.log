@@ -1,0 +1,5 @@
+Actual Grafana error excerpt; known credential values and environment identifiers redacted.
+logger=sqlstore.transactions t=2026-10-17T04:25:09.097548597Z level=info msg="Database locked, sleeping then retrying" error="database is locked (5) (SQLITE_BUSY)" retry=0 sleep=62.965935ms
+logger=sqlstore.transactions t=2026-10-17T04:25:09.098321298Z level=info msg="Database locked, sleeping then retrying" error="database is locked (5) (SQLITE_BUSY)" retry=0 sleep=7.612413ms
+logger=plugins.update.checker t=2026-10-17T04:25:09.18969017Z level=info msg="flag evaluation succeeded" flag="{Value:false EvaluationDetails:{FlagKey:pluginsAutoUpdate FlagType:bool ResolutionDetail:{Variant:default Reason:STATIC ErrorCode: ErrorMessage: FlagMetadata:map[]}}}" details="{Value:false EvaluationDetails:{FlagKey:pluginsAutoUpdate FlagType:bool ResolutionDetail:{Variant:default Reason:STATIC ErrorCode: ErrorMessage: FlagMetadata:map[]}}}"
+logger=sqlstore.transactions t=2026-10-17T04:25:39.102680614Z level=info msg="Database locked, sleeping then retrying" error="database is locked (5) (SQLITE_BUSY)" retry=0 sleep=23.683726ms
