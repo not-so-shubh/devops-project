@@ -2,13 +2,21 @@
 
 Reviewed source: `54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c`; [successful run 39056922560](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560). This is preparation for M6.3; the student must demonstrate understanding personally.
 
+## Subsequent rebuild: frontend libexpat finding
+
+The later [run 39070263226](https://github.com/not-so-shubh/devops-project/actions/runs/39070263226), source `bd407322dda34ebb5d9b7a0ca05ff57106f13382`, correctly **failed** its frontend scan. Trivy reported one HIGH finding: **CVE-2026-77214**, `libexpat 2.8.5-r0`, fixed version `2.9.0-r0`. Backend passed; both image publication and Kubernetes deployment were skipped because the gate blocked promotion. This does not invalidate the older timestamped clean reports; it demonstrates why every rebuild needs a fresh scan.
+
+The frontend Dockerfile now requires `libexpat>=2.9.0-r0` from the same Alpine 3.24 repository, whose [official package page](https://pkgs.alpinelinux.org/package/v3.24/main/x86_64/libexpat) lists that fixed release. The build temporarily uses root to install the update, then explicitly returns to runtime UID 101. The base digest, dependency inventory and blocking Trivy settings remain in place. Check the remediation commit's own run and reports before calling this fix verified; the failed image was not published by that run. [Exact retained finding](evidence/trivy-frontend-blocked-summary.json) · [Original full report](https://github.com/not-so-shubh/devops-project/blob/fc1966161ec1394c42a9c2c4db9c3ffb2668181f/docs/evidence/trivy-frontend.json).
+
+The upstream issue concerns XML_ParseBuffer advancing a buffer pointer beyond its capacity and reading uninitialized/out-of-bounds heap data. It is not evidence of a demonstrated remote compromise of StockPilot. Vendors can rate the same advisory differently; describe the HIGH severity actually reported by this project's Trivy run. [Upstream project fix](https://github.com/libexpat/libexpat/commit/4d9b1c499ecb66323260a7274edcf86c5eab0517).
+
 ## Required written explanation
 
-Trivy inspected the final backend and frontend images for known vulnerabilities in their OS packages and application dependencies. Both reports for the reviewed SHA contain zero HIGH or CRITICAL findings, while an earlier backend image was correctly blocked on 44 HIGH package findings. A clean result is limited to the image, scanner inventory, vulnerability database and scan time; it does not prove that application logic, access control or future dependencies are secure.
+Trivy inspects final backend/frontend images for known OS/library vulnerabilities and blocks HIGH or CRITICAL findings, including unfixed ones. Older reviewed images were clean at that threshold, but a later rebuild correctly blocked frontend libexpat CVE-2026-77214; the Dockerfile now requires the fixed package and its own scan must confirm the result. A clean result is specific to the image, inventory, database and scan time, not proof of complete security.
 
 ## 30-second student explanation
 
-“Our pipeline scans both final images with Trivy before publishing them. An earlier Debian backend image had 44 HIGH package findings, so the pipeline stopped publication. We changed to a maintained Alpine runtime, tested PostgreSQL and browser behavior again, and scanned both images successfully. We kept the HIGH/CRITICAL blocking rule, including unfixed vulnerabilities. A clean scan means no matching findings at that threshold at scan time, not that the application is completely secure.”
+“Our pipeline scans both images before publishing. It previously blocked a Debian backend, which we replaced and retested. A later rebuild caught HIGH CVE-2026-77214 in frontend libexpat 2.8.5, so we required fixed version 2.9.0 and reran the same gate. I check the fix's own report before calling it clean. This shows why yesterday's clean scan is not a permanent security guarantee.”
 
 ## Two-minute technical explanation
 

@@ -1,0 +1,17 @@
+{
+  "source_sha": "bd407322dda34ebb5d9b7a0ca05ff57106f13382",
+  "source_run": "https://github.com/not-so-shubh/devops-project/actions/runs/39070263226",
+  "full_report": "https://github.com/not-so-shubh/devops-project/blob/fc1966161ec1394c42a9c2c4db9c3ffb2668181f/docs/evidence/trivy-frontend.json",
+  "image": "ghcr.io/not-so-shubh/stockpilot-frontend:bd407322dda34ebb5d9b7a0ca05ff57106f13382",
+  "findings": [
+    {
+      "VulnerabilityID": "CVE-2026-77214",
+      "PkgName": "libexpat",
+      "InstalledVersion": "2.8.5-r0",
+      "FixedVersion": "2.9.0-r0",
+      "Severity": "HIGH",
+      "Title": "expat: expat: Information disclosure via heap buffer over-read in XML_ParseBuffer"
+    }
+  ],
+  "result": "Frontend scan failed; publish and Kubernetes skipped. Subsequent Dockerfile requires fixed libexpat; verify remediation run."
+}
