@@ -59,10 +59,10 @@
       "id": "M1.5",
       "implementation": "backend/app/, backend/alembic/versions/0001_inventory_ledger.py, frontend/src/",
       "verification": "Playwright desktop/mobile acceptance",
-      "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "docs/evidence/github-quality.txt; github-compose-first-run.txt",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "status": "PASS",
+      "actual_result": "All four desktop/mobile CRUD and interaction scenarios passed against real PostgreSQL Compose; mobile client/inner/visual/scroll widths all 390px",
+      "evidence": "docs/evidence/compose-browser-success.txt; Actions run 38999948371 job 117300750893",
+      "blocker": ""
     },
     {
       "module": "M2",
@@ -119,10 +119,10 @@
       "id": "M3.1",
       "implementation": ".gitignore and public GitHub main history",
       "verification": "GitHub repo metadata: public",
-      "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "https://github.com/not-so-shubh/devops-project/commits/main/",
-      "blocker": ""
+      "status": "PENDING",
+      "actual_result": "Destination repository is public and published; no submission form was supplied or submitted",
+      "evidence": "https://github.com/not-so-shubh/devops-project",
+      "blocker": "Student must paste repository URL into the official submission form"
     },
     {
       "module": "M3",
@@ -287,10 +287,10 @@
       "id": "M6.1",
       "implementation": ".github/workflows/ci-cd.yml Trivy matrix and security gate",
       "verification": "both build-security matrix scans",
-      "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "workflow configuration; actual scan pending",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "status": "PASS",
+      "actual_result": "Both scans ran. Frontend had zero HIGH/CRITICAL; initial Debian backend scan blocked 44 entries across 8 CVEs, triggering runtime remediation",
+      "evidence": "Actions run 38999948371 jobs 117301003515 and 117301003541; security/README.md",
+      "blocker": ""
     },
     {
       "module": "M6",
@@ -312,9 +312,9 @@
       "implementation": ".github/workflows/ci-cd.yml Trivy matrix and security gate",
       "verification": "read actual Trivy result and explain limitations",
       "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "workflow configuration; actual scan pending",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "actual_result": "Explanation of actual CVE-2026-76642 and remediation prepared in security/README.md",
+      "evidence": "security/README.md; actual Trivy run 38999948371",
+      "blocker": "Student must explain the actual finding or final clean result during presentation"
     },
     {
       "module": "M7",
