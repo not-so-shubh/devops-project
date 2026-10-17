@@ -36,3 +36,4 @@ pytest-of-root/
 pip-metadata-*/
 pip-unpack-*/
 .tools/
+.tmp/

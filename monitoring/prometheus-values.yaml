@@ -1,0 +1,50 @@
+# Lightweight capstone monitoring. Persistent retention/backup is a production follow-up.
+defaultRules:
+  create: false
+alertmanager:
+  enabled: false
+prometheus-node-exporter:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+grafana:
+  enabled: true
+  admin:
+    existingSecret: stockpilot-grafana
+    userKey: admin-user
+    passwordKey: admin-password
+  service:
+    type: ClusterIP
+  resources:
+    requests: {cpu: 50m, memory: 128Mi}
+    limits: {cpu: 500m, memory: 256Mi}
+  sidecar:
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+      searchNamespace: monitoring
+    datasources:
+      uid: prometheus
+      defaultDatasourceEnabled: true
+  grafana.ini:
+    users:
+      allow_sign_up: false
+prometheusOperator:
+  resources:
+    requests: {cpu: 50m, memory: 64Mi}
+    limits: {cpu: 500m, memory: 256Mi}
+prometheus:
+  prometheusSpec:
+    retention: 24h
+    scrapeInterval: 15s
+    evaluationInterval: 15s
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector:
+      matchLabels:
+        release: monitoring
+    serviceMonitorNamespaceSelector:
+      matchLabels:
+        kubernetes.io/metadata.name: stockpilot
+    resources:
+      requests: {cpu: 100m, memory: 256Mi}
+      limits: {cpu: 1000m, memory: 768Mi}

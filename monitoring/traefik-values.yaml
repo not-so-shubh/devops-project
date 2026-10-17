@@ -1,0 +1,18 @@
+# EKS uses the legacy AWS cloud service controller for a demo LoadBalancer.
+# A production AWS Load Balancer Controller/NLB installation can replace this.
+service:
+  type: LoadBalancer
+providers:
+  kubernetesIngress:
+    enabled: true
+    publishedService:
+      enabled: true
+  kubernetesCRD:
+    enabled: false
+ingressClass:
+  enabled: true
+  name: traefik
+  isDefaultClass: false
+resources:
+  requests: {cpu: 100m, memory: 64Mi}
+  limits: {cpu: 500m, memory: 128Mi}

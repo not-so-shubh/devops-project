@@ -3,3 +3,4 @@ pytest
 pytest-cov
 httpx
 ruff
+PyYAML>=6.0.3
