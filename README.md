@@ -2,19 +2,19 @@
 
 **Inventory, under control.** StockPilot is an original inventory operations platform for small businesses. It combines a responsive React workspace with a FastAPI API, PostgreSQL persistence, and a stock ledger that keeps the history after a product leaves the catalog.
 
-[CI/CD](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml) · [Evidence](docs/EVIDENCE.md) · [Rubric audit](docs/RUBRIC-CHECKLIST.md) · [Demo script](docs/DEMO.md)
+[CI/CD](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml) · [Evidence](docs/EVIDENCE.md) · [Rubric audit](docs/RUBRIC-CHECKLIST.md) · [Demo script](docs/FINAL-DEMO-SCRIPT.md)
 
 ## Verified submission status
 
-[Complete successful CI/CD run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598) · [Actual screenshots and reports](docs/EVIDENCE.md) · [Final submission actions](docs/SUBMISSION.md)
+[Complete successful CI/CD run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560) · [Actual screenshots and reports](docs/EVIDENCE.md) · [Final submission actions](docs/SUBMISSION.md)
 
-The reviewed source `9462f34dc3c8f6321af23a85d11296d980839595` passed PostgreSQL tests, Compose/browser checks, both image scans and GHCR publication, Helm/Ingress/HPA, populated Grafana, troubleshooting repairs and real Flux reconciliation. The evidence-based audit covers 39 of 46 criteria (83 rubric points); these are verified criteria, not awarded marks. A real AWS plan/VPC/EKS/destroy cycle and the student's submission/presentation remain required. Evidence is pinned to that tested revision; newer commits need their own successful run.
+The reviewed source `54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c` passed PostgreSQL tests, Compose/browser checks, both image scans and GHCR publication, Helm/Ingress/HPA, populated Grafana, troubleshooting repairs and real Flux reconciliation. The evidence-based audit covers 39 of 46 criteria (83 rubric points); these are verified criteria, not awarded marks. A real AWS plan/VPC/EKS/destroy cycle and the student's security explanation/presentation remain required. Official form submission is **Student action — excluded from this task**. Evidence is pinned to that tested revision; newer commits need their own successful run.
 
 ## Screenshots
 
-![StockPilot running in the actual desktop browser test](https://raw.githubusercontent.com/not-so-shubh/devops-project/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-desktop.png)
+![StockPilot running in the actual desktop browser test](https://raw.githubusercontent.com/not-so-shubh/devops-project/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-desktop.png)
 
-[Mobile view](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-mobile.png) · [Prometheus: two targets UP](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/prometheus-targets.png) · [Grafana: populated live dashboard](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/grafana-dashboard.png)
+[Mobile view](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-mobile.png) · [Prometheus: two targets UP](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/prometheus-targets.png) · [Grafana: populated live dashboard](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/grafana-dashboard.png)
 
 ## What you can do
 
@@ -205,3 +205,9 @@ GitOps uses optional Flux pull reconciliation with reviewed SHA promotion. See [
 StockPilot's application/domain/schema/design are original. The reference DevOps architecture and rubric came from [Nency-Ravaliya/devops-heros](https://github.com/Nency-Ravaliya/devops-heros/tree/main/session21-python), MIT licensed. See [NOTICE.md](NOTICE.md), `LICENSE`, and `LICENSE.reference`.
 
 Before submitting, complete [the final execution and capture checklist](docs/SUBMISSION.md).
+
+## Final presentation pack
+
+[Trivy explanation](docs/TRIVY-EXPLANATION.md) · [12-minute and short demo scripts](docs/FINAL-DEMO-SCRIPT.md) · [Capture checklist](docs/FINAL-PRESENTATION-CHECKLIST.md) · [Instructor Q&A](docs/INSTRUCTOR-QA.md) · [AWS readiness and cost estimate](docs/AWS-READINESS.md)
+
+The audit distinguishes VERIFIED (83 points), READY FOR DEMO (4), BLOCKED on AWS (11), and EXCLUDED form submission (2). These are evidence categories, not awarded marks. The latest reviewed full run is pinned above; each later main run archives its own `evidence/<source-sha>` manifest.

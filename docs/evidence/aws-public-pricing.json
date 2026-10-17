@@ -1,0 +1,186 @@
+{
+  "retrieved_utc": "2026-10-17T21:14:51.595774+00:00",
+  "region": "ap-south-1",
+  "currency": "USD",
+  "account_specific_quote": false,
+  "ec2": {
+    "source": "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/Asia%20Pacific%20(Mumbai)/Linux/index.json",
+    "manifest": {
+      "serviceId": "ec2",
+      "accessType": "publish",
+      "hawkFilePublicationDate": "2026-10-15T19:13:16Z",
+      "ETLIngestionTriggerDate": "2026-10-15T19:13:16Z",
+      "currencyCode": "USD",
+      "source": "ec2-ondemand-without-sec-sel"
+    },
+    "rate": {
+      "rateCode": "RUWAU5N3UGGM4SSN.JRTCKXETXF.6YS6EN2CT7",
+      "price": "0.0896000000",
+      "Location": "Asia Pacific (Mumbai)",
+      "Instance Family": "General purpose",
+      "vCPU": "2",
+      "Instance Type": "t3.large",
+      "Memory": "8 GiB",
+      "Storage": "EBS only",
+      "Network Performance": "Up to 5 Gigabit",
+      "plc:OperatingSystem": "Linux",
+      "plc:InstanceFamily": "General Purpose",
+      "Operating System": "Linux",
+      "Pre Installed S/W": "NA",
+      "License Model": "No License required"
+    }
+  },
+  "nat_ebs": {
+    "retrieved_utc": "2026-10-17T21:11:13.276356+00:00",
+    "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/ap-south-1/index.csv",
+    "metadata": [
+      [
+        "FormatVersion",
+        "v1.0"
+      ],
+      [
+        "Disclaimer",
+        "This pricing list is for informational purposes only. All prices are subject to the additional terms included in the pricing pages on http://aws.amazon.com. All Free Tier prices are also subject to the terms included at https://aws.amazon.com/free/"
+      ],
+      [
+        "Publication Date",
+        "2026-10-15T19:13:16Z"
+      ],
+      [
+        "Version",
+        "20261015191316"
+      ],
+      [
+        "OfferCode",
+        "AmazonEC2"
+      ]
+    ],
+    "rates": [
+      {
+        "SKU": "64BEAW3X74JHEHG2",
+        "PricePerUnit": "0.0560000000",
+        "Unit": "GB",
+        "PriceDescription": "Charge for per GB data processed by NAT Gateways",
+        "EffectiveDate": "2026-10-01",
+        "Location": "Asia Pacific (Mumbai)",
+        "usageType": "APS3-RegionalNatGateway-Bytes"
+      },
+      {
+        "SKU": "D7RMW443YWTMZ4V5",
+        "PricePerUnit": "0.0912000000",
+        "Unit": "GB-Mo",
+        "PriceDescription": "$0.0912 per GB-month of General Purpose (gp3) provisioned storage - Asia Pacific (Mumbai)",
+        "EffectiveDate": "2026-10-01",
+        "Location": "Asia Pacific (Mumbai)",
+        "usageType": "APS3-EBS:VolumeUsage.gp3"
+      },
+      {
+        "SKU": "DJ4GYZ29AWV3WFQX",
+        "PricePerUnit": "0.0560000000",
+        "Unit": "Hrs",
+        "PriceDescription": "$0.056 per NAT Gateway Hour",
+        "EffectiveDate": "2026-10-01",
+        "Location": "Asia Pacific (Mumbai)",
+        "usageType": "APS3-NatGateway-Hours"
+      },
+      {
+        "SKU": "PECZM5QN6GRSM5DH",
+        "PricePerUnit": "0.0560000000",
+        "Unit": "Hrs",
+        "PriceDescription": "Hourly charge for Regional NAT Gateways",
+        "EffectiveDate": "2026-10-01",
+        "Location": "Asia Pacific (Mumbai)",
+        "usageType": "APS3-RegionalNatGateway-Hours"
+      },
+      {
+        "SKU": "U3B5F5D6AU5THP8V",
+        "PricePerUnit": "0.0560000000",
+        "Unit": "GB",
+        "PriceDescription": "$0.056 per GB Data Processed by NAT Gateways",
+        "EffectiveDate": "2026-10-01",
+        "Location": "Asia Pacific (Mumbai)",
+        "usageType": "APS3-NatGateway-Bytes"
+      }
+    ]
+  },
+  "classic_elb": {
+    "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSELB/current/ap-south-1/index.json",
+    "publicationDate": "2026-09-11T12:45:44Z",
+    "rates": [
+      {
+        "sku": "UYRYKW9MKSNJBEEA",
+        "attributes": {
+          "servicecode": "AWSELB",
+          "location": "Asia Pacific (Mumbai)",
+          "locationType": "AWS Region",
+          "group": "ELB:Balancing",
+          "groupDescription": "Data processed by Classic Load Balancer",
+          "usagetype": "APS3-DataProcessing-Bytes",
+          "operation": "LoadBalancing",
+          "regionCode": "ap-south-1",
+          "servicename": "Elastic Load Balancing"
+        },
+        "price": {
+          "rateCode": "UYRYKW9MKSNJBEEA.JRTCKXETXF.6YS6EN2CT7",
+          "description": "$0.008 per GB Data Processed by the LoadBalancer",
+          "beginRange": "0",
+          "endRange": "Inf",
+          "unit": "GB",
+          "pricePerUnit": {
+            "USD": "0.0080000000"
+          },
+          "appliesTo": []
+        },
+        "effectiveDate": "2026-08-01T00:00:00Z"
+      },
+      {
+        "sku": "GW7GQSZ3UDNAPCRM",
+        "attributes": {
+          "servicecode": "AWSELB",
+          "location": "Asia Pacific (Mumbai)",
+          "locationType": "AWS Region",
+          "group": "ELB:Balancing",
+          "groupDescription": "LoadBalancer hourly usage by Classic Load Balancer",
+          "usagetype": "APS3-LoadBalancerUsage",
+          "operation": "LoadBalancing",
+          "regionCode": "ap-south-1",
+          "servicename": "Elastic Load Balancing"
+        },
+        "price": {
+          "rateCode": "GW7GQSZ3UDNAPCRM.JRTCKXETXF.6YS6EN2CT7",
+          "description": "$0.0266 per LoadBalancer-hour (or partial hour)",
+          "beginRange": "0",
+          "endRange": "Inf",
+          "unit": "Hrs",
+          "pricePerUnit": {
+            "USD": "0.0266000000"
+          },
+          "appliesTo": []
+        },
+        "effectiveDate": "2026-08-01T00:00:00Z"
+      }
+    ]
+  },
+  "eks": {
+    "source": "https://aws.amazon.com/eks/pricing/",
+    "standard_support_cluster_hour": 0.1
+  },
+  "ipv4": {
+    "source": "https://aws.amazon.com/vpc/pricing/",
+    "address_hour": 0.005
+  },
+  "estimate_assumptions": {
+    "worker_count": 2,
+    "worker_type": "t3.large",
+    "nat_count": 1,
+    "classic_load_balancers": 1,
+    "public_ipv4_addresses_assumed": 3,
+    "gp3_gib": 65,
+    "hours_per_month_for_estimate": 730,
+    "runtime_hours": 6,
+    "base_hourly_usd": 0.384921,
+    "proposed_budget_usd": 10,
+    "budget_approved": false,
+    "excludes": "Taxes, currency conversion, account discounts/credits, logs, NAT/LB/Internet/cross-AZ traffic, t3 surplus CPU credits, extra/replacement resources and runtime beyond six hours. Proposed budget includes headroom, not an enforced spending cap."
+  }
+}

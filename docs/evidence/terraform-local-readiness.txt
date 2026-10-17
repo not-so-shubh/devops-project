@@ -1,0 +1,114 @@
+Executed UTC: 2026-10-17T21:09:01.118908+00:00
+Source: 54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c
+No AWS plan/apply/destroy. Test uses mock_provider.
+
+$ .tools/terraform version
+Terraform v1.14.7
+on linux_amd64
+
+Exit status: 0
+
+$ .tools/terraform -chdir=terraform fmt -check -recursive
+
+Exit status: 0
+
+$ .tools/terraform -chdir=terraform init -input=false -lockfile=readonly
+Initializing the backend...
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Installing hashicorp/aws v6.69.1...
+╷
+│ Error: Failed to install provider
+│ 
+│ Error while installing hashicorp/aws v6.69.1: failed to open temporary file
+│ to download from
+│ https://releases.hashicorp.com/terraform-provider-aws/6.69.1/terraform-provider-aws_6.69.1_linux_amd64.zip:
+│ open /tmp/terraform-provider3762818899: no such file or directory
+╵
+
+Exit status: 1
+
+$ .tools/terraform -chdir=terraform validate
+╷
+│ Error: registry.terraform.io/hashicorp/aws: there is no package for registry.terraform.io/hashicorp/aws 6.69.1 cached in .terraform/providers
+│ 
+│ 
+╵
+
+Exit status: 1
+
+$ .tools/terraform -chdir=terraform test
+╷
+│ Error: registry.terraform.io/hashicorp/aws: there is no package for registry.terraform.io/hashicorp/aws 6.69.1 cached in .terraform/providers
+│ 
+│ 
+╵
+
+Exit status: 1
+
+Retry: initial provider installation could not write /tmp in this workspace. Set TMPDIR to repository ignored .tmp directory. No HCL/provider/security changes.
+
+$ .tools/terraform -chdir=terraform init -input=false -lockfile=readonly -no-color
+Initializing the backend...
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Installing hashicorp/aws v6.69.1...
+- Installed hashicorp/aws v6.69.1 (signed by HashiCorp)
+
+Terraform has been successfully initialized!
+
+Exit status: 0
+
+$ .tools/terraform -chdir=terraform validate -no-color
+
+Error: Failed to load plugin schemas
+
+Error while loading schemas for plugin components: Failed to obtain provider
+schema: Could not load the schema for provider
+registry.terraform.io/hashicorp/aws: failed to instantiate provider
+"registry.terraform.io/hashicorp/aws" to obtain schema: Unrecognized remote
+plugin message: 
+Failed to read any lines from plugin's stdout
+This usually means
+  the plugin was not compiled for this architecture,
+  the plugin is missing dynamic-link libraries necessary to run,
+  the plugin is not executable by this process due to file permissions, or
+  the plugin failed to negotiate the initial go-plugin protocol handshake
+
+Additional notes about plugin:
+  Path: .terraform/providers/registry.terraform.io/hashicorp/aws/6.69.1/linux_amd64/terraform-provider-aws_v6.69.1_x5
+  Mode: -rwxr-xr-x
+  Owner: 0 [root] (current: 0 [root])
+  Group: 0 [root] (current: 0 [root])
+  ELF architecture: EM_X86_64 (current architecture: amd64)
+..
+
+Exit status: 1
+
+$ .tools/terraform -chdir=terraform test -no-color
+tests/infrastructure.tftest.hcl... in progress
+tests/infrastructure.tftest.hcl... tearing down
+tests/infrastructure.tftest.hcl... fail
+
+Error: could not create provider instance: Unrecognized remote plugin message: 
+Failed to read any lines from plugin's stdout
+This usually means
+  the plugin was not compiled for this architecture,
+  the plugin is missing dynamic-link libraries necessary to run,
+  the plugin is not executable by this process due to file permissions, or
+  the plugin failed to negotiate the initial go-plugin protocol handshake
+
+Additional notes about plugin:
+  Path: .terraform/providers/registry.terraform.io/hashicorp/aws/6.69.1/linux_amd64/terraform-provider-aws_v6.69.1_x5
+  Mode: -rwxr-xr-x
+  Owner: 0 [root] (current: 0 [root])
+  Group: 0 [root] (current: 0 [root])
+  ELF architecture: EM_X86_64 (current architecture: amd64)
+
+
+
+Failure! 0 passed, 0 failed.
+
+Exit status: 1
+
+Environment note: Terraform debug output also reported readlink /proc/self/exe: no such file or directory. Provider startup failed before schema validation. No HCL or security setting was changed to bypass this. See successful provider-backed validation and mocked topology checks in the pinned CI evidence; the publishing commit is rechecked by CI.

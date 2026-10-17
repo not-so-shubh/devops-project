@@ -892,7 +892,8 @@ function App() {
                   <li>
                     <strong>Record the movement.</strong> Use the arrows beside
                     any product to receive or remove stock. Add a reason for a
-                    useful audit trail.
+                    useful audit trail. You cannot remove more units than are
+                    currently available.
                   </li>
                   <li>
                     <strong>Stay ahead.</strong> Check the watchlist for

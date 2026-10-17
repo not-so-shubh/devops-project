@@ -6,6 +6,8 @@ from pathlib import Path
 data = json.loads(Path("docs/rubric-audit.json").read_text())
 rows = data["criteria"]
 assert len(rows) == 46 and sum(r["points"] for r in rows) == 100
+statuses = ["VERIFIED", "READY FOR DEMO", "BLOCKED", "EXCLUDED"]
+assert all(r["status"] in statuses and r["source_sha"] for r in rows)
 lines = [
     "# Complete rubric verification audit",
     "",
@@ -18,8 +20,8 @@ lines = [
     "",
     data["note"],
     "",
-    "| Criterion | Points | Implemented file or feature | Verification command/check | Actual result | Evidence | Remaining blocker |",
-    "|---|---:|---|---|---|---|---|",
+    "| Module / criterion | Points | Status | Implemented feature and check | Actual result | Evidence | Source SHA | Remaining action |",
+    "|---|---:|---|---|---|---|---|---|",
 ]
 for r in rows:
 
@@ -34,10 +36,11 @@ for r in rows:
                 [
                     r["id"] + " " + r["criterion"],
                     r["points"],
-                    r["implementation"],
-                    r["verification"],
-                    r["status"] + ": " + r["actual_result"],
+                    r["status"],
+                    r["implementation"] + "; " + r["verification"],
+                    r["actual_result"],
                     r["evidence"],
+                    "`" + r["source_sha"] + "`",
                     r["blocker"] or "None for this criterion",
                 ],
             )
@@ -50,19 +53,23 @@ lines += [
     "",
     "These are rubric points attached to verified criteria, not a predicted or awarded grade.",
     "",
-    "| Module | Available | Attached to verified criteria | Pending |",
-    "|---|---:|---:|---:|",
+    "| Module | Available | VERIFIED | READY FOR DEMO | BLOCKED | EXCLUDED |",
+    "|---|---:|---:|---:|---:|---:|",
 ]
 for n in range(1, 11):
     selected = [r for r in rows if r["module"] == f"M{n}"]
     total = sum(r["points"] for r in selected)
-    passed = sum(r["points"] for r in selected if r["status"] == "PASS")
-    lines.append(f"| M{n} | {total} | {passed} | {total - passed} |")
+    values = [sum(r["points"] for r in selected if r["status"] == s) for s in statuses]
+    lines.append(f"| M{n} | {total} | " + " | ".join(map(str, values)) + " |")
+totals = [sum(r["points"] for r in rows if r["status"] == s) for s in statuses]
+lines.append("| **Total** | **100** | " + " | ".join(map(str, totals)) + " |")
 lines += [
     "",
     "A successful kind deployment proves Kubernetes portability. It does not prove AWS provisioning, an account-dependent Terraform plan, destruction, or the student’s final live presentation.",
     "",
-    "See [SUBMISSION.md](SUBMISSION.md) for the seven open criteria and required final screenshot formats.",
+    "VERIFIED: actual executed evidence checked. READY FOR DEMO: preparation/technical chain available, but the student must explain or present personally. BLOCKED: requires unavailable AWS access and authorization. EXCLUDED: Student action — excluded from this task (official form only).",
+    "",
+    "See [SUBMISSION.md](SUBMISSION.md) for the seven criteria outside VERIFIED and final screenshot formats; [AWS-READINESS.md](AWS-READINESS.md) records actual access and execution limits.",
     "",
 ]
 Path("docs/RUBRIC-CHECKLIST.md").write_text("\n".join(lines))

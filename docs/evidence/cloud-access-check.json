@@ -1,0 +1,17 @@
+{
+  "checked_utc": "2026-10-17T21:12:45.589282+00:00",
+  "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c",
+  "region_intended": "ap-south-1",
+  "aws_cli_available": false,
+  "aws_environment_variable_names": [],
+  "aws_connector_available": false,
+  "account_identity": "Not established: no AWS CLI/configuration or suitable connector available in this workspace. No credential values searched or printed.",
+  "sts_executed": false,
+  "permissions_verified": false,
+  "paid_resources_authorized": false,
+  "real_plan_executed": false,
+  "apply_executed": false,
+  "destroy_executed": false,
+  "status": "BLOCKED",
+  "next_action": "Connect an authorized short-lived AWS session securely; verify identity, permissions, regional versions and reviewed plan; obtain explicit cost/duration approval before apply."
+}

@@ -44,3 +44,56 @@ The demonstration PostgreSQL StatefulSet has a PVC. EKS uses encrypted gp3 via t
 HTTP counters and latency histograms use route-template labels, including status codes, and exclude `/metrics` requests. The Grafana dashboard aggregates all backend replicas. ServiceMonitor selection is explicit on namespace, release label and Service labels/port. Its namespace label must exist before monitoring installation.
 
 The CI path is reproducible and gated: quality → Compose → build/scan → publish and kind integration → optional EKS. Candidate image tar archives ensure the pushed bytes are the scanned bytes. AWS OIDC trusts the exact repository's `production` environment. IAM permits describing only the intended EKS cluster; EKS access grants edit only in `stockpilot`, while a human operator bootstraps namespace, storage, monitoring and secrets.
+
+## Delivery architecture for the presentation
+
+```mermaid
+flowchart TD
+  Git[Git source commit] --> CI[GitHub Actions gates]
+  CI --> Images[Scanned SHA images in GHCR]
+  CI --> Kind[Disposable kind validation]
+  Images --> Deploy[Helm release]
+  Terraform[Terraform after AWS approval] --> EKS[EKS and private workers]
+  EKS --> Deploy
+  Kind --> Deploy
+  Deploy --> Ingress[Traefik routing]
+  Ingress --> Frontend[React and Nginx]
+  Ingress --> Backend[FastAPI]
+  Backend --> DB[PostgreSQL PVC]
+  Backend --> Prometheus[Prometheus scraping]
+  Prometheus --> Grafana[Grafana dashboard]
+```
+
+This diagram describes the intended paths. The kind branch has actual executed evidence; the AWS Terraform/EKS branch remains unexecuted until authentication and approval. Production Actions ownership and Flux reconciliation are alternatives for a release; the CI exercise hands ownership to Flux in its disposable cluster.
+
+## Tool responsibilities
+
+| Tool | Purpose in StockPilot |
+|---|---|
+| Git / GitHub | Source history, reviewable changes and repository hosting. |
+| React / Vite | Browser interactions and a reproducible static frontend build. |
+| FastAPI / Pydantic | REST routing, input validation and API documentation. |
+| SQLAlchemy / Psycopg | Transactional database access and PostgreSQL connectivity. |
+| PostgreSQL / Alembic | Durable inventory/ledger records and versioned schema migrations. |
+| Pytest / coverage | API/database behavior checks and measurement of exercised Python statements. |
+| Ruff / ESLint | Python/JavaScript static quality checks and consistent Python formatting. |
+| Playwright | Real desktop/mobile browser acceptance and screenshots. |
+| Docker / Compose | Reproducible images and the local application/database stack. |
+| Nginx | Non-root static frontend serving and local API proxy. |
+| GitHub Actions | Ordered quality, infrastructure, Compose, build, scan, publish and cluster checks. |
+| Bandit / Trivy | Python security analysis, secret detection and known OS/library vulnerability scanning. |
+| GHCR | Published backend/frontend images identified by tested source SHA. |
+| Terraform / AWS provider | Declarative AWS network, EKS, workers, IAM, storage driver and logging lifecycle. |
+| AWS IAM / OIDC | Scoped identities/access; short-lived GitHub deployment credentials. |
+| EKS / EC2 managed nodes | Proposed AWS control plane and worker compute; not yet provisioned here. |
+| kind | Actual disposable Kubernetes environment used in CI without paid AWS infrastructure. |
+| kubectl | Apply/inspect Kubernetes objects, rollout state, metrics and debugging information. |
+| Helm | Versioned app/controller/monitoring packages and release upgrades. |
+| Traefik | Ingress controller routing `/` to frontend and `/api` to backend. |
+| EBS CSI / Pod Identity | Proposed EKS gp3 volume provisioning with a separate AWS storage role. |
+| metrics-server / HPA | Resource CPU metrics and backend replica adjustment. |
+| Prometheus Operator / ServiceMonitor | Monitoring resource management and application scrape discovery. |
+| Prometheus / Grafana | Metrics collection/querying and dashboards with real request/latency data. |
+| Flux | Git source retrieval and Helm desired-state reconciliation, verified in CI. |
+
+See [FINAL-DEMO-SCRIPT.md](FINAL-DEMO-SCRIPT.md) for the timed walkthrough and [INSTRUCTOR-QA.md](INSTRUCTOR-QA.md) for tradeoffs and remaining limits.

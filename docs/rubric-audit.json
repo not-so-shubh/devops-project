@@ -1,8 +1,8 @@
 {
   "source": "https://github.com/Nency-Ravaliya/devops-heros/blob/main/session21-python/GRADING.md",
   "reference_commit": "68be534ed67dd6de7ce520821e07e4dde137e26c",
-  "updated": "2026-10-17",
-  "note": "PASS means the cited evidence was checked, not an instructor-awarded grade. The verified snapshot has 39 of 46 criteria covering 83 of 100 rubric points. Seven criteria covering 17 points still require AWS execution or student actions. A mock Terraform plan is not a real AWS plan. See SUBMISSION.md for required screenshot formats and final actions.",
+  "updated": "2026-10-18",
+  "note": "VERIFIED means actual executed evidence was checked, not an instructor-awarded grade. There are 39 VERIFIED criteria (83 points), 2 READY FOR DEMO (4 points: student explanation/presentation), 4 BLOCKED (11 points: AWS lifecycle), and 1 EXCLUDED (2 points: official form). Prepared documentation is not personal performance or AWS execution. All rows identify the reviewed source; later main runs archive independent evidence/<source-sha> manifests.",
   "criteria": [
     {
       "module": "M1",
@@ -11,10 +11,11 @@
       "id": "M1.1",
       "implementation": "backend/app/, backend/alembic/versions/0001_inventory_ledger.py, frontend/src/",
       "verification": "curl /health",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "GET /health returns 200 with status UP in isolated tests and healthy running container",
-      "evidence": "[compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-smoke.txt); [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt); [frontend-desktop.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-desktop.png); [frontend-mobile.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-mobile.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-smoke.txt); [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/pytest-postgres.txt); [frontend-desktop.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-desktop.png); [frontend-mobile.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-mobile.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M1",
@@ -23,10 +24,11 @@
       "id": "M1.2",
       "implementation": "backend/app/, backend/alembic/versions/0001_inventory_ledger.py, frontend/src/",
       "verification": "pytest CRUD tests",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Create/read/list/update/delete plus stock, statistics and retained movement endpoints passed actual PostgreSQL tests and browser CRUD",
-      "evidence": "[compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-smoke.txt); [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt); [frontend-desktop.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-desktop.png); [frontend-mobile.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-mobile.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-smoke.txt); [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/pytest-postgres.txt); [frontend-desktop.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-desktop.png); [frontend-mobile.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-mobile.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M1",
@@ -35,10 +37,11 @@
       "id": "M1.3",
       "implementation": "backend/app/, backend/alembic/versions/0001_inventory_ledger.py, frontend/src/",
       "verification": "alembic upgrade head && alembic check",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "PostgreSQL migration upgrade, model check, downgrade and re-upgrade passed in quality; two tables created through Alembic",
-      "evidence": "[compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-smoke.txt); [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt); [frontend-desktop.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-desktop.png); [frontend-mobile.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-mobile.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-smoke.txt); [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/pytest-postgres.txt); [frontend-desktop.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-desktop.png); [frontend-mobile.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-mobile.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M1",
@@ -47,10 +50,11 @@
       "id": "M1.4",
       "implementation": "backend/app/, backend/alembic/versions/0001_inventory_ledger.py, frontend/src/",
       "verification": "Compose HTTP smoke and real browser requests",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Real Nginx-origin API proxy smoke and desktop/mobile CRUD passed against PostgreSQL, with database-backed dashboard data",
-      "evidence": "[compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-smoke.txt); [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt); [frontend-desktop.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-desktop.png); [frontend-mobile.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-mobile.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-smoke.txt); [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/pytest-postgres.txt); [frontend-desktop.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-desktop.png); [frontend-mobile.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-mobile.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M1",
@@ -59,10 +63,11 @@
       "id": "M1.5",
       "implementation": "backend/app/, backend/alembic/versions/0001_inventory_ledger.py, frontend/src/",
       "verification": "Playwright desktop/mobile acceptance",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "All four desktop/mobile CRUD and interaction scenarios passed against real PostgreSQL Compose; mobile client/inner/visual/scroll widths all 390px",
-      "evidence": "[compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-smoke.txt); [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt); [frontend-desktop.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-desktop.png); [frontend-mobile.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-mobile.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-smoke.txt); [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/pytest-postgres.txt); [frontend-desktop.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-desktop.png); [frontend-mobile.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-mobile.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M2",
@@ -71,10 +76,11 @@
       "id": "M2.1",
       "implementation": "backend/tests/, backend/pytest.ini, backend/pyproject.toml",
       "verification": "pytest -v --cov=app",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "44 PostgreSQL tests passed, 97.67% backend coverage; local 43 passed with one explicitly skipped PG-only concurrency test",
-      "evidence": "[pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/pytest-postgres.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M2",
@@ -83,10 +89,11 @@
       "id": "M2.2",
       "implementation": "backend/tests/, backend/pytest.ini, backend/pyproject.toml",
       "verification": "pytest --collect-only; 44 cases / >3 endpoints",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "44 cases exercise more than three endpoints, including validation, stock races, persistence and retained audit",
-      "evidence": "[pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/pytest-postgres.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M2",
@@ -95,10 +102,11 @@
       "id": "M2.3",
       "implementation": "backend/tests/, backend/pytest.ini, backend/pyproject.toml",
       "verification": "inspect fixture TEST_DATABASE_URL suffix guard",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "CI uses disposable stockpilot_test PostgreSQL; fixtures override DB dependency and reject non-_test PostgreSQL databases",
-      "evidence": "[pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/pytest-postgres.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M2",
@@ -107,10 +115,11 @@
       "id": "M2.4",
       "implementation": "backend/tests/, backend/pytest.ini, backend/pyproject.toml",
       "verification": "pytest loads configured conftest/pytest.ini",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Pytest successfully loaded backend/pytest.ini and fixtures in actual local and PostgreSQL CI executions",
-      "evidence": "[pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/pytest-postgres.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M3",
@@ -119,10 +128,11 @@
       "id": "M3.1",
       "implementation": ".gitignore and public GitHub main history",
       "verification": "GitHub repo metadata: public",
-      "status": "PENDING",
-      "actual_result": "Destination repository is public and published; no submission form was supplied or submitted",
+      "status": "EXCLUDED",
+      "actual_result": "Student action \u2014 excluded from this task. No official form opened, populated or submitted.",
       "evidence": "https://github.com/not-so-shubh/devops-project",
-      "blocker": "Student must paste repository URL into the official submission form"
+      "blocker": "Student handles official form independently.",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M3",
@@ -131,10 +141,11 @@
       "id": "M3.2",
       "implementation": ".gitignore and public GitHub main history",
       "verification": "GitHub commits API / meaningful history >=10",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Public main history contains more than ten descriptive implementation and corrective commits; genuine history screenshot captured",
       "evidence": "https://github.com/not-so-shubh/devops-project/commits/main/; docs/evidence/github-commit-history.jpg",
-      "blocker": ""
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M3",
@@ -143,10 +154,11 @@
       "id": "M3.3",
       "implementation": ".gitignore and public GitHub main history",
       "verification": ".gitignore inspection",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Ignore rules checked for environment, venv, dependencies, caches, state and credentials; CI secret scan passed",
       "evidence": ".gitignore; docs/evidence/git-ignore.txt; Actions run 39000262612 quality",
-      "blocker": ""
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M4",
@@ -155,10 +167,11 @@
       "id": "M4.1",
       "implementation": "backend/Dockerfile, frontend/Dockerfile, docker-compose.yml",
       "verification": "docker compose up --build",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Backend image built successfully and ran PostgreSQL integration smoke; Alpine replacement also passed Compose/browser acceptance",
-      "evidence": "[compose-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-ci.txt); [compose-ci.log](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-ci.log); [persistence-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/persistence-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[compose-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-ci.txt); [compose-ci.log](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-ci.log); [persistence-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/persistence-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M4",
@@ -167,10 +180,11 @@
       "id": "M4.2",
       "implementation": "backend/Dockerfile, frontend/Dockerfile, docker-compose.yml",
       "verification": "inspect multi-stage frontend Dockerfile; successful build",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Node build and unprivileged Nginx final stage built and served functional SPA/API routes",
-      "evidence": "[compose-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-ci.txt); [compose-ci.log](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-ci.log); [persistence-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/persistence-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[compose-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-ci.txt); [compose-ci.log](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-ci.log); [persistence-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/persistence-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M4",
@@ -179,10 +193,11 @@
       "id": "M4.3",
       "implementation": "backend/Dockerfile, frontend/Dockerfile, docker-compose.yml",
       "verification": "docker compose exec backend/frontend id -u",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Actual Compose runtime id -u checks passed: backend 10001, frontend 101; GHCR configs confirm the same non-root users",
-      "evidence": "[compose-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-ci.txt); [compose-ci.log](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-ci.log); [persistence-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/persistence-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[compose-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-ci.txt); [compose-ci.log](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-ci.log); [persistence-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/persistence-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M4",
@@ -191,10 +206,11 @@
       "id": "M4.4",
       "implementation": "backend/Dockerfile, frontend/Dockerfile, docker-compose.yml",
       "verification": "docker compose up --build -d --wait; ps and smoke",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "docker compose config and up --build -d --wait passed; PostgreSQL/backend/frontend healthy, migration completed, real HTTP/browser operations passed",
-      "evidence": "[compose-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-ci.txt); [compose-ci.log](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-ci.log); [persistence-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/persistence-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[compose-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-ci.txt); [compose-ci.log](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/compose-ci.log); [persistence-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/persistence-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M5",
@@ -203,10 +219,11 @@
       "id": "M5.1",
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "workflow source exists",
-      "status": "PASS",
-      "actual_result": "Push-to-main workflow executed successfully for source 9462f34dc3c8f6321af23a85d11296d980839595",
-      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "status": "VERIFIED",
+      "actual_result": "Push-to-main workflow executed successfully for source 54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c",
+      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M5",
@@ -215,10 +232,11 @@
       "id": "M5.2",
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "push event produced run 38997526583",
-      "status": "PASS",
-      "actual_result": "Push-to-main workflow executed successfully for source 9462f34dc3c8f6321af23a85d11296d980839595",
-      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "status": "VERIFIED",
+      "actual_result": "Push-to-main workflow executed successfully for source 54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c",
+      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M5",
@@ -227,10 +245,11 @@
       "id": "M5.3",
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "quality job PostgreSQL tests",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Quality job runs real PostgreSQL pytest with coverage; nonzero test exit blocks dependent jobs without error suppression",
-      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M5",
@@ -239,10 +258,11 @@
       "id": "M5.4",
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "quality job npm build",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Frontend lint, four utility tests and Vite production build passed in actual quality jobs",
-      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M5",
@@ -251,10 +271,11 @@
       "id": "M5.5",
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "Compose image builds and later build-security matrix",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Both immutable candidate images built in separate matrix jobs after quality, infrastructure and Compose succeeded",
-      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M5",
@@ -263,10 +284,11 @@
       "id": "M5.6",
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "publish job docker push + GHCR tags",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Both scanned images pushed successfully; anonymous manifest, config revision and every layer independently verified accessible",
-      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M5",
@@ -275,10 +297,11 @@
       "id": "M5.7",
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "publish exact github.sha tags and verify package",
-      "status": "PASS",
-      "actual_result": "Both published image tags and OCI source revisions equal the exact verified source SHA 9462f34dc3c8f6321af23a85d11296d980839595; no latest tag",
-      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "status": "VERIFIED",
+      "actual_result": "Both published image tags and OCI source revisions equal the exact verified source SHA 54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c; no latest tag",
+      "evidence": "[ci-run.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ci-run.json); [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-backend.json); [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/ghcr-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M6",
@@ -287,10 +310,11 @@
       "id": "M6.1",
       "implementation": ".github/workflows/ci-cd.yml Trivy matrix and security gate",
       "verification": "both build-security matrix scans",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Both scans ran. Frontend had zero HIGH/CRITICAL; initial Debian backend scan blocked 44 entries across 8 CVEs, triggering runtime remediation",
-      "evidence": "[trivy-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/trivy-backend.json); [trivy-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/trivy-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[trivy-backend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/trivy-backend.json); [trivy-frontend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/trivy-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M6",
@@ -299,10 +323,11 @@
       "id": "M6.2",
       "implementation": ".github/workflows/ci-cd.yml Trivy matrix and security gate",
       "verification": "exit-code=1, severity HIGH,CRITICAL, ignore-unfixed=false",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Initial HIGH findings actually failed backend scan and prevented publication; unfixed issues remain included; replacement scans passed unchanged gate",
-      "evidence": "[trivy-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/trivy-backend.json); [trivy-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/trivy-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[trivy-backend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/trivy-backend.json); [trivy-frontend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/trivy-frontend.json); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M6",
@@ -311,10 +336,11 @@
       "id": "M6.3",
       "implementation": ".github/workflows/ci-cd.yml Trivy matrix and security gate",
       "verification": "read actual Trivy result and explain limitations",
-      "status": "PENDING",
-      "actual_result": "Explanation of actual CVE-2026-76642 and remediation prepared in security/README.md",
-      "evidence": "security/README.md; [trivy-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/trivy-backend.json); [trivy-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/trivy-frontend.json)",
-      "blocker": "Student must explain the actual finding or final clean result during presentation"
+      "status": "READY FOR DEMO",
+      "actual_result": "Actual blocked scan and clean reviewed scans checked; required written explanation, timed answers and Q&A prepared. Student explanation has not been assessed.",
+      "evidence": "[TRIVY-EXPLANATION.md](TRIVY-EXPLANATION.md); security/README.md; [trivy-backend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/trivy-backend.json); [trivy-frontend.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/trivy-frontend.json)",
+      "blocker": "Student explains the result personally to the instructor.",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M7",
@@ -323,10 +349,11 @@
       "id": "M7.1",
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "terraform validate",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Terraform fmt, real provider-backed validate and mock topology plan test passed on GitHub runner",
-      "evidence": "[terraform-ci-validate.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/terraform-ci-validate.txt); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/terraform-ci-mock-test.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[terraform-ci-validate.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/terraform-ci-validate.txt); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/terraform-ci-mock-test.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M7",
@@ -335,10 +362,11 @@
       "id": "M7.2",
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "terraform init -lockfile=readonly",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "terraform init -input=false -lockfile=readonly successfully installed locked AWS provider in actual CI",
-      "evidence": "[terraform-ci-validate.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/terraform-ci-validate.txt); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/terraform-ci-mock-test.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[terraform-ci-validate.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/terraform-ci-validate.txt); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/terraform-ci-mock-test.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M7",
@@ -347,10 +375,11 @@
       "id": "M7.3",
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "terraform plan against approved AWS account",
-      "status": "PENDING",
+      "status": "BLOCKED",
       "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
-      "evidence": "[terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
-      "blocker": "Connected AWS account/credentials, reviewed regional cost estimate and explicit paid-resource approval; capture deployment evidence before authorized cleanup"
+      "evidence": "[AWS-READINESS.md](AWS-READINESS.md); [cloud-access-check.json](evidence/cloud-access-check.json); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
+      "blocker": "No authorized AWS identity/session in this workspace. Connect securely; verify permissions and nonempty plan; approve current cost/duration before apply and separately approve cleanup.",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M7",
@@ -359,10 +388,11 @@
       "id": "M7.4",
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "apply; verify VPC and two public subnets",
-      "status": "PENDING",
+      "status": "BLOCKED",
       "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
-      "evidence": "[terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
-      "blocker": "Connected AWS account/credentials, reviewed regional cost estimate and explicit paid-resource approval; capture deployment evidence before authorized cleanup"
+      "evidence": "[AWS-READINESS.md](AWS-READINESS.md); [cloud-access-check.json](evidence/cloud-access-check.json); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
+      "blocker": "No authorized AWS identity/session in this workspace. Connect securely; verify permissions and nonempty plan; approve current cost/duration before apply and separately approve cleanup.",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M7",
@@ -371,10 +401,11 @@
       "id": "M7.5",
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "apply; verify EKS and managed workers",
-      "status": "PENDING",
+      "status": "BLOCKED",
       "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
-      "evidence": "[terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
-      "blocker": "Connected AWS account/credentials, reviewed regional cost estimate and explicit paid-resource approval; capture deployment evidence before authorized cleanup"
+      "evidence": "[AWS-READINESS.md](AWS-READINESS.md); [cloud-access-check.json](evidence/cloud-access-check.json); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
+      "blocker": "No authorized AWS identity/session in this workspace. Connect securely; verify permissions and nonempty plan; approve current cost/duration before apply and separately approve cleanup.",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M7",
@@ -383,10 +414,11 @@
       "id": "M7.6",
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "authorized terraform destroy; check residual resources",
-      "status": "PENDING",
+      "status": "BLOCKED",
       "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
-      "evidence": "[terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
-      "blocker": "Connected AWS account/credentials, reviewed regional cost estimate and explicit paid-resource approval; capture deployment evidence before authorized cleanup"
+      "evidence": "[AWS-READINESS.md](AWS-READINESS.md); [cloud-access-check.json](evidence/cloud-access-check.json); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
+      "blocker": "No authorized AWS identity/session in this workspace. Connect securely; verify permissions and nonempty plan; approve current cost/duration before apply and separately approve cleanup.",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M7",
@@ -395,10 +427,11 @@
       "id": "M7.7",
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "inspect terraform.tfvars.example and secret exclusions",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Credential-free example variable file exists; state, plans and real tfvars are ignored",
-      "evidence": "[terraform-ci-validate.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/terraform-ci-validate.txt); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/terraform-ci-mock-test.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[terraform-ci-validate.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/terraform-ci-validate.txt); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/terraform-ci-mock-test.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M8",
@@ -407,10 +440,11 @@
       "id": "M8.1",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "kubectl apply --dry-run=client; kubectl apply namespace",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Namespace client dry-run and actual apply succeeded in the fully successful disposable kind run",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M8",
@@ -419,10 +453,11 @@
       "id": "M8.2",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "helm lint; helm template; verify-manifests.py",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Helm lint/schema/template and cross-resource service wiring checks passed; local current render includes eleven resources including ConfigMap",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M8",
@@ -431,10 +466,11 @@
       "id": "M8.3",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "helm upgrade --install --wait --wait-for-jobs",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Helm --wait --wait-for-jobs succeeded on real Kubernetes 1.35.8; migration completed and both application rollouts succeeded",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M8",
@@ -443,10 +479,11 @@
       "id": "M8.4",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "kubectl rollout status; get deployments",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Actual cluster snapshot shows two ready backend and two ready frontend Pods; HPA later reports two replicas",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M8",
@@ -455,10 +492,11 @@
       "id": "M8.5",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "kubectl get svc; test real request",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Actual ClusterIP Services backend:8000 and frontend:8080 select running Pods; PostgreSQL headless Service also present",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M8",
@@ -467,10 +505,11 @@
       "id": "M8.6",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "curl and Playwright through Traefik Ingress",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Actual Traefik Ingress for localhost routed frontend HTML and API CRUD smoke successfully through controller port-forward",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M8",
@@ -479,10 +518,11 @@
       "id": "M8.7",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "kubectl get pods; ready/running check",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "All five application/database Pods were Running/Ready with zero restarts; the migration Job Pod appropriately completed",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M9",
@@ -491,10 +531,11 @@
       "id": "M9.1",
       "implementation": "backend/app/main.py, ServiceMonitor, monitoring/*",
       "verification": "curl /metrics and Prometheus exposition tests",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Running backend /metrics returned valid counter/histogram exposition; automated tests verify metric names and bounded route labels",
-      "evidence": "[metrics.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/metrics.txt); [prometheus-targets.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/prometheus-targets.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/prometheus-query.json); [grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/grafana-dashboard.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "evidence": "[metrics.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/metrics.txt); [prometheus-targets.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/prometheus-targets.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/prometheus-query.json); [grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/grafana-dashboard.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M9",
@@ -503,10 +544,11 @@
       "id": "M9.2",
       "implementation": "backend/app/main.py, ServiceMonitor, monitoring/*",
       "verification": "verify-monitoring.py target UP and positive rate",
-      "status": "PASS",
-      "actual_result": "Actual Prometheus Targets screenshot shows two StockPilot targets UP; independent query returns 1.7883559444444443 requests/second",
-      "evidence": "[metrics.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/metrics.txt); [prometheus-targets.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/prometheus-targets.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/prometheus-query.json); [grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/grafana-dashboard.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598)",
-      "blocker": ""
+      "status": "VERIFIED",
+      "actual_result": "Actual Prometheus Targets screenshot shows two StockPilot targets UP; independent query returns 1.347923888888889 requests/second",
+      "evidence": "[metrics.txt](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/metrics.txt); [prometheus-targets.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/prometheus-targets.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/prometheus-query.json); [grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/grafana-dashboard.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M9",
@@ -515,10 +557,11 @@
       "id": "M9.3",
       "implementation": "backend/app/main.py, ServiceMonitor, monitoring/*",
       "verification": "Grafana authenticated access",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Authenticated Grafana login and dashboard capture succeeded; actual screenshot inspected, showing request rate, p95 latency, 5xx ratio and two UP targets",
-      "evidence": "[grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/grafana-dashboard.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/prometheus-query.json); [Kubernetes job](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598/job/117433652497)",
-      "blocker": ""
+      "evidence": "[grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/grafana-dashboard.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/prometheus-query.json); [Kubernetes job](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560/job/117467387193)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M9",
@@ -527,10 +570,11 @@
       "id": "M9.4",
       "implementation": "backend/app/main.py, ServiceMonitor, monitoring/*",
       "verification": "Grafana query and populated panel screenshot",
-      "status": "PASS",
-      "actual_result": "Inspected actual Grafana screenshot: populated request-rate and latency charts; independent Prometheus query returned 1.7883559444444443 requests/second",
-      "evidence": "[grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/grafana-dashboard.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/prometheus-query.json); [Kubernetes job](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598/job/117433652497)",
-      "blocker": ""
+      "status": "VERIFIED",
+      "actual_result": "Inspected actual Grafana screenshot: populated request-rate and latency charts; independent Prometheus query returned 1.347923888888889 requests/second",
+      "evidence": "[grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/grafana-dashboard.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/prometheus-query.json); [Kubernetes job](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560/job/117467387193)",
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M10",
@@ -539,10 +583,11 @@
       "id": "M10.1",
       "implementation": "README.md and docs/DEMO.md",
       "verification": "README content and command review",
-      "status": "PASS",
+      "status": "VERIFIED",
       "actual_result": "Root README documents original application, full architecture, local setup, API, delivery, infrastructure, monitoring, cleanup and submission",
       "evidence": "README.md; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md; docs/DEMO.md",
-      "blocker": ""
+      "blocker": "",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     },
     {
       "module": "M10",
@@ -550,14 +595,15 @@
       "points": 3,
       "id": "M10.2",
       "implementation": "README.md and docs/DEMO.md",
-      "verification": "live/recorded commit → CI → configured deployment update",
-      "status": "PENDING",
-      "actual_result": "Automated commit-to-kind deployment and Flux revision-2 upgrade verified in the green run; student live/accepted recorded presentation still required",
-      "evidence": "[gitops-ci.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/gitops-ci.json); docs/DEMO.md",
-      "blocker": "Live or accepted recorded presentation required"
+      "verification": "live/recorded commit \u2192 CI \u2192 configured deployment update",
+      "status": "READY FOR DEMO",
+      "actual_result": "Actual source-SHA kind deployment and Flux revision-2 upgrade verified. Script/capture checklist/Q&A prepared; no accepted student recording or live presentation performed.",
+      "evidence": "[FINAL-DEMO-SCRIPT.md](FINAL-DEMO-SCRIPT.md); [FINAL-PRESENTATION-CHECKLIST.md](FINAL-PRESENTATION-CHECKLIST.md); [gitops-ci.json](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/gitops-ci.json); docs/DEMO.md",
+      "blocker": "Live or accepted recorded presentation required",
+      "source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c"
     }
   ],
-  "verified_source_sha": "9462f34dc3c8f6321af23a85d11296d980839595",
-  "verified_run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39045365598",
-  "evidence_commit": "48bd7092be1c403e91fc08717f75b53c61bf4295"
+  "verified_source_sha": "54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c",
+  "verified_run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39056922560",
+  "evidence_commit": "fb09b2543f7335779c7c32289123be69f52c5e66"
 }

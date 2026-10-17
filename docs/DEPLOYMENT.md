@@ -1,5 +1,7 @@
 # Deployment runbook
 
+See [AWS-READINESS.md](AWS-READINESS.md) for the current preparation, evidence boundaries and remaining actions. Official form submission: **Student action — excluded from this task.**
+
 ## Local stack and image design
 
 From repository root, copy `.env.example` to `.env`, set a long URL-safe password, then `docker compose config --quiet` and `docker compose up --build -d --wait --wait-timeout 180`. Open localhost:3000. The one-shot `migrate` service must finish before backend starts; frontend starts after database-aware backend health passes. `docker compose exec backend python -m app.seed` is explicit and repeatable.

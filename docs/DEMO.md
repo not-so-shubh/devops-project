@@ -1,5 +1,7 @@
 # StockPilot final demonstration
 
+See [FINAL-DEMO-SCRIPT.md](FINAL-DEMO-SCRIPT.md) for the current preparation, evidence boundaries and remaining actions. Official form submission: **Student action — excluded from this task.**
+
 Opening (20 seconds): “StockPilot helps a small business know what is on the shelf and why stock changed. I chose inventory operations rather than copying TaskBoard. The API uses PostgreSQL transactions, and the same application travels through tests, containers, a security gate, immutable registry images, Kubernetes, and monitoring.” Disclose implementation assistance according to your institution's policy and be ready to explain the submitted code yourself.
 
 | Step | Demonstrate | Proof and explanation |
