@@ -1,0 +1,97 @@
+{{- range $name := list "backend" "frontend" }}
+{{- $component := index $.Values $name }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stockpilot-{{ $name }}
+  labels:
+    {{- include "stockpilot.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: {{ $name }}
+spec:
+  {{- if or (eq $name "frontend") (not $.Values.hpa.enabled) }}
+  replicas: {{ $component.replicas }}
+  {{- end }}
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ $.Release.Name }}
+      app.kubernetes.io/component: {{ $name }}
+  template:
+    metadata:
+      labels:
+        {{- include "stockpilot.labels" $ | nindent 8 }}
+        app.kubernetes.io/component: {{ $name }}
+    spec:
+      automountServiceAccountToken: false
+      {{- with $.Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: {{ if eq $name "backend" }}10001{{ else }}101{{ end }}
+        runAsGroup: {{ if eq $name "backend" }}10001{{ else }}101{{ end }}
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: {{ $name }}
+          image: "{{ $component.repository }}:{{ $component.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: {{ if eq $name "backend" }}8000{{ else }}8080{{ end }}
+          {{- if eq $name "backend" }}
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.database.existingSecret }}
+                  key: database-url
+          {{- end }}
+          securityContext:
+            {{- include "stockpilot.security" $ | nindent 12 }}
+          readinessProbe:
+            httpGet:
+              path: {{ if eq $name "backend" }}/ready{{ else }}/healthz{{ end }}
+              port: http
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: {{ if eq $name "backend" }}/health{{ else }}/healthz{{ end }}
+              port: http
+            periodSeconds: 15
+            timeoutSeconds: 3
+          startupProbe:
+            httpGet:
+              path: {{ if eq $name "backend" }}/health{{ else }}/healthz{{ end }}
+              port: http
+            periodSeconds: 5
+            failureThreshold: 30
+          resources:
+            {{- toYaml $component.resources | nindent 12 }}
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: tmp
+          emptyDir: {sizeLimit: 64Mi}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $name }}
+  labels:
+    {{- include "stockpilot.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: {{ $name }}
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/instance: {{ $.Release.Name }}
+    app.kubernetes.io/component: {{ $name }}
+  ports:
+    - name: http
+      port: {{ if eq $name "backend" }}8000{{ else }}8080{{ end }}
+      targetPort: http
+{{- end }}

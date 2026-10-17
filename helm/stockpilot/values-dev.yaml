@@ -1,0 +1,14 @@
+backend:
+  replicas: 2
+frontend:
+  replicas: 2
+postgres:
+  enabled: true
+ingress:
+  enabled: true
+  host: stockpilot.local
+hpa:
+  enabled: true
+monitoring:
+  serviceMonitor:
+    enabled: false

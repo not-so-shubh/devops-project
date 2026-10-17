@@ -1,0 +1,11 @@
+aws_region           = "ap-south-1"
+cluster_name         = "stockpilot-eks"
+environment          = "dev"
+kubernetes_version   = "1.35"
+node_instance_types  = ["t3.large"]
+# Replace loopback with your trusted source IP. Never use 0.0.0.0/0.
+admin_cidrs          = ["127.0.0.1/32"]
+# Set the IAM ROLE ARN explicitly when using an assumed-role/SSO session.
+admin_principal_arn  = ""
+# Existing OIDC provider only. Set after reviewing the account's provider setup.
+github_oidc_provider_arn = ""

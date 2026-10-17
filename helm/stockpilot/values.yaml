@@ -1,0 +1,42 @@
+# Supply the exact Git SHA published by CI. The schema rejects mutable tags.
+backend:
+  repository: ghcr.io/not-so-shubh/stockpilot-backend
+  tag: ""
+  replicas: 2
+  resources:
+    requests: {cpu: 100m, memory: 128Mi}
+    limits: {cpu: 1000m, memory: 384Mi}
+frontend:
+  repository: ghcr.io/not-so-shubh/stockpilot-frontend
+  tag: ""
+  replicas: 2
+  resources:
+    requests: {cpu: 50m, memory: 32Mi}
+    limits: {cpu: 250m, memory: 128Mi}
+imagePullSecrets: []
+database:
+  # Create outside Helm: keys username, password, database-url. No secret value in values.
+  existingSecret: stockpilot-db
+postgres:
+  enabled: true
+  image: postgres:17-alpine
+  database: stockpilot
+  storage: 5Gi
+  storageClass: ""
+  resources:
+    requests: {cpu: 100m, memory: 128Mi}
+    limits: {cpu: 1000m, memory: 512Mi}
+ingress:
+  enabled: true
+  className: traefik
+  host: stockpilot.local
+  tls: []
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPU: 65
+monitoring:
+  serviceMonitor:
+    enabled: false
+    release: monitoring

@@ -1,0 +1,62 @@
+# Ordinary Job, created alongside the database. --wait-for-jobs makes it a release gate.
+# pre-install cannot reach a database that Helm has not yet created; post-install plus
+# --wait deadlocks backend readiness. This avoids both failure modes.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: stockpilot-migrate-{{ .Release.Revision }}
+  labels:
+    {{- include "stockpilot.labels" . | nindent 4 }}
+spec:
+  backoffLimit: 3
+  activeDeadlineSeconds: 300
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      labels:
+        {{- include "stockpilot.labels" . | nindent 8 }}
+        app.kubernetes.io/component: migration
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: migrate
+          image: "{{ .Values.backend.repository }}:{{ .Values.backend.tag }}"
+          command: [sh, -c]
+          args:
+            - |
+              python - <<'PY'
+              import os, time
+              from sqlalchemy import create_engine, text
+              engine = create_engine(os.environ['DATABASE_URL'], connect_args={'connect_timeout': 3})
+              for attempt in range(60):
+                  try:
+                      with engine.connect() as conn:
+                          conn.execute(text('SELECT 1'))
+                      break
+                  except Exception:
+                      time.sleep(3)
+              else:
+                  raise SystemExit('Database not reachable before migration deadline')
+              PY
+              exec alembic upgrade head
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.existingSecret }}
+                  key: database-url
+          securityContext:
+            {{- include "stockpilot.security" . | nindent 12 }}
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: 500m, memory: 256Mi}
