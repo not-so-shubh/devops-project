@@ -1,42 +1,53 @@
-# Evidence index and submission record
+# Verified evidence and submission record
 
-Only actual command output, real screenshots, and real run/resource links belong here. A configuration file is not evidence that an infrastructure resource exists. Review [all 46 official criteria](RUBRIC-CHECKLIST.md); the underlying records are in `rubric-audit.json`.
+The latest reviewed complete run is [StockPilot CI/CD #13](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598), **success**, executed on 17 October 2026. Its source is `9462f34dc3c8f6321af23a85d11296d980839595`. Evidence is pinned to commit `48bd7092be1c403e91fc08717f75b53c61bf4295` so links identify the checked snapshot. Newer source changes need their own successful run; the files below remain proof of this specified revision.
 
-## Verified so far
-
-| Evidence | Result | File or source |
+| Area | Actual verified result | Original evidence |
 |---|---|---|
-| Local Pytest | 43 passed, one PostgreSQL-only test skipped; 98.83% | [pytest-local.txt](evidence/pytest-local.txt) |
-| Actual PostgreSQL CI tests | 44 passed, including concurrent stock removal; 97.67% | [github-quality.txt](evidence/github-quality.txt), [quality job](https://github.com/not-so-shubh/devops-project/actions/runs/38997526583/job/117293235818) |
-| Frontend quality and build | Lint, four utility tests and production build passed | [quality job](https://github.com/not-so-shubh/devops-project/actions/runs/38997526583/job/117293235818), [frontend-build.txt](evidence/frontend-build.txt) |
-| Compose startup and HTTP integration | All services healthy; migration complete; non-root IDs checked; real proxy/API smoke passed | [github-compose-first-run.txt](evidence/github-compose-first-run.txt) |
-| Terraform initialization and validation | Passed on real GitHub runner; offline topology test passed | [github-infrastructure.txt](evidence/github-infrastructure.txt) |
-| Helm schema and wiring | Lint/template passed; eleven rendered resources and cross-resource wiring checked | [helm-lint.txt](evidence/helm-lint.txt), [helm-wiring.txt](evidence/helm-wiring.txt) |
-| Git history | Public destination with more than ten meaningful commits | [main history](https://github.com/not-so-shubh/devops-project/commits/main/) |
+| Backend | 44 PostgreSQL tests passed, including concurrency; 97.67% coverage | [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt) |
+| Frontend | Lint, four utility tests, production build, four desktop/mobile scenarios in Compose and again through Ingress | [quality job](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598/job/117433008105), [Compose job](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598/job/117433188546) |
+| Compose | Healthy frontend/backend/PostgreSQL; completed migrations, HTTP smoke and persistence after actual database restart | [compose-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-ci.txt), [compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-smoke.txt), [persistence-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/persistence-ci.txt) |
+| SAST and secrets | Bandit and Trivy secret gates passed | [bandit.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/bandit.json), [secrets.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/secrets.json) |
+| SCA and image security | Both OS/library scans passed unchanged HIGH/CRITICAL gate | [trivy-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/trivy-backend.json), [trivy-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/trivy-frontend.json) |
+| GHCR | Both exact-SHA images published; anonymous manifest/layer access and source revision verified | [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-backend.json), [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ghcr-frontend.json) |
+| Terraform | Locked initialization, validation, formatting and mock topology test passed; no AWS plan/apply/destroy performed | [infrastructure job](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598/job/117433007924), [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/terraform-ci-mock-test.txt) |
+| Kubernetes and Helm | Helm deployed; two backend and two frontend replicas, PostgreSQL/PVC, Services and actual Ingress CRUD/browser checks passed | [kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/kubernetes-ci.txt), [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/helm-release-ci.txt) |
+| HPA | Resource metrics available and ScalingActive=True; no unobserved scale-out claimed | [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/hpa-metrics-ci.txt) |
+| Monitoring | Two targets UP; positive request rate; actual authenticated Grafana screenshot has populated charts | [prometheus-targets.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/prometheus-targets.json), [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/prometheus-query.json), [grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/grafana-dashboard.png) |
+| Troubleshooting | Observed empty Service and ErrImagePull; corrected selector restored two endpoints; corrected image responded UP | [troubleshooting-ci.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/troubleshooting-ci.json) |
+| GitOps | Flux fetched exact tested Git revision, upgraded Helm to revision 2, rolled APP_ENV to gitops-ci and passed final HTTP smoke | [gitops-ci.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/gitops-ci.json) |
+| Provenance | All quality/build/publish/Kubernetes outcomes success, artifact origin recorded per file | [ci-run.json](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/ci-run.json) |
 
-First run [38997526583](https://github.com/not-so-shubh/devops-project/actions/runs/38997526583) failed full browser acceptance after passing the stack and HTTP checks. The mobile scroller containment defect was corrected, and all four Compose browser tests passed in run 38999948371 and again after the runtime base change in run 39000262612. The earlier runs must not be presented as green pipelines. Both latter image scans and GHCR publication passed; Kubernetes verification remains tracked independently. Run [39002712013](https://github.com/not-so-shubh/devops-project/actions/runs/39002712013) subsequently passed the real Helm deployment, two replicas per application, Services, actual Ingress HTTP smoke, active HPA, two Prometheus targets UP and four desktop/mobile browser scenarios through Ingress. That run failed only in the separate Grafana screenshot harness because its password label also matched the visibility switch. The selector was corrected; this failed run is not represented as an entirely green pipeline.
+## Actual screenshots
 
-## Durable CI evidence
+These are captures of the running application and monitoring UI, not mockups. Prometheus cluster addresses are explicitly redacted in its screenshot. Grafana includes the real startup error/latency history; the graph is not edited to hide it. Compose and kind use separate synthetic databases.
 
-Runs archive an explicit allowlist of screenshots, test/Compose/Helm/Kubernetes outputs, actual Trivy JSON, Prometheus target/query responses and Grafana screenshots on `evidence/<source-sha>`. `ci-run.json` records the source SHA, run URL, and actual job outcomes, including failures. Each job clears historical generated evidence in its disposable checkout before running; failed jobs cannot upload a previous run’s screenshot as new proof. JSON records the selected artifact origin for every copied file. Text is redacted for internal paths, private cluster addresses, IAM ARNs and runner IDs; screenshot redaction is identified where used. Browser traces and secrets are never copied into Git. Artifacts also appear on each run (30-day retention; image archives one day). Download artifacts before expiry if not yet copied into the durable evidence branch.
+### Running frontend
 
-## Required remaining capture checklist
+![Actual desktop frontend](https://raw.githubusercontent.com/not-so-shubh/devops-project/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-desktop.png)
 
-| Required evidence | How to capture honestly | Current blocker/status |
-|---|---|---|
-| Running desktop/mobile frontend | Actual screenshots on [evidence/800b7b7](https://github.com/not-so-shubh/devops-project/tree/evidence/800b7b72c86042474e2245c529ecf798d7267d0b/docs/evidence); [successful browser output](evidence/compose-browser-success.txt) | Four scenarios passed; Ingress proof tracked separately |
-| Passing pytest terminal screenshot | Run `pytest -v` or screenshot the successful quality job; genuine text already saved | Optional screenshot still needs capture |
-| Git history screenshot | [github-commit-history.jpg](evidence/github-commit-history.jpg), captured from real public main history (earlier checkpoint) | More than ten real descriptive commits; current history linked above |
-| Healthy Compose terminal screenshot | Show `docker compose ps` and actual startup output, then localhost:3000 | Stack output exists in CI; screenshot pending |
-| Green Actions and GHCR SHA packages | Open final successful run and both package versions | Both SHA images published and anonymously pullable in run 39002712013; final complete pipeline pending |
-| Trivy output | Both real JSON reports plus job output; explain actual clean/findings result | Both Alpine images passed HIGH/CRITICAL gate in run 39000262612; earlier Debian failure preserved |
-| Real Terraform plan | In approved account, `terraform plan -out=stockpilot.tfplan`; screenshot non-empty proposed resources | AWS credentials/account and cost review needed; mock test is not this evidence |
-| AWS VPC and EKS | Console region ap-south-1; show VPC/subnets and EKS with managed nodes; redact account identifiers | Explicit paid-resource approval and credentials required |
-| Kubernetes Pods/Services/Helm/Ingress | Actual cluster commands and browser through Traefik, captured by CI for kind | Helm, two replicas per application, all five application/database Pods Running, Services, Ingress routing and active HPA verified in run 39002712013; EKS requires AWS |
-| Metrics / target UP / live Grafana | curl metrics, verify-monitoring.py, Targets page and provisioned populated dashboard | Two targets UP and positive request rate verified in run 39002712013; authenticated Grafana panel capture remains pending |
-| Successful Terraform destroy | After demo and cleanup approval, remove LB/PVCs, destroy, verify state and residual AWS resources | No AWS resources have been provisioned; cannot claim destroy |
-| Final live demo or recording | Follow DEMO.md, including real commit→green pipeline→deployment update | Student presentation and configured deployment required |
+[Mobile frontend](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-mobile.png) · [Desktop product dialog](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/create-dialog-desktop.png) · [Mobile product dialog](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/create-dialog-mobile.png)
 
-## Submission package
+### Prometheus target health
 
-Submit https://github.com/not-so-shubh/devops-project, the exact final SHA, this index, the rubric audit, durable evidence branch/run link, and your live/recorded demonstration. Preserve originals privately where redactions are needed. Never fabricate cloud consoles, scan results, target health, populated dashboards, or destroy completion.
+![Actual Prometheus target health: two targets UP](https://raw.githubusercontent.com/not-so-shubh/devops-project/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/prometheus-targets.png)
+
+### Grafana live dashboard
+
+![Actual authenticated Grafana dashboard with populated charts](https://raw.githubusercontent.com/not-so-shubh/devops-project/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/grafana-dashboard.png)
+
+## GitHub page and transcript captures
+
+[Green Actions summary](evidence/github-green-run.jpg) · [Backend GHCR SHA page](evidence/github-ghcr-backend.jpg) · [Frontend GHCR SHA page](evidence/github-ghcr-frontend.jpg) · [44-pass PostgreSQL transcript](evidence/github-pytest-transcript.jpg) · [Running Pods/Services/Ingress transcript](evidence/github-kubernetes-transcript.jpg) · [Healthy Compose output](evidence/github-compose-health-output.jpg)
+
+These additional images are unmodified browser captures. The transcript images show archived actual command output on GitHub, rather than a newly executed terminal. [Capture provenance](evidence/github-screen-captures.json) records every exact page URL and the verified source. Job logs in this public browser require sign-in; original authenticated reports are already preserved above. If the instructor requires literal terminal screenshots, capture those during the live demo as listed in SUBMISSION.md.
+
+## Durable evidence and history
+
+The workflow archives an explicit allowlist to `evidence/<source-sha>`. `ci-run.json` records source, run, selected artifact origins and job outcomes. Each generating job clears its historical generated files before running. Failed runs stay visibly failed and do not count as green evidence. Raw browser traces and matched secret values are excluded from Git; text/JSON identifiers are redacted without changing results, severities or numeric metrics.
+
+Earlier failed runs and the original blocked Debian image scan remain documented in [troubleshooting](TROUBLESHOOTING.md) and [security](../security/README.md). They explain the fixes, while the complete success above verifies the resulting system. Actions artifacts retain reports for 30 days and image tarballs for one day; the pinned evidence commit preserves the allowlisted outputs beyond artifact expiry.
+
+## Final submission
+
+Use [SUBMISSION.md](SUBMISSION.md) for the exact remaining actions and screenshot-format checklist, [all 46 criteria](RUBRIC-CHECKLIST.md) for the evidence-based audit, and [DEMO.md](DEMO.md) for the walkthrough. The checked evidence supports 39 criteria covering 83 rubric points; this is neither an awarded nor guaranteed grade. AWS plan/provision/destroy and student submission/presentation remain unverified.

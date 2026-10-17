@@ -31,10 +31,32 @@ def endpoints():
 
 
 observations = []
+investigation = Path("docs/evidence/troubleshooting-investigation-ci.txt")
+investigation.write_text("Actual kubectl investigation of isolated troubleshooting resources\n")
+
+
+def capture(title, *args):
+    """Preserve resources/events/logs before repairs remove the useful evidence."""
+    output = kubectl(*args)
+    with investigation.open("a") as stream:
+        stream.write(f"\n## {title}\n$ kubectl -n stockpilot {' '.join(args)}\n{output}\n")
+
+
 try:
     kubectl("apply", "-f", "troubleshooting/broken-service.yaml")
     time.sleep(3)
     assert not endpoints(), "The intentionally incorrect selector unexpectedly matched Pods"
+    capture("Incorrect Service selector", "describe", "svc", "stockpilot-lab-empty-service")
+    capture("Actual backend Pod labels", "get", "pods", "--show-labels")
+    capture(
+        "Empty endpoint resources before repair",
+        "get",
+        "endpointslice",
+        "-l",
+        "kubernetes.io/service-name=stockpilot-lab-empty-service",
+        "-o",
+        "yaml",
+    )
     observations.append(
         {"issue": "empty Service", "root_cause": "selector matches no Pod", "before_addresses": 0}
     )
@@ -54,6 +76,7 @@ try:
     assert len(endpoints()) >= 2
     observations[-1]["after_addresses"] = len(endpoints())
     observations[-1]["verification"] = "At least two backend endpoints restored"
+    capture("Repaired Service endpoints", "describe", "svc", "stockpilot-lab-empty-service")
 
     kubectl("apply", "-f", "troubleshooting/broken-image.yaml")
     reason = ""
@@ -66,6 +89,7 @@ try:
             break
         time.sleep(2)
     assert reason in {"ErrImagePull", "ImagePullBackOff"}, reason
+    capture("Image-pull failure and kubelet events", "describe", "pods", "-l", "app=stockpilot-lab")
     observations.append(
         {"issue": "bad image tag", "root_cause": "nonexistent image tag", "observed_reason": reason}
     )
@@ -81,6 +105,14 @@ try:
         "import urllib.request; print(urllib.request.urlopen('http://127.0.0.1:8000/health').read().decode())",
     )
     assert json.loads(response)["status"] == "UP"
+    capture(
+        "Running container logs after image repair",
+        "logs",
+        "deployment/stockpilot-lab-bad-image",
+        "--tail=30",
+    )
+    for observation in observations:
+        observation["investigation_evidence"] = investigation.name
     observations[-1]["verification"] = "Correct scanned SHA image starts and /health responds UP"
     Path("docs/evidence/troubleshooting-ci.json").write_text(
         json.dumps(observations, indent=2) + "\n"

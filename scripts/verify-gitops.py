@@ -6,6 +6,10 @@ import subprocess
 from pathlib import Path
 
 sha = os.environ["GITHUB_SHA"]
+# Pull-request merge commits do not belong to main. Fetch the exact Actions
+# ref (including refs/pull/<number>/merge) and prove its resolved SHA below.
+# https://fluxcd.io/flux/components/source/gitrepositories/#name-example
+source_ref = os.environ.get("GITHUB_REF", "refs/heads/main")
 objects = [
     {
         "apiVersion": "source.toolkit.fluxcd.io/v1",
@@ -14,7 +18,7 @@ objects = [
         "spec": {
             "interval": "1m",
             "url": "https://github.com/not-so-shubh/devops-project",
-            "ref": {"branch": "main", "commit": sha},
+            "ref": {"name": source_ref},
         },
     },
     {
@@ -102,6 +106,7 @@ assert sha in revision
 assert release["spec"]["values"]["backend"]["tag"] == sha
 proof = {
     "source_sha": sha,
+    "source_ref": source_ref,
     "fetched_revision": revision,
     "deployment_environment": environment,
     "release_conditions": release["status"]["conditions"],

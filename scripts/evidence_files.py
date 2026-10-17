@@ -13,6 +13,7 @@ EVIDENCE_FILES = {
     "persistence-ci.txt",
     "prometheus-query.json",
     "troubleshooting-ci.json",
+    "troubleshooting-investigation-ci.txt",
     "create-dialog-mobile.png",
     "ghcr-backend.json",
     "metrics.txt",

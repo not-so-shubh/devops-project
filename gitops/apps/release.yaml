@@ -4,7 +4,7 @@ metadata:
   name: stockpilot
   namespace: stockpilot
 spec:
-  # Resume only after credentials, monitoring and real published image tags are configured.
+  # Tested/published in Actions run 39045365598; resume after cluster bootstrap.
   suspend: true
   interval: 2m
   timeout: 10m
@@ -21,6 +21,6 @@ spec:
         - ./helm/stockpilot/values-prod.yaml
   values:
     backend:
-      tag: "8426d60259d17af55d28c52600a112bd8dd43045"
+      tag: "9462f34dc3c8f6321af23a85d11296d980839595"
     frontend:
-      tag: "8426d60259d17af55d28c52600a112bd8dd43045"
+      tag: "9462f34dc3c8f6321af23a85d11296d980839595"

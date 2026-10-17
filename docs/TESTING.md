@@ -58,3 +58,7 @@ Local runtime limitations are retained in evidence: Docker daemon access is deni
 The Compose acceptance gate passed all four desktop/mobile scenarios in run [38999948371](https://github.com/not-so-shubh/devops-project/actions/runs/38999948371), then passed again on the Alpine backend in run [39000262612](https://github.com/not-so-shubh/devops-project/actions/runs/39000262612). Both latter image scans passed the unchanged HIGH/CRITICAL gate; Kubernetes runtime evidence is recorded separately.
 
 An additional Compose gate creates a synthetic product and opening ledger entry, restarts the actual PostgreSQL container, waits for API reconnection, and verifies both persisted records before deleting the catalog probe. Its actual result is saved as `persistence-ci.txt`; this is separate from the 44 Pytest cases.
+
+## Latest fully successful verified checkpoint
+
+[Run 39045365598](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598), source `9462f34dc3c8f6321af23a85d11296d980839595`, passed every enabled job. [Actual PostgreSQL output](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt): 44 passed, 97.67% coverage. Compose and actual Ingress each passed four desktop/mobile scenarios. Kubernetes, HPA, authenticated Grafana with populated charts, two troubleshooting repairs and a Flux-driven revision-2 upgrade all succeeded. See [EVIDENCE.md](EVIDENCE.md) for immutable report/screenshot links. AWS deployment was skipped and is not established by the green run.
