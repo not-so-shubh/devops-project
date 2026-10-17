@@ -45,6 +45,9 @@ for source in Path(os.environ["EVIDENCE_DOWNLOAD_DIR"]).rglob("*"):
     if source.is_file() and source.name in names:
         if source.suffix == ".png":
             (destination / source.name).write_bytes(source.read_bytes())
+        elif source.suffix == ".json":
+            data = redactor.redact_json(json.loads(source.read_text()))
+            (destination / source.name).write_text(json.dumps(data, indent=2) + "\n")
         else:
             (destination / source.name).write_text(redactor.redact(source.read_text()))
         written.append(source.name)

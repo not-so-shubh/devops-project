@@ -21,3 +21,14 @@ def redact(text):
             return value
 
     return re.sub(r"\b(?:\d{1,3}\.){3}\d{1,3}\b", hide_private, text)
+
+
+def redact_json(value):
+    """Redact decoded string values; preserve JSON escaping and numeric evidence."""
+    if isinstance(value, dict):
+        return {key: redact_json(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [redact_json(item) for item in value]
+    if isinstance(value, str):
+        return redact(value)
+    return value
