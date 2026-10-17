@@ -5,7 +5,7 @@ for command in docker kind helm kubectl python3 git; do command -v "$command" >/
 SHA=${SHA:-$(git rev-parse HEAD)}
 [[ "$SHA" =~ ^[a-f0-9]{40}$ ]] || { echo 'Set SHA to a real 40-character commit'; exit 1; }
 [[ "$SHA" == "$(git rev-parse HEAD)" ]] || { echo "SHA must identify the checked-out source commit"; exit 1; }
-if kind get clusters | rg -qx stockpilot; then
+if kind get clusters | grep -qx stockpilot; then
   echo 'Cluster stockpilot already exists. Select another environment or explicitly remove the old demo first.'
   exit 1
 fi

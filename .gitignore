@@ -37,3 +37,10 @@ pip-metadata-*/
 pip-unpack-*/
 .tools/
 .tmp/
+
+# Account-specific variables and local CLI credentials
+*.tfvars
+*.tfvars.json
+credentials.tfrc.json
+.aws/
+.kube/

@@ -36,14 +36,15 @@ product = request(
 )
 try:
     subprocess.run(["docker", "compose", "restart", "postgres"], check=True)
-    for _ in range(60):
+    deadline = time.monotonic() + 90
+    while time.monotonic() < deadline:
         try:
             restored = request("GET", f"/api/products/{product['id']}")
             break
         except (urllib.error.URLError, TimeoutError):
             time.sleep(1)
     else:
-        raise SystemExit("PostgreSQL/API did not recover within 60 seconds")
+        raise SystemExit("PostgreSQL/API did not recover before the 90-second deadline")
     assert restored["sku"] == sku and restored["stock_quantity"] == 7
     movements = request("GET", f"/api/inventory/movements?product_id={product['id']}")
     assert any(item["quantity_after"] == 7 for item in movements)

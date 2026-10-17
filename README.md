@@ -178,6 +178,15 @@ Do not commit `.env`, AWS keys, kubeconfigs, registry tokens or Terraform state.
 
 For deployment problems, start with [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md). For instructor questions and the final live commit→pipeline→deployment sequence, use [DEMO.md](docs/DEMO.md). Submit the repository URL, evidence index, complete rubric audit, and your own demonstration/recording. AWS provisioning, destroy, and presentation marks require actual evidence, not configuration files alone.
 
+## Lessons learned
+
+- Real mobile actions exposed an escaped accessible table label that screenshots alone missed; containing it restored the viewport and reliable taps.
+- A current Debian base still carried HIGH CVEs. The security gate blocked publication, and a maintained Alpine runtime passed the same gate after PostgreSQL/browser revalidation.
+- Traefik 42 moved Service type under `service.spec.type`; checking the rendered resource caught the ignored legacy setting.
+- CI evidence needs source revisions and artifact provenance. Historical screenshots must never be uploaded as proof of a new failed run.
+
+GitOps uses optional Flux pull reconciliation with reviewed SHA promotion. See [GitOps](gitops/README.md), [security gates](security/README.md), and [the complete homework alignment](docs/HOMEWORK-ADDENDUM.md).
+
 ## Attribution
 
 StockPilot's application/domain/schema/design are original. The reference DevOps architecture and rubric came from [Nency-Ravaliya/devops-heros](https://github.com/Nency-Ravaliya/devops-heros/tree/main/session21-python), MIT licensed. See [NOTICE.md](NOTICE.md), `LICENSE`, and `LICENSE.reference`.

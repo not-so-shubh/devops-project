@@ -4,3 +4,10 @@
 terraform.tfvars
 *.auto.tfvars
 crash.log
+
+# Account-specific variables and local CLI credentials
+*.tfvars
+*.tfvars.json
+credentials.tfrc.json
+.aws/
+.kube/
