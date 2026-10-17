@@ -12,8 +12,8 @@
       "implementation": "backend/app/, backend/alembic/versions/0001_inventory_ledger.py, frontend/src/",
       "verification": "curl /health",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-quality.txt; github-compose-first-run.txt",
+      "actual_result": "GET /health returns 200 with status UP in isolated tests and healthy running container",
+      "evidence": "docs/evidence/compose-browser-success.txt; github-quality.txt",
       "blocker": ""
     },
     {
@@ -24,8 +24,8 @@
       "implementation": "backend/app/, backend/alembic/versions/0001_inventory_ledger.py, frontend/src/",
       "verification": "pytest CRUD tests",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-quality.txt; github-compose-first-run.txt",
+      "actual_result": "Create/read/list/update/delete plus stock, statistics and retained movement endpoints passed actual PostgreSQL tests and browser CRUD",
+      "evidence": "docs/evidence/github-quality.txt; compose-browser-success.txt",
       "blocker": ""
     },
     {
@@ -36,8 +36,8 @@
       "implementation": "backend/app/, backend/alembic/versions/0001_inventory_ledger.py, frontend/src/",
       "verification": "alembic upgrade head && alembic check",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-quality.txt; github-compose-first-run.txt",
+      "actual_result": "PostgreSQL migration upgrade, model check, downgrade and re-upgrade passed in quality; two tables created through Alembic",
+      "evidence": "Actions run 39000262612 quality job",
       "blocker": ""
     },
     {
@@ -48,8 +48,8 @@
       "implementation": "backend/app/, backend/alembic/versions/0001_inventory_ledger.py, frontend/src/",
       "verification": "Compose HTTP smoke and real browser requests",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-quality.txt; github-compose-first-run.txt",
+      "actual_result": "Real Nginx-origin API proxy smoke and desktop/mobile CRUD passed against PostgreSQL, with database-backed dashboard data",
+      "evidence": "docs/evidence/compose-browser-success.txt",
       "blocker": ""
     },
     {
@@ -72,8 +72,8 @@
       "implementation": "backend/tests/, backend/pytest.ini, backend/pyproject.toml",
       "verification": "pytest -v --cov=app",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-quality.txt (44 passed; 97.67%); pytest-local.txt",
+      "actual_result": "44 PostgreSQL tests passed, 97.67% backend coverage; local 43 passed with one explicitly skipped PG-only concurrency test",
+      "evidence": "docs/evidence/github-quality.txt; pytest-local.txt",
       "blocker": ""
     },
     {
@@ -84,8 +84,8 @@
       "implementation": "backend/tests/, backend/pytest.ini, backend/pyproject.toml",
       "verification": "pytest --collect-only; 44 cases / >3 endpoints",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-quality.txt (44 passed; 97.67%); pytest-local.txt",
+      "actual_result": "44 cases exercise more than three endpoints, including validation, stock races, persistence and retained audit",
+      "evidence": "backend/tests/; docs/evidence/github-quality.txt",
       "blocker": ""
     },
     {
@@ -96,8 +96,8 @@
       "implementation": "backend/tests/, backend/pytest.ini, backend/pyproject.toml",
       "verification": "inspect fixture TEST_DATABASE_URL suffix guard",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-quality.txt (44 passed; 97.67%); pytest-local.txt",
+      "actual_result": "CI uses disposable stockpilot_test PostgreSQL; fixtures override DB dependency and reject non-_test PostgreSQL databases",
+      "evidence": "backend/tests/conftest.py; .github/workflows/ci-cd.yml",
       "blocker": ""
     },
     {
@@ -108,8 +108,8 @@
       "implementation": "backend/tests/, backend/pytest.ini, backend/pyproject.toml",
       "verification": "pytest loads configured conftest/pytest.ini",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-quality.txt (44 passed; 97.67%); pytest-local.txt",
+      "actual_result": "Pytest successfully loaded backend/pytest.ini and fixtures in actual local and PostgreSQL CI executions",
+      "evidence": "backend/pytest.ini; backend/tests/conftest.py; docs/evidence/github-quality.txt",
       "blocker": ""
     },
     {
@@ -132,8 +132,8 @@
       "implementation": ".gitignore and public GitHub main history",
       "verification": "GitHub commits API / meaningful history >=10",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "https://github.com/not-so-shubh/devops-project/commits/main/",
+      "actual_result": "Public main history contains more than ten descriptive implementation and corrective commits; genuine history screenshot captured",
+      "evidence": "https://github.com/not-so-shubh/devops-project/commits/main/; docs/evidence/github-commit-history.jpg",
       "blocker": ""
     },
     {
@@ -144,8 +144,8 @@
       "implementation": ".gitignore and public GitHub main history",
       "verification": ".gitignore inspection",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "https://github.com/not-so-shubh/devops-project/commits/main/",
+      "actual_result": "Ignore rules checked for environment, venv, dependencies, caches, state and credentials; CI secret scan passed",
+      "evidence": ".gitignore; docs/evidence/git-ignore.txt; Actions run 39000262612 quality",
       "blocker": ""
     },
     {
@@ -156,8 +156,8 @@
       "implementation": "backend/Dockerfile, frontend/Dockerfile, docker-compose.yml",
       "verification": "docker compose up --build",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-compose-first-run.txt; CI job 117293406837 stack step",
+      "actual_result": "Backend image built successfully and ran PostgreSQL integration smoke; Alpine replacement also passed Compose/browser acceptance",
+      "evidence": "Actions run 39000262612 compose and build-security backend jobs",
       "blocker": ""
     },
     {
@@ -168,8 +168,8 @@
       "implementation": "backend/Dockerfile, frontend/Dockerfile, docker-compose.yml",
       "verification": "inspect multi-stage frontend Dockerfile; successful build",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-compose-first-run.txt; CI job 117293406837 stack step",
+      "actual_result": "Node build and unprivileged Nginx final stage built and served functional SPA/API routes",
+      "evidence": "frontend/Dockerfile; docs/evidence/compose-browser-success.txt",
       "blocker": ""
     },
     {
@@ -180,8 +180,8 @@
       "implementation": "backend/Dockerfile, frontend/Dockerfile, docker-compose.yml",
       "verification": "docker compose exec backend/frontend id -u",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-compose-first-run.txt; CI job 117293406837 stack step",
+      "actual_result": "Actual Compose runtime id -u checks passed: backend 10001, frontend 101; GHCR configs confirm the same non-root users",
+      "evidence": "docs/evidence/ghcr-backend.json; ghcr-frontend.json; Actions run 39000262612 compose",
       "blocker": ""
     },
     {
@@ -192,8 +192,8 @@
       "implementation": "backend/Dockerfile, frontend/Dockerfile, docker-compose.yml",
       "verification": "docker compose up --build -d --wait; ps and smoke",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-compose-first-run.txt; CI job 117293406837 stack step",
+      "actual_result": "docker compose config and up --build -d --wait passed; PostgreSQL/backend/frontend healthy, migration completed, real HTTP/browser operations passed",
+      "evidence": "docs/evidence/compose-browser-success.txt; Actions run 39000262612 compose",
       "blocker": ""
     },
     {
@@ -204,8 +204,8 @@
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "workflow source exists",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "https://github.com/not-so-shubh/devops-project/actions/runs/38997526583",
+      "actual_result": "Root .github/workflows/ci-cd.yml is recognized and executed by GitHub Actions",
+      "evidence": ".github/workflows/ci-cd.yml; https://github.com/not-so-shubh/devops-project/actions",
       "blocker": ""
     },
     {
@@ -216,8 +216,8 @@
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "push event produced run 38997526583",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "https://github.com/not-so-shubh/devops-project/actions/runs/38997526583",
+      "actual_result": "Actual main push events automatically started multiple CI runs, including 39000262612",
+      "evidence": "https://github.com/not-so-shubh/devops-project/actions/runs/39000262612",
       "blocker": ""
     },
     {
@@ -228,8 +228,8 @@
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "quality job PostgreSQL tests",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "https://github.com/not-so-shubh/devops-project/actions/runs/38997526583",
+      "actual_result": "Quality job runs real PostgreSQL pytest with coverage; nonzero test exit blocks dependent jobs without error suppression",
+      "evidence": ".github/workflows/ci-cd.yml; Actions run 39000262612 quality",
       "blocker": ""
     },
     {
@@ -240,8 +240,8 @@
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "quality job npm build",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "https://github.com/not-so-shubh/devops-project/actions/runs/38997526583",
+      "actual_result": "Frontend lint, four utility tests and Vite production build passed in actual quality jobs",
+      "evidence": "Actions run 39000262612 quality",
       "blocker": ""
     },
     {
@@ -252,8 +252,8 @@
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "Compose image builds and later build-security matrix",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "https://github.com/not-so-shubh/devops-project/actions/runs/38997526583",
+      "actual_result": "Both immutable candidate images built in separate matrix jobs after quality, infrastructure and Compose succeeded",
+      "evidence": "Actions run 39000262612 build-security backend/frontend",
       "blocker": ""
     },
     {
@@ -263,10 +263,10 @@
       "id": "M5.6",
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "publish job docker push + GHCR tags",
-      "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "https://github.com/not-so-shubh/devops-project/actions/runs/38997526583",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "status": "PASS",
+      "actual_result": "Both scanned images pushed successfully; anonymous manifest, config revision and every layer independently verified accessible",
+      "evidence": "docs/evidence/ghcr-backend.json; ghcr-frontend.json; Actions run 39000262612 publish",
+      "blocker": ""
     },
     {
       "module": "M5",
@@ -275,10 +275,10 @@
       "id": "M5.7",
       "implementation": ".github/workflows/ci-cd.yml",
       "verification": "publish exact github.sha tags and verify package",
-      "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "https://github.com/not-so-shubh/devops-project/actions/runs/38997526583",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "status": "PASS",
+      "actual_result": "Both published image tags and OCI source revision equal exact fd742527c4a57d9c63d1445cb5e835220d6b77d9 source SHA; no latest tag",
+      "evidence": "docs/evidence/ghcr-backend.json; ghcr-frontend.json",
+      "blocker": ""
     },
     {
       "module": "M6",
@@ -300,8 +300,8 @@
       "implementation": ".github/workflows/ci-cd.yml Trivy matrix and security gate",
       "verification": "exit-code=1, severity HIGH,CRITICAL, ignore-unfixed=false",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "workflow configuration; actual scan pending",
+      "actual_result": "Initial HIGH findings actually failed backend scan and prevented publication; unfixed issues remain included; replacement scans passed unchanged gate",
+      "evidence": "Actions run 38999948371; Actions run 39000262612; security/README.md",
       "blocker": ""
     },
     {
@@ -324,8 +324,8 @@
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "terraform validate",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-infrastructure.txt; actual AWS evidence pending",
+      "actual_result": "Terraform fmt, real provider-backed validate and mock topology plan test passed on GitHub runner",
+      "evidence": "docs/evidence/github-infrastructure.txt; Actions run 39000262612 infrastructure",
       "blocker": ""
     },
     {
@@ -336,8 +336,8 @@
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "terraform init -lockfile=readonly",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-infrastructure.txt; actual AWS evidence pending",
+      "actual_result": "terraform init -input=false -lockfile=readonly successfully installed locked AWS provider in actual CI",
+      "evidence": "docs/evidence/github-infrastructure.txt; Actions run 39000262612 infrastructure",
       "blocker": ""
     },
     {
@@ -348,9 +348,9 @@
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "terraform plan against approved AWS account",
       "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
+      "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
       "evidence": "docs/evidence/github-infrastructure.txt; actual AWS evidence pending",
-      "blocker": "Approved AWS account, credentials, real plan/apply/destroy and screenshots required"
+      "blocker": "Connected AWS account/credentials, reviewed regional cost estimate and explicit paid-resource approval; capture deployment evidence before authorized cleanup"
     },
     {
       "module": "M7",
@@ -360,9 +360,9 @@
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "apply; verify VPC and two public subnets",
       "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
+      "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
       "evidence": "docs/evidence/github-infrastructure.txt; actual AWS evidence pending",
-      "blocker": "Approved AWS account, credentials, real plan/apply/destroy and screenshots required"
+      "blocker": "Connected AWS account/credentials, reviewed regional cost estimate and explicit paid-resource approval; capture deployment evidence before authorized cleanup"
     },
     {
       "module": "M7",
@@ -372,9 +372,9 @@
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "apply; verify EKS and managed workers",
       "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
+      "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
       "evidence": "docs/evidence/github-infrastructure.txt; actual AWS evidence pending",
-      "blocker": "Approved AWS account, credentials, real plan/apply/destroy and screenshots required"
+      "blocker": "Connected AWS account/credentials, reviewed regional cost estimate and explicit paid-resource approval; capture deployment evidence before authorized cleanup"
     },
     {
       "module": "M7",
@@ -384,9 +384,9 @@
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "authorized terraform destroy; check residual resources",
       "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
+      "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
       "evidence": "docs/evidence/github-infrastructure.txt; actual AWS evidence pending",
-      "blocker": "Approved AWS account, credentials, real plan/apply/destroy and screenshots required"
+      "blocker": "Connected AWS account/credentials, reviewed regional cost estimate and explicit paid-resource approval; capture deployment evidence before authorized cleanup"
     },
     {
       "module": "M7",
@@ -396,8 +396,8 @@
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
       "verification": "inspect terraform.tfvars.example and secret exclusions",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/github-infrastructure.txt; actual AWS evidence pending",
+      "actual_result": "Credential-free example variable file exists; state, plans and real tfvars are ignored",
+      "evidence": "terraform/terraform.tfvars.example; terraform/.gitignore; .gitignore",
       "blocker": ""
     },
     {
@@ -407,10 +407,10 @@
       "id": "M8.1",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "kubectl apply --dry-run=client; kubectl apply namespace",
-      "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "docs/evidence/helm-lint.txt; helm-wiring.txt; cluster evidence pending",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "status": "PASS",
+      "actual_result": "Actual kubectl namespace client dry-run and apply succeeded on the disposable kind cluster before the controller integration failure",
+      "evidence": "Actions run 39000262612 job 117302070345, Create isolated free Kubernetes test cluster step",
+      "blocker": ""
     },
     {
       "module": "M8",
@@ -420,8 +420,8 @@
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "helm lint; helm template; verify-manifests.py",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "docs/evidence/helm-lint.txt; helm-wiring.txt; cluster evidence pending",
+      "actual_result": "Helm lint/schema/template and cross-resource service wiring checks passed; local current render includes eleven resources including ConfigMap",
+      "evidence": "helm/stockpilot/; scripts/verify-manifests.py; docs/evidence/helm-lint.txt",
       "blocker": ""
     },
     {
@@ -431,10 +431,10 @@
       "id": "M8.3",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "helm upgrade --install --wait --wait-for-jobs",
-      "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "docs/evidence/helm-lint.txt; helm-wiring.txt; cluster evidence pending",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "status": "PASS",
+      "actual_result": "Helm --wait --wait-for-jobs succeeded on real Kubernetes 1.35.8; migration completed and both application rollouts succeeded",
+      "evidence": "https://github.com/not-so-shubh/devops-project/tree/evidence/a2c9816e837e3c61a58fd6387069c78d2927c42f/docs/evidence; Actions run 39002139799 job 117307709314 deployment step",
+      "blocker": ""
     },
     {
       "module": "M8",
@@ -443,10 +443,10 @@
       "id": "M8.4",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "kubectl rollout status; get deployments",
-      "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "docs/evidence/helm-lint.txt; helm-wiring.txt; cluster evidence pending",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "status": "PASS",
+      "actual_result": "Actual cluster snapshot shows two ready backend and two ready frontend Pods; HPA later reports two replicas",
+      "evidence": "https://github.com/not-so-shubh/devops-project/tree/evidence/a2c9816e837e3c61a58fd6387069c78d2927c42f/docs/evidence; Actions run 39002139799 job 117307709314 deployment step",
+      "blocker": ""
     },
     {
       "module": "M8",
@@ -455,10 +455,10 @@
       "id": "M8.5",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "kubectl get svc; test real request",
-      "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "docs/evidence/helm-lint.txt; helm-wiring.txt; cluster evidence pending",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "status": "PASS",
+      "actual_result": "Actual ClusterIP Services backend:8000 and frontend:8080 select running Pods; PostgreSQL headless Service also present",
+      "evidence": "https://github.com/not-so-shubh/devops-project/tree/evidence/a2c9816e837e3c61a58fd6387069c78d2927c42f/docs/evidence; Actions run 39002139799 job 117307709314 deployment step",
+      "blocker": ""
     },
     {
       "module": "M8",
@@ -467,10 +467,10 @@
       "id": "M8.6",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "curl and Playwright through Traefik Ingress",
-      "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "docs/evidence/helm-lint.txt; helm-wiring.txt; cluster evidence pending",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "status": "PASS",
+      "actual_result": "Actual Traefik Ingress for localhost routed frontend HTML and API CRUD smoke successfully through controller port-forward",
+      "evidence": "https://github.com/not-so-shubh/devops-project/tree/evidence/a2c9816e837e3c61a58fd6387069c78d2927c42f/docs/evidence; Actions run 39002139799 job 117307709314 deployment step",
+      "blocker": ""
     },
     {
       "module": "M8",
@@ -479,10 +479,10 @@
       "id": "M8.7",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
       "verification": "kubectl get pods; ready/running check",
-      "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "docs/evidence/helm-lint.txt; helm-wiring.txt; cluster evidence pending",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "status": "PASS",
+      "actual_result": "All five application/database Pods were Running/Ready with zero restarts; the migration Job Pod appropriately completed",
+      "evidence": "https://github.com/not-so-shubh/devops-project/tree/evidence/a2c9816e837e3c61a58fd6387069c78d2927c42f/docs/evidence; Actions run 39002139799 job 117307709314 deployment step",
+      "blocker": ""
     },
     {
       "module": "M9",
@@ -492,8 +492,8 @@
       "implementation": "backend/app/main.py, ServiceMonitor, monitoring/*",
       "verification": "curl /metrics and Prometheus exposition tests",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "CI Compose /metrics; live monitoring pending",
+      "actual_result": "Running backend /metrics returned valid counter/histogram exposition; automated tests verify metric names and bounded route labels",
+      "evidence": "Actions run 39000262612 compose; docs/evidence/metrics.txt on run evidence branch",
       "blocker": ""
     },
     {
@@ -503,10 +503,10 @@
       "id": "M9.2",
       "implementation": "backend/app/main.py, ServiceMonitor, monitoring/*",
       "verification": "verify-monitoring.py target UP and positive rate",
-      "status": "PENDING",
-      "actual_result": "Not yet verified; do not award based on configuration alone",
-      "evidence": "CI Compose /metrics; live monitoring pending",
-      "blocker": "Awaiting successful CI runtime validation / actual result"
+      "status": "PASS",
+      "actual_result": "Real Prometheus reported two StockPilot targets UP and a positive 1.9509172222222222 requests/second query after 90 valid stats requests and 90 expected 404s",
+      "evidence": "https://github.com/not-so-shubh/devops-project/tree/evidence/a2c9816e837e3c61a58fd6387069c78d2927c42f/docs/evidence; Actions run 39002139799 job 117307709314 deployment step",
+      "blocker": ""
     },
     {
       "module": "M9",
@@ -540,8 +540,8 @@
       "implementation": "README.md and docs/DEMO.md",
       "verification": "README content and command review",
       "status": "PASS",
-      "actual_result": "Verified by source inspection and/or actual recorded command/job listed in evidence",
-      "evidence": "README.md; docs/DEMO.md; live presentation pending",
+      "actual_result": "Root README documents original application, full architecture, local setup, API, delivery, infrastructure, monitoring, cleanup and submission",
+      "evidence": "README.md; docs/ARCHITECTURE.md; docs/DEPLOYMENT.md; docs/DEMO.md",
       "blocker": ""
     },
     {
