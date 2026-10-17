@@ -287,6 +287,8 @@ jobs:
           BASE_URL=http://localhost:3000 python scripts/smoke.py
           BASE_URL=http://localhost:3000 REQUESTS=90 bash scripts/load-test.sh
           python scripts/verify-monitoring.py
+      - name: Diagnose repair and verify two isolated troubleshooting defects
+        run: python scripts/troubleshooting-lab.py
       - name: Browser verification through actual Ingress
         run: |
           npm --prefix e2e ci

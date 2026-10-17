@@ -44,3 +44,5 @@ kubectl delete -f troubleshooting/broken-service.yaml
 ```
 
 Optional image lab: apply `troubleshooting/broken-image.yaml`, inspect `kubectl describe pod` and events for the invalid tag, explain the pull failure, then `kubectl delete -f troubleshooting/broken-image.yaml`. Never break the live production Service or delete its database just to demonstrate diagnosis.
+
+The disposable Kubernetes CI job runs `scripts/troubleshooting-lab.py`: it asserts the empty selector, repairs and checks endpoint addresses, observes an image-pull error, repairs the image to the scanned SHA, checks application health, and removes both isolated resources. Actual observations are captured in `docs/evidence/troubleshooting-ci.json` only after success.
