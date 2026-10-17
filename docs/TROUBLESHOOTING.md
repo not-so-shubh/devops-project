@@ -52,3 +52,19 @@ The disposable Kubernetes CI job runs `scripts/troubleshooting-lab.py`: it asser
 Run 39000262612 created a healthy kind cluster and a Running/Ready Traefik Pod, yet Helm timed out. Inspection of the pinned Traefik 42.0.0 chart showed the Service type moved to `service.spec.type`; the old `service.type=ClusterIP` override was ignored. Helm consequently waited for a LoadBalancer address that kind cannot provision. The fix uses `service.spec.type=ClusterIP` only in kind and `service.spec.type=LoadBalancer` in the EKS values. The controller is still health-checked; no timeout or readiness gate is bypassed. A rendered chart check now asserts the actual Service type before runtime installation.
 
 Grafana integration follow-up: run 39001047463 deployed Traefik and metrics-server and reached a Running Prometheus, but Grafana remained 2/3 with repeated main-container restarts. The first capture did not include termination reason, so an OOM cause is not asserted. Grafana's main allowance was raised from 256 MiB to 768 MiB and container-state diagnostics were added. A pinned-chart render also revealed that `nodeExporter.enabled`, rather than the subchart's `enabled` key, controls exporter installation; the corrected lightweight preset now excludes it. Unused Alertmanager datasource provisioning is disabled with Alertmanager itself. Require actual readiness and dashboard evidence before claiming the monitoring repair succeeded.
+
+
+## Verified six-step lab record
+
+Both exercises passed in [run 39045365598](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598); [original observations](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/troubleshooting-ci.json). Subsequent CI runs also preserve `troubleshooting-investigation-ci.txt` with the actual describe/EndpointSlice/Pod-label commands, image-pull events and repaired container logs before deleting the lab resources.
+
+| Required step | Incorrect Service selector | Nonexistent image tag |
+|---|---|---|
+| Identify | Lab Service has zero endpoint addresses. | Lab Pod reports ErrImagePull. |
+| Investigate | Describe Service; inspect EndpointSlices and actual backend Pod labels. | Describe lab Pod and kubelet events; a container that never starts has no application logs yet. |
+| Root cause | Selector matches no backend Pods. | Deliberately missing registry tag cannot be pulled. |
+| Fix | Patch only lab Service to backend component plus stockpilot release labels. | Set lab Deployment image to the exact scanned backend source SHA. |
+| Verify | Two backend endpoint addresses are restored. | Rollout completes and in-container /health returns UP; inspect resulting container logs. |
+| Document | JSON retains before=0, after=2 and verification. | JSON retains observed reason and health verification; lab resources are then removed. |
+
+The final successful run also verifies the controller/Grafana harness corrections described above: real Traefik Ingress, authenticated Grafana and populated dashboard capture all passed. The actual dashboard preserves startup error/latency history; those observations are not erased or represented as proof of sustained production reliability.

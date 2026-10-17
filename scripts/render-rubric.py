@@ -12,6 +12,10 @@ lines = [
     f"Official source: {data['source']}",
     f"Reference reviewed: `{data['reference_commit']}`. Updated: {data['updated']}.",
     "",
+    f"Verified project source: `{data['verified_source_sha']}`. "
+    f"[Complete CI run]({data['verified_run_url']}). "
+    f"Evidence commit: `{data['evidence_commit']}`.",
+    "",
     data["note"],
     "",
     "| Criterion | Points | Implemented file or feature | Verification command/check | Actual result | Evidence | Remaining blocker |",
@@ -57,6 +61,8 @@ for n in range(1, 11):
 lines += [
     "",
     "A successful kind deployment proves Kubernetes portability. It does not prove AWS provisioning, an account-dependent Terraform plan, destruction, or the student’s final live presentation.",
+    "",
+    "See [SUBMISSION.md](SUBMISSION.md) for the seven open criteria and required final screenshot formats.",
     "",
 ]
 Path("docs/RUBRIC-CHECKLIST.md").write_text("\n".join(lines))

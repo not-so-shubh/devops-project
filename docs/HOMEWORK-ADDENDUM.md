@@ -4,9 +4,9 @@ The supplied “Session 21: Final DevOps Project & Troubleshooting” PDF supple
 
 | PDF deliverable | Implementation / verification |
 |---|---|
-| application/ | `backend/` and `frontend/` (original StockPilot; root organization follows the user's explicit requirement) |
-| docker/ | Component Dockerfiles and root Compose, documented in README |
-| kubernetes/ | `k8s/` namespace and `helm/stockpilot/templates/` |
+| application/ | `application/README.md` maps to canonical `backend/` and `frontend/` (original StockPilot) |
+| docker/ | `docker/README.md` maps to component Dockerfiles and root Compose |
+| kubernetes/ | `kubernetes/README.md` maps to `k8s/` namespace and `helm/stockpilot/templates/` |
 | ConfigMap | `helm/stockpilot/templates/configmap.yaml`, non-secret runtime environment |
 | SAST / SCA / secrets / images / gates | `security/README.md`, Bandit and Trivy CI reports; actual run status remains authoritative |
 | GitOps | `gitops/`, reviewed immutable-SHA Flux HelmRelease promotion plus disposable Flux reconciliation gate; check actual `gitops-ci.json` result |
@@ -21,3 +21,7 @@ The supplied “Session 21: Final DevOps Project & Troubleshooting” PDF supple
 * Migration hooks can deadlock initial installs when PostgreSQL has not started. An ordinary revisioned migration Job and readiness checks permit database startup and migrations before application readiness.
 * Evidence must distinguish configuration validation, disposable-cluster runtime proof and paid AWS provisioning. A Terraform mock plan cannot prove that an AWS account was provisioned or cleaned up.
 * GitOps and direct Helm CI must have one designated release owner; enabling both creates competing desired states.
+
+## Verified supplementary homework results
+
+The [complete successful run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598) passed SAST, secret/SCA/image gates, live ConfigMap/Secret/probe/storage deployment, monitoring, both troubleshooting repairs and actual Flux reconciliation. See [the original Flux record](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/gitops-ci.json), [repair observations](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/troubleshooting-ci.json) and [actual screenshot gallery](EVIDENCE.md). AWS and final submission/presentation requirements are tracked separately in [SUBMISSION.md](SUBMISSION.md).

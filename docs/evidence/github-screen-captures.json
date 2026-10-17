@@ -1,0 +1,13 @@
+{
+  "captured_at_utc": "2026-10-17T16:45:46.733668+00:00",
+  "source_sha": "9462f34dc3c8f6321af23a85d11296d980839595",
+  "method": "Unmodified cloud-browser screenshots. Transcript captures show the original redacted CI outputs displayed by GitHub/raw file view, not newly executed terminal sessions.",
+  "sources": {
+    "github-green-run.jpg": "https://github.com/not-so-shubh/devops-project/actions/runs/39045365598",
+    "github-ghcr-backend.jpg": "https://github.com/not-so-shubh/devops-project/pkgs/container/stockpilot-backend",
+    "github-ghcr-frontend.jpg": "https://github.com/not-so-shubh/devops-project/pkgs/container/stockpilot-frontend",
+    "github-pytest-transcript.jpg": "https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/pytest-postgres.txt#L60-L76",
+    "github-kubernetes-transcript.jpg": "https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/kubernetes-ci.txt",
+    "github-compose-health-output.jpg": "https://raw.githubusercontent.com/not-so-shubh/devops-project/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/compose-ci.txt"
+  }
+}

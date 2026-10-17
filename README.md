@@ -4,6 +4,18 @@
 
 [CI/CD](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml) · [Evidence](docs/EVIDENCE.md) · [Rubric audit](docs/RUBRIC-CHECKLIST.md) · [Demo script](docs/DEMO.md)
 
+## Verified submission status
+
+[Complete successful CI/CD run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598) · [Actual screenshots and reports](docs/EVIDENCE.md) · [Final submission actions](docs/SUBMISSION.md)
+
+The reviewed source `9462f34dc3c8f6321af23a85d11296d980839595` passed PostgreSQL tests, Compose/browser checks, both image scans and GHCR publication, Helm/Ingress/HPA, populated Grafana, troubleshooting repairs and real Flux reconciliation. The evidence-based audit covers 39 of 46 criteria (83 rubric points); these are verified criteria, not awarded marks. A real AWS plan/VPC/EKS/destroy cycle and the student's submission/presentation remain required. Evidence is pinned to that tested revision; newer commits need their own successful run.
+
+## Screenshots
+
+![StockPilot running in the actual desktop browser test](https://raw.githubusercontent.com/not-so-shubh/devops-project/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-desktop.png)
+
+[Mobile view](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/frontend-mobile.png) · [Prometheus: two targets UP](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/prometheus-targets.png) · [Grafana: populated live dashboard](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/grafana-dashboard.png)
+
 ## What you can do
 
 - See product count, total units, selling-price inventory value, reorder alerts, and seven days of real stock movements.
@@ -43,6 +55,7 @@ React 19 + Vite 8, modern CSS and Lucide; Python 3.12 + FastAPI, SQLAlchemy, Pyd
 
 | Path | Purpose |
 |---|---|
+| `application/`, `docker/`, `kubernetes/` | PDF deliverable guides pointing to the canonical source/build/chart files |
 | `backend/app/` | API, validated contracts, database models and explicit seed command |
 | `backend/alembic/` | Reversible schema migration; no production `create_all` |
 | `backend/tests/`, `e2e/` | Isolated database tests and desktop/mobile acceptance |
@@ -191,4 +204,4 @@ GitOps uses optional Flux pull reconciliation with reviewed SHA promotion. See [
 
 StockPilot's application/domain/schema/design are original. The reference DevOps architecture and rubric came from [Nency-Ravaliya/devops-heros](https://github.com/Nency-Ravaliya/devops-heros/tree/main/session21-python), MIT licensed. See [NOTICE.md](NOTICE.md), `LICENSE`, and `LICENSE.reference`.
 
-Additional homework requirements: [security gates](security/README.md), [GitOps promotion](gitops/README.md), and [PDF alignment and lessons learned](docs/HOMEWORK-ADDENDUM.md).
+Before submitting, complete [the final execution and capture checklist](docs/SUBMISSION.md).

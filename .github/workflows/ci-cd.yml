@@ -15,6 +15,11 @@ concurrency:
   cancel-in-progress: true
 env:
   REGISTRY: ghcr.io/not-so-shubh
+  # PRs test the real head commit so Flux can clone the same reachable SHA.
+  # Merged changes receive a separate push-to-main validation before publishing.
+  SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+  SOURCE_BRANCH: ${{ github.head_ref || github.ref_name }}
+  SOURCE_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
 jobs:
   quality:
     runs-on: ubuntu-24.04
@@ -35,6 +40,9 @@ jobs:
       TEST_DATABASE_URL: postgresql+psycopg://stockpilot:ephemeral-ci-only@localhost:5432/stockpilot_test
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ env.SOURCE_REPOSITORY }}
+          ref: ${{ env.SOURCE_SHA }}
       - name: Remove historical generated evidence from this CI checkout
         run: python scripts/clean-ci-evidence.py
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
@@ -96,6 +104,9 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ env.SOURCE_REPOSITORY }}
+          ref: ${{ env.SOURCE_SHA }}
       - name: Remove historical generated evidence from this CI checkout
         run: python scripts/clean-ci-evidence.py
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
@@ -116,8 +127,8 @@ jobs:
           terraform -chdir=terraform test -no-color | tee docs/evidence/terraform-ci-mock-test.txt
       - name: Helm schema and service wiring
         run: |
-          helm lint helm/stockpilot --set backend.tag=${{ github.sha }} --set frontend.tag=${{ github.sha }}
-          helm template stockpilot helm/stockpilot -n stockpilot -f helm/stockpilot/values-prod.yaml --set backend.tag=${{ github.sha }} --set frontend.tag=${{ github.sha }} > /tmp/stockpilot.yaml
+          helm lint helm/stockpilot --set backend.tag=${{ env.SOURCE_SHA }} --set frontend.tag=${{ env.SOURCE_SHA }}
+          helm template stockpilot helm/stockpilot -n stockpilot -f helm/stockpilot/values-prod.yaml --set backend.tag=${{ env.SOURCE_SHA }} --set frontend.tag=${{ env.SOURCE_SHA }} > /tmp/stockpilot.yaml
           python scripts/verify-manifests.py /tmp/stockpilot.yaml
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
@@ -131,6 +142,9 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ env.SOURCE_REPOSITORY }}
+          ref: ${{ env.SOURCE_SHA }}
       - name: Remove historical generated evidence from this CI checkout
         run: python scripts/clean-ci-evidence.py
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -184,14 +198,17 @@ jobs:
         component: [backend, frontend]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ env.SOURCE_REPOSITORY }}
+          ref: ${{ env.SOURCE_SHA }}
       - name: Remove historical generated evidence from this CI checkout
         run: python scripts/clean-ci-evidence.py
       - name: Build immutable candidate image
-        run: docker build --pull --label org.opencontainers.image.source=https://github.com/not-so-shubh/devops-project --label org.opencontainers.image.revision=${{ github.sha }} -t $REGISTRY/stockpilot-${{ matrix.component }}:${{ github.sha }} ./${{ matrix.component }}
+        run: docker build --pull --label org.opencontainers.image.source=https://github.com/not-so-shubh/devops-project --label org.opencontainers.image.revision=${{ env.SOURCE_SHA }} -t $REGISTRY/stockpilot-${{ matrix.component }}:${{ env.SOURCE_SHA }} ./${{ matrix.component }}
       - name: Scan OS and application vulnerabilities (blocking HIGH/CRITICAL)
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
-          image-ref: ghcr.io/not-so-shubh/stockpilot-${{ matrix.component }}:${{ github.sha }}
+          image-ref: ghcr.io/not-so-shubh/stockpilot-${{ matrix.component }}:${{ env.SOURCE_SHA }}
           scanners: vuln
           vuln-type: os,library
           severity: HIGH,CRITICAL
@@ -212,7 +229,7 @@ jobs:
           path: trivy-${{ matrix.component }}.json
           retention-days: 30
       - name: Export scanned image
-        run: docker save $REGISTRY/stockpilot-${{ matrix.component }}:${{ github.sha }} -o ${{ matrix.component }}.tar
+        run: docker save $REGISTRY/stockpilot-${{ matrix.component }}:${{ env.SOURCE_SHA }} -o ${{ matrix.component }}.tar
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: image-${{ matrix.component }}
@@ -229,6 +246,9 @@ jobs:
         component: [backend, frontend]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ env.SOURCE_REPOSITORY }}
+          ref: ${{ env.SOURCE_SHA }}
       - name: Remove historical generated evidence from this CI checkout
         run: python scripts/clean-ci-evidence.py
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
@@ -241,11 +261,11 @@ jobs:
       - name: Publish the exact scanned SHA image
         run: |
           docker load -i ${{ matrix.component }}.tar
-          docker push $REGISTRY/stockpilot-${{ matrix.component }}:${{ github.sha }}
+          docker push $REGISTRY/stockpilot-${{ matrix.component }}:${{ env.SOURCE_SHA }}
       - name: Verify public pull access and exact source revision
         run: |
           for attempt in $(seq 1 6); do
-            if python scripts/verify-registry.py ${{ github.sha }} ${{ matrix.component }}; then exit 0; fi
+            if python scripts/verify-registry.py ${{ env.SOURCE_SHA }} ${{ matrix.component }}; then exit 0; fi
             sleep 5
           done
           exit 1
@@ -261,6 +281,9 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ env.SOURCE_REPOSITORY }}
+          ref: ${{ env.SOURCE_SHA }}
       - name: Remove historical generated evidence from this CI checkout
         run: python scripts/clean-ci-evidence.py
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -281,7 +304,7 @@ jobs:
           kind create cluster --name stockpilot --image kindest/node:v1.35.8@sha256:07b2536e30b803ed61d1677a79df6115f798ce64c80f9e22f6ed45afd09323c0 --wait 180s
           for component in backend frontend; do
             docker load -i "$component.tar"
-            kind load docker-image "$REGISTRY/stockpilot-$component:${{ github.sha }}" --name stockpilot
+            kind load docker-image "$REGISTRY/stockpilot-$component:${{ env.SOURCE_SHA }}" --name stockpilot
           done
           kubectl apply --dry-run=client -f k8s/namespace.yaml
           kubectl apply -f k8s/namespace.yaml
@@ -308,7 +331,7 @@ jobs:
       - name: Deploy Helm release and verify workload network and HPA
         id: runtime
         run: |
-          helm upgrade --install stockpilot helm/stockpilot -n stockpilot -f helm/stockpilot/values-prod.yaml --set backend.tag=${{ github.sha }} --set frontend.tag=${{ github.sha }} --set ingress.host=localhost --set postgres.storageClass=standard --wait --wait-for-jobs --timeout 6m
+          helm upgrade --install stockpilot helm/stockpilot -n stockpilot -f helm/stockpilot/values-prod.yaml --set backend.tag=${{ env.SOURCE_SHA }} --set frontend.tag=${{ env.SOURCE_SHA }} --set ingress.host=localhost --set postgres.storageClass=standard --wait --wait-for-jobs --timeout 6m
           kubectl rollout status deployment/stockpilot-backend -n stockpilot --timeout=180s
           kubectl rollout status deployment/stockpilot-frontend -n stockpilot --timeout=180s
           kubectl scale deployment stockpilot-backend -n stockpilot --replicas=2
@@ -390,6 +413,9 @@ jobs:
     permissions: {contents: read, id-token: write}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ env.SOURCE_REPOSITORY }}
+          ref: ${{ env.SOURCE_SHA }}
       - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
         with:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
@@ -414,7 +440,7 @@ jobs:
             kubectl get secret "$GHCR_PULL_SECRET" -n stockpilot
             pull_args+=(--set-string "imagePullSecrets[0].name=$GHCR_PULL_SECRET")
           fi
-          helm upgrade --install stockpilot helm/stockpilot -n stockpilot -f helm/stockpilot/values-prod.yaml --set backend.tag=${{ github.sha }} --set frontend.tag=${{ github.sha }} --set-string ingress.host="$INGRESS_HOST" "${pull_args[@]}" --wait --wait-for-jobs --timeout 10m
+          helm upgrade --install stockpilot helm/stockpilot -n stockpilot -f helm/stockpilot/values-prod.yaml --set backend.tag=${{ env.SOURCE_SHA }} --set frontend.tag=${{ env.SOURCE_SHA }} --set-string ingress.host="$INGRESS_HOST" "${pull_args[@]}" --wait --wait-for-jobs --timeout 10m
           kubectl rollout status deployment/stockpilot-backend -n stockpilot --timeout=180s
           kubectl rollout status deployment/stockpilot-frontend -n stockpilot --timeout=180s
   archive-evidence:
@@ -425,6 +451,9 @@ jobs:
     permissions: {contents: write}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ env.SOURCE_REPOSITORY }}
+          ref: ${{ env.SOURCE_SHA }}
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with: {pattern: '*evidence', path: /tmp/stockpilot-evidence}
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
