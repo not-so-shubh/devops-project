@@ -1,0 +1,4 @@
+NAME                    IMAGE                                                                                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+stockpilot-backend-1    stockpilot-backend:local                                                                     "uvicorn app.main:ap…"   backend    19 seconds ago   Up 11 seconds (healthy)   127.0.0.1:8000->8000/tcp
+stockpilot-frontend-1   stockpilot-frontend:local                                                                    "nginx -g 'daemon of…"   frontend   19 seconds ago   Up 6 seconds (healthy)    127.0.0.1:3000->8080/tcp
+stockpilot-postgres-1   postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24   "docker-entrypoint.s…"   postgres   19 seconds ago   Up 18 seconds (healthy)   5432/tcp
