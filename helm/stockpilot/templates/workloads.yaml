@@ -19,6 +19,8 @@ spec:
       app.kubernetes.io/component: {{ $name }}
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") $ | sha256sum }}
       labels:
         {{- include "stockpilot.labels" $ | nindent 8 }}
         app.kubernetes.io/component: {{ $name }}

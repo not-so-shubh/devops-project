@@ -9,9 +9,9 @@ The supplied “Session 21: Final DevOps Project & Troubleshooting” PDF supple
 | kubernetes/ | `k8s/` namespace and `helm/stockpilot/templates/` |
 | ConfigMap | `helm/stockpilot/templates/configmap.yaml`, non-secret runtime environment |
 | SAST / SCA / secrets / images / gates | `security/README.md`, Bandit and Trivy CI reports; actual run status remains authoritative |
-| GitOps | `gitops/`, reviewed immutable-SHA Flux HelmRelease promotion; live reconciliation pending |
+| GitOps | `gitops/`, reviewed immutable-SHA Flux HelmRelease promotion plus disposable Flux reconciliation gate; check actual `gitops-ci.json` result |
 | logs / metrics | Structured Uvicorn access logs, `/metrics`, Prometheus/Grafana, CI diagnostics |
-| Multiple intentional issues | Isolated bad-image and wrong-Service-port exercises in TROUBLESHOOTING; live exercise remains pending until executed |
+| Multiple intentional issues | Isolated bad-image and wrong-Service-port exercises in TROUBLESHOOTING; automated diagnose/repair/verify lab; actual observations in `troubleshooting-ci.json` after success |
 | Screenshots and lessons | EVIDENCE, TROUBLESHOOTING and lessons below |
 
 ## Lessons learned from actual implementation

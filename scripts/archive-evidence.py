@@ -22,6 +22,7 @@ names = set(
         "create-dialog-mobile.png",
         "kubernetes-ci.txt",
         "troubleshooting-ci.json",
+        "gitops-ci.json",
         "helm-release-ci.txt",
         "hpa-metrics-ci.txt",
         "cluster-pods-ci.txt",

@@ -12,3 +12,7 @@ This is an optional pull-based deployment mode, in addition to the rubric's dire
 The repository is the reviewable desired-state source. Git history records promotions and reversions. Secrets remain externally supplied. This configuration is not yet a verified Flux deployment; capture actual reconciliation evidence before marking the homework GitOps demonstration complete.
 
 References: https://fluxcd.io/flux/guides/helmreleases/ and https://fluxcd.io/flux/components/kustomize/kustomizations/ .
+
+## Disposable integration verification
+
+CI installs checksum-verified Flux 2.9.6 controllers after the direct Helm/browser demonstration. `scripts/verify-gitops.py` creates a Git source pinned to the tested commit and a Flux Kustomization for committed `gitops/ci/`. Flux pulls those manifests, substitutes the scanned SHA, and takes ownership of the existing release. The CI overlay changes `APP_ENV` to `gitops-ci`; a ConfigMap checksum rolls backend Pods. Verification requires the fetched Git revision, Ready HelmRelease, exact image tag, and the running Pod's new environment. A final HTTP smoke checks the reconciled app. `gitops-ci.json` is written only after these assertions succeed. This overlay is confined to the ephemeral kind cluster; the separate operator workflow remains suspended until enabled deliberately.

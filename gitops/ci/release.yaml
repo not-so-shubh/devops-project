@@ -1,0 +1,32 @@
+# Disposable CI only. Flux substitutes the tested SHA from its Kustomization.
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: stockpilot
+  namespace: stockpilot
+spec:
+  releaseName: stockpilot
+  storageNamespace: stockpilot
+  interval: 1m
+  timeout: 6m
+  chart:
+    spec:
+      chart: ./helm/stockpilot
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: stockpilot
+        namespace: flux-system
+      valuesFiles:
+        - ./helm/stockpilot/values.yaml
+        - ./helm/stockpilot/values-prod.yaml
+  values:
+    environment: gitops-ci
+    backend:
+      tag: "${IMAGE_SHA}"
+    frontend:
+      tag: "${IMAGE_SHA}"
+    ingress:
+      host: localhost
+    postgres:
+      storageClass: standard

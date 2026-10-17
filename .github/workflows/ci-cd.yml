@@ -297,6 +297,15 @@ jobs:
           npx playwright install --with-deps chromium
           npm test
           node ../scripts/capture-monitoring.mjs
+      - name: Verify pull-based GitOps reconciliation on the disposable cluster
+        run: |
+          curl -fsSLo /tmp/flux.tar.gz https://github.com/fluxcd/flux2/releases/download/v2.9.6/flux_2.9.6_linux_amd64.tar.gz
+          echo 'b4d22673e9246cbd628881f1a9ef3b090085dced291e42d804555cee8e8d42c5  /tmp/flux.tar.gz' | sha256sum -c -
+          tar -xzf /tmp/flux.tar.gz -C /tmp flux
+          sudo install /tmp/flux /usr/local/bin/flux
+          flux install --components=source-controller,kustomize-controller,helm-controller --timeout=5m
+          python scripts/verify-gitops.py
+          BASE_URL=http://localhost:3000 python scripts/smoke.py
       - name: Kubernetes diagnostics
         if: always()
         run: |
