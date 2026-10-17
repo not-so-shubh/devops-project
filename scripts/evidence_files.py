@@ -18,6 +18,8 @@ EVIDENCE_FILES = {
     "metrics.txt",
     "terraform-ci-validate.txt",
     "cluster-pods-ci.txt",
+    "cluster-services-ci.txt",
+    "cluster-health-ci.json",
     "compose-ci.log",
     "prometheus-targets.png",
     "grafana-dashboard.png",

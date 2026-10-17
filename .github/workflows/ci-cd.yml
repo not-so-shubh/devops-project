@@ -283,16 +283,22 @@ jobs:
           kubectl apply --dry-run=client -f k8s/namespace.yaml
           kubectl apply -f k8s/namespace.yaml
           python scripts/ci-cluster-secrets.py
-      - name: Install ingress metrics provider and monitoring
+      - name: Add controller and monitoring chart repositories
         run: |
           helm repo add traefik https://traefik.github.io/charts
           helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server
           helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+      - name: Validate and install Traefik Ingress controller
+        run: |
           helm template traefik traefik/traefik --version 42.0.0 -n ingress-system -f monitoring/traefik-values.yaml --set service.spec.type=ClusterIP > /tmp/traefik.yaml
           python scripts/verify-ingress-controller.py /tmp/traefik.yaml
           helm upgrade --install traefik traefik/traefik --version 42.0.0 -n ingress-system --create-namespace -f monitoring/traefik-values.yaml --set service.spec.type=ClusterIP --wait --timeout 5m
+      - name: Install metrics-server resource metrics
+        run: |
           # Insecure kubelet TLS is confined to this disposable kind cluster.
           helm upgrade --install metrics-server metrics-server/metrics-server --version 3.14.0 -n kube-system -f monitoring/metrics-server-kind.yaml --wait --timeout 5m
+      - name: Provision Grafana dashboard and install Prometheus monitoring
+        run: |
           kubectl create configmap stockpilot-dashboard -n monitoring --from-file=stockpilot-dashboard.json=monitoring/stockpilot-dashboard.json --dry-run=client -o yaml | kubectl apply -f -
           kubectl label configmap stockpilot-dashboard -n monitoring grafana_dashboard=1 --overwrite
           helm upgrade --install monitoring prometheus-community/kube-prometheus-stack --version 92.10.1 -n monitoring --create-namespace -f monitoring/prometheus-values.yaml --wait --timeout 8m
@@ -348,6 +354,8 @@ jobs:
         if: always()
         run: |
           kubectl get pods -A -o wide > docs/evidence/cluster-pods-ci.txt
+          kubectl get svc -A > docs/evidence/cluster-services-ci.txt
+          kubectl get pods -A -o json | jq '{pods: [.items[] | {namespace: .metadata.namespace, name: .metadata.name, phase: .status.phase, containers: [.status.containerStatuses[]? | {name, ready, restartCount, state, lastState}], conditions: .status.conditions}]}' > docs/evidence/cluster-health-ci.json
           kubectl get events -A --sort-by=.lastTimestamp > docs/evidence/cluster-events-ci.txt
           kubectl logs -n stockpilot -l app.kubernetes.io/component=migration --all-containers=true > docs/evidence/migration-ci.log || true
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
