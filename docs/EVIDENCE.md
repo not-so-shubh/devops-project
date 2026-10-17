@@ -18,7 +18,7 @@ First run [38997526583](https://github.com/not-so-shubh/devops-project/actions/r
 
 ## Durable CI evidence
 
-Runs archive an explicit allowlist of screenshots, test/Compose/Helm/Kubernetes outputs, actual Trivy JSON, Prometheus target/query responses and Grafana screenshots on `evidence/<source-sha>`. `ci-run.json` records the source SHA, run URL, and actual job outcomes, including failures. Text is redacted for internal paths, private cluster addresses, IAM ARNs and runner IDs; screenshot redaction is identified where used. Browser traces and secrets are never copied into Git. Artifacts also appear on each run (30-day retention; image archives one day). Download artifacts before expiry if not yet copied into the durable evidence branch.
+Runs archive an explicit allowlist of screenshots, test/Compose/Helm/Kubernetes outputs, actual Trivy JSON, Prometheus target/query responses and Grafana screenshots on `evidence/<source-sha>`. `ci-run.json` records the source SHA, run URL, and actual job outcomes, including failures. Each job clears historical generated evidence in its disposable checkout before running; failed jobs cannot upload a previous run’s screenshot as new proof. JSON records the selected artifact origin for every copied file. Text is redacted for internal paths, private cluster addresses, IAM ARNs and runner IDs; screenshot redaction is identified where used. Browser traces and secrets are never copied into Git. Artifacts also appear on each run (30-day retention; image archives one day). Download artifacts before expiry if not yet copied into the durable evidence branch.
 
 ## Required remaining capture checklist
 
