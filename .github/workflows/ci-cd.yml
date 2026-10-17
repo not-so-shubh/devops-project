@@ -332,8 +332,6 @@ jobs:
           BASE_URL=http://localhost:3000 python scripts/smoke.py
           BASE_URL=http://localhost:3000 REQUESTS=90 bash scripts/load-test.sh
           python scripts/verify-monitoring.py
-      - name: Diagnose repair and verify two isolated troubleshooting defects
-        run: python scripts/troubleshooting-lab.py
       - name: Browser verification through actual Ingress
         run: |
           npm --prefix e2e ci
@@ -341,6 +339,8 @@ jobs:
           npx playwright install --with-deps chromium
           npm test
           node ../scripts/capture-monitoring.mjs
+      - name: Diagnose repair and verify two isolated troubleshooting defects
+        run: python scripts/troubleshooting-lab.py
       - name: Verify pull-based GitOps reconciliation on the disposable cluster
         run: |
           curl -fsSLo /tmp/flux.tar.gz https://github.com/fluxcd/flux2/releases/download/v2.9.6/flux_2.9.6_linux_amd64.tar.gz

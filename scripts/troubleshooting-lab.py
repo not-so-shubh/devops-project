@@ -25,7 +25,7 @@ def endpoints():
     return [
         address
         for item in data["items"]
-        for endpoint in item.get("endpoints", [])
+        for endpoint in (item.get("endpoints") or [])
         for address in endpoint["addresses"]
     ]
 
