@@ -180,3 +180,5 @@ For deployment problems, start with [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md
 ## Attribution
 
 StockPilot's application/domain/schema/design are original. The reference DevOps architecture and rubric came from [Nency-Ravaliya/devops-heros](https://github.com/Nency-Ravaliya/devops-heros/tree/main/session21-python), MIT licensed. See [NOTICE.md](NOTICE.md), `LICENSE`, and `LICENSE.reference`.
+
+Additional homework requirements: [security gates](security/README.md), [GitOps promotion](gitops/README.md), and [PDF alignment and lessons learned](docs/HOMEWORK-ADDENDUM.md).

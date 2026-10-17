@@ -8,6 +8,8 @@ from pathlib import Path
 names = set(
     [
         "pytest-postgres.txt",
+        "bandit.json",
+        "secrets.json",
         "terraform-ci-validate.txt",
         "terraform-ci-mock-test.txt",
         "compose-ci.txt",

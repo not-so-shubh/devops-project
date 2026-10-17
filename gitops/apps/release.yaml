@@ -1,0 +1,26 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: stockpilot
+  namespace: stockpilot
+spec:
+  # Resume only after credentials, monitoring and real published image tags are configured.
+  suspend: true
+  interval: 2m
+  timeout: 10m
+  chart:
+    spec:
+      chart: ./helm/stockpilot
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: stockpilot
+        namespace: flux-system
+      valuesFiles:
+        - ./helm/stockpilot/values.yaml
+        - ./helm/stockpilot/values-prod.yaml
+  values:
+    backend:
+      tag: "8426d60259d17af55d28c52600a112bd8dd43045"
+    frontend:
+      tag: "8426d60259d17af55d28c52600a112bd8dd43045"

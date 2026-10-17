@@ -41,6 +41,9 @@ spec:
             - name: http
               containerPort: {{ if eq $name "backend" }}8000{{ else }}8080{{ end }}
           {{- if eq $name "backend" }}
+          envFrom:
+            - configMapRef:
+                name: stockpilot-config
           env:
             - name: DATABASE_URL
               valueFrom:

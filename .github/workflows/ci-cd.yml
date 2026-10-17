@@ -40,6 +40,17 @@ jobs:
         run: |
           ruff check backend scripts
           ruff format --check backend scripts
+      - name: SAST on application code
+        run: bandit -r backend/app -ll -f json -o docs/evidence/bandit.json
+      - name: Scan repository for secrets (blocking)
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: secret
+          exit-code: '1'
+          format: json
+          output: docs/evidence/secrets.json
       - name: Verify PostgreSQL migrations and model consistency
         working-directory: backend
         run: |
@@ -68,6 +79,8 @@ jobs:
           path: |
             docs/evidence/pytest-postgres.txt
             backend/coverage.xml
+            docs/evidence/bandit.json
+            docs/evidence/secrets.json
           retention-days: 30
   infrastructure:
     runs-on: ubuntu-24.04
