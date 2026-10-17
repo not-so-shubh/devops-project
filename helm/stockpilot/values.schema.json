@@ -1,14 +1,75 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
   "type": "object",
-  "required": ["backend", "frontend", "database"],
+  "required": [
+    "backend",
+    "frontend",
+    "database"
+  ],
   "properties": {
-    "backend": {"$ref": "#/definitions/image"},
-    "frontend": {"$ref": "#/definitions/image"},
-    "database": {"type": "object", "required": ["existingSecret"], "properties": {"existingSecret": {"type": "string", "minLength": 1}}},
-    "hpa": {"type": "object", "properties": {"minReplicas": {"type": "integer", "minimum": 2}, "maxReplicas": {"type": "integer", "minimum": 3}, "targetCPU": {"type":"integer", "minimum": 1, "maximum": 100}}}
+    "backend": {
+      "$ref": "#/definitions/image"
+    },
+    "frontend": {
+      "$ref": "#/definitions/image"
+    },
+    "database": {
+      "type": "object",
+      "required": [
+        "existingSecret"
+      ],
+      "properties": {
+        "existingSecret": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "hpa": {
+      "type": "object",
+      "properties": {
+        "minReplicas": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "maxReplicas": {
+          "type": "integer",
+          "minimum": 3
+        },
+        "targetCPU": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        }
+      }
+    },
+    "environment": {
+      "type": "string",
+      "minLength": 1
+    }
   },
   "definitions": {
-    "image": {"type": "object", "required": ["repository", "tag", "replicas"], "properties": {"repository": {"type": "string", "minLength": 1}, "tag": {"type": "string", "pattern": "^[a-f0-9]{40}$"}, "replicas": {"type": "integer", "minimum": 2}}}
+    "image": {
+      "type": "object",
+      "required": [
+        "repository",
+        "tag",
+        "replicas"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "replicas": {
+          "type": "integer",
+          "minimum": 2
+        }
+      }
+    }
   }
 }

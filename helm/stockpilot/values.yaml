@@ -1,3 +1,4 @@
+environment: development
 # Supply the exact Git SHA published by CI. The schema rejects mutable tags.
 backend:
   repository: ghcr.io/not-so-shubh/stockpilot-backend

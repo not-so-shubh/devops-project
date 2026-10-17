@@ -56,3 +56,5 @@ The CI Compose job uses actual PostgreSQL, non-root images, Nginx proxying, Alem
 Local runtime limitations are retained in evidence: Docker daemon access is denied, kubectl has no cluster, and Terraform provider execution/checksum validation is restricted here despite successful initialization. CI results take precedence only for the commands that actually passed there. Review the evidence index for the latest outcome.
 
 The Compose acceptance gate passed all four desktop/mobile scenarios in run [38999948371](https://github.com/not-so-shubh/devops-project/actions/runs/38999948371), then passed again on the Alpine backend in run [39000262612](https://github.com/not-so-shubh/devops-project/actions/runs/39000262612). Both latter image scans passed the unchanged HIGH/CRITICAL gate; Kubernetes runtime evidence is recorded separately.
+
+An additional Compose gate creates a synthetic product and opening ledger entry, restarts the actual PostgreSQL container, waits for API reconnection, and verifies both persisted records before deleting the catalog probe. Its actual result is saved as `persistence-ci.txt`; this is separate from the 44 Pytest cases.

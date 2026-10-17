@@ -15,6 +15,7 @@ names = set(
         "compose-ci.txt",
         "compose-ci.log",
         "compose-smoke.txt",
+        "persistence-ci.txt",
         "metrics.txt",
         "frontend-desktop.png",
         "frontend-mobile.png",

@@ -1,3 +1,4 @@
+environment: development
 backend:
   replicas: 2
 frontend:

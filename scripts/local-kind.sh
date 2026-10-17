@@ -9,7 +9,7 @@ if kind get clusters | rg -qx stockpilot; then
   echo 'Cluster stockpilot already exists. Select another environment or explicitly remove the old demo first.'
   exit 1
 fi
-kind create cluster --name stockpilot --wait 180s
+kind create cluster --name stockpilot --image kindest/node:v1.35.8@sha256:07b2536e30b803ed61d1677a79df6115f798ce64c80f9e22f6ed45afd09323c0 --wait 180s
 for component in backend frontend; do
   docker build -t "ghcr.io/not-so-shubh/stockpilot-$component:$SHA" "./$component"
   kind load docker-image "ghcr.io/not-so-shubh/stockpilot-$component:$SHA" --name stockpilot
