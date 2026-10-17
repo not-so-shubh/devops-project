@@ -1,6 +1,6 @@
 # AWS readiness, cost estimate and remaining execution
 
-Reviewed 18 October 2026 IST against source `54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c`. Intended region: **Mumbai, ap-south-1**. No AWS account identity has been established in this workspace. No real plan, apply, EKS deployment or destroy has occurred. The existing `terraform-plan.txt` is an earlier failed attempt, not successful AWS evidence.
+Reviewed 18 October 2026 IST against source `710d1460abc480d8b19e2b98f648a9a5c1c23339`. Intended region: **Mumbai, ap-south-1**. No AWS account identity has been established in this workspace. No real plan, apply, EKS deployment or destroy has occurred. The existing `terraform-plan.txt` is an earlier failed attempt, not successful AWS evidence.
 
 ## Executed readiness checks
 
@@ -8,7 +8,7 @@ The workspace has no AWS CLI, AWS environment configuration or suitable EKS prov
 
 Official Terraform 1.14.7 was downloaded from HashiCorp and its SHA256 checked against the official release checksums. `fmt -check -recursive` passed. Locked `init` initially failed because the temporary directory was unavailable; retrying with `TMPDIR` set to the repository's ignored `.tmp` succeeded and installed the signed AWS provider 6.69.1. Local `validate` and `test` then failed before loading provider schemas: the provider did not complete startup in this restricted workspace, which also lacks `/proc/self/exe`. These are preserved as failures in [terraform-local-readiness.txt](evidence/terraform-local-readiness.txt), not represented as successful local validation.
 
-The reviewed [main infrastructure job](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560/job/117466675608) successfully initialized the actual locked provider, validated the configuration and ran the mocked topology test in GitHub's runner. The new publishing commit runs those checks again. A passing mock test still does not satisfy M7.3–M7.6.
+The reviewed [main infrastructure job](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297/job/117507399134) successfully initialized the actual locked provider, validated the configuration and ran the mocked topology test in GitHub's runner. The new publishing commit runs those checks again. A passing mock test still does not satisfy M7.3–M7.6.
 
 ## Terraform architecture review
 

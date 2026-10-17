@@ -22,3 +22,5 @@ For the written rubric response, timed student explanations, current source-pinn
 ## Later frontend package fix
 
 Run [39070263226](https://github.com/not-so-shubh/devops-project/actions/runs/39070263226) blocked frontend publication on HIGH CVE-2026-77214 in `libexpat 2.8.5-r0`; the report identifies `2.9.0-r0` as fixed. The Dockerfile now installs `libexpat>=2.9.0-r0` from the same supported Alpine repository during the build and restores runtime UID 101. No advisory is ignored and the HIGH/CRITICAL gate is unchanged. The remediation commit must pass its own full scans, Compose and cluster checks; use its actual evidence branch to verify the result. [Retained finding](../docs/evidence/trivy-frontend-blocked-summary.json).
+
+Remediation verified: [run 39070661297](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297), source `710d1460abc480d8b19e2b98f648a9a5c1c23339`, passed both image scans and the full Compose/Kubernetes/monitoring/Flux regression. Its frontend build log confirms the upgrade to 2.9.0-r0, and the public image receipt confirms runtime UID 101.

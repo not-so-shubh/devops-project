@@ -2,7 +2,7 @@
 
 Repository: https://github.com/not-so-shubh/devops-project
 
-Verified application/infrastructure source: `54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c`. Complete successful run: https://github.com/not-so-shubh/devops-project/actions/runs/39056922560. Durable original evidence: https://github.com/not-so-shubh/devops-project/tree/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence. See [EVIDENCE.md](EVIDENCE.md) for screenshots and per-stage proof. Later revisions must be assessed using their own Actions run and `evidence/<source-sha>` branch.
+Verified application/infrastructure source: `710d1460abc480d8b19e2b98f648a9a5c1c23339`. Complete successful run: https://github.com/not-so-shubh/devops-project/actions/runs/39070661297. Durable original evidence: https://github.com/not-so-shubh/devops-project/tree/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence. See [EVIDENCE.md](EVIDENCE.md) for screenshots and per-stage proof. Later revisions must be assessed using their own Actions run and `evidence/<source-sha>` branch.
 
 ## Work that still requires execution
 
@@ -33,7 +33,7 @@ The reference rubric requests some screenshots in addition to command output. Pr
 | Trivy scan output | Both original reports and successful image-scan jobs linked in EVIDENCE.md; capture the actual job output. |
 | Terraform plan / VPC / EKS / destroy | Not available; execute the real AWS lifecycle above and capture each stage. |
 | Pods / Services / Helm list | [Actual Pods/Services screenshot](evidence/github-kubernetes-transcript.jpg) plus cluster/Helm transcripts available; capture Helm list and literal terminal views during the demo if required. |
-| Browser through Ingress | Four actual Ingress desktop/mobile browser tests passed in the [Kubernetes job](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560/job/117467387193). To show the browser address/hostname, capture the live demo after following DEPLOYMENT.md. |
+| Browser through Ingress | Four actual Ingress desktop/mobile browser tests passed in the [Kubernetes job](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297/job/117508117389). To show the browser address/hostname, capture the live demo after following DEPLOYMENT.md. |
 | `/metrics` output | Actual exposition linked in EVIDENCE.md; capture curl/job output. |
 | Prometheus Targets UP and populated Grafana | Real UI screenshots embedded in EVIDENCE.md. |
 | Live demo / accepted recording | Follow DEMO.md and include your own explanation and actual deployment update. |

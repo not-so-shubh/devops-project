@@ -6,15 +6,15 @@
 
 ## Verified submission status
 
-[Complete successful CI/CD run](https://github.com/not-so-shubh/devops-project/actions/runs/39056922560) · [Actual screenshots and reports](docs/EVIDENCE.md) · [Final submission actions](docs/SUBMISSION.md)
+[Complete successful CI/CD run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297) · [Actual screenshots and reports](docs/EVIDENCE.md) · [Final submission actions](docs/SUBMISSION.md)
 
-The reviewed source `54513c248b2b2cb0b6bb2a0a41c7cc4a03b9b69c` passed PostgreSQL tests, Compose/browser checks, both image scans and GHCR publication, Helm/Ingress/HPA, populated Grafana, troubleshooting repairs and real Flux reconciliation. The evidence-based audit covers 39 of 46 criteria (83 rubric points); these are verified criteria, not awarded marks. A real AWS plan/VPC/EKS/destroy cycle and the student's security explanation/presentation remain required. Official form submission is **Student action — excluded from this task**. Evidence is pinned to that tested revision; newer commits need their own successful run.
+The reviewed source `710d1460abc480d8b19e2b98f648a9a5c1c23339` passed PostgreSQL tests, Compose/browser checks, both image scans and GHCR publication, Helm/Ingress/HPA, populated Grafana, troubleshooting repairs and real Flux reconciliation. The evidence-based audit covers 39 of 46 criteria (83 rubric points); these are verified criteria, not awarded marks. A real AWS plan/VPC/EKS/destroy cycle and the student's security explanation/presentation remain required. Official form submission is **Student action — excluded from this task**. Evidence is pinned to that tested revision; newer commits need their own successful run.
 
 ## Screenshots
 
-![StockPilot running in the actual desktop browser test](https://raw.githubusercontent.com/not-so-shubh/devops-project/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-desktop.png)
+![StockPilot running in the actual desktop browser test](https://raw.githubusercontent.com/not-so-shubh/devops-project/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/frontend-desktop.png)
 
-[Mobile view](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/frontend-mobile.png) · [Prometheus: two targets UP](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/prometheus-targets.png) · [Grafana: populated live dashboard](https://github.com/not-so-shubh/devops-project/blob/fb09b2543f7335779c7c32289123be69f52c5e66/docs/evidence/grafana-dashboard.png)
+[Mobile view](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/frontend-mobile.png) · [Prometheus: two targets UP](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-targets.png) · [Grafana: populated live dashboard](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/grafana-dashboard.png)
 
 ## What you can do
 
