@@ -1,0 +1,11 @@
+# Isolated teaching resource; it does not modify the working backend Service.
+apiVersion: v1
+kind: Service
+metadata:
+  name: stockpilot-lab-empty-service
+  namespace: stockpilot
+spec:
+  selector:
+    app.kubernetes.io/component: deliberately-no-matching-pod
+  ports:
+    - {name: http, port: 8000, targetPort: 8000}

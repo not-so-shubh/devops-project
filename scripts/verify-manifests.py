@@ -1,5 +1,6 @@
 """Check rendered chart wiring in addition to Helm's syntax/schema validation."""
 import sys
+
 import yaml
 
 objects = [o for o in yaml.safe_load_all(open(sys.argv[1])) if o and o.get('kind')]

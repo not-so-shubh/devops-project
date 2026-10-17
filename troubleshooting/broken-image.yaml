@@ -1,0 +1,28 @@
+# Isolated lab with a deliberately invalid immutable-looking tag.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stockpilot-lab-bad-image
+  namespace: stockpilot
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: stockpilot-lab}
+  template:
+    metadata:
+      labels: {app: stockpilot-lab}
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: lab
+          image: ghcr.io/not-so-shubh/stockpilot-backend:deliberately-missing-lab-tag
+          resources:
+            requests: {cpu: 10m, memory: 16Mi}
+            limits: {cpu: 100m, memory: 64Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {drop: [ALL]}
