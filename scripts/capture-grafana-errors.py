@@ -42,7 +42,7 @@ spec.loader.exec_module(redactor)
 lines = [
     redactor.redact(line)
     for line in logs.splitlines()
-    if re.search(r"error|fatal|panic|failed|oom", line, re.I)
+    if re.search(r"level=(?:error|fatal|panic)|fatal error|panic:|oomkilled|failed to", line, re.I)
 ]
 result = (
     "Actual Grafana error excerpt; known credential values and environment identifiers redacted.\n"

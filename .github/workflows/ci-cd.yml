@@ -57,6 +57,9 @@ jobs:
           exit-code: '1'
           format: json
           output: docs/evidence/secrets.json
+      - name: Sanitize secret evidence without changing the scanner result
+        if: always()
+        run: python scripts/sanitize-secret-report.py
       - name: Verify PostgreSQL migrations and model consistency
         working-directory: backend
         run: |

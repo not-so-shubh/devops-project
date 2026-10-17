@@ -22,3 +22,32 @@ assert result["Vulnerabilities"] == original["Vulnerabilities"]
 assert result["targets"][0]["health"] == "up"
 assert result["targets"][0]["loopback"] == "127.0.0.1"
 print("PASS: redaction preserves valid JSON, finding severity, counts and metrics")
+
+spec = importlib.util.spec_from_file_location("secrets_report", "scripts/sanitize-secret-report.py")
+secret_module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(secret_module)
+canary = "CANARY_VALUE_MUST_BE_REMOVED"
+report = {
+    "Results": [
+        {
+            "Target": "example.py",
+            "Secrets": [
+                {
+                    "RuleID": "canary-rule",
+                    "Severity": "HIGH",
+                    "StartLine": 7,
+                    "Match": canary,
+                    "Code": {"content": canary},
+                }
+            ],
+        }
+    ]
+}
+clean = secret_module.safe_report(report)
+assert canary not in json.dumps(clean)
+assert clean["Results"][0]["Secrets"][0] == {
+    "RuleID": "canary-rule",
+    "Severity": "HIGH",
+    "StartLine": 7,
+}
+print("PASS: secret evidence preserves finding severity/location and excludes matched credentials")
