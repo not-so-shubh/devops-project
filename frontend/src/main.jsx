@@ -82,6 +82,8 @@ function App() {
   const [movementPage, setMovementPage] = useState(0),
     [movementLoading, setMovementLoading] = useState(false);
 
+  const modalOpener = useRef(null);
+
   async function load() {
     setLoading(true);
     setError("");
@@ -112,6 +114,7 @@ function App() {
   }, [toast]);
 
   function open(type, product) {
+    if (!modal) modalOpener.current = document.activeElement;
     setModal({ type, product });
     setFormError("");
   }
@@ -849,7 +852,7 @@ function App() {
         </div>
       )}
       {modal && (
-        <Modal onClose={close} busy={busy}>
+        <Modal onClose={close} busy={busy} returnFocus={modalOpener.current}>
           <div className="modal-content">
             <div className="modal-heading">
               <div>
@@ -1159,10 +1162,10 @@ function App() {
     </div>
   );
 }
-function Modal({ children, onClose, busy }) {
+function Modal({ children, onClose, busy, returnFocus }) {
   const container = useRef(null);
   useEffect(() => {
-    const previous = document.activeElement;
+    const previous = returnFocus;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const firstInput = container.current.querySelector("input, select, textarea");

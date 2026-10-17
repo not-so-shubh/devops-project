@@ -67,6 +67,7 @@ test("live inventory CRUD, atomic stock adjustment and retained ledger", async (
     .click();
   await expect(modal).toContainText("2 units");
   await modal.getByRole("button", { name: "Close dialog" }).click();
+  await expect(row.getByRole("button", {name:"Browser verified lamp updated",exact:true})).toBeFocused();
   await row
     .getByRole("button", { name: "Delete Browser verified lamp updated" })
     .click();

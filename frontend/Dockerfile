@@ -8,6 +8,8 @@ RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:stable-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01
 COPY --chown=101:101 --from=build /app/dist /usr/share/nginx/html
+# Retain dependency manifests outside the web root so Trivy also inventories JS packages.
+COPY --chown=101:101 package.json package-lock.json /usr/share/stockpilot/
 COPY --chown=101:101 nginx.conf /etc/nginx/conf.d/default.conf
 # The image supports an unprivileged Nginx on 8080. No runtime templating is needed.
 USER 101:101
