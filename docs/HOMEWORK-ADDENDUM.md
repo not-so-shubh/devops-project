@@ -17,7 +17,7 @@ The supplied “Session 21: Final DevOps Project & Troubleshooting” PDF supple
 ## Lessons learned from actual implementation
 
 * PostgreSQL-backed tests catch concurrency behavior that SQLite cannot establish. The CI suite exercises simultaneous stock reductions.
-* A mobile screenshot alone was insufficient: desktop passed while mobile clicks hit the wrong coordinates. Browser tests now compare document width to the visual viewport and perform real inventory operations.
+* A mobile screenshot alone was insufficient: desktop passed while mobile clicks hit the wrong coordinates. An absolutely positioned screen-reader label escaped its table scroll container. Giving that container `position: relative` restored the 390px mobile viewport; all four Compose desktop/mobile tests then passed. Browser tests now compare document width to the visual viewport and perform real inventory operations.
 * Migration hooks can deadlock initial installs when PostgreSQL has not started. An ordinary revisioned migration Job and readiness checks permit database startup and migrations before application readiness.
 * Evidence must distinguish configuration validation, disposable-cluster runtime proof and paid AWS provisioning. A Terraform mock plan cannot prove that an AWS account was provisioned or cleaned up.
 * GitOps and direct Helm CI must have one designated release owner; enabling both creates competing desired states.

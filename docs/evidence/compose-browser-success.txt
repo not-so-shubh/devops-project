@@ -1,0 +1,21 @@
+Actual selected output from GitHub Actions run 38999948371, job 117300750893.
+Source: https://github.com/not-so-shubh/devops-project/actions/runs/38999948371/job/117300750893
+Selection removes build noise, not failed tests. Full job is linked above.
+
+ Container stockpilot-postgres-1  Healthy
+ Container stockpilot-backend-1  Healthy
+ Container stockpilot-postgres-1  Healthy
+ Container stockpilot-backend-1  Healthy
+ Container stockpilot-frontend-1  Healthy
+stockpilot-backend-1    stockpilot-backend:local                                                                     "uvicorn app.main:ap…"   backend    19 seconds ago   Up 12 seconds (healthy)   127.0.0.1:8000->8000/tcp
+stockpilot-frontend-1   stockpilot-frontend:local                                                                    "nginx -g 'daemon of…"   frontend   19 seconds ago   Up 6 seconds (healthy)    127.0.0.1:3000->8080/tcp
+stockpilot-postgres-1   postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24   "docker-entrypoint.s…"   postgres   19 seconds ago   Up 19 seconds (healthy)   5432/tcp
+PASS: frontend-origin API proxy, create, stock decrement, persistent retrieval and stats
+Initial viewport { client: 1440, inner: 1440, scroll: 1440, overflow: [] }
+Layout verification { client: 1440, viewport: 1440, visual: 1440, scroll: 1440 }
+  ✓  1 [desktop] › tests/inventory.spec.js:15:1 › live inventory CRUD, atomic stock adjustment and retained ledger (2.4s)
+  ✓  2 [desktop] › tests/inventory.spec.js:108:1 › filters, export, guide and responsive navigation work (761ms)
+Layout verification { client: 390, viewport: 390, visual: 390, scroll: 390 }
+  ✓  3 [mobile] › tests/inventory.spec.js:15:1 › live inventory CRUD, atomic stock adjustment and retained ledger (2.3s)
+  ✓  4 [mobile] › tests/inventory.spec.js:108:1 › filters, export, guide and responsive navigation work (969ms)
+  4 passed (7.9s)
