@@ -11,7 +11,10 @@ from app.models import Product, StockMovement
 
 
 def adjust(client, product, delta, reason="Supplier delivery"):
-    return client.post("/api/inventory/adjustments", json={"product_id": product["id"], "quantity_change": delta, "reason": reason})
+    return client.post(
+        "/api/inventory/adjustments",
+        json={"product_id": product["id"], "quantity_change": delta, "reason": reason},
+    )
 
 
 def test_root_and_docs(client):
@@ -32,6 +35,7 @@ def test_database_failure_is_sanitized_and_liveness_independent(client):
     class FailedSession:
         def execute(self, *_args, **_kwargs):
             raise OperationalError("private-db-host", {}, Exception("supersecret"))
+
     app.dependency_overrides[get_db] = lambda: FailedSession()
     response = client.get("/ready")
     assert response.status_code == 503
@@ -86,13 +90,13 @@ def test_list_search_filter_and_pagination(client, product, payload):
 
 
 def test_retrieve_product(client, product):
-    assert client.get(f'/api/products/{product["id"]}').json() == product
+    assert client.get(f"/api/products/{product['id']}").json() == product
 
 
 def test_update_details_preserves_balance(client, product, payload):
     payload.pop("stock_quantity")
     payload.update(name="Updated lamp", selling_price="175.00")
-    response = client.put(f'/api/products/{product["id"]}', json=payload)
+    response = client.put(f"/api/products/{product['id']}", json=payload)
     assert response.status_code == 200
     assert response.json()["name"] == "Updated lamp"
     assert response.json()["stock_quantity"] == 12
@@ -100,7 +104,7 @@ def test_update_details_preserves_balance(client, product, payload):
 
 
 def test_update_cannot_bypass_stock_ledger(client, product, payload):
-    assert client.put(f'/api/products/{product["id"]}', json=payload).status_code == 422
+    assert client.put(f"/api/products/{product['id']}", json=payload).status_code == 422
 
 
 def test_update_duplicate_sku_rolls_back(client, product, payload):
@@ -108,14 +112,14 @@ def test_update_duplicate_sku_rolls_back(client, product, payload):
     other = client.post("/api/products", json=payload).json()
     payload.pop("stock_quantity")
     payload["sku"] = product["sku"]
-    assert client.put(f'/api/products/{other["id"]}', json=payload).status_code == 409
-    assert client.get(f'/api/products/{other["id"]}').json()["sku"] == "OTHER"
+    assert client.put(f"/api/products/{other['id']}", json=payload).status_code == 409
+    assert client.get(f"/api/products/{other['id']}").json()["sku"] == "OTHER"
 
 
 def test_delete_retains_movement_audit(client, product):
-    response = client.delete(f'/api/products/{product["id"]}')
+    response = client.delete(f"/api/products/{product['id']}")
     assert response.status_code == 204 and response.content == b""
-    assert client.get(f'/api/products/{product["id"]}').status_code == 404
+    assert client.get(f"/api/products/{product['id']}").status_code == 404
     ledger = client.get("/api/inventory/movements").json()
     assert ledger[0]["sku"] == product["sku"] and ledger[0]["product_id"] is None
 
@@ -127,7 +131,21 @@ def test_missing_product(client, method, payload):
     assert getattr(client, method)("/api/products/999999", **options).status_code == 404
 
 
-@pytest.mark.parametrize("field,value", [("name"," "), ("sku","bad sku"), ("selling_price","-1"), ("selling_price","1.123"), ("stock_quantity",-1), ("stock_quantity",1.2), ("stock_quantity",True), ("reorder_threshold",-1), ("category","x"), ("unknown","oops")])
+@pytest.mark.parametrize(
+    "field,value",
+    [
+        ("name", " "),
+        ("sku", "bad sku"),
+        ("selling_price", "-1"),
+        ("selling_price", "1.123"),
+        ("stock_quantity", -1),
+        ("stock_quantity", 1.2),
+        ("stock_quantity", True),
+        ("reorder_threshold", -1),
+        ("category", "x"),
+        ("unknown", "oops"),
+    ],
+)
 def test_invalid_product(client, payload, field, value):
     payload[field] = value
     assert client.post("/api/products", json=payload).status_code == 422
@@ -139,12 +157,12 @@ def test_increment_and_decrement(client, product):
     assert incoming.status_code == 201 and incoming.json()["quantity_after"] == 20
     outgoing = adjust(client, product, -5, "Order fulfilled")
     assert outgoing.status_code == 201 and outgoing.json()["quantity_after"] == 15
-    assert client.get(f'/api/products/{product["id"]}').json()["stock_quantity"] == 15
+    assert client.get(f"/api/products/{product['id']}").json()["stock_quantity"] == 15
 
 
 def test_insufficient_stock_atomic_rejection(client, product):
     assert adjust(client, product, -13).status_code == 409
-    assert client.get(f'/api/products/{product["id"]}').json()["stock_quantity"] == 12
+    assert client.get(f"/api/products/{product['id']}").json()["stock_quantity"] == 12
     assert len(client.get("/api/inventory/movements").json()) == 1
 
 
@@ -154,7 +172,7 @@ def test_stock_upper_bound(client, product):
 
 
 def test_missing_adjustment_product(client):
-    assert adjust(client, {"id":999999}, 1).status_code == 404
+    assert adjust(client, {"id": 999999}, 1).status_code == 404
 
 
 @pytest.mark.parametrize("delta", [0, 1.5, True, "5", 1000001])
@@ -171,7 +189,7 @@ def test_statistics_and_real_movement_trend(client, product):
     assert stats["low_stock_count"] == 1 and stats["out_of_stock_count"] == 0
     assert stats["inbound_units"] == 12 and stats["outbound_units"] == 10
     assert len(stats["movement_trend"]) == 7
-    assert stats["categories"] == [{"name":"Workspace", "units":2}]
+    assert stats["categories"] == [{"name": "Workspace", "units": 2}]
 
 
 def test_empty_stats(client):
@@ -182,7 +200,7 @@ def test_empty_stats(client):
 
 def test_movement_filter_and_pagination(client, product):
     adjust(client, product, 3)
-    movements = client.get(f'/api/inventory/movements?product_id={product["id"]}&limit=1').json()
+    movements = client.get(f"/api/inventory/movements?product_id={product['id']}&limit=1").json()
     assert len(movements) == 1 and movements[0]["quantity_change"] == 3
     older = client.get("/api/inventory/movements?offset=1&limit=1").json()
     assert older[0]["reason"] == "Opening balance"
@@ -209,5 +227,17 @@ def test_concurrent_removals_never_oversell(client, product, engine):
         pytest.skip("Row concurrency is verified by the PostgreSQL CI service")
     with ThreadPoolExecutor(max_workers=2) as pool:
         statuses = sorted(pool.map(lambda _: adjust(client, product, -8).status_code, range(2)))
-    assert statuses == [201,409]
-    assert client.get(f'/api/products/{product["id"]}').json()["stock_quantity"] == 4
+    assert statuses == [201, 409]
+    assert client.get(f"/api/products/{product['id']}").json()["stock_quantity"] == 4
+
+
+def test_seed_is_explicit_and_idempotent(client, engine, monkeypatch):
+    from sqlalchemy.orm import sessionmaker
+
+    from app import seed
+
+    monkeypatch.setattr(seed, "SessionLocal", sessionmaker(engine, expire_on_commit=False))
+    assert seed.seed() == 8
+    assert seed.seed() == 0
+    assert len(client.get("/api/products").json()) == 8
+    assert len(client.get("/api/inventory/movements").json()) == 7

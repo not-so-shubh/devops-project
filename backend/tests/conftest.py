@@ -33,6 +33,7 @@ def client(engine):
     def override_db():
         with Session(engine, expire_on_commit=False) as db:
             yield db
+
     app.dependency_overrides[get_db] = override_db
     with TestClient(app, raise_server_exceptions=False) as test_client:
         yield test_client
@@ -41,8 +42,15 @@ def client(engine):
 
 @pytest.fixture()
 def payload():
-    return {"sku": "TEST-001", "name": "Desk lamp", "category": "Workspace", "selling_price": "150.25",
-            "stock_quantity": 12, "reorder_threshold": 5, "description": "Warm task lighting"}
+    return {
+        "sku": "TEST-001",
+        "name": "Desk lamp",
+        "category": "Workspace",
+        "selling_price": "150.25",
+        "stock_quantity": 12,
+        "reorder_threshold": 5,
+        "description": "Warm task lighting",
+    }
 
 
 @pytest.fixture()

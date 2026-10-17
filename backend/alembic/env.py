@@ -1,10 +1,10 @@
 import os
 
-from alembic import context
 from sqlalchemy import engine_from_config, pool
 
-from app.db import Base
+from alembic import context
 from app import models  # noqa: F401
+from app.db import Base
 
 config = context.config
 url = config.get_main_option("sqlalchemy.url") or os.environ["DATABASE_URL"]
@@ -16,7 +16,9 @@ if context.is_offline_mode():
     with context.begin_transaction():
         context.run_migrations()
 else:
-    engine = engine_from_config({"sqlalchemy.url": url}, prefix="sqlalchemy.", poolclass=pool.NullPool)
+    engine = engine_from_config(
+        {"sqlalchemy.url": url}, prefix="sqlalchemy.", poolclass=pool.NullPool
+    )
     with engine.connect() as connection:
         context.configure(connection=connection, target_metadata=target_metadata, compare_type=True)
         with context.begin_transaction():

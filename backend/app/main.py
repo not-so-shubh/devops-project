@@ -12,7 +12,9 @@ from .db import get_db
 from .models import Product, StockMovement
 from .schemas import MovementOut, ProductCreate, ProductDetails, ProductOut
 
-app = FastAPI(title="StockPilot API", version="1.0.0", description="Inventory operations and stock ledger")
+app = FastAPI(
+    title="StockPilot API", version="1.0.0", description="Inventory operations and stock ledger"
+)
 DB = Annotated[Session, Depends(get_db)]
 REQUESTS = Counter("stockpilot_http_requests_total", "HTTP requests", ["method", "route", "status"])
 LATENCY = Histogram("stockpilot_http_request_duration_seconds", "HTTP latency", ["method", "route"])
@@ -92,12 +94,18 @@ def list_products(
     if category:
         query = query.where(Product.category == category)
     if status == "low":
-        query = query.where(Product.stock_quantity <= Product.reorder_threshold, Product.stock_quantity > 0)
+        query = query.where(
+            Product.stock_quantity <= Product.reorder_threshold, Product.stock_quantity > 0
+        )
     elif status == "out":
         query = query.where(Product.stock_quantity == 0)
     elif status == "healthy":
         query = query.where(Product.stock_quantity > Product.reorder_threshold)
-    return list(db.scalars(query.order_by(Product.created_at.desc(), Product.id.desc()).offset(offset).limit(limit)))
+    return list(
+        db.scalars(
+            query.order_by(Product.created_at.desc(), Product.id.desc()).offset(offset).limit(limit)
+        )
+    )
 
 
 @app.get("/api/products/{product_id}", response_model=ProductOut)
@@ -115,11 +123,16 @@ def create_product(payload: ProductCreate, db: DB):
         db.rollback()
         raise HTTPException(409, "SKU already exists") from None
     if product.stock_quantity:
-        db.add(StockMovement(
-            product_id=product.id, product_name=product.name, sku=product.sku,
-            quantity_change=product.stock_quantity, quantity_after=product.stock_quantity,
-            reason="Opening balance",
-        ))
+        db.add(
+            StockMovement(
+                product_id=product.id,
+                product_name=product.name,
+                sku=product.sku,
+                quantity_change=product.stock_quantity,
+                quantity_after=product.stock_quantity,
+                reason="Opening balance",
+            )
+        )
     commit(db)
     return product
 
@@ -141,7 +154,9 @@ def delete_product(product_id: int, db: DB):
 
 
 from datetime import datetime, timedelta, timezone  # noqa: E402
+
 from sqlalchemy import update  # noqa: E402
+
 from .schemas import Adjustment  # noqa: E402
 
 
@@ -160,8 +175,11 @@ def adjust_stock(payload: Adjustment, db: DB):
         product_or_404(db, payload.product_id)
         raise HTTPException(409, "Insufficient stock or maximum inventory exceeded")
     movement = StockMovement(
-        product_id=product.id, product_name=product.name, sku=product.sku,
-        quantity_change=payload.quantity_change, quantity_after=product.stock_quantity,
+        product_id=product.id,
+        product_name=product.name,
+        sku=product.sku,
+        quantity_change=payload.quantity_change,
+        quantity_after=product.stock_quantity,
         reason=payload.reason,
     )
     db.add(movement)
@@ -179,32 +197,53 @@ def movements(
     query = select(StockMovement)
     if product_id is not None:
         query = query.where(StockMovement.product_id == product_id)
-    return list(db.scalars(query.order_by(StockMovement.created_at.desc(), StockMovement.id.desc()).offset(offset).limit(limit)))
+    return list(
+        db.scalars(
+            query.order_by(StockMovement.created_at.desc(), StockMovement.id.desc())
+            .offset(offset)
+            .limit(limit)
+        )
+    )
 
 
 @app.get("/api/inventory/stats")
 def inventory_stats(db: DB):
-    total, units, value = db.execute(select(
-        func.count(Product.id), func.coalesce(func.sum(Product.stock_quantity), 0),
-        func.coalesce(func.sum(Product.stock_quantity * Product.selling_price), 0),
-    )).one()
-    low = db.scalar(select(func.count(Product.id)).where(Product.stock_quantity <= Product.reorder_threshold))
+    total, units, value = db.execute(
+        select(
+            func.count(Product.id),
+            func.coalesce(func.sum(Product.stock_quantity), 0),
+            func.coalesce(func.sum(Product.stock_quantity * Product.selling_price), 0),
+        )
+    ).one()
+    low = db.scalar(
+        select(func.count(Product.id)).where(Product.stock_quantity <= Product.reorder_threshold)
+    )
     out = db.scalar(select(func.count(Product.id)).where(Product.stock_quantity == 0))
-    categories = db.execute(select(
-        Product.category, func.sum(Product.stock_quantity),
-    ).group_by(Product.category).order_by(func.sum(Product.stock_quantity).desc())).all()
+    categories = db.execute(
+        select(
+            Product.category,
+            func.sum(Product.stock_quantity),
+        )
+        .group_by(Product.category)
+        .order_by(func.sum(Product.stock_quantity).desc())
+    ).all()
     today = datetime.now(timezone.utc).date()
     start = datetime.combine(today - timedelta(days=6), datetime.min.time(), tzinfo=timezone.utc)
     recent = db.scalars(select(StockMovement).where(StockMovement.created_at >= start)).all()
-    trend = {str(today - timedelta(days=n)): {"inbound": 0, "outbound": 0} for n in range(6, -1, -1)}
+    trend = {
+        str(today - timedelta(days=n)): {"inbound": 0, "outbound": 0} for n in range(6, -1, -1)
+    }
     for movement in recent:
         key = str(movement.created_at.date())
         if key in trend:
             side = "inbound" if movement.quantity_change > 0 else "outbound"
             trend[key][side] += abs(movement.quantity_change)
     return {
-        "total_products": total, "total_units": units, "inventory_value": str(value),
-        "low_stock_count": low, "out_of_stock_count": out,
+        "total_products": total,
+        "total_units": units,
+        "inventory_value": str(value),
+        "low_stock_count": low,
+        "out_of_stock_count": out,
         "inbound_units": sum(d["inbound"] for d in trend.values()),
         "outbound_units": sum(d["outbound"] for d in trend.values()),
         "movement_trend": [{"date": date, **counts} for date, counts in trend.items()],

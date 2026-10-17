@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
@@ -29,6 +29,15 @@ class ProductOut(ProductCreate):
     created_at: datetime
     updated_at: datetime
 
+    @field_validator("created_at", "updated_at")
+    @classmethod
+    def ensure_utc(cls, value):
+        return (
+            value.replace(tzinfo=timezone.utc)
+            if value.tzinfo is None
+            else value.astimezone(timezone.utc)
+        )
+
 
 class Adjustment(BaseModel):
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
@@ -54,3 +63,12 @@ class MovementOut(BaseModel):
     quantity_after: int
     reason: str
     created_at: datetime
+
+    @field_validator("created_at")
+    @classmethod
+    def ensure_utc(cls, value):
+        return (
+            value.replace(tzinfo=timezone.utc)
+            if value.tzinfo is None
+            else value.astimezone(timezone.utc)
+        )

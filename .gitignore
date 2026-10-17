@@ -31,3 +31,8 @@ kubeconfig*
 .vscode/
 *.log
 !docs/evidence/*.log
+
+pytest-of-root/
+pip-metadata-*/
+pip-unpack-*/
+.tools/

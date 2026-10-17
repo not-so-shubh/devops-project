@@ -1,6 +1,7 @@
-from alembic import command
 from alembic.config import Config
 from sqlalchemy import create_engine, inspect
+
+from alembic import command
 
 
 def test_migration_round_trip_and_metadata(tmp_path):
