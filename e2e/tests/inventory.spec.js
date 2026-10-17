@@ -16,11 +16,20 @@ test("live inventory CRUD, atomic stock adjustment and retained ledger", async (
   page,
 }, testInfo) => {
   const sku = `E2E-${Date.now()}`;
+  page.on("console", message => { if(message.type()==="error") console.log("Browser error:",message.text()); });
   await page.goto("/");
   await expect(page.getByText("Connected to database")).toBeAttached();
   await expect(
     page.getByRole("heading", { name: "Inventory overview" }),
   ).toBeVisible();
+  console.log("Initial viewport", await page.evaluate(() => ({
+    client:document.documentElement.clientWidth, inner:window.innerWidth,
+    scroll:document.documentElement.scrollWidth,
+    overflow:[...document.querySelectorAll("body *")].map(el=>{
+      const r=el.getBoundingClientRect();
+      return {tag:el.tagName,css:typeof el.className==="string"?el.className:"svg",x:r.x,right:r.right,width:r.width};
+    }).filter(r=>r.right>document.documentElement.clientWidth+1).slice(0,15)
+  })));
   await page.screenshot({
     path: `../docs/evidence/frontend-${testInfo.project.name}.png`,
     fullPage: testInfo.project.name !== "mobile",
