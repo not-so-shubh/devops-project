@@ -23,6 +23,7 @@ EVIDENCE_FILES = {
     "compose-ci.log",
     "prometheus-targets.png",
     "grafana-dashboard.png",
+    "grafana-errors-ci.log",
     "ghcr-frontend.json",
     "pytest-postgres.txt",
     "hpa-metrics-ci.txt",
