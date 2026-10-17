@@ -93,7 +93,8 @@ try:
     observations.append(
         {"issue": "bad image tag", "root_cause": "nonexistent image tag", "observed_reason": reason}
     )
-    image = f"ghcr.io/not-so-shubh/stockpilot-backend:{os.environ['GITHUB_SHA']}"
+    sha = os.environ.get("SOURCE_SHA") or os.environ["GITHUB_SHA"]
+    image = f"ghcr.io/not-so-shubh/stockpilot-backend:{sha}"
     kubectl("set", "image", "deployment/stockpilot-lab-bad-image", f"lab={image}")
     kubectl("rollout", "status", "deployment/stockpilot-lab-bad-image", "--timeout=120s")
     response = kubectl(

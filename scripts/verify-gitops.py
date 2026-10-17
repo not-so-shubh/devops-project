@@ -5,11 +5,11 @@ import os
 import subprocess
 from pathlib import Path
 
-sha = os.environ["GITHUB_SHA"]
-# Pull-request merge commits do not belong to main. Fetch the exact Actions
-# ref (including refs/pull/<number>/merge) and prove its resolved SHA below.
-# https://fluxcd.io/flux/components/source/gitrepositories/#name-example
-source_ref = os.environ.get("GITHUB_REF", "refs/heads/main")
+sha = os.environ.get("SOURCE_SHA") or os.environ["GITHUB_SHA"]
+# Use a commit reachable from a real source branch. All PR jobs check out and
+# tag this same head SHA; main pushes use the actual main commit.
+source_branch = os.environ.get("SOURCE_BRANCH", "main")
+source_repository = os.environ.get("SOURCE_REPOSITORY", "not-so-shubh/devops-project")
 objects = [
     {
         "apiVersion": "source.toolkit.fluxcd.io/v1",
@@ -17,8 +17,8 @@ objects = [
         "metadata": {"name": "stockpilot", "namespace": "flux-system"},
         "spec": {
             "interval": "1m",
-            "url": "https://github.com/not-so-shubh/devops-project",
-            "ref": {"name": source_ref},
+            "url": f"https://github.com/{source_repository}",
+            "ref": {"branch": source_branch, "commit": sha},
         },
     },
     {
@@ -76,7 +76,23 @@ for command in [
         "--timeout=180s",
     ],
 ]:
-    subprocess.run(command, check=True)
+    try:
+        subprocess.run(command, check=True)
+    except subprocess.CalledProcessError:
+        # Preserve the actual source/reconciliation cause before CI deletes kind.
+        with Path("docs/evidence/gitops-diagnostics-ci.txt").open("w") as stream:
+            for namespace, resource in [
+                ("flux-system", "gitrepository/stockpilot"),
+                ("flux-system", "kustomization/stockpilot-ci"),
+                ("stockpilot", "helmrelease/stockpilot"),
+            ]:
+                subprocess.run(
+                    ["kubectl", "describe", "-n", namespace, resource],
+                    stdout=stream,
+                    stderr=subprocess.STDOUT,
+                    check=False,
+                )
+        raise
 environment = subprocess.check_output(
     [
         "kubectl",
@@ -106,7 +122,8 @@ assert sha in revision
 assert release["spec"]["values"]["backend"]["tag"] == sha
 proof = {
     "source_sha": sha,
-    "source_ref": source_ref,
+    "source_branch": source_branch,
+    "source_repository": source_repository,
     "fetched_revision": revision,
     "deployment_environment": environment,
     "release_conditions": release["status"]["conditions"],

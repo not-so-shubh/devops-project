@@ -9,6 +9,7 @@ EVIDENCE_FILES = {
     "compose-ci.txt",
     "kubernetes-ci.txt",
     "gitops-ci.json",
+    "gitops-diagnostics-ci.txt",
     "migration-ci.log",
     "persistence-ci.txt",
     "prometheus-query.json",
