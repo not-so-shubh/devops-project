@@ -253,7 +253,19 @@ jobs:
           kubectl exec -n stockpilot deployment/stockpilot-backend -- python -m app.seed
           kubectl get pods,svc,ingress,hpa -n stockpilot | tee docs/evidence/kubernetes-ci.txt
           helm list -n stockpilot | tee docs/evidence/helm-release-ci.txt
+          kubectl wait --for=condition=Available apiservice/v1beta1.metrics.k8s.io --timeout=120s
+          for attempt in $(seq 1 20); do
+            if kubectl top pods -n stockpilot > /tmp/pod-metrics.txt; then break; fi
+            sleep 3
+          done
           kubectl top pods -n stockpilot | tee docs/evidence/hpa-metrics-ci.txt
+          for attempt in $(seq 1 20); do
+            active=$(kubectl get hpa stockpilot-backend -n stockpilot -o jsonpath='{.status.conditions[?(@.type=="ScalingActive")].status}')
+            if test "$active" = True; then break; fi
+            sleep 3
+          done
+          test "$(kubectl get hpa stockpilot-backend -n stockpilot -o jsonpath='{.status.conditions[?(@.type=="ScalingActive")].status}')" = True
+          kubectl get hpa -n stockpilot | tee -a docs/evidence/hpa-metrics-ci.txt
           kubectl port-forward -n ingress-system svc/traefik 3000:80 >/tmp/ingress.log 2>&1 &
           kubectl port-forward -n monitoring svc/monitoring-kube-prometheus-prometheus 9090:9090 >/tmp/prometheus.log 2>&1 &
           kubectl port-forward -n monitoring svc/monitoring-grafana 3001:80 >/tmp/grafana.log 2>&1 &
