@@ -1,0 +1,7 @@
+NAME                                   CPU(cores)   MEMORY(bytes)   
+stockpilot-backend-77bb679b97-5ncn7    153m         61Mi            
+stockpilot-frontend-6b94546ff4-98r2r   1m           4Mi             
+stockpilot-frontend-6b94546ff4-9kfvf   5m           4Mi             
+stockpilot-postgres-0                  97m          28Mi            
+NAME                 REFERENCE                       TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+stockpilot-backend   Deployment/stockpilot-backend   cpu: 27%/65%   2         6         2          63s
