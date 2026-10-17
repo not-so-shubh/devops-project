@@ -3,7 +3,7 @@ defaultRules:
   create: false
 alertmanager:
   enabled: false
-prometheus-node-exporter:
+nodeExporter:
   enabled: false
 kubeStateMetrics:
   enabled: false
@@ -16,9 +16,12 @@ grafana:
   service:
     type: ClusterIP
   resources:
-    requests: {cpu: 50m, memory: 128Mi}
-    limits: {cpu: 500m, memory: 256Mi}
+    requests: {cpu: 100m, memory: 256Mi}
+    limits: {cpu: 1000m, memory: 768Mi}
   sidecar:
+    resources:
+      requests: {cpu: 10m, memory: 32Mi}
+      limits: {cpu: 100m, memory: 128Mi}
     dashboards:
       enabled: true
       label: grafana_dashboard
@@ -26,6 +29,8 @@ grafana:
     datasources:
       uid: prometheus
       defaultDatasourceEnabled: true
+      alertmanager:
+        enabled: false
   grafana.ini:
     users:
       allow_sign_up: false
