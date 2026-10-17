@@ -1841,3 +1841,10 @@ textarea {
 .dialog .modal-content { max-height: none; overflow: visible; }
 .dialog form { display: flow-root; }
 .dialog .modal-actions { position: static; background: white; }
+
+/* Keep the mobile visual viewport stable; wide tables scroll inside their panel. */
+html, body, #root, .app-shell { width: 100%; min-width: 0; overflow-x: clip; }
+@media (max-width: 760px) {
+  .sidebar { visibility: hidden; pointer-events: none; }
+  .sidebar.mobile-open { visibility: visible; pointer-events: auto; }
+}

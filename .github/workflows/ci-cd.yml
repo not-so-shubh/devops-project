@@ -138,6 +138,7 @@ jobs:
             docs/evidence/compose-smoke.txt
             docs/evidence/metrics.txt
             docs/evidence/frontend-*.png
+            docs/evidence/create-dialog-*.png
             e2e/playwright-report/
             e2e/test-results/
           retention-days: 30
@@ -293,6 +294,7 @@ jobs:
           path: |
             docs/evidence/*-ci*
             docs/evidence/frontend-*.png
+            docs/evidence/create-dialog-*.png
             docs/evidence/prometheus-*.json
             docs/evidence/grafana-*.png
             docs/evidence/prometheus-*.png

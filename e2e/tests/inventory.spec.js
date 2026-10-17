@@ -23,7 +23,7 @@ test("live inventory CRUD, atomic stock adjustment and retained ledger", async (
   ).toBeVisible();
   await page.screenshot({
     path: `../docs/evidence/frontend-${testInfo.project.name}.png`,
-    fullPage: true,
+    fullPage: testInfo.project.name !== "mobile",
   });
   await page
     .getByRole("button", { name: "Add product", exact: true })
@@ -37,6 +37,10 @@ test("live inventory CRUD, atomic stock adjustment and retained ledger", async (
   await modal.getByLabel("Opening stock").fill("6");
   await modal.getByLabel("Reorder threshold").fill("3");
   await page.screenshot({path:`../docs/evidence/create-dialog-${testInfo.project.name}.png`,fullPage:false});
+  console.log("Layout verification", await page.evaluate(() => ({
+    client:document.documentElement.clientWidth, viewport:window.innerWidth,
+    visual:window.visualViewport.width, scroll:document.documentElement.scrollWidth
+  })));
   await modal.getByRole("button", { name: "Add product", exact: true }).click();
   await expect(modal).not.toBeVisible();
   await page.getByLabel("Search inventory").fill(sku);
@@ -124,7 +128,7 @@ test("filters, export, guide and responsive navigation work", async ({
   }
   expect(
     await page.evaluate(
-      () => document.documentElement.scrollWidth <= window.innerWidth,
+      () => document.documentElement.scrollWidth <= document.documentElement.clientWidth,
     ),
   ).toBe(true);
 });
