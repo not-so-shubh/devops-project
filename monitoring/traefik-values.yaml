@@ -1,7 +1,8 @@
 # EKS uses the legacy AWS cloud service controller for a demo LoadBalancer.
 # A production AWS Load Balancer Controller/NLB installation can replace this.
 service:
-  type: LoadBalancer
+  spec:
+    type: LoadBalancer
 providers:
   kubernetesIngress:
     enabled: true

@@ -20,7 +20,7 @@ helm repo add traefik https://traefik.github.io/charts
 helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
-helm upgrade --install traefik traefik/traefik --version 42.0.0 -n ingress-system --create-namespace -f monitoring/traefik-values.yaml --set service.type=ClusterIP --wait --timeout 5m
+helm upgrade --install traefik traefik/traefik --version 42.0.0 -n ingress-system --create-namespace -f monitoring/traefik-values.yaml --set service.spec.type=ClusterIP --wait --timeout 5m
 helm upgrade --install metrics-server metrics-server/metrics-server --version 3.14.0 -n kube-system -f monitoring/metrics-server-kind.yaml --wait --timeout 5m
 kubectl create configmap stockpilot-dashboard -n monitoring --from-file=stockpilot-dashboard.json=monitoring/stockpilot-dashboard.json --dry-run=client -o yaml | kubectl apply -f -
 kubectl label configmap stockpilot-dashboard -n monitoring grafana_dashboard=1 --overwrite

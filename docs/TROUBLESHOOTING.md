@@ -46,3 +46,7 @@ kubectl delete -f troubleshooting/broken-service.yaml
 Optional image lab: apply `troubleshooting/broken-image.yaml`, inspect `kubectl describe pod` and events for the invalid tag, explain the pull failure, then `kubectl delete -f troubleshooting/broken-image.yaml`. Never break the live production Service or delete its database just to demonstrate diagnosis.
 
 The disposable Kubernetes CI job runs `scripts/troubleshooting-lab.py`: it asserts the empty selector, repairs and checks endpoint addresses, observes an image-pull error, repairs the image to the scanned SHA, checks application health, and removes both isolated resources. Actual observations are captured in `docs/evidence/troubleshooting-ci.json` only after success.
+
+## Actual controller integration defect and resolution
+
+Run 39000262612 created a healthy kind cluster and a Running/Ready Traefik Pod, yet Helm timed out. Inspection of the pinned Traefik 42.0.0 chart showed the Service type moved to `service.spec.type`; the old `service.type=ClusterIP` override was ignored. Helm consequently waited for a LoadBalancer address that kind cannot provision. The fix uses `service.spec.type=ClusterIP` only in kind and `service.spec.type=LoadBalancer` in the EKS values. The controller is still health-checked; no timeout or readiness gate is bypassed. A rendered chart check now asserts the actual Service type before runtime installation.
