@@ -1,0 +1,183 @@
+backend-1   | INFO:     Started server process [1]
+backend-1   | INFO:     Waiting for application startup.
+backend-1   | INFO:     Application startup complete.
+backend-1   | INFO:     Uvicorn running on http://<REDACTED_CLUSTER_IP>:8000 (Press CTRL+C to quit)
+backend-1   | INFO:     127.0.0.1:45644 - "GET /ready HTTP/1.1" 200 OK
+postgres-1  | The files belonging to this database system will be owned by user "postgres".
+postgres-1  | This user must also own the server process.
+postgres-1  | 
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:50820 - "POST /api/products HTTP/1.1" 201 Created
+postgres-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres-1  | The default database encoding has accordingly been set to "UTF8".
+postgres-1  | The default text search configuration will be set to "english".
+postgres-1  | 
+postgres-1  | Data page checksums are disabled.
+postgres-1  | 
+postgres-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres-1  | creating subdirectories ... ok
+postgres-1  | selecting dynamic shared memory implementation ... posix
+postgres-1  | selecting default "max_connections" ... 100
+postgres-1  | selecting default "shared_buffers" ... 128MB
+postgres-1  | selecting default time zone ... UTC
+postgres-1  | creating configuration files ... ok
+postgres-1  | running bootstrap script ... ok
+postgres-1  | sh: locale: not found
+postgres-1  | 2026-10-17 03:41:06.649 UTC [36] WARNING:  no usable system locales were found
+postgres-1  | performing post-bootstrap initialization ... ok
+postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | syncing data to disk ... ok
+postgres-1  | 
+postgres-1  | 
+postgres-1  | Success. You can now start the database server using:
+postgres-1  | 
+postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres-1  | 
+postgres-1  | waiting for server to start....2026-10-17 03:41:07.312 UTC [42] LOG:  starting PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-10-17 03:41:07.313 UTC [42] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-10-17 03:41:07.315 UTC [45] LOG:  database system was shut down at 2026-10-17 03:41:06 UTC
+postgres-1  | 2026-10-17 03:41:07.318 UTC [42] LOG:  database system is ready to accept connections
+postgres-1  |  done
+postgres-1  | server started
+postgres-1  | CREATE DATABASE
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:50828 - "POST /api/inventory/adjustments HTTP/1.1" 201 Created
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:50838 - "GET /api/products/9 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:50854 - "GET /api/inventory/stats HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:50858 - "DELETE /api/products/9 HTTP/1.1" 204 No Content
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:44598 - "GET /metrics HTTP/1.1" 200 OK
+backend-1   | INFO:     127.0.0.1:58510 - "GET /ready HTTP/1.1" 200 OK
+backend-1   | INFO:     127.0.0.1:45418 - "GET /ready HTTP/1.1" 200 OK
+backend-1   | INFO:     127.0.0.1:34338 - "GET /ready HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39644 - "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39660 - "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39658 - "GET /api/inventory/stats HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39662 - "POST /api/products HTTP/1.1" 201 Created
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39674 - "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39684 - "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39682 - "GET /api/inventory/stats HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39690 - "PUT /api/products/10 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39722 - "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39692 - "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39708 - "GET /api/inventory/stats HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39730 - "POST /api/inventory/adjustments HTTP/1.1" 409 Conflict
+postgres-1  | 
+frontend-1  | 2026/10/17 03:41:18 [notice] 1#1: using the "epoll" event method
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39742 - "POST /api/inventory/adjustments HTTP/1.1" 201 Created
+postgres-1  | 
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39756 - "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 OK
+postgres-1  | waiting for server to shut down....2026-10-17 03:41:07.463 UTC [42] LOG:  received fast shutdown request
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39778 - "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 OK
+postgres-1  | 2026-10-17 03:41:07.464 UTC [42] LOG:  aborting any active transactions
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39764 - "GET /api/inventory/stats HTTP/1.1" 200 OK
+postgres-1  | 2026-10-17 03:41:07.466 UTC [42] LOG:  background worker "logical replication launcher" (PID 48) exited with exit code 1
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39782 - "DELETE /api/products/10 HTTP/1.1" 204 No Content
+postgres-1  | 2026-10-17 03:41:07.468 UTC [43] LOG:  shutting down
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39794 - "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 OK
+postgres-1  | 2026-10-17 03:41:07.468 UTC [43] LOG:  checkpoint starting: shutdown immediate
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39808 - "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 OK
+postgres-1  | 2026-10-17 03:41:07.528 UTC [43] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.053 s, sync=0.006 s, total=0.060 s; sync files=301, longest=0.005 s, average=0.001 s; distance=4266 kB, estimate=4266 kB; lsn=0/191E820, redo lsn=0/191E820
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39804 - "GET /api/inventory/stats HTTP/1.1" 200 OK
+postgres-1  | 2026-10-17 03:41:07.533 UTC [42] LOG:  database system is shut down
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39814 - "GET /api/inventory/movements HTTP/1.1" 200 OK
+postgres-1  |  done
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39842 - "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 OK
+postgres-1  | server stopped
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39830 - "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 OK
+postgres-1  | 
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:39834 - "GET /api/inventory/stats HTTP/1.1" 200 OK
+postgres-1  | PostgreSQL init process complete; ready for start up.
+frontend-1  | 2026/10/17 03:41:18 [notice] 1#1: nginx/1.30.6
+frontend-1  | 2026/10/17 03:41:18 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0) 
+frontend-1  | 2026/10/17 03:41:18 [notice] 1#1: OS: Linux 6.17.0-1022-azure
+frontend-1  | 2026/10/17 03:41:18 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 65536:65536
+frontend-1  | 2026/10/17 03:41:18 [notice] 1#1: start worker processes
+frontend-1  | 2026/10/17 03:41:18 [notice] 1#1: start worker process 7
+frontend-1  | 2026/10/17 03:41:18 [notice] 1#1: start worker process 8
+frontend-1  | 2026/10/17 03:41:18 [notice] 1#1: start worker process 9
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:55180 - "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 OK
+frontend-1  | 2026/10/17 03:41:18 [notice] 1#1: start worker process 10
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:25 +0000] "POST /api/products HTTP/1.1" 201 256 "-" "Python-urllib/3.12" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:25 +0000] "POST /api/inventory/adjustments HTTP/1.1" 201 195 "-" "Python-urllib/3.12" "-"
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:55208 - "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 OK
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:25 +0000] "GET /api/products/9 HTTP/1.1" 200 256 "-" "Python-urllib/3.12" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:25 +0000] "GET /api/inventory/stats HTTP/1.1" 200 681 "-" "Python-urllib/3.12" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:25 +0000] "DELETE /api/products/9 HTTP/1.1" 204 0 "-" "Python-urllib/3.12" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:49 +0000] "GET / HTTP/1.1" 200 812 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:49 +0000] "GET /assets/index-DBmaUFcq.js HTTP/1.1" 200 257076 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:49 +0000] "GET /assets/index-VwMxwYjz.css HTTP/1.1" 200 24698 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:49 +0000] "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 2310 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:49 +0000] "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 1691 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:49 +0000] "GET /api/inventory/stats HTTP/1.1" 200 647 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:55196 - "GET /api/inventory/stats HTTP/1.1" 200 OK
+postgres-1  | 
+backend-1   | INFO:     127.0.0.1:59740 - "GET /ready HTTP/1.1" 200 OK
+backend-1   | INFO:     127.0.0.1:49014 - "GET /ready HTTP/1.1" 200 OK
+backend-1   | INFO:     127.0.0.1:48344 - "GET /ready HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:33704 - "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:33726 - "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:33714 - "GET /api/inventory/stats HTTP/1.1" 200 OK
+backend-1   | INFO:     127.0.0.1:32800 - "GET /ready HTTP/1.1" 200 OK
+backend-1   | INFO:     127.0.0.1:41950 - "GET /ready HTTP/1.1" 200 OK
+backend-1   | INFO:     127.0.0.1:42716 - "GET /ready HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:58968 - "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:58992 - "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:58980 - "GET /api/inventory/stats HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:59008 - "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:59026 - "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 OK
+backend-1   | INFO:     <REDACTED_CLUSTER_IP>:59022 - "GET /api/inventory/stats HTTP/1.1" 200 OK
+postgres-1  | 2026-10-17 03:41:07.582 UTC [1] LOG:  starting PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-10-17 03:41:07.582 UTC [1] LOG:  listening on IPv4 address "<REDACTED_CLUSTER_IP>", port 5432
+postgres-1  | 2026-10-17 03:41:07.582 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-10-17 03:41:07.583 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-10-17 03:41:07.585 UTC [58] LOG:  database system was shut down at 2026-10-17 03:41:07 UTC
+postgres-1  | 2026-10-17 03:41:07.590 UTC [1] LOG:  database system is ready to accept connections
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "POST /api/products HTTP/1.1" 201 259 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 2570 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 1891 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "GET /api/inventory/stats HTTP/1.1" 200 679 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "PUT /api/products/10 HTTP/1.1" 200 267 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 1891 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 2578 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "GET /api/inventory/stats HTTP/1.1" 200 679 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "POST /api/inventory/adjustments HTTP/1.1" 409 61 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "POST /api/inventory/adjustments HTTP/1.1" 201 218 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 2578 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 2110 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:50 +0000] "GET /api/inventory/stats HTTP/1.1" 200 679 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:51 +0000] "DELETE /api/products/10 HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:51 +0000] "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 2310 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:51 +0000] "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 2114 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:51 +0000] "GET /api/inventory/stats HTTP/1.1" 200 647 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:51 +0000] "GET /api/inventory/movements HTTP/1.1" 200 2114 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:51 +0000] "GET / HTTP/1.1" 200 812 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:51 +0000] "GET /assets/index-DBmaUFcq.js HTTP/1.1" 200 257076 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:51 +0000] "GET /assets/index-VwMxwYjz.css HTTP/1.1" 200 24698 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:51 +0000] "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 2114 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:51 +0000] "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 2310 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:51 +0000] "GET /api/inventory/stats HTTP/1.1" 200 647 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:52 +0000] "GET / HTTP/1.1" 200 812 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:52 +0000] "GET /assets/index-DBmaUFcq.js HTTP/1.1" 200 257076 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:52 +0000] "GET /assets/index-VwMxwYjz.css HTTP/1.1" 200 24698 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:52 +0000] "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 2310 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:52 +0000] "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 2114 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:41:52 +0000] "GET /api/inventory/stats HTTP/1.1" 200 647 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:23 +0000] "GET / HTTP/1.1" 200 812 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:23 +0000] "GET /assets/index-DBmaUFcq.js HTTP/1.1" 200 257076 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:23 +0000] "GET /assets/index-VwMxwYjz.css HTTP/1.1" 200 24698 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:23 +0000] "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 2310 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:23 +0000] "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 2114 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:23 +0000] "GET /api/inventory/stats HTTP/1.1" 200 647 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:54 +0000] "GET / HTTP/1.1" 200 812 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:54 +0000] "GET /assets/index-DBmaUFcq.js HTTP/1.1" 200 257076 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:54 +0000] "GET /assets/index-VwMxwYjz.css HTTP/1.1" 200 24698 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:54 +0000] "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 2310 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:54 +0000] "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 2114 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:54 +0000] "GET /api/inventory/stats HTTP/1.1" 200 647 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:56 +0000] "GET / HTTP/1.1" 200 812 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:56 +0000] "GET /assets/index-DBmaUFcq.js HTTP/1.1" 200 257076 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:56 +0000] "GET /assets/index-VwMxwYjz.css HTTP/1.1" 200 24698 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:56 +0000] "GET /api/products?limit=500&offset=0 HTTP/1.1" 200 2310 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:56 +0000] "GET /api/inventory/movements?limit=50 HTTP/1.1" 200 2114 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"
+frontend-1  | <REDACTED_CLUSTER_IP> - - [17/Oct/2026:03:42:56 +0000] "GET /api/inventory/stats HTTP/1.1" 200 647 "http://localhost:3000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1" "-"

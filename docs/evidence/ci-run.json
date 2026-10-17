@@ -1,0 +1,41 @@
+{
+  "source_sha": "8426d60259d17af55d28c52600a112bd8dd43045",
+  "run_id": "38999630374",
+  "run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/38999630374",
+  "files": [
+    "compose-ci.log",
+    "compose-ci.txt",
+    "compose-smoke.txt",
+    "create-dialog-desktop.png",
+    "create-dialog-mobile.png",
+    "frontend-desktop.png",
+    "frontend-mobile.png",
+    "metrics.txt",
+    "pytest-postgres.txt",
+    "terraform-ci-mock-test.txt",
+    "terraform-ci-validate.txt"
+  ],
+  "scope": "Actual CI evidence; consult job results for success/failure. AWS apply/destroy not performed.",
+  "job_results": {
+    "quality": {
+      "result": "success",
+      "outputs": {}
+    },
+    "infrastructure": {
+      "result": "success",
+      "outputs": {}
+    },
+    "compose": {
+      "result": "failure",
+      "outputs": {}
+    },
+    "publish": {
+      "result": "skipped",
+      "outputs": {}
+    },
+    "kubernetes": {
+      "result": "skipped",
+      "outputs": {}
+    }
+  }
+}
