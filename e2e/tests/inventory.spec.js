@@ -36,6 +36,7 @@ test("live inventory CRUD, atomic stock adjustment and retained ledger", async (
   await modal.getByLabel("Selling price").fill("125.50");
   await modal.getByLabel("Opening stock").fill("6");
   await modal.getByLabel("Reorder threshold").fill("3");
+  await page.screenshot({path:`../docs/evidence/create-dialog-${testInfo.project.name}.png`,fullPage:false});
   await modal.getByRole("button", { name: "Add product", exact: true }).click();
   await expect(modal).not.toBeVisible();
   await page.getByLabel("Search inventory").fill(sku);

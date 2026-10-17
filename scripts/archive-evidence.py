@@ -16,6 +16,8 @@ names = set(
         "metrics.txt",
         "frontend-desktop.png",
         "frontend-mobile.png",
+        "create-dialog-desktop.png",
+        "create-dialog-mobile.png",
         "kubernetes-ci.txt",
         "helm-release-ci.txt",
         "hpa-metrics-ci.txt",
@@ -48,7 +50,8 @@ metadata = {
     "run_id": os.environ["GITHUB_RUN_ID"],
     "run_url": f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}",
     "files": sorted(set(written)),
-    "scope": "Real disposable CI PostgreSQL/Compose/kind evidence; AWS apply/destroy not performed.",
+    "scope": "Actual CI evidence; consult job results for success/failure. AWS apply/destroy not performed.",
+    "job_results": json.loads(os.environ.get("VERIFICATION_RESULTS", "{}")),
 }
 (destination / "ci-run.json").write_text(json.dumps(metadata, indent=2) + "\n")
 print(
