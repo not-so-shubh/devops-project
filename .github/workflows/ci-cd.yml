@@ -306,6 +306,7 @@ jobs:
           kubectl label configmap stockpilot-dashboard -n monitoring grafana_dashboard=1 --overwrite
           helm upgrade --install monitoring prometheus-community/kube-prometheus-stack --version 92.10.1 -n monitoring --create-namespace -f monitoring/prometheus-values.yaml --wait --timeout 8m
       - name: Deploy Helm release and verify workload network and HPA
+        id: runtime
         run: |
           helm upgrade --install stockpilot helm/stockpilot -n stockpilot -f helm/stockpilot/values-prod.yaml --set backend.tag=${{ github.sha }} --set frontend.tag=${{ github.sha }} --set ingress.host=localhost --set postgres.storageClass=standard --wait --wait-for-jobs --timeout 6m
           kubectl rollout status deployment/stockpilot-backend -n stockpilot --timeout=180s
@@ -343,8 +344,10 @@ jobs:
           npm test
           node ../scripts/capture-monitoring.mjs
       - name: Diagnose repair and verify two isolated troubleshooting defects
+        if: ${{ !cancelled() && steps.runtime.outcome == 'success' }}
         run: python scripts/troubleshooting-lab.py
       - name: Verify pull-based GitOps reconciliation on the disposable cluster
+        if: ${{ !cancelled() && steps.runtime.outcome == 'success' }}
         run: |
           curl -fsSLo /tmp/flux.tar.gz https://github.com/fluxcd/flux2/releases/download/v2.9.6/flux_2.9.6_linux_amd64.tar.gz
           echo 'b4d22673e9246cbd628881f1a9ef3b090085dced291e42d804555cee8e8d42c5  /tmp/flux.tar.gz' | sha256sum -c -
