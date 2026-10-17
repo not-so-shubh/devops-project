@@ -81,7 +81,7 @@ This diagram describes the intended paths. The kind branch has actual executed e
 | Docker / Compose | Reproducible images and the local application/database stack. |
 | Nginx | Non-root static frontend serving and local API proxy. |
 | GitHub Actions | Ordered quality, infrastructure, Compose, build, scan, publish and cluster checks. |
-| Bandit / Trivy | Python security analysis, secret detection and known OS/library vulnerability scanning. |
+| Bandit / Trivy / npm audit | Python security analysis, secret detection, image OS/library scans and a separate frontend lockfile vulnerability gate. |
 | GHCR | Published backend/frontend images identified by tested source SHA. |
 | Terraform / AWS provider | Declarative AWS network, EKS, workers, IAM, storage driver and logging lifecycle. |
 | AWS IAM / OIDC | Scoped identities/access; short-lived GitHub deployment credentials. |

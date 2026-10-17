@@ -83,9 +83,10 @@ jobs:
           pytest -v --cov=app --cov-report=term-missing --cov-report=xml | tee ../docs/evidence/pytest-postgres.txt
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with: {node-version: '24', cache: npm, cache-dependency-path: frontend/package-lock.json}
-      - name: Frontend lint tests and production build
+      - name: Frontend dependency audit lint tests and production build
         run: |
           npm --prefix frontend ci --ignore-scripts
+          npm --prefix frontend audit --audit-level=high --include=dev --json > docs/evidence/frontend-sca.json
           npm --prefix frontend run lint
           npm --prefix frontend test
           npm --prefix frontend run build
@@ -98,6 +99,7 @@ jobs:
             backend/coverage.xml
             docs/evidence/bandit.json
             docs/evidence/secrets.json
+            docs/evidence/frontend-sca.json
           retention-days: 30
   infrastructure:
     runs-on: ubuntu-24.04

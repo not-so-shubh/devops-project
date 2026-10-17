@@ -20,7 +20,7 @@ Trivy inspects final backend/frontend images for known OS/library vulnerabilitie
 
 ## Two-minute technical explanation
 
-“Trivy inventories OS packages and language dependencies in the actual container image, then compares them with vulnerability advisories. We scan both the Python backend and the Nginx frontend, retaining frontend dependency manifests outside the served web root so the JavaScript inventory can be inspected. The scan uses an exit code of one for HIGH and CRITICAL findings and has no ignore-unfixed bypass. Publishing waits for successful scans.
+“Trivy inventories detected OS packages and language dependencies in the actual image, then compares them with advisories. We scan both the Python backend and Nginx frontend. The static frontend image contains only a root Node package in its detected inventory, so CI also runs a blocking npm lockfile audit including build dependencies. Retaining package manifests alone does not prove full dependency coverage. The image scan uses an exit code of one for HIGH and CRITICAL findings and has no ignore-unfixed bypass. Publishing waits for these gates.
 
 “HIGH and CRITICAL are severity categories. In CVSS v3, HIGH spans 7.0–8.9 and CRITICAL spans 9.0–10.0. Severity is not a statement that an exploit has occurred or that every affected package is reachable in this container. Trivy may use a vendor's severity assessment; the report and advisory determine which assessment applies.
 
@@ -40,6 +40,8 @@ Trivy inspects final backend/frontend images for known OS/library vulnerabilitie
 | [Workflow](../.github/workflows/ci-cd.yml), [runtime Dockerfile](../backend/Dockerfile) | Final images scanned before promotion; non-root runtime and digest-pinned base; security failure remains blocking. |
 
 The JSON reports are filtered by the configured severity threshold. Do not interpret their zero HIGH/CRITICAL result as a statement that every LOW, MEDIUM or UNKNOWN vulnerability was assessed and absent.
+
+The separate npm report `frontend-sca.json` includes advisory results for the lockfile graph; `--audit-level=high` sets its failure threshold rather than filtering lower-severity output. Check this report on the final run's evidence branch. The older reviewed run predates this additional gate, so its clean Trivy report must not be presented as lockfile-wide SCA proof. Primary references: [npm audit](https://docs.npmjs.com/cli/v11/commands/npm-audit/) and [Trivy Node.js coverage](https://trivy.dev/docs/latest/coverage/language/nodejs/).
 
 ## Five likely instructor questions
 
