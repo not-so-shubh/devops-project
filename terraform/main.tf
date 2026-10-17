@@ -91,7 +91,7 @@ resource "aws_eks_cluster" "main" {
     endpoint_public_access  = true
     public_access_cidrs     = var.admin_cidrs
   }
-  depends_on = [aws_iam_role_policy_attachment.cluster]
+  depends_on = [aws_iam_role_policy_attachment.cluster, aws_cloudwatch_log_group.eks]
 }
 resource "aws_eks_access_entry" "admin" {
   cluster_name  = aws_eks_cluster.main.name
@@ -160,4 +160,9 @@ resource "aws_eks_addon" "ebs" {
   cluster_name = aws_eks_cluster.main.name
   addon_name   = "aws-ebs-csi-driver"
   depends_on   = [aws_eks_addon.network, aws_iam_role_policy_attachment.ebs, aws_eks_pod_identity_association.ebs]
+}
+
+resource "aws_cloudwatch_log_group" "eks" {
+  name              = "/aws/eks/${var.cluster_name}/cluster"
+  retention_in_days = 7
 }

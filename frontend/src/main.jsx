@@ -377,7 +377,7 @@ function App() {
               <button
                 className="button"
                 disabled={loading || !!error}
-                onClick={exportInventory}
+                aria-label="Export" onClick={exportInventory}
               >
                 <Download size={16} />
                 <span>Export</span>

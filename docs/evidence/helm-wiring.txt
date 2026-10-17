@@ -1,0 +1,1 @@
+PASS: 10 resources; selectors, ports, probes, storage, HPA, migration Job and ServiceMonitor wiring

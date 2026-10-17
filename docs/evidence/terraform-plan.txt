@@ -1,0 +1,11 @@
+
+Error: Required plugins are not installed
+
+The installed provider plugins are not consistent with the packages selected
+in the dependency lock file:
+  - registry.terraform.io/hashicorp/aws: the cached package for registry.terraform.io/hashicorp/aws 6.69.1 (in .terraform/providers) does not match any of the checksums recorded in the dependency lock file
+
+Terraform uses external plugins to integrate with a variety of different
+infrastructure services. To download the plugins required for this
+configuration, run:
+  terraform init
