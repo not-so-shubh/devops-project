@@ -81,7 +81,6 @@ function App() {
     [menu, setMenu] = useState(false);
   const [movementPage, setMovementPage] = useState(0),
     [movementLoading, setMovementLoading] = useState(false);
-  const dialog = useRef(null);
 
   async function load() {
     setLoading(true);
@@ -111,10 +110,6 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [toast]);
-  useEffect(() => {
-    if (modal && dialog.current && !dialog.current.open)
-      dialog.current.showModal();
-  }, [modal]);
 
   function open(type, product) {
     setModal({ type, product });
@@ -122,7 +117,6 @@ function App() {
   }
   function close() {
     if (!busy) {
-      dialog.current?.close();
       setModal(null);
       setFormError("");
     }
@@ -173,7 +167,6 @@ function App() {
             ? "Stock adjusted and recorded in the ledger."
             : "Product saved successfully.",
       );
-      dialog.current.close();
       setModal(null);
       await load();
     } catch (e) {
@@ -856,17 +849,7 @@ function App() {
         </div>
       )}
       {modal && (
-        <dialog
-          ref={dialog}
-          onCancel={(e) => {
-            e.preventDefault();
-            close();
-          }}
-          onClick={(e) => {
-            if (e.target === dialog.current) close();
-          }}
-          aria-labelledby="modal-title"
-        >
+        <Modal onClose={close} busy={busy}>
           <div className="modal-content">
             <div className="modal-heading">
               <div>
@@ -1171,11 +1154,47 @@ function App() {
               </form>
             )}
           </div>
-        </dialog>
+        </Modal>
       )}
     </div>
   );
 }
+function Modal({ children, onClose, busy }) {
+  const container = useRef(null);
+  useEffect(() => {
+    const previous = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const firstInput = container.current.querySelector("input, select, textarea");
+    (firstInput || container.current.querySelector("button") || container.current).focus();
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      if (previous?.isConnected) previous.focus();
+    };
+  }, []);
+  function keyDown(event) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      if (!busy) onClose();
+    }
+    if (event.key !== "Tab") return;
+    const controls = [...container.current.querySelectorAll(
+      'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex="0"]'
+    )].filter(el => el.getClientRects().length);
+    const first = controls[0], last = controls.at(-1);
+    if (!first) { event.preventDefault(); container.current.focus(); return; }
+    if (event.shiftKey && (document.activeElement === first || !container.current.contains(document.activeElement))) {
+      event.preventDefault(); last.focus();
+    } else if (!event.shiftKey && (document.activeElement === last || !container.current.contains(document.activeElement))) {
+      event.preventDefault(); first.focus();
+    }
+  }
+  return <div className="modal-backdrop" onClick={event => {
+    if (event.target === event.currentTarget && !busy) onClose();
+  }}><div className="dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+    tabIndex={-1} ref={container} onKeyDown={keyDown}>{children}</div></div>;
+}
+
 function Kpi({ label, value, icon: Icon, caption, color, loading, onClick }) {
   return (
     <div className={`kpi ${loading ? "loading" : ""}`}>

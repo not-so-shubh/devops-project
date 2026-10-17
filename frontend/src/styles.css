@@ -1836,9 +1836,8 @@ textarea {
   }
 }
 
-/* A single bounded scroll area keeps long mobile forms and their action bar usable. */
-dialog { overflow: hidden; }
-.modal-content { max-height: calc(90dvh - 2px); overflow-y: auto; overscroll-behavior: contain; }
-.modal-content form { display: flow-root; }
-.modal-content .form-grid { position: relative; }
-.modal-actions { position: sticky; bottom: -1px; z-index: 2; background: white; padding-bottom: 1px; }
+.modal-backdrop { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 15px; background: #152c226b; backdrop-filter: blur(3px); }
+.dialog { width: min(540px, 100%); max-height: 90dvh; overflow-y: auto; overscroll-behavior: contain; border: 1px solid #dce7d6; border-radius: 14px; box-shadow: 0 25px 100px #14381926; color: #3b5234; background: white; }
+.dialog .modal-content { max-height: none; overflow: visible; }
+.dialog form { display: flow-root; }
+.dialog .modal-actions { position: static; background: white; }

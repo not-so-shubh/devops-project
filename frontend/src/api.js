@@ -42,7 +42,7 @@ export const money = (value) =>
   new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 2, minimumFractionDigits: 0,
   }).format(Number(value));
 export const number = (value) => new Intl.NumberFormat("en-IN").format(value);
 export function csvCell(value) {

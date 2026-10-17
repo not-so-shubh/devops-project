@@ -10,7 +10,7 @@
 - Create, inspect, search, filter, edit, and delete products with unique SKUs, categories, prices, descriptions, and reorder thresholds.
 - Receive or remove stock with an explanatory reason. Conditional database updates prevent concurrent removals from overselling.
 - Review the retained, paginated stock ledger, including opening balances and products that have been deleted.
-- Use desktop and mobile navigation, accessible native dialogs, loading/error/empty states, notifications, and a formula-safe CSV export.
+- Use desktop and mobile navigation, accessible focus-trapped dialogs, loading/error/empty states, notifications, and a formula-safe CSV export.
 
 No chart or activity entry is hardcoded in the frontend. Optional seed data is inserted explicitly into the database, never at application startup. Prices and the dashboard use INR; inventory value is stock × selling price, not an accounting cost valuation. Low-stock KPI includes out-of-stock products; the table's Low stock filter shows positive balances at/below threshold, and Out of stock shows zero.
 

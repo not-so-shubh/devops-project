@@ -2,6 +2,8 @@
 
 Local verification at implementation time: 43 backend tests passed, one PostgreSQL-only concurrency test skipped, 98.83% statement coverage (257 statements, three uncovered). All API route logic was exercised. The uncovered code was the default database dependency (replaced in tests) and CLI-only seed printing. Coverage includes the idempotent seed logic. See [pytest-local.txt](evidence/pytest-local.txt).
 
+The actual PostgreSQL GitHub quality job subsequently passed all 44 tests, including concurrency, with 97.67% coverage. See [github-quality.txt](evidence/github-quality.txt).
+
 Tests cover root/docs, liveness/readiness, sanitized DB failures, Prometheus exposition and bounded route labels, product CRUD, duplicate SKU rollback, validation, missing records, search/status/category/pagination, opening balances, increments/decrements, insufficient stock, upper limits, stock statistics/trends, empty data, movement history, retained audit after deletion, independent-session persistence, seed idempotency and reversible migrations/model consistency.
 
 ```bash
