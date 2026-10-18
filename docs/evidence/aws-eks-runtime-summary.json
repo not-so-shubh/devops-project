@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-18",
+  "timezone": "Asia/Kolkata",
+  "provenance": "User-executed AWS CloudShell commands and outputs supplied in this conversation; aggregate summary reviewed by assistant. AWS results are distinct from historical kind CI evidence.",
+  "application_source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0",
+  "successful_ci_run": "https://github.com/not-so-shubh/devops-project/actions/runs/39101728492",
+  "region": "ap-southeast-2",
+  "eks": {
+    "control_plane_status": "ACTIVE",
+    "node_group_status": "ACTIVE",
+    "node_instance_type": "m7i-flex.large",
+    "ready_nodes": 2,
+    "node_kubernetes_version": "v1.35.8-eks-b9510e3"
+  },
+  "deployment": {
+    "helm_release_status": "deployed",
+    "helm_revision": 1,
+    "backend_ready_replicas": 2,
+    "frontend_ready_replicas": 2,
+    "postgres_ready_replicas": 1,
+    "migration": "Completed",
+    "database_pvc": {
+      "status": "Bound",
+      "capacity": "5Gi",
+      "storage_class": "gp3"
+    },
+    "seeded_products": 8,
+    "http_ingress_smoke": "PASS: frontend-origin API proxy, create, stock decrement, persistent retrieval and stats; owned smoke product cleaned up"
+  },
+  "monitoring": {
+    "traefik_chart": "42.0.0",
+    "metrics_server_chart": "3.14.0",
+    "kube_prometheus_stack_chart": "92.10.1",
+    "prometheus_up_application_targets": 2,
+    "request_rate_per_second": 1.423848888888889,
+    "traffic": {
+      "successful_stats_requests": 60,
+      "expected_not_found_requests": 60
+    },
+    "hpa": {
+      "current_cpu_utilization_percent": 4,
+      "target_cpu_utilization_percent": 65,
+      "replicas": 2,
+      "min_replicas": 2,
+      "max_replicas": 6
+    },
+    "grafana": {
+      "pod_ready_containers": "3/3",
+      "authenticated_dashboard_verification": "PASS: authenticated API dashboard access",
+      "dashboard_panels": 4,
+      "prometheus_datasource_health": "OK",
+      "request_rate_per_second": 1.2952,
+      "visual_browser_capture": "pending"
+    }
+  },
+  "ci_deployment": {
+    "status": "BLOCKED",
+    "reason": "Listing was explicitly denied by AWS organization policy; the targeted iam:GetOpenIDConnectProvider lookup also returned AccessDenied.",
+    "job_enabled": false,
+    "aws_provider_existence": "unconfirmed because lookup denied",
+    "github_repository_admin_access": true,
+    "immutable_oidc_subject_enabled": true,
+    "production_environment_present": false,
+    "repository_actions_variables_present": false
+  },
+  "remaining": [
+    "Real EKS application and monitoring browser captures",
+    "AWS CI deployment requires permitted account configuration",
+    "Student Trivy explanation and live/accepted recorded presentation",
+    "Separate approval and actual Terraform destroy with residual-resource verification"
+  ],
+  "cleanup": {
+    "destroy_executed": false,
+    "final_cleanup_approval_received": false
+  },
+  "form_submission": "Student action — excluded from this task."
+}
