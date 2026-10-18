@@ -411,6 +411,8 @@ jobs:
     needs: [publish, kubernetes]
     runs-on: ${{ vars.DEPLOY_RUNNER || 'ubuntu-24.04' }}
     environment: production
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION || 'ap-south-1' }}
     timeout-minutes: 20
     permissions: {contents: read, id-token: write}
     steps:
@@ -421,11 +423,11 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
         with:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
-          aws-region: ap-south-1
+          aws-region: ${{ env.AWS_REGION }}
       - name: Authenticate to the authorized EKS cluster
         env:
           EKS_CLUSTER_NAME: ${{ vars.EKS_CLUSTER_NAME }}
-        run: aws eks update-kubeconfig --region ap-south-1 --name "$EKS_CLUSTER_NAME"
+        run: aws eks update-kubeconfig --region "$AWS_REGION" --name "$EKS_CLUSTER_NAME"
       - name: Install Helm
         run: |
           curl -fsSL https://get.helm.sh/helm-v3.20.1-linux-amd64.tar.gz | tar -xz -C /tmp

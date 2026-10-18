@@ -136,9 +136,11 @@ Only after manual bootstrap and successful cluster pulls:
 
 1. Create/reuse GitHub's account OIDC provider; supply its ARN to Terraform and review/apply the resulting role/access changes under the same AWS cost/account authorization.
 2. Protect the repository's `production` environment and restrict deployment to `main`.
-3. Set GitHub variables `AWS_ROLE_ARN`, `EKS_CLUSTER_NAME`, `INGRESS_HOST`, and, if appropriate, `DEPLOY_RUNNER` for a connected private runner.
+3. Set GitHub variables `AWS_ROLE_ARN`, `EKS_CLUSTER_NAME`, `INGRESS_HOST`, and `AWS_REGION` to match the Terraform deployment. The approved CloudShell project uses Sydney (`AWS_REGION=ap-southeast-2`); an unset variable retains the Mumbai default. Both AWS authentication and kubeconfig use this same region. If appropriate, set `DEPLOY_RUNNER` for a connected private runner.
 4. Confirm the role has an EKS access entry and namespace EditPolicy, the EKS API allowlist admits the runner, and `stockpilot-db`, gp3 storage, ingress/metrics/monitoring already exist.
 5. Set `AWS_DEPLOY_ENABLED=true`. Push a real change and verify the exact new image SHA and rollout.
+
+For this repository, the public GitHub API reports owner ID `180390682`, repository ID `1422512974`, and creation on 16 October 2026. GitHub's [immutable OIDC subject format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) applies to repositories created after 15 July 2026. Before enabling the optional Terraform deployment role, set `github_repository = "not-so-shubh@180390682/devops-project@1422512974"` in the private tfvars. The existing trust template then produces the exact production subject `repo:not-so-shubh@180390682/devops-project@1422512974:environment:production`. Verify the repository's actual OIDC settings before applying the IAM plan; keep the trust scoped to this exact repository/environment and `sts.amazonaws.com`. Leave the optional provider disabled until this separate role/access plan has been reviewed. The current 33-resource network/cluster plan does not create this GitHub role.
 
 The pipeline intentionally cannot bootstrap cluster-wide infrastructure with its deployment role. A failed deployment is visible and fails the job. No paid infrastructure is created by the workflow.
 

@@ -107,6 +107,7 @@ docker compose down -v
 | `BASE_URL` | Smoke, load and browser tests | Defaults to `http://localhost:3000` |
 | `AWS_DEPLOY_ENABLED` | GitHub repository variable | Keep unset/false until costs and cluster access are authorized |
 | `AWS_ROLE_ARN`, `EKS_CLUSTER_NAME`, `INGRESS_HOST` | GitHub variables | Required only for enabled EKS deployment |
+| `AWS_REGION` | GitHub variable | EKS deployment region; defaults to `ap-south-1`. Set `ap-southeast-2` for the approved Sydney project |
 | `GHCR_PULL_SECRET` | GitHub variable | Optional existing durable registry Secret name when packages are private |
 | `DEPLOY_RUNNER` | GitHub variable | Optional runner label with access to the EKS endpoint allowlist |
 
