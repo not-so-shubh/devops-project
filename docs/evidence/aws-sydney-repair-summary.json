@@ -1,0 +1,53 @@
+{
+  "reviewed_date_ist": "2026-10-18",
+  "region": "ap-southeast-2",
+  "terraform_source_commit": "952128e01e9afed9a0349faf7c7b58d04e5a96b5",
+  "current_cluster_status": "ACTIVE",
+  "current_nodegroup_status": "CREATE_FAILED",
+  "failed_nodegroup_current_instances": 0,
+  "failed_nodegroup_desired_instances": 2,
+  "replacement_type": "m7i-flex.large",
+  "replacement_vcpu_each": 2,
+  "replacement_memory_mib_each": 8192,
+  "replacement_eligible_in_user_output": true,
+  "replacement_offered_azs": [
+    "ap-southeast-2a",
+    "ap-southeast-2b",
+    "ap-southeast-2c"
+  ],
+  "plan_summary": {
+    "add": 6,
+    "change": 1,
+    "destroy": 1
+  },
+  "replacements": [
+    "aws_eks_node_group.main"
+  ],
+  "in_place_changes": {
+    "aws_eks_cluster.main": "public_access_cidrs: replace prior operator /32 with current operator /32"
+  },
+  "new_addons": [
+    "aws-ebs-csi-driver",
+    "vpc-cni",
+    "kube-proxy",
+    "coredns",
+    "eks-pod-identity-agent"
+  ],
+  "vpc_or_cluster_replacement": false,
+  "price": {
+    "currency": "USD",
+    "m7i_flex_large_hourly_each": 0.1197,
+    "rate_code": "YZS4YR3ZPHD427K5.JRTCKXETXF.6YS6EN2CT7",
+    "source": "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/Asia%20Pacific%20(Sydney)/Linux/index.json",
+    "publication_date": "2026-10-15T19:13:16Z",
+    "total_estimated_base_hourly": 0.44994794520547954,
+    "six_hour_estimated_base": 2.6996876712328772,
+    "excludes": "Traffic, logs, taxes, extra/replacement resources, discounts/credits; not an account-specific bill or enforced cutoff"
+  },
+  "repair_replacement_approval": "pending explicit approval",
+  "repair_apply_executed": false,
+  "provenance": "Aggregate review of user-supplied actual CloudShell output. Detailed transcript and account-specific resource identities remain private.",
+  "privacy": "No AWS account numbers, ARNs, IP addresses, resource IDs, ASG identifiers, state, tfvars, binary plans or operational transcript are included.",
+  "failure": "Original worker type rejected by account Free Tier restriction.",
+  "state_backup": "Existing state backed up privately before planning."
+}
