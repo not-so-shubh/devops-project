@@ -1,0 +1,106 @@
+{
+  "reviewed_at_utc": "2026-10-18",
+  "region": "ap-southeast-2",
+  "source": "User-provided AWS CloudShell transcript, Pasted text(4).txt",
+  "attachment_sha256": "02f2dcc701dbd85084c98ce4ff7b7b5c7ef540a740dd9d1d6cb40a2052cffe06",
+  "plan_summary": {
+    "add": 33,
+    "change": 0,
+    "destroy": 0
+  },
+  "resources": [
+    "aws_cloudwatch_log_group.eks",
+    "aws_eip.nat",
+    "aws_eks_access_entry.admin",
+    "aws_eks_access_policy_association.admin",
+    "aws_eks_addon.ebs",
+    "aws_eks_addon.network[\"coredns\"]",
+    "aws_eks_addon.network[\"eks-pod-identity-agent\"]",
+    "aws_eks_addon.network[\"kube-proxy\"]",
+    "aws_eks_addon.network[\"vpc-cni\"]",
+    "aws_eks_cluster.main",
+    "aws_eks_node_group.main",
+    "aws_eks_pod_identity_association.ebs",
+    "aws_iam_role.cluster",
+    "aws_iam_role.ebs",
+    "aws_iam_role.nodes",
+    "aws_iam_role_policy_attachment.cluster",
+    "aws_iam_role_policy_attachment.ebs",
+    "aws_iam_role_policy_attachment.nodes[\"AmazonEC2ContainerRegistryPullOnly\"]",
+    "aws_iam_role_policy_attachment.nodes[\"AmazonEKSWorkerNodePolicy\"]",
+    "aws_iam_role_policy_attachment.nodes[\"AmazonEKS_CNI_Policy\"]",
+    "aws_internet_gateway.main",
+    "aws_nat_gateway.main",
+    "aws_route_table.private",
+    "aws_route_table.public",
+    "aws_route_table_association.private[\"a\"]",
+    "aws_route_table_association.private[\"b\"]",
+    "aws_route_table_association.public[\"a\"]",
+    "aws_route_table_association.public[\"b\"]",
+    "aws_subnet.private[\"a\"]",
+    "aws_subnet.private[\"b\"]",
+    "aws_subnet.public[\"a\"]",
+    "aws_subnet.public[\"b\"]",
+    "aws_vpc.main"
+  ],
+  "apply_executed": false,
+  "base_usd_per_hour": 0.42174794520547954,
+  "price_sources": {
+    "ec2_nat_ebs": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/ap-southeast-2/index.csv",
+    "elb": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSELB/current/ap-southeast-2/index.json",
+    "eks": "https://aws.amazon.com/eks/pricing/",
+    "ipv4": "https://aws.amazon.com/vpc/pricing/"
+  },
+  "price_publication_dates": {
+    "ec2": "2026-10-15T19:13:16Z",
+    "elb": "2026-09-11T12:45:44Z"
+  },
+  "rates": {
+    "eks_per_cluster_hour": 0.1,
+    "t3_large_per_instance_hour": 0.1056,
+    "zonal_nat_per_hour": 0.059,
+    "nat_per_gb": 0.059,
+    "classic_lb_per_hour": 0.028,
+    "classic_lb_per_gb": 0.008,
+    "ipv4_per_address_hour": 0.005,
+    "gp3_per_gb_month": 0.096
+  },
+  "assumptions": {
+    "t3_large_nodes": 2,
+    "gp3_gb": 65,
+    "public_ipv4_addresses": 3,
+    "monthly_hours": 730
+  },
+  "limitations": [
+    "Only the user-provided CloudShell transcript has been reviewed; this assistant did not execute the plan in AWS.",
+    "Base pricing excludes usage, CPU surplus credits, logs, data transfer, replacements, taxes and credits; it is not a hard spending cap.",
+    "The Classic LB and 5 GiB database disk are later deployment assumptions, not part of the 33 Terraform resources.",
+    "EC2 vCPU quota and cluster/role name checks passed; other quotas, all resource-name conflicts, and actual account create/delete permissions remain account-dependent. A successful plan does not prove apply/delete permissions."
+  ],
+  "source_commit": "952128e01e9afed9a0349faf7c7b58d04e5a96b5",
+  "source_commit_confirmation": "User-provided git rev-parse --short=12 HEAD output: 952128e01e9a",
+  "preflight": {
+    "source": "User-provided CloudShell output in chat, 18 October 2026 10:45 IST",
+    "standard_on_demand_vcpu_quota": 32,
+    "planned_initial_vcpus": 4,
+    "running_or_pending_instance_types_returned": [],
+    "eks_clusters_returned": [],
+    "iam_roles_starting_stockpilot_eks_returned": []
+  },
+  "approval": {
+    "status": "pending",
+    "proposed_currency": "USD",
+    "proposed_spend_target": 10,
+    "proposed_runtime_hours": 6,
+    "hard_cap_enforced": false,
+    "destroy_approval": "separate, after evidence collection"
+  },
+  "rate_identifiers": {
+    "linux_t3_large": "B7WDU84CV8BAGNYW.JRTCKXETXF.6YS6EN2CT7",
+    "zonal_nat_hour": "NUKV5QPTHVFBW7DE.JRTCKXETXF.6YS6EN2CT7",
+    "zonal_nat_gb": "KSHYFCUNWFSUXCAV.JRTCKXETXF.6YS6EN2CT7",
+    "gp3_storage": "QR74UAP3E9WUYT9B.JRTCKXETXF.6YS6EN2CT7",
+    "classic_lb_hour": "PX3EDDZ783JKMB8K.JRTCKXETXF.6YS6EN2CT7",
+    "classic_lb_gb": "5FGCCCWTF47T8ZNZ.JRTCKXETXF.6YS6EN2CT7"
+  }
+}
