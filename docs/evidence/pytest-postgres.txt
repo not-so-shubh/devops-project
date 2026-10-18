@@ -1,0 +1,76 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.15, pytest-9.1.1, pluggy-1.7.0 -- <REDACTED_PATH>
+cachedir: .pytest_cache
+rootdir: <REDACTED_PATH>
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.1.0, anyio-4.15.1
+collecting ... collected 44 items
+
+tests/test_api.py::test_root_and_docs PASSED                             [  2%]
+tests/test_api.py::test_liveness PASSED                                  [  4%]
+tests/test_api.py::test_readiness_with_database PASSED                   [  6%]
+tests/test_api.py::test_database_failure_is_sanitized_and_liveness_independent PASSED [  9%]
+tests/test_api.py::test_metrics_are_prometheus_and_use_templated_routes PASSED [ 11%]
+tests/test_api.py::test_create_product_and_opening_movement PASSED       [ 13%]
+tests/test_api.py::test_zero_opening_stock_does_not_add_empty_movement PASSED [ 15%]
+tests/test_api.py::test_sku_is_normalized_and_unique PASSED              [ 18%]
+tests/test_api.py::test_list_search_filter_and_pagination PASSED         [ 20%]
+tests/test_api.py::test_retrieve_product PASSED                          [ 22%]
+tests/test_api.py::test_update_details_preserves_balance PASSED          [ 25%]
+tests/test_api.py::test_update_cannot_bypass_stock_ledger PASSED         [ 27%]
+tests/test_api.py::test_update_duplicate_sku_rolls_back PASSED           [ 29%]
+tests/test_api.py::test_delete_retains_movement_audit PASSED             [ 31%]
+tests/test_api.py::test_missing_product[get] PASSED                      [ 34%]
+tests/test_api.py::test_missing_product[put] PASSED                      [ 36%]
+tests/test_api.py::test_missing_product[delete] PASSED                   [ 38%]
+tests/test_api.py::test_invalid_product[name- ] PASSED                   [ 40%]
+tests/test_api.py::test_invalid_product[sku-bad sku] PASSED              [ 43%]
+tests/test_api.py::test_invalid_product[selling_price--1] PASSED         [ 45%]
+tests/test_api.py::test_invalid_product[selling_price-1.123] PASSED      [ 47%]
+tests/test_api.py::test_invalid_product[stock_quantity--1] PASSED        [ 50%]
+tests/test_api.py::test_invalid_product[stock_quantity-1.2] PASSED       [ 52%]
+tests/test_api.py::test_invalid_product[stock_quantity-True] PASSED      [ 54%]
+tests/test_api.py::test_invalid_product[reorder_threshold--1] PASSED     [ 56%]
+tests/test_api.py::test_invalid_product[category-x] PASSED               [ 59%]
+tests/test_api.py::test_invalid_product[unknown-oops] PASSED             [ 61%]
+tests/test_api.py::test_increment_and_decrement PASSED                   [ 63%]
+tests/test_api.py::test_insufficient_stock_atomic_rejection PASSED       [ 65%]
+tests/test_api.py::test_stock_upper_bound PASSED                         [ 68%]
+tests/test_api.py::test_missing_adjustment_product PASSED                [ 70%]
+tests/test_api.py::test_invalid_adjustment[0] PASSED                     [ 72%]
+tests/test_api.py::test_invalid_adjustment[1.5] PASSED                   [ 75%]
+tests/test_api.py::test_invalid_adjustment[True] PASSED                  [ 77%]
+tests/test_api.py::test_invalid_adjustment[5] PASSED                     [ 79%]
+tests/test_api.py::test_invalid_adjustment[1000001] PASSED               [ 81%]
+tests/test_api.py::test_statistics_and_real_movement_trend PASSED        [ 84%]
+tests/test_api.py::test_empty_stats PASSED                               [ 86%]
+tests/test_api.py::test_movement_filter_and_pagination PASSED            [ 88%]
+tests/test_api.py::test_data_persisted_in_independent_session PASSED     [ 90%]
+tests/test_api.py::test_zero_balance_out_filter PASSED                   [ 93%]
+tests/test_api.py::test_concurrent_removals_never_oversell PASSED        [ 95%]
+tests/test_api.py::test_seed_is_explicit_and_idempotent PASSED           [ 97%]
+tests/test_migrations.py::test_migration_round_trip_and_metadata PASSED  [100%]
+
+=============================== warnings summary ===============================
+../../../../../..<REDACTED_PATH>
+  <REDACTED_PATH> StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.15-final-0 _______________
+
+Name              Stmts   Miss  Cover   Missing
+-----------------------------------------------
+app/__init__.py       0      0   100%
+app/db.py            20      5    75%   17-19, 33-34
+app/main.py         134      0   100%
+app/models.py        31      0   100%
+app/schemas.py       51      0   100%
+app/seed.py          21      1    95%   120
+-----------------------------------------------
+TOTAL               257      6    98%
+Coverage XML written to file coverage.xml
+Required test coverage of 80.0% reached. Total coverage: 97.67%
+======================== 44 passed, 1 warning in 2.84s =========================
