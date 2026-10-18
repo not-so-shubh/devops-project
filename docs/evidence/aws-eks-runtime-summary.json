@@ -26,7 +26,8 @@
       "storage_class": "gp3"
     },
     "seeded_products": 8,
-    "http_ingress_smoke": "PASS: frontend-origin API proxy, create, stock decrement, persistent retrieval and stats; owned smoke product cleaned up"
+    "http_ingress_smoke": "PASS: frontend-origin API proxy, create, stock decrement, persistent retrieval and stats; owned smoke product cleaned up",
+    "browser_tests_passed": 4
   },
   "monitoring": {
     "traefik_chart": "42.0.0",
@@ -50,8 +51,8 @@
       "authenticated_dashboard_verification": "PASS: authenticated API dashboard access",
       "dashboard_panels": 4,
       "prometheus_datasource_health": "OK",
-      "request_rate_per_second": 1.2952,
-      "visual_browser_capture": "pending"
+      "request_rate_per_second": 1.7333333333333332,
+      "visual_browser_capture": "PASS: original real EKS dashboard screenshot inspected; axis display fix awaiting refreshed capture"
     }
   },
   "ci_deployment": {
@@ -65,14 +66,16 @@
     "repository_actions_variables_present": false
   },
   "remaining": [
-    "Real EKS application and monitoring browser captures",
+    "AWS Console and literal terminal screenshot formats",
+    "Apply error-axis display fix and retain refreshed monitoring screenshot",
     "AWS CI deployment requires permitted account configuration",
     "Student Trivy explanation and live/accepted recorded presentation",
-    "Separate approval and actual Terraform destroy with residual-resource verification"
+    "Separate final cleanup approval, Terraform destroy and residual-resource checks"
   ],
   "cleanup": {
     "destroy_executed": false,
     "final_cleanup_approval_received": false
   },
-  "form_submission": "Student action — excluded from this task."
+  "form_submission": "Student action — excluded from this task.",
+  "evidence_review": "docs/AWS-EKS-CAPTURE-REVIEW.md"
 }

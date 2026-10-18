@@ -21,7 +21,7 @@ This is a reviewed aggregate of commands the user actually executed in AWS Cloud
 | HPA | CPU 4% against 65% target; two replicas, configured minimum two / maximum six |
 | Prometheus | Two StockPilot targets UP; measured request rate 1.423848888888889 requests/second |
 | Controlled traffic | 60 successful statistics requests and 60 expected HTTP 404 responses |
-| Grafana | Three of three Pod containers Ready; authenticated dashboard API access passed, all four panels configured, datasource health OK, live query 1.2952 requests/second; visual capture pending |
+| Grafana | Three of three Pod containers Ready; authenticated dashboard API access passed, all four panels configured, datasource health OK, live query 1.2952 requests/second; actual real EKS browser capture passed and was visually inspected; error-axis display fix awaits refreshed capture |
 
 The measured CPU value verifies the HPA metric path; it is not evidence of a load-induced scale-out. Monitoring rate data came from the real EKS deployment after controlled traffic. Detailed target/query JSON is retained privately in the user's CloudShell home.
 
@@ -37,8 +37,12 @@ The AWS deployment job remains disabled/skipped. Manual Helm deployment and gree
 
 ## Remaining evidence and lifecycle
 
-Authenticated Grafana API verification passed. EKS browser captures, student explanation/presentation and actual teardown remain outstanding. The initial six-hour approved demo window ends at 17:12:07 IST on 18 October 2026; recovery did not restart it. The US$10 amount is a spending target, not an enforced cap. Resource charges continue until deletion. Final resource destruction requires a separately reviewed scope and explicit user approval.
+Authenticated Grafana API verification passed. Real EKS browser captures were supplied and inspected. AWS Console/terminal-format captures, student explanation/presentation and actual teardown remain outstanding. The initial six-hour approved demo window ends at 17:12:07 IST on 18 October 2026; recovery did not restart it. The US$10 amount is a spending target, not an enforced cap. Resource charges continue until deletion. Final resource destruction requires a separately reviewed scope and explicit user approval.
 
 Official form submission: **Student action — excluded from this task.**
 
 Machine-readable aggregate: [aws-eks-runtime-summary.json](evidence/aws-eks-runtime-summary.json).
+
+## Inspected capture supplement
+
+See [AWS-EKS-CAPTURE-REVIEW.md](AWS-EKS-CAPTURE-REVIEW.md) for the archive hash, per-file provenance, VPC/subnet/route inspection, four passed real EKS browser scenarios and visually inspected monitoring. The original application source remains 84c18de; capture-tool and application revisions are recorded separately.

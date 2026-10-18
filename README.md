@@ -8,11 +8,15 @@
 
 [Complete successful CI/CD run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297) · [Actual screenshots and reports](docs/EVIDENCE.md) · [Final submission actions](docs/SUBMISSION.md)
 
-The reviewed source `710d1460abc480d8b19e2b98f648a9a5c1c23339` passed PostgreSQL tests, Compose/browser checks, both image scans and GHCR publication, Helm/Ingress/HPA, populated Grafana, troubleshooting repairs and real Flux reconciliation. The evidence-based audit covers 39 of 46 criteria (83 rubric points); these are verified criteria, not awarded marks. A real AWS plan/VPC/EKS/destroy cycle and the student's security explanation/presentation remain required. Official form submission is **Student action — excluded from this task**. Evidence is pinned to that tested revision; newer commits need their own successful run.
+Real AWS EKS runtime is now verified in Sydney: two Ready workers, two ready backend/frontend replicas, a Bound 5 GiB database and all four desktop/mobile browser scenarios passed. Real Prometheus and authenticated Grafana captures were inspected. See [the real EKS review](docs/AWS-EKS-CAPTURE-REVIEW.md). The [latest fully reviewed CI source `cf87b82b4015`](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536) passed all enabled jobs; subsequent changes need their own run. The current audit covers 42 of 46 criteria / 92 technical points. Cleanup and personal explanation/presentation remain pending. AWS Actions deployment is separately blocked by account OIDC policy and remains skipped. Official form: **Student action — excluded from this task**.
 
 ## Screenshots
 
-![StockPilot running in the actual desktop browser test](https://raw.githubusercontent.com/not-so-shubh/devops-project/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/frontend-desktop.png)
+![StockPilot running on real AWS EKS](docs/evidence/eks-frontend-desktop.png)
+
+[Actual EKS mobile capture](docs/evidence/eks-frontend-mobile.png) · [Real EKS capture provenance](docs/AWS-EKS-CAPTURE-REVIEW.md)
+
+The following older monitoring links are separately pinned kind/CI evidence:
 
 [Mobile view](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/frontend-mobile.png) · [Prometheus: two targets UP](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-targets.png) · [Grafana: populated live dashboard](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/grafana-dashboard.png)
 
@@ -211,4 +215,4 @@ Before submitting, complete [the final execution and capture checklist](docs/SUB
 
 [Trivy explanation](docs/TRIVY-EXPLANATION.md) · [12-minute and short demo scripts](docs/FINAL-DEMO-SCRIPT.md) · [Capture checklist](docs/FINAL-PRESENTATION-CHECKLIST.md) · [Instructor Q&A](docs/INSTRUCTOR-QA.md) · [AWS readiness and cost estimate](docs/AWS-READINESS.md)
 
-The audit distinguishes VERIFIED (83 points), READY FOR DEMO (4), BLOCKED on AWS (11), and EXCLUDED form submission (2). These are evidence categories, not awarded marks. The latest reviewed full run is pinned above; each later main run archives its own `evidence/<source-sha>` manifest.
+The audit distinguishes VERIFIED technical execution (92 points), READY FOR DEMO (4), BLOCKED pending final cleanup approval/execution (2), and EXCLUDED form submission (2). These are evidence categories, not awarded marks. The latest reviewed full run is pinned above; each later main run archives its own `evidence/<source-sha>` manifest.

@@ -67,9 +67,9 @@ lines += [
     "",
     "A successful kind deployment proves Kubernetes portability. It does not prove AWS provisioning, an account-dependent Terraform plan, destruction, or the student’s final live presentation.",
     "",
-    "VERIFIED: actual executed evidence checked. READY FOR DEMO: preparation/technical chain available, but the student must explain or present personally. BLOCKED: requires unavailable AWS access and authorization. EXCLUDED: Student action — excluded from this task (official form only).",
+    "VERIFIED: actual executed evidence checked. READY FOR DEMO: preparation/technical chain available, but the student must explain or present personally. BLOCKED: requires remaining authorization, external access or execution. EXCLUDED: Student action — excluded from this task (official form only).",
     "",
-    "See [SUBMISSION.md](SUBMISSION.md) for the seven criteria outside VERIFIED and final screenshot formats; [AWS-READINESS.md](AWS-READINESS.md) records actual access and execution limits.",
+    "See [SUBMISSION.md](SUBMISSION.md) for remaining criteria and screenshot formats; [AWS-EKS-CAPTURE-REVIEW.md](AWS-EKS-CAPTURE-REVIEW.md) records the inspected real AWS evidence, and [AWS-EKS-RUNTIME-VERIFICATION.md](AWS-EKS-RUNTIME-VERIFICATION.md) records lifecycle and CI access limits.",
     "",
 ]
 Path("docs/RUBRIC-CHECKLIST.md").write_text("\n".join(lines))

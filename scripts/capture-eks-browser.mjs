@@ -31,6 +31,14 @@ try {
   await page.getByRole('button',{name:/log in/i}).click();
   expect((await login).ok()).toBeTruthy();
   await page.waitForURL(url => !url.pathname.startsWith('/login'));
+  await expect.poll(async () => {
+    const response = await context.request.get('http://127.0.0.1:3001/api/dashboards/uid/stockpilot-ops');
+    if (!response.ok()) return null;
+    const dashboard = await response.json();
+    return dashboard.dashboard.panels.find(panel => panel.id === 3)?.fieldConfig?.defaults?.max;
+  }, {timeout:60000, message:'Wait for the deployed error-ratio axis fix (max=1)'}).toBe(1);
+  summary.error_ratio_axis_max = 1;
+  summary.error_ratio_axis_display = '0–100%';
   const dataResponse = page.waitForResponse(response =>
     new URL(response.url()).pathname === '/api/ds/query' &&
     response.request().method() === 'POST' && response.ok());
@@ -59,3 +67,4 @@ try {
   await context.close();
   await browser.close();
 }
+

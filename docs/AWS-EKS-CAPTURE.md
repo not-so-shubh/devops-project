@@ -5,7 +5,11 @@ Run this after StockPilot, Prometheus and Grafana are healthy in the authorized 
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
 cd "$HOME/devops-project"
-bash scripts/capture-eks-evidence.sh
+kubectl create configmap stockpilot-dashboard -n monitoring \
+  --from-file=stockpilot-dashboard.json=monitoring/stockpilot-dashboard.json \
+  --dry-run=client -o yaml | kubectl apply -f -
+kubectl label configmap stockpilot-dashboard -n monitoring grafana_dashboard=1 --overwrite
+CAPTURE_RUNTIME=native bash scripts/capture-eks-evidence.sh
 ```
 
 The capture requires AWS CLI, kubectl, Helm, Node, npm, Python and internet access in CloudShell. Install missing Amazon Linux browser libraries first:
@@ -33,3 +37,5 @@ These are automated browser tests and screenshots of the live EKS application. T
 ## Observed CloudShell storage failure
 
 The first Docker capture attempt on 18 October 2026 downloaded the image but failed with `no space left on device` before browser execution. The operator retained a partial private archive. CloudShell used vfs on a 16 GiB temporary filesystem; removing only the task's cached Playwright image restored 7.7 GiB free. No EKS resources, database storage or Terraform state were removed. This failure motivated the native runtime and explicit vfs guard. The recovery is not browser success evidence.
+
+The capture also waits for Grafana to expose the corrected error-ratio axis maximum of 1, displayed as 100%. Apply the current dashboard ConfigMap before recording a refreshed capture. The original zero-error data are preserved; this is an axis-format correction, not a metric change.

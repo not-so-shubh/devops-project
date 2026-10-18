@@ -1,12 +1,20 @@
 # Verified evidence and submission record
 
+## Inspected real EKS capture supplement
+
+The real EKS archive captured at 09:30–09:31 UTC on 18 October was supplied and inspected: exit code zero, four browser scenarios passed, actual VPC/subnet/route/cluster/managed-worker/workload/Helm JSON checked, and six genuine app/monitoring images visually reviewed. [Capture review](AWS-EKS-CAPTURE-REVIEW.md) · [Original-file hashes and aggregate](evidence/aws-eks-capture-review.json) · [Actual EKS desktop](evidence/eks-frontend-desktop.png) · [Actual EKS mobile](evidence/eks-frontend-mobile.png).
+
+The application is source `84c18de84538a74a8bab92b89dc72d6e89a393d0`; capture tooling is `cf87b82b40151d0c21c2e03740451a1a9ed2c649`. That later source's [full CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536) is now successful, including both zero-HIGH/CRITICAL image reports and the full frontend lockfile audit (124 dependencies, zero findings). [Its immutable archive](https://github.com/not-so-shubh/devops-project/tree/405b839cd453bff6086a33b1f3ce4e68c19b3384/docs/evidence) is distinct from the user-supplied EKS archive.
+
+The updated audit supports 42 criteria / 92 technical points, with student explanation/demo, final separately approved cleanup and excluded form actions remaining. Literal AWS Console and requested terminal screenshot formats still require collection. A Grafana error-axis display issue was found in the original capture; applying max=1 fixes percentunit's 0–100% display without changing metrics. Retain a refreshed image after actual application. AWS Actions deployment remains disabled by the documented account-policy blocker.
+
 ## Real EKS runtime update — 18 October 2026
 
 The user subsequently completed the approved worker repair and deployed source `84c18de84538a74a8bab92b89dc72d6e89a393d0` to real EKS in Sydney. Its [CI run 39101728492](https://github.com/not-so-shubh/devops-project/actions/runs/39101728492) succeeded; AWS CI deployment remained skipped. Two workers are Ready, the Helm release is deployed, both application Deployments have two ready replicas, the database has a Bound 5 GiB gp3 PVC, and the HTTP ingress CRUD smoke passed. Actual Prometheus verification found two UP application targets and positive request traffic; HPA CPU metrics work. Authenticated Grafana API access, its four configured panels, datasource health and a live application query also passed.
 
 See [actual runtime results and provenance](AWS-EKS-RUNTIME-VERIFICATION.md), [aggregate JSON](evidence/aws-eks-runtime-summary.json), and [private browser-capture procedure](AWS-EKS-CAPTURE.md). The public aggregates omit account-specific infrastructure identifiers. Raw CloudShell evidence remains private.
 
-AWS organization policy explicitly denied listing OIDC providers, and a targeted GitHub-provider lookup also returned AccessDenied. The AWS deployment job remains disabled; manual Helm installation must not be described as automated EKS deployment. Browser captures, a completed student presentation and actual teardown are not yet verified. Final cleanup requires separate approval.
+AWS organization policy explicitly denied listing OIDC providers, and a targeted GitHub-provider lookup also returned AccessDenied. The AWS deployment job remains disabled; manual Helm installation must not be described as automated EKS deployment. Real browser captures are now verified in the inspected supplement above. Personal presentation and actual teardown remain unverified. Final cleanup requires separate approval.
 
 ## Later verification and AWS CloudShell progress
 
@@ -68,7 +76,7 @@ Earlier failed runs and the original blocked Debian image scan remain documented
 
 ## Final submission
 
-Use [SUBMISSION.md](SUBMISSION.md) for the exact remaining actions and screenshot-format checklist, [all 46 criteria](RUBRIC-CHECKLIST.md) for the evidence-based audit, and [DEMO.md](DEMO.md) for the walkthrough. The earlier baseline audit supported 39 criteria covering 83 rubric points; that historical count predates the real AWS progress above and is neither an awarded nor guaranteed grade. AWS plan and provisioning have subsequent executed evidence. Cleanup, the AWS OIDC deployment blocker, remaining browser captures and student performance must be tracked separately; a final audit follows evidence completion. Official form submission is **Student action — excluded from this task**.
+Use [SUBMISSION.md](SUBMISSION.md) for the exact remaining actions and screenshot-format checklist, [all 46 criteria](RUBRIC-CHECKLIST.md) for the evidence-based audit, and [DEMO.md](DEMO.md) for the walkthrough. The earlier baseline audit supported 39 criteria covering 83 rubric points; that historical count predates the real AWS progress above and is neither an awarded nor guaranteed grade. AWS plan and provisioning have subsequent executed evidence. Cleanup, the AWS OIDC deployment blocker, remaining presentation-format captures and student performance must be tracked separately; a final audit follows evidence completion. Official form submission is **Student action — excluded from this task**.
 
 ## Earlier workspace checks and prepared materials
 

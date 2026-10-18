@@ -1,52 +1,49 @@
-# Final submission and remaining work
+# Submission status and remaining work
 
 Repository: https://github.com/not-so-shubh/devops-project
 
-Verified application/infrastructure source: `710d1460abc480d8b19e2b98f648a9a5c1c23339`. Complete successful run: https://github.com/not-so-shubh/devops-project/actions/runs/39070661297. Durable original evidence: https://github.com/not-so-shubh/devops-project/tree/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence. See [EVIDENCE.md](EVIDENCE.md) for screenshots and per-stage proof. Later revisions must be assessed using their own Actions run and `evidence/<source-sha>` branch.
+The latest fully reviewed successful CI source is `cf87b82b40151d0c21c2e03740451a1a9ed2c649`: [run 39115536536](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536), with [durable CI evidence](https://github.com/not-so-shubh/devops-project/tree/405b839cd453bff6086a33b1f3ce4e68c19b3384/docs/evidence). Real EKS application source is `84c18de84538a74a8bab92b89dc72d6e89a393d0`. [The inspected EKS archive review](AWS-EKS-CAPTURE-REVIEW.md) records exact provenance and original-file hashes.
 
-## Work that still requires execution
+## Evidence-backed status
 
-| Criterion | Points | Action and required proof |
+All 46 official criteria are listed in [RUBRIC-CHECKLIST.md](RUBRIC-CHECKLIST.md). There are **42 VERIFIED criteria / 92 technical points**, **4 READY FOR DEMO points**, **2 BLOCKED cleanup points**, and **2 EXCLUDED form points**. This is evidence coverage, not an awarded grade.
+
+Real provider-backed Terraform plan, VPC with two public/two private subnets across two AZs, active routing, EKS and managed workers are executed and independently reviewed. Two workers are Ready. Real EKS Helm/PVC/replicas/ingress/HPA, four desktop/mobile browser scenarios, Prometheus UP targets and authenticated populated Grafana have actual proof.
+
+| Remaining criterion | Points | Required completion |
 |---|---:|---|
-| M3.1 | 2 | **Student action — excluded from this task.** Do not open, populate or submit the official form. |
-| M6.3 | 1 | Explain the actual image scan and its limits yourself. Use [TRIVY-EXPLANATION.md](TRIVY-EXPLANATION.md): required written explanation, 30-second and 2-minute versions, actual finding/remediation and Q&A are prepared; show both current reports. |
-| M7.3 | 2 | In the authorized AWS account, run a real non-empty Terraform plan and capture its output. The passing mock test is not a replacement. |
-| M7.4 | 3 | Apply the reviewed plan; capture the VPC and both public subnets in the intended region. |
-| M7.5 | 4 | Capture the real EKS cluster, managed node group and ready worker nodes, then deploy/verify the app there using `DEPLOYMENT.md`. |
-| M7.6 | 2 | After recording the demo and collecting cloud evidence, remove demo LoadBalancers/PVCs, destroy the approved stack and capture completion plus empty state/residual-resource checks. |
-| M10.2 | 3 | Present live or submit an accepted recording of your own commit -> successful pipeline -> observed deployment update. Automated kind/Flux evidence is already available; the student presentation is still required. |
+| M3.1 | 2 | **Student action — excluded from this task.** No official form opened, populated or submitted. |
+| M6.3 | 1 | Personally explain the real Trivy result and limits using [TRIVY-EXPLANATION.md](TRIVY-EXPLANATION.md). Written preparation is complete; personal understanding has not been assessed. |
+| M7.6 | 2 | After saving screenshots/recording/backup, review exact teardown scope, obtain separate explicit approval, remove the demo load balancer/database volume, execute Terraform destroy and verify residuals. |
+| M10.2 | 3 | Personally present live or produce an accepted remote recording of a genuine commit → green CI → observed deployment update. Automatic kind/Flux and manual real EKS proof are distinct. |
 
-Of the seven criteria outside VERIFIED, **4 points are READY FOR DEMO** (student explanation and presentation), **11 are BLOCKED** on AWS access/execution/approval, and **2 are EXCLUDED** for the form. Other criteria have verified technical evidence; instructors award the actual marks. AWS execution needs an authenticated authorized environment, account/region confirmation and a reviewed cost/duration/cleanup scope. This session has not provisioned any AWS infrastructure.
+The mission's additional automatic AWS deployment requirement is **BLOCKED**: organization policy explicitly denied OIDC-provider listing and the exact-provider lookup also returned AccessDenied. GitHub administrator access and login succeeded. The AWS deploy job remains disabled/skipped. A permitted account-policy configuration is required; manual EKS deployment does not close that gap.
 
-## Required evidence formats
+## Required screenshot and recording formats
 
-The reference rubric requests some screenshots in addition to command output. Preserve the complete command output too. Capture real results; the following checklist distinguishes existing screenshots from remaining capture formats.
-
-| Requested item | Available proof / final capture |
+| Requested item | Current proof / next action |
 |---|---|
-| Running app/browser, desktop/mobile | Real screenshots embedded/linked in EVIDENCE.md. |
-| Passing `pytest -v` terminal | Full actual 44-pass output and [browser screenshot of its original transcript](evidence/github-pytest-transcript.jpg) available. For a strict terminal-only image requirement, capture a rerun terminal during the demo. |
-| At least ten descriptive commits | Existing [history screenshot](evidence/github-commit-history.jpg); [current public history](https://github.com/not-so-shubh/devops-project/commits/main/). |
-| Healthy Compose terminal | [Actual healthy Compose output screenshot](evidence/github-compose-health-output.jpg) plus original logs/HTTP/persistence results available; capture the live terminal too if a literal terminal image is required. |
-| Green pipeline | [Actual green summary screenshot](evidence/github-green-run.jpg) and complete run link in EVIDENCE.md. |
-| GHCR package page with SHA tags | [Backend package](https://github.com/not-so-shubh/devops-project/pkgs/container/stockpilot-backend), [frontend package](https://github.com/not-so-shubh/devops-project/pkgs/container/stockpilot-frontend); [backend screenshot](evidence/github-ghcr-backend.jpg) and [frontend screenshot](evidence/github-ghcr-frontend.jpg) captured with the exact verified SHA. JSON receipts independently prove anonymous pull/source revision. |
-| Trivy scan output | Both original reports and successful image-scan jobs linked in EVIDENCE.md; capture the actual job output. |
-| Terraform plan / VPC / EKS / destroy | Not available; execute the real AWS lifecycle above and capture each stage. |
-| Pods / Services / Helm list | [Actual Pods/Services screenshot](evidence/github-kubernetes-transcript.jpg) plus cluster/Helm transcripts available; capture Helm list and literal terminal views during the demo if required. |
-| Browser through Ingress | Four actual Ingress desktop/mobile browser tests passed in the [Kubernetes job](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297/job/117508117389). To show the browser address/hostname, capture the live demo after following DEPLOYMENT.md. |
-| `/metrics` output | Actual exposition linked in EVIDENCE.md; capture curl/job output. |
-| Prometheus Targets UP and populated Grafana | Real UI screenshots embedded in EVIDENCE.md. |
-| Live demo / accepted recording | Follow DEMO.md and include your own explanation and actual deployment update. |
+| Running app, desktop/mobile | Original real EKS screenshots inspected and linked in [capture review](AWS-EKS-CAPTURE-REVIEW.md). |
+| Terraform non-empty plan | Actual 33-create plan and private original transcript available; retain/capture the literal terminal image. |
+| AWS Console VPC / EKS | Real CLI/API resources verified. Capture the Console pages in Sydney, showing VPC/subnets and EKS/group status, and keep account identifiers private. |
+| Ready workers / Pods / Services / Helm list | Genuine private EKS output archive available; capture readable terminal screenshots to satisfy the exact requested format. |
+| Prometheus Targets / Grafana | Real EKS original UI images inspected. Prometheus addresses remain private; refresh the Grafana screenshot after applying its error-axis display fix. |
+| Backend /metrics | Real application metrics were scraped and queried successfully; capture literal curl output through a backend port-forward. |
+| Pytest / Compose / non-root / security / GHCR / Git history | Actual source-pinned CI reports and historical original screenshots retained; use their exact run/source labels. Current complete green run linked above. |
+| Deployment update / personal presentation | Prepared script and automatic kind/Flux evidence available; personal presentation pending, AWS Actions integration blocked. |
+| Terraform destroy | Not executed or approved. Save actual completion and AWS residual checks after authorized cleanup. |
 
-Prepared materials: [final demo script](FINAL-DEMO-SCRIPT.md), [presentation checklist](FINAL-PRESENTATION-CHECKLIST.md), [instructor Q&A](INSTRUCTOR-QA.md), and [AWS readiness/cost estimate](AWS-READINESS.md).
+Keep the full raw EKS archive and AWS Console images private unless disclosure is explicitly reviewed. Publish only the safe app captures and aggregate facts already identified. Do not substitute kind screenshots for real EKS evidence or an automated capture for a student's personal presentation.
 
-## Suggested presentation flow
+## Suggested final walkthrough
 
-1. Show the app, create a product, adjust inventory, demonstrate rejected overselling and retained ledger history.
-2. Show PostgreSQL tests and coverage, non-root/multistage Dockerfiles, and the successful exact-SHA workflow.
-3. Explain Trivy's real finding/remediation, then show both scanned/published SHA images.
-4. Show running Kubernetes/Helm/Ingress/HPA, Prometheus UP targets, Grafana request/latency charts and the two diagnosis/fix/verification records.
-5. Show Flux's fetched Git revision and Helm revision 2; explain why only one system owns a release.
-6. Show the real AWS plan/VPC/EKS proof once executed; finish with recorded authorized cleanup evidence.
+1. Show the real EKS app and create/edit/adjust a distinct demo product; explain rejected overselling and retained ledger.
+2. Show 44 PostgreSQL passes/97.67% coverage, Compose persistence, non-root runtimes, both Trivy reports and SHA-tagged GHCR images from the exact cited run.
+3. Show the real AWS plan/VPC/subnets/EKS/group, Ready workers, two application replicas, Helm revision, ingress and HPA metrics.
+4. Show real Prometheus targets and Grafana request/latency data. Explain and apply the genuine error-axis fix accurately.
+5. Distinguish automatic kind/Flux deployment from manually bootstrapped EKS and disclose the OIDC-policy blocker.
+6. Present or record personally, save the evidence and backup, then review/approve final cleanup and retain genuine destroy results.
 
-Do not submit the project as fully complete until these execution and evidence-format items are satisfied.
+[Demo script](FINAL-DEMO-SCRIPT.md) · [Capture checklist](FINAL-PRESENTATION-CHECKLIST.md) · [Instructor Q&A](INSTRUCTOR-QA.md).
+
+The original approved six-hour window ends **17:12:07 IST on 18 October 2026**. The US$10 target is not a hard cap; resources continue billing until deleted. Recovery did not reset the runtime window.

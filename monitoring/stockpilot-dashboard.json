@@ -138,7 +138,8 @@
             "drawStyle": "line",
             "lineWidth": 2,
             "fillOpacity": 12
-          }
+          },
+          "max": 1
         },
         "overrides": []
       },

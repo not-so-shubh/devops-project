@@ -1,5 +1,14 @@
 # AWS readiness, cost estimate and remaining execution
 
+## Subsequent executed AWS session
+
+The earlier preflight below is historical. The user later used AWS CloudShell in the assigned **Sydney (ap-southeast-2)** managed account, approved the reviewed plan/cost/runtime, provisioned the VPC and EKS, repaired the failed empty worker group with two m7i-flex.large workers, deployed StockPilot and supplied the inspected real EKS evidence. See [capture review](AWS-EKS-CAPTURE-REVIEW.md) and [runtime verification](AWS-EKS-RUNTIME-VERIFICATION.md).
+
+The approved six-hour window started 11:12:07 IST and ends 17:12:07 IST on 18 October 2026; the US$10 amount is a spending target, not a hard cutoff. No account upgrade has been performed. Final cleanup is not yet authorized or executed. OIDC listing was explicitly denied by organization policy and direct provider lookup also returned AccessDenied; the AWS Actions deployment job remains disabled. The earlier Mumbai assumptions and no-access statement below must not be used as current session status.
+
+## Historical preflight
+
+
 Reviewed 18 October 2026 IST against source `710d1460abc480d8b19e2b98f648a9a5c1c23339`. Intended region: **Mumbai, ap-south-1**. No AWS account identity has been established in this workspace. No real plan, apply, EKS deployment or destroy has occurred. The existing `terraform-plan.txt` is an earlier failed attempt, not successful AWS evidence.
 
 ## Executed readiness checks

@@ -2,7 +2,7 @@
   "source": "https://github.com/Nency-Ravaliya/devops-heros/blob/main/session21-python/GRADING.md",
   "reference_commit": "68be534ed67dd6de7ce520821e07e4dde137e26c",
   "updated": "2026-10-18",
-  "note": "VERIFIED means actual executed evidence was checked, not an instructor-awarded grade. There are 39 VERIFIED criteria (83 points), 2 READY FOR DEMO (4 points: student explanation/presentation), 4 BLOCKED (11 points: AWS lifecycle), and 1 EXCLUDED (2 points: official form). Prepared documentation is not personal performance or AWS execution. All rows identify the reviewed source; later main runs archive independent evidence/<source-sha> manifests.",
+  "note": "42 criteria covering 92 points are VERIFIED by actual technical execution; 2 criteria covering 4 points are READY FOR DEMO (student security explanation and live/accepted recording), 1 criterion covering 2 points is BLOCKED pending separately approved actual cleanup, and 1 criterion covering 2 points is EXCLUDED (official form). These are evidence-coverage totals, not awarded marks. Source-specific historical CI links remain identified per row. The latest complete green CI source above and real AWS EKS application source 84c18de are distinct. The EKS capture archive was supplied by the user and inspected; AWS Console/terminal screenshot formats and personal presentation still require completion. The optional GitHub Actions EKS deployment job remains disabled because AWS policy denies OIDC-provider access; manual EKS deployment is not automatic AWS deployment.",
   "criteria": [
     {
       "module": "M1",
@@ -129,7 +129,7 @@
       "implementation": ".gitignore and public GitHub main history",
       "verification": "GitHub repo metadata: public",
       "status": "EXCLUDED",
-      "actual_result": "Student action \u2014 excluded from this task. No official form opened, populated or submitted.",
+      "actual_result": "Student action — excluded from this task. No official form opened, populated or submitted.",
       "evidence": "https://github.com/not-so-shubh/devops-project",
       "blocker": "Student handles official form independently.",
       "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
@@ -374,12 +374,12 @@
       "points": 2,
       "id": "M7.3",
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
-      "verification": "terraform plan against approved AWS account",
-      "status": "BLOCKED",
-      "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
-      "evidence": "[AWS-READINESS.md](AWS-READINESS.md); [cloud-access-check.json](evidence/cloud-access-check.json); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
-      "blocker": "No authorized AWS identity/session in this workspace. Connect securely; verify permissions and nonempty plan; approve current cost/duration before apply and separately approve cleanup.",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "verification": "Real provider-backed Terraform plan in authorized AWS CloudShell, Sydney",
+      "status": "VERIFIED",
+      "actual_result": "Terraform 1.14.7 / locked AWS provider 6.69.1 produced 33 creates, zero changes and zero deletions; reviewed and approved before apply.",
+      "evidence": "[Actual sanitized plan](https://github.com/not-so-shubh/devops-project/blob/0d6856f41879c2d08ddec329b3765393cbecf7e6/docs/evidence/aws-sydney-plan.txt); [plan review](https://github.com/not-so-shubh/devops-project/blob/0d6856f41879c2d08ddec329b3765393cbecf7e6/docs/AWS-SYDNEY-PLAN-REVIEW.md)",
+      "blocker": "Execution verified; retain/capture literal terminal screenshot for the rubric's requested format.",
+      "source_sha": "952128e01e9afed9a0349faf7c7b58d04e5a96b5"
     },
     {
       "module": "M7",
@@ -387,12 +387,12 @@
       "points": 3,
       "id": "M7.4",
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
-      "verification": "apply; verify VPC and two public subnets",
-      "status": "BLOCKED",
-      "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
-      "evidence": "[AWS-READINESS.md](AWS-READINESS.md); [cloud-access-check.json](evidence/cloud-access-check.json); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
-      "blocker": "No authorized AWS identity/session in this workspace. Connect securely; verify permissions and nonempty plan; approve current cost/duration before apply and separately approve cleanup.",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "verification": "Approved Terraform apply plus independent describe-vpcs/subnets/route-tables outputs inspected from real capture archive",
+      "status": "VERIFIED",
+      "actual_result": "One VPC, four subnets across Sydney AZs a/b: two public subnets have active default IGW routes and two private subnets have active default NAT routes; expected external/internal load-balancer subnet tags present.",
+      "evidence": "[EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [aggregate capture provenance](evidence/aws-eks-capture-review.json); original vpc.json/subnets.json/routes.json retained in private capture archive",
+      "blocker": "Provisioning verified; AWS Console screenshot requested by rubric still pending.",
+      "source_sha": "952128e01e9afed9a0349faf7c7b58d04e5a96b5"
     },
     {
       "module": "M7",
@@ -400,12 +400,12 @@
       "points": 4,
       "id": "M7.5",
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
-      "verification": "apply; verify EKS and managed workers",
-      "status": "BLOCKED",
-      "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
-      "evidence": "[AWS-READINESS.md](AWS-READINESS.md); [cloud-access-check.json](evidence/cloud-access-check.json); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
-      "blocker": "No authorized AWS identity/session in this workspace. Connect securely; verify permissions and nonempty plan; approve current cost/duration before apply and separately approve cleanup.",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "verification": "Approved worker repair; describe-cluster, describe-nodegroup and kubectl get nodes outputs independently reviewed",
+      "status": "VERIFIED",
+      "actual_result": "Real EKS control plane ACTIVE at 1.35, managed worker group ACTIVE with no health issues, two m7i-flex.large workers Ready at v1.35.8. Private cluster access enabled and public operator access limited to one /32.",
+      "evidence": "[Runtime verification](AWS-EKS-RUNTIME-VERIFICATION.md); [capture review](AWS-EKS-CAPTURE-REVIEW.md); private cluster/node-group/Ready-node outputs from inspected archive",
+      "blocker": "Provisioning verified; AWS Console and literal Ready-node terminal screenshots remain capture-format follow-up.",
+      "source_sha": "952128e01e9afed9a0349faf7c7b58d04e5a96b5"
     },
     {
       "module": "M7",
@@ -413,12 +413,12 @@
       "points": 2,
       "id": "M7.6",
       "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
-      "verification": "authorized terraform destroy; check residual resources",
+      "verification": "Review exact destroy plan; separately approved cleanup; verify empty Terraform state and AWS residuals",
       "status": "BLOCKED",
-      "actual_result": "No AWS resources created; mock topology tests are explicitly not a real account-dependent plan/apply/destroy",
-      "evidence": "[AWS-READINESS.md](AWS-READINESS.md); [cloud-access-check.json](evidence/cloud-access-check.json); [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/terraform-ci-mock-test.txt); real AWS execution evidence absent",
-      "blocker": "No authorized AWS identity/session in this workspace. Connect securely; verify permissions and nonempty plan; approve current cost/duration before apply and separately approve cleanup.",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "actual_result": "Real infrastructure is running and evidence has been saved. No final destroy has been executed or approved. The earlier replacement of an empty failed worker group was repair, not final teardown.",
+      "evidence": "[Runtime/lifecycle boundary](AWS-EKS-RUNTIME-VERIFICATION.md); [cleanup procedure](DEPLOYMENT.md)",
+      "blocker": "Finish personal demo/evidence formats, retain backup, review teardown scope and obtain explicit final cleanup/data-loss approval.",
+      "source_sha": "952128e01e9afed9a0349faf7c7b58d04e5a96b5"
     },
     {
       "module": "M7",
@@ -439,12 +439,12 @@
       "points": 1,
       "id": "M8.1",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
-      "verification": "kubectl apply --dry-run=client; kubectl apply namespace",
+      "verification": "kubectl apply plus inspected namespace/workload runtime",
       "status": "VERIFIED",
-      "actual_result": "Namespace client dry-run and actual apply succeeded in the fully successful disposable kind run",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297)",
+      "actual_result": "Actual namespace creation succeeded in user CloudShell; real EKS workload outputs and running app confirm stockpilot namespace.",
+      "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
       "blocker": "",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
       "module": "M8",
@@ -452,12 +452,12 @@
       "points": 3,
       "id": "M8.2",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
-      "verification": "helm lint; helm template; verify-manifests.py",
+      "verification": "Green CI chart validation plus inspected real Helm release",
       "status": "VERIFIED",
-      "actual_result": "Helm lint/schema/template and cross-resource service wiring checks passed; local current render includes eleven resources including ConfigMap",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297)",
+      "actual_result": "Complete Helm chart passed lint/schema/service-wiring checks in the latest green CI; its real EKS release is deployed.",
+      "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
       "blocker": "",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
       "module": "M8",
@@ -465,12 +465,12 @@
       "points": 3,
       "id": "M8.3",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
-      "verification": "helm upgrade --install --wait --wait-for-jobs",
+      "verification": "Real CloudShell install transcript and inspected helm-releases/workload outputs",
       "status": "VERIFIED",
-      "actual_result": "Helm --wait --wait-for-jobs succeeded on real Kubernetes 1.35.8; migration completed and both application rollouts succeeded",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297)",
+      "actual_result": "Actual EKS helm upgrade --install --wait --wait-for-jobs completed successfully; release deployed at revision 1 and migration Job Completed.",
+      "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
       "blocker": "",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
       "module": "M8",
@@ -478,12 +478,12 @@
       "points": 2,
       "id": "M8.4",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
-      "verification": "kubectl rollout status; get deployments",
+      "verification": "Inspect actual deployment JSON and Ready workload output",
       "status": "VERIFIED",
-      "actual_result": "Actual cluster snapshot shows two ready backend and two ready frontend Pods; HPA later reports two replicas",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297)",
+      "actual_result": "Real EKS deployment JSON independently confirms two desired and two ready backend replicas and two desired and two ready frontend replicas, all using exact source SHA 84c18de.",
+      "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
       "blocker": "",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
       "module": "M8",
@@ -491,12 +491,12 @@
       "points": 2,
       "id": "M8.5",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
-      "verification": "kubectl get svc; test real request",
+      "verification": "Actual service output plus successful real EKS ingress browser tests",
       "status": "VERIFIED",
-      "actual_result": "Actual ClusterIP Services backend:8000 and frontend:8080 select running Pods; PostgreSQL headless Service also present",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297)",
+      "actual_result": "Real EKS backend and frontend ClusterIP Services expose 8000/8080; HTTP/browser requests and persistent CRUD passed.",
+      "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
       "blocker": "",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
       "module": "M8",
@@ -504,12 +504,12 @@
       "points": 2,
       "id": "M8.6",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
-      "verification": "curl and Playwright through Traefik Ingress",
+      "verification": "HTTP smoke plus four Playwright scenarios against the actual ingress origin",
       "status": "VERIFIED",
-      "actual_result": "Actual Traefik Ingress for localhost routed frontend HTML and API CRUD smoke successfully through controller port-forward",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297)",
+      "actual_result": "Real EKS HTTP load-balancer hostname routes / to frontend and /api to backend. Four existing desktop/mobile browser scenarios passed through that origin.",
+      "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
       "blocker": "",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
       "module": "M8",
@@ -517,12 +517,12 @@
       "points": 2,
       "id": "M8.7",
       "implementation": "helm/stockpilot/, k8s/namespace.yaml, monitoring/traefik-values.yaml",
-      "verification": "kubectl get pods; ready/running check",
+      "verification": "Inspect real EKS workloads.txt and deployment readiness",
       "status": "VERIFIED",
-      "actual_result": "All five application/database Pods were Running/Ready with zero restarts; the migration Job Pod appropriately completed",
-      "evidence": "[kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/kubernetes-ci.txt); [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/helm-release-ci.txt); [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/hpa-metrics-ci.txt); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297)",
+      "actual_result": "All five real application/database Pods Running and Ready; migration Pod correctly Completed, with zero application restarts at capture.",
+      "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
       "blocker": "",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
       "module": "M9",
@@ -530,12 +530,12 @@
       "points": 2,
       "id": "M9.1",
       "implementation": "backend/app/main.py, ServiceMonitor, monitoring/*",
-      "verification": "curl /metrics and Prometheus exposition tests",
+      "verification": "Actual EKS target health and parsed metric queries; historical raw exposition remains separately identified",
       "status": "VERIFIED",
-      "actual_result": "Running backend /metrics returned valid counter/histogram exposition; automated tests verify metric names and bounded route labels",
-      "evidence": "[metrics.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/metrics.txt); [prometheus-targets.png](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-targets.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-query.json); [grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/grafana-dashboard.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297)",
-      "blocker": "",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "actual_result": "Both backend /metrics targets were successfully scraped and queried by real Prometheus; application request counters and latency histograms populated the inspected Grafana dashboard.",
+      "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
+      "blocker": "Capture literal curl /metrics output screenshot for strict submission format.",
+      "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
       "module": "M9",
@@ -543,12 +543,12 @@
       "points": 3,
       "id": "M9.2",
       "implementation": "backend/app/main.py, ServiceMonitor, monitoring/*",
-      "verification": "verify-monitoring.py target UP and positive rate",
+      "verification": "Actual target API, target-page screenshot and positive PromQL rate",
       "status": "VERIFIED",
-      "actual_result": "Actual Prometheus Targets screenshot shows two StockPilot targets UP; independent query returns 1.4102 requests/second",
-      "evidence": "[metrics.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/metrics.txt); [prometheus-targets.png](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-targets.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-query.json); [grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/grafana-dashboard.png); [green run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297)",
+      "actual_result": "Real EKS Prometheus Targets screenshot inspected: two of two application targets UP. Capture summary query returned 1.7333333333333332 requests/second after controlled traffic.",
+      "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
       "blocker": "",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
       "module": "M9",
@@ -556,12 +556,12 @@
       "points": 2,
       "id": "M9.3",
       "implementation": "backend/app/main.py, ServiceMonitor, monitoring/*",
-      "verification": "Grafana authenticated access",
+      "verification": "Successful actual browser login and private original dashboard screenshot",
       "status": "VERIFIED",
-      "actual_result": "Authenticated Grafana login and dashboard capture succeeded; actual screenshot inspected, showing request rate, p95 latency, 5xx ratio and two UP targets",
-      "evidence": "[grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/grafana-dashboard.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-query.json); [Kubernetes job](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297/job/117508117389)",
+      "actual_result": "Real EKS Grafana browser login succeeded with the existing private secret; the authenticated Operations dashboard screenshot was inspected.",
+      "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
       "blocker": "",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
       "module": "M9",
@@ -569,12 +569,12 @@
       "points": 3,
       "id": "M9.4",
       "implementation": "backend/app/main.py, ServiceMonitor, monitoring/*",
-      "verification": "Grafana query and populated panel screenshot",
+      "verification": "Inspect actual Grafana screenshot and numeric datasource response",
       "status": "VERIFIED",
-      "actual_result": "Inspected actual Grafana screenshot: populated request-rate and latency charts; independent Prometheus query returned 1.4102 requests/second",
-      "evidence": "[grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/grafana-dashboard.png); [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-query.json); [Kubernetes job](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297/job/117508117389)",
-      "blocker": "",
-      "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
+      "actual_result": "Real EKS screenshot contains populated request-rate, p95 latency and two-UP-target charts, with zero server errors. An error-axis autoscale display issue was identified; the 0–100% limit fix requires refreshed capture after application.",
+      "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
+      "blocker": "Apply the display-axis fix and retain an updated screenshot.",
+      "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
       "module": "M10",
@@ -595,15 +595,15 @@
       "points": 3,
       "id": "M10.2",
       "implementation": "README.md and docs/DEMO.md",
-      "verification": "live/recorded commit \u2192 CI \u2192 configured deployment update",
+      "verification": "live/recorded commit → CI → configured deployment update",
       "status": "READY FOR DEMO",
-      "actual_result": "Actual source-SHA kind deployment and Flux revision-2 upgrade verified. Script/capture checklist/Q&A prepared; no accepted student recording or live presentation performed.",
-      "evidence": "[FINAL-DEMO-SCRIPT.md](FINAL-DEMO-SCRIPT.md); [FINAL-PRESENTATION-CHECKLIST.md](FINAL-PRESENTATION-CHECKLIST.md); [gitops-ci.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/gitops-ci.json); docs/DEMO.md",
-      "blocker": "Live or accepted recorded presentation required",
+      "actual_result": "Automatic exact-SHA kind deployment and Flux revision-2 reconciliation are verified in green CI. Real EKS manual deployment and browser verification are now executed. No personal live/accepted recorded presentation has occurred; EKS Actions deployment is disabled by an AWS OIDC-policy blocker.",
+      "evidence": "[FINAL-DEMO-SCRIPT.md](FINAL-DEMO-SCRIPT.md); [FINAL-PRESENTATION-CHECKLIST.md](FINAL-PRESENTATION-CHECKLIST.md); [gitops-ci.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/gitops-ci.json); docs/DEMO.md; [real EKS review](AWS-EKS-CAPTURE-REVIEW.md)",
+      "blocker": "Student must personally demonstrate or record a genuine commit → green CI → observed deployment update. Label kind automation and manual EKS deployment accurately; automated AWS deployment additionally needs permitted account configuration.",
       "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
     }
   ],
-  "verified_source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339",
-  "verified_run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39070661297",
-  "evidence_commit": "a4b8d43d2125d25fc54cc702f68e8361c684fc8b"
+  "verified_source_sha": "cf87b82b40151d0c21c2e03740451a1a9ed2c649",
+  "verified_run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39115536536",
+  "evidence_commit": "405b839cd453bff6086a33b1f3ce4e68c19b3384"
 }

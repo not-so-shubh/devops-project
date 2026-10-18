@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "reviewed_date": "2026-10-18",
+  "region": "ap-southeast-2",
+  "provenance": {
+    "origin": "User-executed AWS CloudShell capture; attached archive inspected by assistant",
+    "archive_sha256": "8d356ef8daae273b6869b16d2f5da3a1b149ab884269eb1a64bc0263a6ce2128",
+    "capture_started_utc": "2026-10-18T09:30:20Z",
+    "browser_capture_utc": "2026-10-18T09:31:41.494Z",
+    "capture_tool_source_sha": "cf87b82b40151d0c21c2e03740451a1a9ed2c649",
+    "application_source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0",
+    "capture_exit_code": 0,
+    "browser_runtime": "native Playwright 1.64.1 Chromium headless shell",
+    "kind_cluster": false
+  },
+  "network": {
+    "vpcs": 1,
+    "subnets": 4,
+    "public_subnets": 2,
+    "private_subnets": 2,
+    "availability_zones": 2,
+    "public_default_route": "active internet gateway",
+    "private_default_route": "active NAT gateway",
+    "subnet_role_tags": "external/internal load-balancer tags correct",
+    "public_classification": "Based on active IGW routes, not MapPublicIpOnLaunch"
+  },
+  "eks": {
+    "cluster_status": "ACTIVE",
+    "control_plane_version": "1.35",
+    "managed_node_group_status": "ACTIVE",
+    "managed_node_group_issues": 0,
+    "instance_type": "m7i-flex.large",
+    "desired_workers": 2,
+    "ready_workers": 2,
+    "private_api_access": true,
+    "public_operator_allowlist": "one /32"
+  },
+  "application": {
+    "backend_ready": 2,
+    "frontend_ready": 2,
+    "postgres_ready": 1,
+    "database_capacity": "5Gi",
+    "database_storage_class": "gp3",
+    "database_pvc_status": "Bound",
+    "migration": "Completed",
+    "helm_status": "deployed",
+    "helm_revision": 1,
+    "images_match_application_source": true,
+    "browser_tests_passed": 4,
+    "desktop_css_viewport_width": 1440,
+    "mobile_css_viewport_width": 390,
+    "observed_page_horizontal_overflow": false,
+    "expected_409": "Controlled insufficient-stock rejection"
+  },
+  "monitoring": {
+    "targets_up": 2,
+    "grafana_authenticated": true,
+    "populated_numeric_data": true,
+    "request_rate_per_second": 1.7333333333333332,
+    "panels": 4,
+    "visual_review": "Application desktop/mobile/dialog, Prometheus Targets and populated Grafana screenshots inspected",
+    "display_follow_up": "Set error-ratio panel max=1 to display 0–100%, then refresh capture"
+  },
+  "files": [
+    {
+      "path": "browser-runtime.txt",
+      "bytes": 7,
+      "sha256": "c54b6fd77bc699a17876ed9b46dcf770b66d0bd01380e25cd620ec82adf9c736",
+      "public_copy": null
+    },
+    {
+      "path": "eks-nodegroup.json",
+      "bytes": 237,
+      "sha256": "567fe4cea3acfeac1bffe9459958b9ab546c6d51a4be5f62dfc4eed79647aa45",
+      "public_copy": null
+    },
+    {
+      "path": "deployments.json",
+      "bytes": 17399,
+      "sha256": "eddd647cddadb57a76c5475c7cd414cc953331d0d74e1bf5e801d0d0213440c0",
+      "public_copy": null
+    },
+    {
+      "path": "resource-metrics.txt",
+      "bytes": 414,
+      "sha256": "59264bf15da41b678550aefede1b080c28f5332123d272e15a2bef90fe880278",
+      "public_copy": null
+    },
+    {
+      "path": "nodes.txt",
+      "bytes": 645,
+      "sha256": "55ebe290a97fc08afb494964d001dc33e2ffcd48ab8c2cd499d3e3ba54fe695e",
+      "public_copy": null
+    },
+    {
+      "path": "vpc.json",
+      "bytes": 1267,
+      "sha256": "05118b6fe60a6dc886e45875fbf8a046fa34c781b14d2420335883f64c7e74a2",
+      "public_copy": null
+    },
+    {
+      "path": "subnets.json",
+      "bytes": 6938,
+      "sha256": "f94a2b19fa9485bf825d7a8faede4da7f72a9dd95b8864512d21846b1c816543",
+      "public_copy": null
+    },
+    {
+      "path": "routes.json",
+      "bytes": 4642,
+      "sha256": "c381552bf2621094fb20496848f290341e893aebd6efa343f28b5a9469888ebb",
+      "public_copy": null
+    },
+    {
+      "path": "capture-result.txt",
+      "bytes": 20,
+      "sha256": "a8f29e2fab8a5fe9b4a3e107a36f8ac173d8a99da61e7c72541adabda028ce5b",
+      "public_copy": null
+    },
+    {
+      "path": "capture-tool-source.txt",
+      "bytes": 41,
+      "sha256": "dec16e05e860b69e4fe4c682aaf9194b3878e196f4362cfced22538b1f6096be",
+      "public_copy": null
+    },
+    {
+      "path": "workloads.txt",
+      "bytes": 2807,
+      "sha256": "efc3267f23d23a9499a3cd260468673890e18d18f9743658d42a371afaaf9df4",
+      "public_copy": null
+    },
+    {
+      "path": "helm-releases.json",
+      "bytes": 760,
+      "sha256": "97852c3456a7222757c0700c165f493786fe50226195f3508faa5dd474a44b88",
+      "public_copy": null
+    },
+    {
+      "path": "captured-at.txt",
+      "bytes": 21,
+      "sha256": "9ac84e09889e20348cf4a09504e564e967360c7e47049e6f792c1507918f78e9",
+      "public_copy": null
+    },
+    {
+      "path": "eks-cluster.json",
+      "bytes": 542,
+      "sha256": "be1dd1a30865f096f4a62f6e4ef440e560a6f49574bd3acfba35378d6f222148",
+      "public_copy": null
+    },
+    {
+      "path": "browser/frontend-mobile.png",
+      "bytes": 114581,
+      "sha256": "22aad87e3be3d5a898b0b9057cff859a9e2626f3479aaf1fcc9164d84b894167",
+      "public_copy": "docs/evidence/eks-frontend-mobile.png"
+    },
+    {
+      "path": "browser/create-dialog-desktop.png",
+      "bytes": 204948,
+      "sha256": "f68343c66d782c51f0c0d80015d74305ac469fd366ec72c86163d0645531ce57",
+      "public_copy": null
+    },
+    {
+      "path": "browser/eks-prometheus-targets.png",
+      "bytes": 68464,
+      "sha256": "1b5f467d1e38b9a0b899e29a843d313b91301617edf88f2b56c84f7b8dde3f04",
+      "public_copy": null
+    },
+    {
+      "path": "browser/eks-browser-summary.json",
+      "bytes": 348,
+      "sha256": "d6d6adbf06b56e0556972a3317fa0699f5f02fefed3e04d35357db72e28796d5",
+      "public_copy": null
+    },
+    {
+      "path": "browser/frontend-desktop.png",
+      "bytes": 185383,
+      "sha256": "97de01209a0894c411bc25372eff2e64f3a4160e19a9fc89ecc7f9f556d0781b",
+      "public_copy": "docs/evidence/eks-frontend-desktop.png"
+    },
+    {
+      "path": "browser/create-dialog-mobile.png",
+      "bytes": 115911,
+      "sha256": "b45d19e1282f789e28cd56b55c5666f1100c71a5c49e06e91a8f912258115fe4",
+      "public_copy": null
+    },
+    {
+      "path": "browser/eks-grafana-dashboard.png",
+      "bytes": 71439,
+      "sha256": "a2b0da92c90de5bc89efef756000f25a20a54ce091b1cda85d6ab4484b466f2d",
+      "public_copy": null
+    },
+    {
+      "path": "playwright-report/index.html",
+      "bytes": 531064,
+      "sha256": "8eabcb76d9c25a0958ecd010c0a0349750e069d87ad66b19968638b5888e8fb1",
+      "public_copy": null
+    },
+    {
+      "path": "test-results/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "public_copy": null
+    }
+  ],
+  "limits": [
+    "Private AWS identifiers omitted from this aggregate; original archive retained privately",
+    "AWS Console screenshots and literal terminal-format captures still pending",
+    "Personal student explanation and live/accepted recording not performed",
+    "OIDC-provider access denied by account policy; AWS Actions deployment disabled",
+    "Final Terraform destroy not approved or executed"
+  ]
+}

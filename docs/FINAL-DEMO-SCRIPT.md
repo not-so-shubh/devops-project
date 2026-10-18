@@ -1,6 +1,16 @@
 # StockPilot: final demonstration script
 
-Target: 10–15 minutes of presentation, with pipeline waiting time edited transparently in an accepted recording or filled by architecture/security discussion. A complete pipeline takes longer than the speaking time: do not promise a 15-minute uninterrupted run including AWS provisioning. No accepted student recording has been produced in this session. All existing cluster screenshots are from disposable **kind**, not AWS EKS.
+## Real AWS status — 18 October 2026
+
+Real StockPilot EKS deployment in **Sydney (ap-southeast-2)** is now verified: two Ready workers, two backend and two frontend replicas, a Bound 5 GiB gp3 database, passed HTTP smoke and all four desktop/mobile browser scenarios. Real Prometheus targets and an authenticated populated Grafana dashboard were captured and visually inspected. [Reviewed EKS evidence](AWS-EKS-CAPTURE-REVIEW.md) distinguishes deployed application source `84c18de84538a74a8bab92b89dc72d6e89a393d0` from capture-tool source `cf87b82b40151d0c21c2e03740451a1a9ed2c649`.
+
+The [latest fully reviewed CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536) is green, including tests, scans, publication and real kind/Flux validation. AWS Actions deployment remains disabled/skipped: organization policy denied OIDC listing and a targeted provider lookup also failed. Manual EKS deployment is verified; automatic GitHub-to-EKS deployment is not.
+
+The audit supports **92 technical points**, with **4 student explanation/demo points**, **2 cleanup points** and **2 excluded form points** outstanding. Literal AWS Console/terminal screenshot formats also require collection. Final teardown needs separate reviewed approval. The original approved runtime ends **17:12:07 IST on 18 October 2026**; recovery did not reset that window.
+
+The genuine dashboard follow-up is to fix the HTTP server-error ratio axis to 0–100%. Its original all-zero chart autoscaled to 10,000%. Show the actual Git diff and CI run, then apply the ConfigMap and observe the chart change. Label this as a manual EKS configuration update while the OIDC-based AWS Actions job remains blocked; use verified automatic kind/Flux evidence for that separate environment. Your own live/accepted recorded presentation is still required.
+
+Target: 10–15 minutes of presentation, with pipeline waiting time edited transparently in an accepted recording or filled by architecture/security discussion. A complete pipeline takes longer than the speaking time: do not promise a 15-minute uninterrupted run including AWS provisioning. No accepted student recording has been produced in this session. The historical screenshots are from disposable kind; the newly inspected real EKS captures are identified separately in [AWS-EKS-CAPTURE-REVIEW.md](AWS-EKS-CAPTURE-REVIEW.md).
 
 Use [the presentation checklist](FINAL-PRESENTATION-CHECKLIST.md) to prepare. Read [Trivy explanation](TRIVY-EXPLANATION.md) and [instructor Q&A](INSTRUCTOR-QA.md). The official form is **Student action — excluded from this task.**
 
@@ -17,7 +27,7 @@ Use [the presentation checklist](FINAL-PRESENTATION-CHECKLIST.md) to prepare. Re
 | 6:00–7:30 | Follow Actions quality→Compose→build/scans→publish→cluster validation. Explain the original blocked Debian scan and maintained-runtime fix. | Use the actual new run, not a prior green screenshot. Show both reports and both SHA image tags. During build waiting time discuss tools/security rather than pretending the pipeline already finished. |
 | 7:30–9:00 | Show Pods, Services, Helm, Ingress and HPA. Compare the image before/after deployment and reload the changed quick guide. | Commands below; require a successful deployment job for EKS. For the verified kind fallback, identify the cluster as disposable CI Kubernetes; source, tag and Flux revision must match. |
 | 9:00–10:00 | Show Prometheus UP targets and a populated Grafana chart after safe traffic. | Request counter, rate and p95 latency; HPA uses metrics-server CPU, not this Prometheus dashboard. Only claim scale-out if observed. |
-| 10:00–11:00 | Explain actual Terraform architecture and show real AWS evidence only if captured. | VPC ID, two public subnets in separate AZs, private workers, EKS ACTIVE, node group ACTIVE and Ready nodes. Without AWS access say explicitly that these 11 rubric points remain blocked. |
+| 10:00–11:00 | Explain actual Terraform architecture and show real AWS evidence only if captured. | VPC ID, two public subnets in separate AZs, private workers, EKS ACTIVE, node group ACTIVE and Ready nodes. The real plan, VPC and worker-group execution are now verified. Show the actual private console/CLI evidence; final destroy is still pending separate approval. |
 | 11:00–12:00 | Explain controlled troubleshooting and cleanup. | Actual selector/EndpointSlice and image-pull investigation; repaired endpoint counts and Pod logs. Capture cloud/demo evidence first; authorize teardown separately; show actual destroy and residual checks only after execution. |
 
 ## Commit and deployment sequence

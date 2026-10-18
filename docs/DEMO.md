@@ -1,5 +1,15 @@
 # StockPilot final demonstration
 
+## Real AWS status — 18 October 2026
+
+Real StockPilot EKS deployment in **Sydney (ap-southeast-2)** is now verified: two Ready workers, two backend and two frontend replicas, a Bound 5 GiB gp3 database, passed HTTP smoke and all four desktop/mobile browser scenarios. Real Prometheus targets and an authenticated populated Grafana dashboard were captured and visually inspected. [Reviewed EKS evidence](AWS-EKS-CAPTURE-REVIEW.md) distinguishes deployed application source `84c18de84538a74a8bab92b89dc72d6e89a393d0` from capture-tool source `cf87b82b40151d0c21c2e03740451a1a9ed2c649`.
+
+The [latest fully reviewed CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536) is green, including tests, scans, publication and real kind/Flux validation. AWS Actions deployment remains disabled/skipped: organization policy denied OIDC listing and a targeted provider lookup also failed. Manual EKS deployment is verified; automatic GitHub-to-EKS deployment is not.
+
+The audit supports **92 technical points**, with **4 student explanation/demo points**, **2 cleanup points** and **2 excluded form points** outstanding. Literal AWS Console/terminal screenshot formats also require collection. Final teardown needs separate reviewed approval. The original approved runtime ends **17:12:07 IST on 18 October 2026**; recovery did not reset that window.
+
+For a live remote walkthrough, show the real EKS environment and its saved evidence, then accurately distinguish automatic kind validation from the account-policy-blocked AWS deployment job. Do not present a manual Helm command as a successful AWS Actions deploy.
+
 See [FINAL-DEMO-SCRIPT.md](FINAL-DEMO-SCRIPT.md) for the current preparation, evidence boundaries and remaining actions. Official form submission: **Student action — excluded from this task.**
 
 Opening (20 seconds): “StockPilot helps a small business know what is on the shelf and why stock changed. I chose inventory operations rather than copying TaskBoard. The API uses PostgreSQL transactions, and the same application travels through tests, containers, a security gate, immutable registry images, Kubernetes, and monitoring.” Disclose implementation assistance according to your institution's policy and be ready to explain the submitted code yourself.

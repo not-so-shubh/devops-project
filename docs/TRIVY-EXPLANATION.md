@@ -1,5 +1,14 @@
 # Explain StockPilot's image security gate
 
+## Latest separately verified scan — 18 October 2026
+
+Source `cf87b82b40151d0c21c2e03740451a1a9ed2c649` completed [run 39115536536](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536) successfully. Its actual [backend](https://github.com/not-so-shubh/devops-project/blob/405b839cd453bff6086a33b1f3ce4e68c19b3384/docs/evidence/trivy-backend.json) and [frontend](https://github.com/not-so-shubh/devops-project/blob/405b839cd453bff6086a33b1f3ce4e68c19b3384/docs/evidence/trivy-frontend.json) reports were independently inspected: zero HIGH/CRITICAL findings at the unchanged blocking threshold. The separate [full frontend lockfile audit](https://github.com/not-so-shubh/devops-project/blob/405b839cd453bff6086a33b1f3ce4e68c19b3384/docs/evidence/frontend-sca.json) covered 124 dependencies, including development/build dependencies, with zero reported vulnerabilities. A filtered image report does not claim absence of every lower-severity issue or every possible application defect.
+
+Required short explanation: Trivy scanned the backend and frontend image OS packages and supported application dependencies for known vulnerabilities. Both current reports contained no HIGH or CRITICAL findings, so the security gate allowed promotion. This is a scan-time inventory/database result, not a guarantee against logic bugs, misconfiguration or future CVEs.
+
+The historical finding/remediation explanation below remains source-pinned. Personal student understanding still requires the student's own explanation.
+
+
 Reviewed source: `710d1460abc480d8b19e2b98f648a9a5c1c23339`; [successful run 39070661297](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297). This is preparation for M6.3; the student must demonstrate understanding personally.
 
 ## Subsequent rebuild: frontend libexpat finding
