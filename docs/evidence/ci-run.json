@@ -1,0 +1,86 @@
+{
+  "source_sha": "9d09805143d88a97b9ce8f1bff8274a51dd9e702",
+  "run_id": "39116891737",
+  "run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39116891737",
+  "files": [
+    "bandit.json",
+    "cluster-events-ci.txt",
+    "cluster-health-ci.json",
+    "cluster-pods-ci.txt",
+    "cluster-services-ci.txt",
+    "compose-ci.log",
+    "compose-ci.txt",
+    "compose-smoke.txt",
+    "create-dialog-desktop.png",
+    "create-dialog-mobile.png",
+    "frontend-desktop.png",
+    "frontend-mobile.png",
+    "frontend-sca.json",
+    "ghcr-backend.json",
+    "ghcr-frontend.json",
+    "grafana-errors-ci.log",
+    "metrics.txt",
+    "migration-ci.log",
+    "persistence-ci.txt",
+    "pytest-postgres.txt",
+    "secrets.json",
+    "terraform-ci-mock-test.txt",
+    "terraform-ci-validate.txt",
+    "trivy-backend.json",
+    "trivy-frontend.json"
+  ],
+  "artifact_origins": {
+    "trivy-frontend.json": "trivy-frontend/trivy-frontend.json",
+    "trivy-backend.json": "trivy-backend/trivy-backend.json",
+    "terraform-ci-mock-test.txt": "infrastructure-evidence/terraform-ci-mock-test.txt",
+    "terraform-ci-validate.txt": "infrastructure-evidence/terraform-ci-validate.txt",
+    "ghcr-backend.json": "registry-backend-evidence/ghcr-backend.json",
+    "ghcr-frontend.json": "registry-frontend-evidence/ghcr-frontend.json",
+    "cluster-pods-ci.txt": "kubernetes-monitoring-evidence/docs/evidence/cluster-pods-ci.txt",
+    "cluster-services-ci.txt": "kubernetes-monitoring-evidence/docs/evidence/cluster-services-ci.txt",
+    "cluster-events-ci.txt": "kubernetes-monitoring-evidence/docs/evidence/cluster-events-ci.txt",
+    "cluster-health-ci.json": "kubernetes-monitoring-evidence/docs/evidence/cluster-health-ci.json",
+    "grafana-errors-ci.log": "kubernetes-monitoring-evidence/docs/evidence/grafana-errors-ci.log",
+    "migration-ci.log": "kubernetes-monitoring-evidence/docs/evidence/migration-ci.log",
+    "create-dialog-mobile.png": "compose-browser-evidence/docs/evidence/create-dialog-mobile.png",
+    "compose-smoke.txt": "compose-browser-evidence/docs/evidence/compose-smoke.txt",
+    "compose-ci.txt": "compose-browser-evidence/docs/evidence/compose-ci.txt",
+    "persistence-ci.txt": "compose-browser-evidence/docs/evidence/persistence-ci.txt",
+    "metrics.txt": "compose-browser-evidence/docs/evidence/metrics.txt",
+    "compose-ci.log": "compose-browser-evidence/docs/evidence/compose-ci.log",
+    "create-dialog-desktop.png": "compose-browser-evidence/docs/evidence/create-dialog-desktop.png",
+    "frontend-desktop.png": "compose-browser-evidence/docs/evidence/frontend-desktop.png",
+    "frontend-mobile.png": "compose-browser-evidence/docs/evidence/frontend-mobile.png",
+    "secrets.json": "quality-evidence/docs/evidence/secrets.json",
+    "frontend-sca.json": "quality-evidence/docs/evidence/frontend-sca.json",
+    "pytest-postgres.txt": "quality-evidence/docs/evidence/pytest-postgres.txt",
+    "bandit.json": "quality-evidence/docs/evidence/bandit.json"
+  },
+  "scope": "Actual CI evidence; consult job results for success/failure. AWS apply/destroy not performed.",
+  "job_results": {
+    "quality": {
+      "result": "success",
+      "outputs": {}
+    },
+    "infrastructure": {
+      "result": "success",
+      "outputs": {}
+    },
+    "compose": {
+      "result": "success",
+      "outputs": {}
+    },
+    "build-security": {
+      "result": "success",
+      "outputs": {}
+    },
+    "publish": {
+      "result": "success",
+      "outputs": {}
+    },
+    "kubernetes": {
+      "result": "cancelled",
+      "outputs": {}
+    }
+  }
+}
