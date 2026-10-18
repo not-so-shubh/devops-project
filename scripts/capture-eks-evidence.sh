@@ -5,8 +5,24 @@ umask 077
 export AWS_REGION=ap-southeast-2 AWS_DEFAULT_REGION=ap-southeast-2 AWS_PAGER=""
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$PROJECT_DIR"
-for tool in aws kubectl helm docker python3; do command -v "$tool" >/dev/null; done
-docker info >/dev/null
+for tool in aws kubectl helm python3; do command -v "$tool" >/dev/null; done
+CAPTURE_RUNTIME="${CAPTURE_RUNTIME:-native}"
+case "$CAPTURE_RUNTIME" in
+  native)
+    command -v node >/dev/null
+    command -v npm >/dev/null
+    node -e 'if (Number(process.versions.node.split(".")[0]) < 20) process.exit(1)'
+    ;;
+  docker)
+    command -v docker >/dev/null
+    docker info >/dev/null
+    if test "$(docker info --format '{{.Driver}}' 2>/dev/null)" = vfs; then
+      echo 'Use CAPTURE_RUNTIME=native: vfs deep copies can exhaust CloudShell disk.' >&2
+      exit 1
+    fi
+    ;;
+  *) echo 'CAPTURE_RUNTIME must be native or docker' >&2; exit 1 ;;
+esac
 test -s "$HOME/stockpilot-app-url.txt"
 BASE_URL="$(cat "$HOME/stockpilot-app-url.txt")"
 export BASE_URL
@@ -79,17 +95,29 @@ for port in 9090 3001; do
   done
   curl -fsS "http://127.0.0.1:$port/" >/dev/null
 done
-PLAYWRIGHT_IMAGE="mcr.microsoft.com/playwright:v1.64.1-noble@sha256:7852dc5a7d72f5fe458a597d690f6c42fbc8e9e26ddfa95f8e6ef552558d9bbf"
-docker pull "$PLAYWRIGHT_IMAGE"
+printf '%s\n' "$CAPTURE_RUNTIME" > "$EVIDENCE_DIR/browser-runtime.txt"
+if test "$CAPTURE_RUNTIME" = native; then
+  export npm_config_cache="$WORK_DIR/npm-cache"
+  export PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-/tmp/stockpilot-playwright-browsers}"
+  run_browser() { (cd "$WORK_DIR/e2e"; "$@"); }
+  run_browser npm ci --ignore-scripts
+  run_browser npx playwright install --only-shell chromium
+else
+  PLAYWRIGHT_IMAGE="mcr.microsoft.com/playwright:v1.64.1-noble@sha256:7852dc5a7d72f5fe458a597d690f6c42fbc8e9e26ddfa95f8e6ef552558d9bbf"
+  docker pull "$PLAYWRIGHT_IMAGE"
+  run_browser() {
+    docker run --rm --init -i --network host --shm-size=512m \
+      --memory=2g --cpus=1 --user "$(id -u):$(id -g)" \
+      --cap-drop=ALL --security-opt=no-new-privileges \
+      -e HOME=/tmp -e BASE_URL -e APP_SOURCE_SHA \
+      -v "$WORK_DIR:/work" -w /work/e2e "$PLAYWRIGHT_IMAGE" "$@"
+  }
+  run_browser npm ci --ignore-scripts < /dev/null
+fi
+run_browser node --input-type=module -e \
+  'import {chromium} from "@playwright/test"; const b=await chromium.launch(); await b.close(); console.log("PASS: browser launch preflight");' < /dev/null
 REQUESTS=60 bash scripts/load-test.sh
-run_browser() {
-  docker run --rm --init -i --network host --shm-size=512m \
-  --memory=2g --cpus=1 --user "$(id -u):$(id -g)" \
-  --cap-drop=ALL --security-opt=no-new-privileges \
-  -e HOME=/tmp -e BASE_URL -e APP_SOURCE_SHA \
-  -v "$WORK_DIR:/work" -w /work/e2e "$PLAYWRIGHT_IMAGE" "$@"
-}
-run_browser bash -ceu 'npm ci --ignore-scripts; npx playwright test' < /dev/null
+run_browser npx playwright test < /dev/null
 # Credentials travel only over stdin to the monitoring capture process.
 python3 - <<'PY' | run_browser node ../scripts/capture-eks-browser.mjs
 import base64, json, subprocess
@@ -103,3 +131,4 @@ print(json.dumps({
 }))
 PY
 echo "PASS: real EKS browser tests and monitoring captures completed."
+
