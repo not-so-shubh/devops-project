@@ -59,7 +59,7 @@
     "request_rate_per_second": 1.7333333333333332,
     "panels": 4,
     "visual_review": "Application desktop/mobile/dialog, Prometheus Targets and populated Grafana screenshots inspected",
-    "display_follow_up": "Set error-ratio panel max=1 to display 0–100%, then refresh capture"
+    "display_follow_up": "Completed: refreshed live dashboard API confirms max=1 and the inspected original screenshot displays 0–100%. Original capture metrics and hashes retained above."
   },
   "files": [
     {
@@ -207,5 +207,163 @@
     "Personal student explanation and live/accepted recording not performed",
     "OIDC-provider access denied by account policy; AWS Actions deployment disabled",
     "Final Terraform destroy not approved or executed"
-  ]
+  ],
+  "refreshed_capture": {
+    "archive_sha256": "825d31a399760031c5054cb7076c8ef0748ba827492ad50311fefa9bbbd330eb",
+    "capture_started_utc": "2026-10-18T09:57:29Z",
+    "browser_capture_utc": "2026-10-18T09:59:03.108Z",
+    "capture_tool_source_sha": "13d2bf1481ef498670637914441452367d996aa3",
+    "application_source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0",
+    "capture_exit_code": 0,
+    "browser_test_receipt": "passed; no failed tests",
+    "prometheus_targets_up": 2,
+    "grafana_authenticated": true,
+    "grafana_query_has_numeric_data": true,
+    "request_rate_per_second": 2.1333333333333333,
+    "error_ratio_axis_max": 1,
+    "error_ratio_axis_display": "0–100%",
+    "visual_review": "Original refreshed Grafana PNG inspected: four populated panels, zero server-error rate, axis 0–100%, two backend targets UP.",
+    "publication_scope": "Identifier-free aggregate and hashes only; refreshed screenshots and raw AWS evidence remain private.",
+    "files": [
+      {
+        "path": "browser/create-dialog-mobile.png",
+        "bytes": 115277,
+        "sha256": "a1b3481d986839611d59c43928e6872f2b346aa8f018abc182bbe72c8405b50d",
+        "public_copy": null
+      },
+      {
+        "path": "browser/eks-grafana-dashboard.png",
+        "bytes": 68059,
+        "sha256": "e729d2aabe61dceb620713bfdfdde053292e06ca6bb0b496b9e958835a444930",
+        "public_copy": null
+      },
+      {
+        "path": "browser/frontend-desktop.png",
+        "bytes": 188290,
+        "sha256": "a9bf49b2287a0ef897cd77d47076bd8dc64e960a1d322c6c2c85a7a54c4853fa",
+        "public_copy": null
+      },
+      {
+        "path": "browser/eks-browser-summary.json",
+        "bytes": 419,
+        "sha256": "5c772dc7e102464b5548a10c8cf8409a6b9e26c7502393be9ab3da561749b003",
+        "public_copy": null
+      },
+      {
+        "path": "browser/eks-prometheus-targets.png",
+        "bytes": 67931,
+        "sha256": "1d06051a0f83a91053a83f0012ed702be9011c2d6866c1e185baaff8d76e5873",
+        "public_copy": null
+      },
+      {
+        "path": "browser/frontend-mobile.png",
+        "bytes": 113698,
+        "sha256": "ea5a6c1c0b3cb70b47b048b22d3c14a9df4d63b150d19eb56664c97546300af5",
+        "public_copy": null
+      },
+      {
+        "path": "browser/create-dialog-desktop.png",
+        "bytes": 204873,
+        "sha256": "395ceef04571170ebb6856801ca6802a19a6942ec97afb6924a47f89c3f6b97f",
+        "public_copy": null
+      },
+      {
+        "path": "deployments.json",
+        "bytes": 17399,
+        "sha256": "eddd647cddadb57a76c5475c7cd414cc953331d0d74e1bf5e801d0d0213440c0",
+        "public_copy": null
+      },
+      {
+        "path": "nodes.txt",
+        "bytes": 645,
+        "sha256": "97bc8927d9d54f6aa270ea46626e09013223bbf9dc2cb5367c548ec8d27aa2f6",
+        "public_copy": null
+      },
+      {
+        "path": "captured-at.txt",
+        "bytes": 21,
+        "sha256": "f71bc07678dead8f9b20eb37987b0a87b9b89b9d9ad58f882806e3832ac9bd5c",
+        "public_copy": null
+      },
+      {
+        "path": "vpc.json",
+        "bytes": 1267,
+        "sha256": "05118b6fe60a6dc886e45875fbf8a046fa34c781b14d2420335883f64c7e74a2",
+        "public_copy": null
+      },
+      {
+        "path": "test-results/.last-run.json",
+        "bytes": 45,
+        "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+        "public_copy": null
+      },
+      {
+        "path": "routes.json",
+        "bytes": 4642,
+        "sha256": "c381552bf2621094fb20496848f290341e893aebd6efa343f28b5a9469888ebb",
+        "public_copy": null
+      },
+      {
+        "path": "playwright-report/index.html",
+        "bytes": 531104,
+        "sha256": "014e12476cafeaec8e2e96f5d7c5c87348fa1ac90cad308fb751dd0b78920fff",
+        "public_copy": null
+      },
+      {
+        "path": "helm-releases.json",
+        "bytes": 760,
+        "sha256": "97852c3456a7222757c0700c165f493786fe50226195f3508faa5dd474a44b88",
+        "public_copy": null
+      },
+      {
+        "path": "capture-tool-source.txt",
+        "bytes": 41,
+        "sha256": "6ced5fbf7c9701b844d0eacda0c13c5c7f3bff8d1ef4b1518507a7141807af5d",
+        "public_copy": null
+      },
+      {
+        "path": "eks-cluster.json",
+        "bytes": 543,
+        "sha256": "85723f8673756c66dde4c78f183d25cc73734a298639b942363a4a66d186a7c7",
+        "public_copy": null
+      },
+      {
+        "path": "eks-nodegroup.json",
+        "bytes": 237,
+        "sha256": "567fe4cea3acfeac1bffe9459958b9ab546c6d51a4be5f62dfc4eed79647aa45",
+        "public_copy": null
+      },
+      {
+        "path": "resource-metrics.txt",
+        "bytes": 414,
+        "sha256": "e1fa76b75e16e7eb5f82b48215599696a6852465f54615eb049fa9536d6b9d8f",
+        "public_copy": null
+      },
+      {
+        "path": "subnets.json",
+        "bytes": 6938,
+        "sha256": "f94a2b19fa9485bf825d7a8faede4da7f72a9dd95b8864512d21846b1c816543",
+        "public_copy": null
+      },
+      {
+        "path": "workloads.txt",
+        "bytes": 2822,
+        "sha256": "b3b3cf64dfcc44dabbd7af15efdd5ce9f60fb6617dfa0ea0cfde55139522cafc",
+        "public_copy": null
+      },
+      {
+        "path": "capture-result.txt",
+        "bytes": 20,
+        "sha256": "a8f29e2fab8a5fe9b4a3e107a36f8ac173d8a99da61e7c72541adabda028ce5b",
+        "public_copy": null
+      },
+      {
+        "path": "browser-runtime.txt",
+        "bytes": 7,
+        "sha256": "c54b6fd77bc699a17876ed9b46dcf770b66d0bd01380e25cd620ec82adf9c736",
+        "public_copy": null
+      }
+    ]
+  },
+  "lifecycle_as_of": "Historical capture from 18 October 2026; current resource status and final cleanup have not been independently established."
 }
