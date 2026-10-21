@@ -54,6 +54,7 @@ jobs:
           ruff check backend scripts
           ruff format --check backend scripts
           python scripts/verify-evidence-redaction.py
+          python scripts/verify-cleanup-scope.py
       - name: SAST on application code
         run: bandit -r backend/app -ll -f json -o docs/evidence/bandit.json
       - name: Scan repository for secrets (blocking)
