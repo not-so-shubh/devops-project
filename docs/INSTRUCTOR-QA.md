@@ -1,6 +1,6 @@
 # StockPilot instructor questions
 
-Use these to rehearse your own understanding. Answers describe the implemented project and distinguish tested kind behavior from the unexecuted AWS lifecycle.
+Use these to rehearse your own understanding. Answers describe the implemented project and distinguish automatic kind/Flux validation from executed manual EKS deployment and the completed approved AWS cleanup.
 
 | Question | Concise answer |
 |---|---|
@@ -42,7 +42,7 @@ Use these to rehearse your own understanding. Answers describe the implemented p
 | How do you debug an empty Service? | Compare selector and Pod labels, inspect EndpointSlices and Pod readiness, fix the actual mismatch, then verify endpoints and HTTP behavior. |
 | How do you debug ImagePullBackOff? | Read Pod events, verify repository/tag/access and architecture, repair the cause and observe a Ready Pod. Deleting the Pod alone does not fix it. |
 | How do you prevent surprise AWS costs? | Agree on account, rates, duration and budget before provisioning; save evidence, separately authorize teardown, remove LBs/PVCs, destroy Terraform resources and check for residual costs. |
-| What remains before full completion? | Real AWS plan/VPC/EKS and runtime have executed evidence. The audit now covers 92 technical points; two cleanup points still need separate approval and actual destroy, four points need the student's explanation/presentation, and two form points are intentionally excluded. Literal Console/terminal captures remain format follow-up. Automatic AWS Actions deployment is separately blocked by account OIDC policy. These are evidence categories, not awarded marks. |
+| What remains before full completion? | Real AWS plan/VPC/EKS/runtime and separately approved final cleanup have executed proof. The audit covers 94 technical points; four points require the student's explanation/presentation and two form points are excluded. Supply saved genuine Console/terminal formats. Automatic EKS Actions deployment is separately blocked by account OIDC policy. These are evidence totals, not awarded marks. |
 | What would production require? | Authentication/authorization, TLS, managed HA database/backups, tested restores, persistent monitoring, stronger network/IAM controls and operational ownership. The capstone is a demonstration, not a production certification. |
 
 Architecture and tool responsibilities: [ARCHITECTURE.md](ARCHITECTURE.md). Exact execution and cleanup steps: [DEPLOYMENT.md](DEPLOYMENT.md). Actual evidence: [EVIDENCE.md](EVIDENCE.md).

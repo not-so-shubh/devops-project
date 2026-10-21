@@ -1,4 +1,6 @@
-# AWS EKS runtime verification — 18 October 2026
+# AWS EKS runtime verification — captured 18 October; cleanup verified 22 October 2026
+
+**Lifecycle:** This page records historical runtime. The real Sydney environment was separately approved for deletion and cleanup passed at **05:16:28 IST on 22 October**. [Verified cleanup and residual checks](AWS-CLEANUP-VERIFICATION.md).
 
 Source: `84c18de84538a74a8bab92b89dc72d6e89a393d0`. [Successful source CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39101728492).
 
@@ -37,8 +39,7 @@ The AWS deployment job remains disabled/skipped. Manual Helm deployment and gree
 
 ## Remaining evidence and lifecycle
 
-Authenticated Grafana API verification passed. Real EKS browser captures were supplied and inspected. AWS Console/terminal-format captures, student explanation/presentation and actual teardown remain outstanding. The initial six-hour approved demo window ended at 17:12:07 IST on 18 October 2026; recovery did not restart it. The US$10 amount is a spending target, not an enforced cap. Resource charges continue until deletion. Final resource destruction requires a separately reviewed scope and explicit user approval.
-
+Authenticated Grafana and refreshed browser/axis verification passed. The separately approved final cleanup destroyed the 33 Terraform resources, load balancer and database/worker disks; Terraform state is empty and project residual checks passed. The database backup was downloaded and its uploaded hash independently matched. Supply any genuine AWS Console/terminal-format captures already saved. Student explanation/presentation and the account-policy-blocked automatic AWS deployment remain separate requirements. The original six-hour window was exceeded; actual charges and credits are unverified. See [the cleanup record](AWS-CLEANUP-VERIFICATION.md).
 Official form submission: **Student action — excluded from this task.**
 
 Machine-readable aggregate: [aws-eks-runtime-summary.json](evidence/aws-eks-runtime-summary.json).

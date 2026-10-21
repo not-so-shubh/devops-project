@@ -1,8 +1,8 @@
 {
   "source": "https://github.com/Nency-Ravaliya/devops-heros/blob/main/session21-python/GRADING.md",
   "reference_commit": "68be534ed67dd6de7ce520821e07e4dde137e26c",
-  "updated": "2026-10-18",
-  "note": "42 criteria covering 92 points are VERIFIED by actual technical execution; 2 criteria covering 4 points are READY FOR DEMO (student security explanation and live/accepted recording), 1 criterion covering 2 points is BLOCKED pending separately approved actual cleanup, and 1 criterion covering 2 points is EXCLUDED (official form). These are evidence-coverage totals, not awarded marks. Source-specific historical CI links remain identified per row. The latest complete green CI source above and real AWS EKS application source 84c18de are distinct. The EKS capture archive was supplied by the user and inspected; AWS Console/terminal screenshot formats and personal presentation still require completion. The optional GitHub Actions EKS deployment job remains disabled because AWS policy denies OIDC-provider access; manual EKS deployment is not automatic AWS deployment.",
+  "updated": "2026-10-22",
+  "note": "43 criteria covering 94 points are VERIFIED by historical technical execution, including separately approved real AWS cleanup completed 22 October 2026 IST; 2 criteria covering 4 points are READY FOR DEMO (student security explanation and live/accepted recording), and 1 criterion covering 2 points is EXCLUDED (official form). These are evidence-coverage totals, not awarded marks. The real EKS environment has been deleted; its captures describe the earlier deployment. Source-specific CI proof remains identified per row. The pinned green baseline and EKS application source 84c18de are distinct; every later source has its own CI/security results. Supply saved AWS Console/terminal screenshot formats separately. Optional GitHub Actions EKS deployment remains disabled because AWS policy denies OIDC-provider access; manual EKS deployment did not establish automatic AWS deployment.",
   "criteria": [
     {
       "module": "M1",
@@ -391,7 +391,7 @@
       "status": "VERIFIED",
       "actual_result": "One VPC, four subnets across Sydney AZs a/b: two public subnets have active default IGW routes and two private subnets have active default NAT routes; expected external/internal load-balancer subnet tags present.",
       "evidence": "[EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [aggregate capture provenance](evidence/aws-eks-capture-review.json); original vpc.json/subnets.json/routes.json retained in private capture archive",
-      "blocker": "Provisioning verified; AWS Console screenshot requested by rubric still pending.",
+      "blocker": "Supply pre-deletion AWS Console screenshots already saved for the exact requested format. The real resources are now deleted; CLI archives must not be presented as Console screenshots.",
       "source_sha": "952128e01e9afed9a0349faf7c7b58d04e5a96b5"
     },
     {
@@ -404,7 +404,7 @@
       "status": "VERIFIED",
       "actual_result": "Real EKS control plane ACTIVE at 1.35, managed worker group ACTIVE with no health issues, two m7i-flex.large workers Ready at v1.35.8. Private cluster access enabled and public operator access limited to one /32.",
       "evidence": "[Runtime verification](AWS-EKS-RUNTIME-VERIFICATION.md); [capture review](AWS-EKS-CAPTURE-REVIEW.md); private cluster/node-group/Ready-node outputs from inspected archive",
-      "blocker": "Provisioning verified; AWS Console and literal Ready-node terminal screenshots remain capture-format follow-up.",
+      "blocker": "Supply pre-deletion AWS Console screenshots already saved for the exact requested format. The real resources are now deleted; CLI archives must not be presented as Console screenshots.",
       "source_sha": "952128e01e9afed9a0349faf7c7b58d04e5a96b5"
     },
     {
@@ -412,13 +412,13 @@
       "criterion": "`terraform destroy` tears down all resources cleanly",
       "points": 2,
       "id": "M7.6",
-      "implementation": "terraform/*.tf, terraform.tfvars.example, provider lock and topology test",
-      "verification": "Review exact destroy plan; separately approved cleanup; verify empty Terraform state and AWS residuals",
-      "status": "BLOCKED",
-      "actual_result": "Real infrastructure is running and evidence has been saved. No final destroy has been executed or approved. The earlier replacement of an empty failed worker group was repair, not final teardown.",
-      "evidence": "[Runtime/lifecycle boundary](AWS-EKS-RUNTIME-VERIFICATION.md); [cleanup procedure](DEPLOYMENT.md)",
-      "blocker": "Finish personal demo/evidence formats, retain backup, review teardown scope and obtain explicit final cleanup/data-loss approval.",
-      "source_sha": "952128e01e9afed9a0349faf7c7b58d04e5a96b5"
+      "implementation": "scripts/cleanup-approved-eks.py; approved saved Terraform destruction plan",
+      "verification": "User-executed saved-plan apply succeeded; empty Terraform state and live AWS residual checks passed",
+      "status": "VERIFIED",
+      "actual_result": "Separate cleanup approval received. At 05:16:28 IST on 22 October, 33 Terraform resources were destroyed; EKS/VPC/NAT/EIP/project roles/log group absent, two workers terminated, three EBS disks and ingress load balancer deleted, zero project ENIs. Downloaded database backup hash matched.",
+      "evidence": "[Verified cleanup](AWS-CLEANUP-VERIFICATION.md); [aggregate result](evidence/aws-cleanup-summary.json); private actual cleanup console and command logs",
+      "blocker": "Retain a literal terminal screenshot of the genuine saved destroy output if required by the submission format.",
+      "source_sha": "228cccd843c65b2e9dccbe5452d980a00b889a75"
     },
     {
       "module": "M7",
@@ -534,7 +534,7 @@
       "status": "VERIFIED",
       "actual_result": "Both backend /metrics targets were successfully scraped and queried by real Prometheus; application request counters and latency histograms populated the inspected Grafana dashboard.",
       "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
-      "blocker": "Capture literal curl /metrics output screenshot for strict submission format.",
+      "blocker": "Use genuine saved /metrics output or a new separately identified local demonstration for the literal terminal format; the EKS environment has been deleted.",
       "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
@@ -571,9 +571,9 @@
       "implementation": "backend/app/main.py, ServiceMonitor, monitoring/*",
       "verification": "Inspect actual Grafana screenshot and numeric datasource response",
       "status": "VERIFIED",
-      "actual_result": "Real EKS screenshot contains populated request-rate, p95 latency and two-UP-target charts, with zero server errors. An error-axis autoscale display issue was identified; the 0–100% limit fix requires refreshed capture after application.",
+      "actual_result": "Real EKS captures show populated request rate, p95 latency, zero server-error ratio and two UP targets. The refreshed live API verified max=1 and the original screenshot was visually checked at 0–100%; sampled rate 2.1333333333333333 requests/second.",
       "evidence": "[Real EKS capture review](AWS-EKS-CAPTURE-REVIEW.md); [capture provenance](evidence/aws-eks-capture-review.json); private original archive; [desktop capture](evidence/eks-frontend-desktop.png)",
-      "blocker": "Apply the display-axis fix and retain an updated screenshot.",
+      "blocker": "",
       "source_sha": "84c18de84538a74a8bab92b89dc72d6e89a393d0"
     },
     {
@@ -603,7 +603,7 @@
       "source_sha": "710d1460abc480d8b19e2b98f648a9a5c1c23339"
     }
   ],
-  "verified_source_sha": "cf87b82b40151d0c21c2e03740451a1a9ed2c649",
-  "verified_run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39115536536",
-  "evidence_commit": "405b839cd453bff6086a33b1f3ce4e68c19b3384"
+  "verified_source_sha": "13d2bf1481ef498670637914441452367d996aa3",
+  "verified_run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39117229787",
+  "evidence_commit": "64aba88dbea754bff364e12d2fc589f4b2b0df41"
 }

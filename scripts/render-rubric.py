@@ -69,7 +69,7 @@ lines += [
     "",
     "VERIFIED: actual executed evidence checked. READY FOR DEMO: preparation/technical chain available, but the student must explain or present personally. BLOCKED: requires remaining authorization, external access or execution. EXCLUDED: Student action — excluded from this task (official form only).",
     "",
-    "See [SUBMISSION.md](SUBMISSION.md) for remaining criteria and screenshot formats; [AWS-EKS-CAPTURE-REVIEW.md](AWS-EKS-CAPTURE-REVIEW.md) records the inspected real AWS evidence, and [AWS-EKS-RUNTIME-VERIFICATION.md](AWS-EKS-RUNTIME-VERIFICATION.md) records lifecycle and CI access limits.",
+    "See [SUBMISSION.md](SUBMISSION.md) for remaining criteria and screenshot formats; [AWS-EKS-CAPTURE-REVIEW.md](AWS-EKS-CAPTURE-REVIEW.md) records the inspected real AWS evidence, and [AWS-EKS-RUNTIME-VERIFICATION.md](AWS-EKS-RUNTIME-VERIFICATION.md) records lifecycle and CI access limits. [AWS-CLEANUP-VERIFICATION.md](AWS-CLEANUP-VERIFICATION.md) records the completed approved teardown.",
     "",
 ]
 Path("docs/RUBRIC-CHECKLIST.md").write_text("\n".join(lines))

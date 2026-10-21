@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "completed_utc": "2026-10-21T23:46:28.519753+00:00",
+  "completed_ist": "2026-10-22T05:16:28.519753+05:30",
+  "region": "ap-southeast-2",
+  "terraform_managed_resources_destroyed": 33,
+  "terraform_state_empty": true,
+  "cluster_deleted": true,
+  "worker_instances_terminated": 2,
+  "approved_ebs_disks_deleted": 3,
+  "load_balancer_deleted": true,
+  "vpc_deleted": true,
+  "nat_gateway_deleted": true,
+  "elastic_ip_released": true,
+  "project_iam_roles_deleted": 3,
+  "cluster_log_group_deleted": true,
+  "project_network_interfaces_remaining": 0,
+  "database_backup_sha256": "cc82758ae8533d5c77d705e61ad8841527c2f6f34e56dd235eff648ec3189ee9",
+  "provenance": {
+    "origin": "User-executed AWS CloudShell cleanup; console output and final assertion summary supplied in this conversation",
+    "cleanup_source_sha": "228cccd843c65b2e9dccbe5452d980a00b889a75",
+    "explicit_separate_cleanup_approval_received": true,
+    "reviewed_terraform_plan": "33 deletes, no creates or updates; saved plan hash and live identities checked before mutation",
+    "execution": "Kubernetes load balancer/database claim removed and AWS deletion confirmed before applying the saved Terraform destroy plan",
+    "backup_bytes": 9534,
+    "backup_checks": "PostgreSQL custom-format signature and table-data catalogue checked in CloudShell; uploaded copy independently matched SHA256",
+    "assistant_direct_aws_session": false
+  },
+  "limits": [
+    "Records the identified StockPilot resources, not every resource or charge in the AWS account",
+    "Actual billed amounts, credits and taxes were not verified; the original six-hour window was exceeded",
+    "No full database restore rehearsal was performed",
+    "Raw state, plans, AWS identifiers and detailed logs remain private",
+    "Console screenshot formats and personal student presentation remain separate requirements"
+  ]
+}

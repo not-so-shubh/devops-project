@@ -1,6 +1,14 @@
 # Explain StockPilot's image security gate
 
-## Latest separately verified scan — 18 October 2026
+## Subsequent libx11 gate failure and repair — 22 October 2026
+
+Source `228cccd843c65b2e9dccbe5452d980a00b889a75`, [run 39694461786](https://github.com/not-so-shubh/devops-project/actions/runs/39694461786), passed quality, infrastructure, Compose and the backend image scan. The frontend scan reported **HIGH CVE-2026-88806** in **libx11 1.8.13-r0**, with **1.8.14-r0** as FixedVersion. Publication and Kubernetes jobs were skipped. [Source-pinned blocked finding](evidence/trivy-frontend-libx11-blocked-summary.json).
+
+The frontend Dockerfile now requires `libx11>=1.8.14-r0` alongside the existing libexpat fix, from the same supported Alpine repository, and restores UID 101. The [official Alpine package page](https://pkgs.alpinelinux.org/package/v3.24/main/x86_64/libx11) lists the fixed package. [Red Hat's advisory](https://access.redhat.com/security/cve/cve-2026-88806) describes the upstream XKB-reply heap overflow; the project finding and package version are established by its actual Trivy report. No advisory suppression, reduced severity threshold, `ignore-unfixed` change or exit-zero bypass was added. The source's own complete CI run must establish the repaired image result; each main run archives its reports on `evidence/<source-sha>`.
+
+A useful personal explanation is: a later build exposed a new library finding in a digest-pinned base, so the unchanged gate stopped promotion. The fix updates the affected OS package and must pass scans and runtime regression again. A historical clean scan is not a permanent security guarantee.
+
+## Historical separately verified scan — 18 October 2026
 
 Source `cf87b82b40151d0c21c2e03740451a1a9ed2c649` completed [run 39115536536](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536) successfully. Its actual [backend](https://github.com/not-so-shubh/devops-project/blob/405b839cd453bff6086a33b1f3ce4e68c19b3384/docs/evidence/trivy-backend.json) and [frontend](https://github.com/not-so-shubh/devops-project/blob/405b839cd453bff6086a33b1f3ce4e68c19b3384/docs/evidence/trivy-frontend.json) reports were independently inspected: zero HIGH/CRITICAL findings at the unchanged blocking threshold. The separate [full frontend lockfile audit](https://github.com/not-so-shubh/devops-project/blob/405b839cd453bff6086a33b1f3ce4e68c19b3384/docs/evidence/frontend-sca.json) covered 124 dependencies, including development/build dependencies, with zero reported vulnerabilities. A filtered image report does not claim absence of every lower-severity issue or every possible application defect.
 

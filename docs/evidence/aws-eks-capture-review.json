@@ -203,10 +203,10 @@
   ],
   "limits": [
     "Private AWS identifiers omitted from this aggregate; original archive retained privately",
-    "AWS Console screenshots and literal terminal-format captures still pending",
+    "Supply genuine saved pre-deletion AWS Console images and actual terminal captures for the required formats",
     "Personal student explanation and live/accepted recording not performed",
     "OIDC-provider access denied by account policy; AWS Actions deployment disabled",
-    "Final Terraform destroy not approved or executed"
+    "Final cleanup subsequently approved and verified; see aws-cleanup-summary.json"
   ],
   "refreshed_capture": {
     "archive_sha256": "825d31a399760031c5054cb7076c8ef0748ba827492ad50311fefa9bbbd330eb",
@@ -365,5 +365,6 @@
       }
     ]
   },
-  "lifecycle_as_of": "Historical capture from 18 October 2026; current resource status and final cleanup have not been independently established."
+  "lifecycle_as_of": "The captured Sydney EKS environment was separately approved for final cleanup; deletion and project residual checks passed at 05:16:28 IST on 22 October 2026.",
+  "cleanup_evidence": "aws-cleanup-summary.json"
 }

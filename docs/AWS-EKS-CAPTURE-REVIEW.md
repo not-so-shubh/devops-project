@@ -48,10 +48,10 @@ This resolves the original screenshot's autoscaled 10,000% axis. The corrected P
 
 ## Scope and remaining steps
 
-The full [46-row audit](RUBRIC-CHECKLIST.md) now records **42 VERIFIED criteria / 92 technical points**, **4 READY FOR DEMO points**, **2 BLOCKED cleanup points**, and **2 EXCLUDED form points**. These are evidence-coverage totals, not awarded marks.
+The full [46-row audit](RUBRIC-CHECKLIST.md) now records **43 VERIFIED criteria / 94 technical points**, **4 READY FOR DEMO points**, and **2 EXCLUDED form points**. These are evidence-coverage totals, not awarded marks.
 
-The rubric explicitly requests AWS Console screenshots and some literal terminal captures. CLI/API provisioning is verified, while those presentation formats still require capture. A real personal security explanation and live/accepted recorded demo remain student work. OIDC listing was explicitly denied by organization policy; targeted provider lookup also returned AccessDenied. The AWS deploy job remains disabled/skipped. A green CI run and manual EKS deployment do not establish an automatic GitHub-to-EKS deployment.
+The rubric explicitly requests AWS Console screenshots and some literal terminal captures. Supply any genuine pre-deletion Console images already saved and use retained actual terminal output for historical captures; the deleted Console environment cannot be reconstructed as authentic screenshots from JSON. A real personal security explanation and live/accepted recorded demo remain student work. OIDC listing was explicitly denied by organization policy; targeted provider lookup also returned AccessDenied. The AWS deploy job remains disabled/skipped. A green CI run and manual EKS deployment do not establish an automatic GitHub-to-EKS deployment.
 
-Final destruction has not been evidenced in the supplied material. The original approved six-hour window ended at **17:12:07 IST on 18 October 2026** and was not reset by recovery. Current AWS resource status must be checked after reconnecting. Save remaining required evidence and a database backup, review the exact destroy scope, and obtain separate explicit final cleanup approval before teardown.
+Final destruction was separately approved and completed at **05:16:28 IST on 22 October**. The 33 Terraform resources, LB and three EBS disks were removed; empty state and project residual checks passed. [Cleanup verification](AWS-CLEANUP-VERIFICATION.md). The original six-hour window was exceeded; actual billed amounts and credits remain unverified.
 
 [Machine-readable capture review and file hashes](evidence/aws-eks-capture-review.json). Official form: **Student action — excluded from this task**.

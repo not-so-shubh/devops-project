@@ -8,11 +8,13 @@
 
 [Complete successful CI/CD run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297) · [Actual screenshots and reports](docs/EVIDENCE.md) · [Final submission actions](docs/SUBMISSION.md)
 
-Real AWS EKS runtime is now verified in Sydney: two Ready workers, two ready backend/frontend replicas, a Bound 5 GiB database and all four desktop/mobile browser scenarios passed. Real Prometheus and authenticated Grafana captures were inspected. See [the real EKS review](docs/AWS-EKS-CAPTURE-REVIEW.md). The [latest fully reviewed CI source `cf87b82b4015`](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536) passed all enabled jobs; subsequent changes need their own run. The current audit covers 42 of 46 criteria / 92 technical points. Cleanup and personal explanation/presentation remain pending. AWS Actions deployment is separately blocked by account OIDC policy and remains skipped. Official form: **Student action — excluded from this task**.
+The real Sydney EKS demo was provisioned and verified with two Ready workers, two backend/frontend replicas, a Bound 5 GiB database, four passed desktop/mobile browser scenarios, Prometheus and authenticated Grafana. It was then **separately approved for cleanup and deleted at 05:16:28 IST on 22 October 2026**. All 33 Terraform resources, ingress load balancer, database/worker disks and project residual checks passed; Terraform state is empty. [Real EKS captures](docs/AWS-EKS-CAPTURE-REVIEW.md) · [Verified cleanup](docs/AWS-CLEANUP-VERIFICATION.md).
+
+The audit supports **43 of 46 criteria / 94 technical points**, with **4 student explanation/presentation points** and **2 excluded form points** remaining. Supply saved Console/terminal screenshot formats separately. These are evidence totals, not awarded marks. The [pinned completed CI baseline](https://github.com/not-so-shubh/devops-project/actions/runs/39117229787) remains source-specific; current [Actions results](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml) and per-source evidence record later changes. AWS Actions deployment remains disabled by account OIDC policy. Official form: **Student action — excluded from this task**.
 
 ## Screenshots
 
-![StockPilot running on real AWS EKS](docs/evidence/eks-frontend-desktop.png)
+![Historical real AWS EKS desktop capture](docs/evidence/eks-frontend-desktop.png)
 
 [Actual EKS mobile capture](docs/evidence/eks-frontend-mobile.png) · [Real EKS capture provenance](docs/AWS-EKS-CAPTURE-REVIEW.md)
 
@@ -215,4 +217,4 @@ Before submitting, complete [the final execution and capture checklist](docs/SUB
 
 [Trivy explanation](docs/TRIVY-EXPLANATION.md) · [12-minute and short demo scripts](docs/FINAL-DEMO-SCRIPT.md) · [Capture checklist](docs/FINAL-PRESENTATION-CHECKLIST.md) · [Instructor Q&A](docs/INSTRUCTOR-QA.md) · [AWS readiness and cost estimate](docs/AWS-READINESS.md)
 
-The audit distinguishes VERIFIED technical execution (92 points), READY FOR DEMO (4), BLOCKED pending final cleanup approval/execution (2), and EXCLUDED form submission (2). These are evidence categories, not awarded marks. The latest reviewed full run is pinned above; each later main run archives its own `evidence/<source-sha>` manifest.
+The audit distinguishes VERIFIED historical technical execution (94 points), READY FOR DEMO (4), and EXCLUDED form submission (2). Cleanup is verified. These are evidence categories, not awarded marks. A completed full baseline is pinned above; each later main run archives its own `evidence/<source-sha>` manifest.

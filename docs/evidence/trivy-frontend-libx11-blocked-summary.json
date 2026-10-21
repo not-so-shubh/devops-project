@@ -1,0 +1,17 @@
+{
+  "source_sha": "228cccd843c65b2e9dccbe5452d980a00b889a75",
+  "run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39694461786",
+  "result": "BLOCKED; publish and Kubernetes jobs skipped",
+  "full_report": "https://github.com/not-so-shubh/devops-project/blob/3789ce85e07867bae31f437aae94c5f5cd968e5f/docs/evidence/trivy-frontend.json",
+  "scan_created_at": "2026-10-21T23:39:26.331456185Z",
+  "findings": [
+    {
+      "id": "CVE-2026-88806",
+      "package": "libx11",
+      "installed": "1.8.13-r0",
+      "fixed": "1.8.14-r0",
+      "severity": "HIGH"
+    }
+  ],
+  "remediation": "Require libx11>=1.8.14-r0 from the same supported Alpine repository; restore UID 101 and retain unchanged HIGH/CRITICAL gate. The remediation needs its own successful CI run."
+}

@@ -1,14 +1,15 @@
 # Deployment runbook
 
-## Real AWS status — 18 October 2026
+## Verified AWS lifecycle — 22 October 2026
 
-Real StockPilot EKS deployment in **Sydney (ap-southeast-2)** is now verified: two Ready workers, two backend and two frontend replicas, a Bound 5 GiB gp3 database, passed HTTP smoke and all four desktop/mobile browser scenarios. Real Prometheus targets and an authenticated populated Grafana dashboard were captured and visually inspected. [Reviewed EKS evidence](AWS-EKS-CAPTURE-REVIEW.md) distinguishes deployed application source `84c18de84538a74a8bab92b89dc72d6e89a393d0` from capture-tool source `cf87b82b40151d0c21c2e03740451a1a9ed2c649`.
+The real Sydney EKS demo was provisioned, exercised and captured on 18 October. After separate explicit approval, cleanup completed at **05:16:28 IST on 22 October**: **33 Terraform resources destroyed**, two workers terminated, three EBS disks and the ingress load balancer deleted, NAT/Elastic IP/VPC/project roles/log group absent, and Terraform state empty. The database backup was downloaded and its uploaded checksum matched. [Cleanup evidence](AWS-CLEANUP-VERIFICATION.md) · [Historical EKS captures](AWS-EKS-CAPTURE-REVIEW.md).
 
-The [latest fully reviewed CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536) is green, including tests, scans, publication and real kind/Flux validation. AWS Actions deployment remains disabled/skipped: organization policy denied OIDC listing and a targeted provider lookup also failed. Manual EKS deployment is verified; automatic GitHub-to-EKS deployment is not.
+The audit records **43 VERIFIED criteria / 94 technical points**, **4 READY FOR DEMO points** for the student's explanation/presentation, and **2 EXCLUDED form points**. These are evidence totals, not awarded marks. Supply any Console screenshots already saved and retain genuine terminal transcripts; deleted AWS Console pages cannot be recreated as authentic screenshots from CLI JSON.
 
-The audit supports **92 technical points**, with **4 student explanation/demo points**, **2 cleanup points** and **2 excluded form points** outstanding. Literal AWS Console/terminal screenshot formats also require collection. Final teardown needs separate reviewed approval. The original approved runtime ends **17:12:07 IST on 18 October 2026**; recovery did not reset that window.
+[The pinned completed baseline CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39117229787) includes tests, security scans, publication and kind/Flux validation. Later sources have their own [Actions results](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml) and `evidence/<source-sha>` reports. A subsequent libx11 security failure and package remediation are recorded in [the security explanation](TRIVY-EXPLANATION.md); publication remains gated by HIGH/CRITICAL scans.
 
-Existing bootstrap examples below are reusable procedures. Preserve the current database Secret on retries; the idempotent session setup already created it. The database retains its original password on the PVC. Re-running a disposable-kind secret generator on EKS could rotate only the Secret and break database authentication.
+Automatic EKS deployment remains disabled because account policy blocked OIDC-provider access. Use a permitted local/CI environment for a new personal demonstration and label it accurately; a new paid AWS environment requires a new reviewed cost/runtime approval. Official form: **Student action — excluded from this task**.
+Bootstrap examples below are reusable procedures for a separately authorized environment. On an existing installation, preserve its database Secret on retries. The database retains its original password on the PVC. Re-running a disposable-kind secret generator on EKS could rotate only the Secret and break database authentication.
 
 See [AWS-READINESS.md](AWS-READINESS.md) for the current preparation, evidence boundaries and remaining actions. Official form submission: **Student action — excluded from this task.**
 

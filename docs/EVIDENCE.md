@@ -1,12 +1,20 @@
 # Verified evidence and submission record
 
+## Completed cleanup — 22 October 2026
+
+The separately approved Sydney cleanup passed at **05:16:28 IST**: 33 Terraform resources destroyed, state empty, two workers terminated, three EBS disks and the ingress LB deleted, VPC/NAT/EIP/project roles/log group absent, zero project ENIs. The downloaded database backup's uploaded checksum matched. [Verified cleanup](AWS-CLEANUP-VERIFICATION.md) · [Aggregate receipt](evidence/aws-cleanup-summary.json). The live demo is deleted; runtime sections below are historical.
+
+The audit supports **43 criteria / 94 technical points**, **4 READY FOR DEMO points**, and **2 EXCLUDED form points**, not awarded marks. The refreshed original Grafana image and live API confirmed the 0–100% axis. Keep any already-saved Console screenshots and genuine command logs. Actual billing totals/credits remain unverified.
+
+The later frontend HIGH libx11 failure blocked publication in [run 39694461786](https://github.com/not-so-shubh/devops-project/actions/runs/39694461786). [Retained finding](evidence/trivy-frontend-libx11-blocked-summary.json). The Dockerfile requires the fixed package from the same supported Alpine repository; use the remediation source's own current Actions result and security reports.
+
 ## Inspected real EKS capture supplement
 
 The real EKS archive captured at 09:30–09:31 UTC on 18 October was supplied and inspected: exit code zero, four browser scenarios passed, actual VPC/subnet/route/cluster/managed-worker/workload/Helm JSON checked, and six genuine app/monitoring images visually reviewed. [Capture review](AWS-EKS-CAPTURE-REVIEW.md) · [Original-file hashes and aggregate](evidence/aws-eks-capture-review.json) · [Actual EKS desktop](evidence/eks-frontend-desktop.png) · [Actual EKS mobile](evidence/eks-frontend-mobile.png).
 
 The application is source `84c18de84538a74a8bab92b89dc72d6e89a393d0`; capture tooling is `cf87b82b40151d0c21c2e03740451a1a9ed2c649`. That later source's [full CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536) is now successful, including both zero-HIGH/CRITICAL image reports and the full frontend lockfile audit (124 dependencies, zero findings). [Its immutable archive](https://github.com/not-so-shubh/devops-project/tree/405b839cd453bff6086a33b1f3ce4e68c19b3384/docs/evidence) is distinct from the user-supplied EKS archive.
 
-The updated audit supports 42 criteria / 92 technical points, with student explanation/demo, final separately approved cleanup and excluded form actions remaining. Literal AWS Console and requested terminal screenshot formats still require collection. A Grafana error-axis display issue was found in the original capture; applying max=1 fixes percentunit's 0–100% display without changing metrics. Retain a refreshed image after actual application. AWS Actions deployment remains disabled by the documented account-policy blocker.
+The original capture preceded the completed follow-up axis correction and final cleanup recorded above. AWS Actions deployment remains disabled by the account-policy blocker. Historical images/reports retain their original environment and source labels.
 
 ## Real EKS runtime update — 18 October 2026
 
@@ -14,7 +22,7 @@ The user subsequently completed the approved worker repair and deployed source `
 
 See [actual runtime results and provenance](AWS-EKS-RUNTIME-VERIFICATION.md), [aggregate JSON](evidence/aws-eks-runtime-summary.json), and [private browser-capture procedure](AWS-EKS-CAPTURE.md). The public aggregates omit account-specific infrastructure identifiers. Raw CloudShell evidence remains private.
 
-AWS organization policy explicitly denied listing OIDC providers, and a targeted GitHub-provider lookup also returned AccessDenied. The AWS deployment job remains disabled; manual Helm installation must not be described as automated EKS deployment. Real browser captures are now verified in the inspected supplement above. Personal presentation and actual teardown remain unverified. Final cleanup requires separate approval.
+AWS organization policy explicitly denied listing OIDC providers, and a targeted GitHub-provider lookup also returned AccessDenied. The AWS deployment job remains disabled; manual Helm installation must not be described as automated EKS deployment. Real browser captures are now verified in the inspected supplement above. Personal presentation remains unverified; final cleanup was subsequently separately approved and verified as recorded above.
 
 ## Later verification and AWS CloudShell progress
 
@@ -22,7 +30,7 @@ The subsequent frontend lockfile-audit source `952128e01e9afed9a0349faf7c7b58d04
 
 On **18 October 2026 IST**, the user executed Terraform in AWS CloudShell in **Sydney (`ap-southeast-2`)** and supplied screenshots plus complete terminal output. The checkout was confirmed as `952128e01e9a`. Terraform 1.14.7 initialized locked, signed AWS provider 6.69.1 and validated successfully. The actual command `terraform -chdir=terraform plan -input=false -no-color -out=aws-review.tfplan` produced **33 to add, 0 to change, 0 to destroy**. The [sanitized plan](https://github.com/not-so-shubh/devops-project/blob/0d6856f41879c2d08ddec329b3765393cbecf7e6/docs/evidence/aws-sydney-plan.txt), [provenance/preflight JSON](https://github.com/not-so-shubh/devops-project/blob/0d6856f41879c2d08ddec329b3765393cbecf7e6/docs/evidence/aws-sydney-review.json), and [regional cost review](https://github.com/not-so-shubh/devops-project/blob/0d6856f41879c2d08ddec329b3765393cbecf7e6/docs/AWS-SYDNEY-PLAN-REVIEW.md) are durable evidence for M7.3. This is user-provided actual CloudShell execution reviewed by the assistant, not independently executed AWS commands from this workspace.
 
-The user approved the reviewed Sydney provisioning and app bootstrap at **11:04 IST**, with a proposed **$10 USD / six-hour** spending target and separate cleanup approval. A first block stopped before apply because CloudShell's egress IP had changed. The revised block refreshed only the private `/32` allowlist, regenerated the 33-create plan, verified the scope again, and reached its apply start marker at **05:42:07 UTC / 11:12:07 IST**. At that initial checkpoint the supplied transcript ended at the start marker. Later provisioning and runtime results supersede that checkpoint, as recorded in the update above; cleanup remains unverified. Private state, real tfvars, saved binary plans and credentials are excluded from public Git. The spending target has no automatic cutoff, and costs continue until resources are deleted.
+The user approved the reviewed Sydney provisioning and app bootstrap at **11:04 IST**, with a proposed **$10 USD / six-hour** spending target and separate cleanup approval. A first block stopped before apply because CloudShell's egress IP had changed. The revised block refreshed only the private `/32` allowlist, regenerated the 33-create plan, verified the scope again, and reached its apply start marker at **05:42:07 UTC / 11:12:07 IST**. At that initial checkpoint the supplied transcript ended at the start marker. Later provisioning and runtime results supersede that checkpoint, as recorded in the update above; final cleanup has since passed as recorded above. Private state, real tfvars, saved binary plans and credentials are excluded from public Git. The spending target has no automatic cutoff, and costs continue until resources are deleted.
 
 ## Earlier reviewed baseline
 
@@ -76,7 +84,7 @@ Earlier failed runs and the original blocked Debian image scan remain documented
 
 ## Final submission
 
-Use [SUBMISSION.md](SUBMISSION.md) for the exact remaining actions and screenshot-format checklist, [all 46 criteria](RUBRIC-CHECKLIST.md) for the evidence-based audit, and [DEMO.md](DEMO.md) for the walkthrough. The earlier baseline audit supported 39 criteria covering 83 rubric points; that historical count predates the real AWS progress above and is neither an awarded nor guaranteed grade. AWS plan and provisioning have subsequent executed evidence. Cleanup, the AWS OIDC deployment blocker, remaining presentation-format captures and student performance must be tracked separately; a final audit follows evidence completion. Official form submission is **Student action — excluded from this task**.
+Use [SUBMISSION.md](SUBMISSION.md) for the exact remaining actions and screenshot-format checklist, [all 46 criteria](RUBRIC-CHECKLIST.md) for the evidence-based audit, and [DEMO.md](DEMO.md) for the walkthrough. The earlier baseline audit supported 39 criteria covering 83 rubric points; that historical count predates the real AWS progress above and is neither an awarded nor guaranteed grade. AWS plan and provisioning have subsequent executed evidence. Cleanup is now verified. The AWS OIDC deployment blocker, saved presentation-format captures and student performance remain distinct limitations. Official form submission is **Student action — excluded from this task**.
 
 ## Earlier workspace checks and prepared materials
 

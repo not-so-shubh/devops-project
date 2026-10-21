@@ -52,7 +52,8 @@
       "dashboard_panels": 4,
       "prometheus_datasource_health": "OK",
       "request_rate_per_second": 1.7333333333333332,
-      "visual_browser_capture": "PASS: original real EKS dashboard screenshot inspected; axis display fix awaiting refreshed capture"
+      "visual_browser_capture": "PASS: refreshed real EKS screenshot inspected; live API and screenshot confirm error-ratio axis 0–100%",
+      "refreshed_request_rate_per_second": 2.1333333333333333
     }
   },
   "ci_deployment": {
@@ -66,16 +67,20 @@
     "repository_actions_variables_present": false
   },
   "remaining": [
-    "AWS Console and literal terminal screenshot formats",
-    "Apply error-axis display fix and retain refreshed monitoring screenshot",
-    "AWS CI deployment requires permitted account configuration",
-    "Student Trivy explanation and live/accepted recorded presentation",
-    "Separate final cleanup approval, Terraform destroy and residual-resource checks"
+    "Saved AWS Console and literal terminal screenshot formats",
+    "AWS automatic CI deployment requires permitted account configuration",
+    "Student Trivy explanation and personal live/accepted recorded presentation"
   ],
   "cleanup": {
-    "destroy_executed": false,
-    "final_cleanup_approval_received": false
+    "destroy_executed": true,
+    "final_cleanup_approval_received": true,
+    "completed_utc": "2026-10-21T23:46:28.519753+00:00",
+    "summary": "aws-cleanup-summary.json",
+    "verified_terraform_deletions": 33,
+    "residual_checks": "PASS for reviewed StockPilot resources; account-wide billing not established"
   },
   "form_submission": "Student action — excluded from this task.",
-  "evidence_review": "docs/AWS-EKS-CAPTURE-REVIEW.md"
+  "evidence_review": "docs/AWS-EKS-CAPTURE-REVIEW.md",
+  "last_updated": "2026-10-22",
+  "lifecycle": "Historical live runtime captured 18 October; separately approved project cleanup verified 22 October IST."
 }

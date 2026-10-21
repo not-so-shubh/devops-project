@@ -68,3 +68,11 @@ Both exercises passed in [run 39045365598](https://github.com/not-so-shubh/devop
 | Document | JSON retains before=0, after=2 and verification. | JSON retains observed reason and health verification; lab resources are then removed. |
 
 The final successful run also verifies the controller/Grafana harness corrections described above: real Traefik Ingress, authenticated Grafana and populated dashboard capture all passed. The actual dashboard preserves startup error/latency history; those observations are not erased or represented as proof of sustained production reliability.
+
+## Frontend HIGH libx11 finding
+
+Run 39694461786 correctly blocked promotion on CVE-2026-88806 in libx11 1.8.13-r0. Require libx11>=1.8.14-r0 from the supported Alpine repository and rerun the unchanged gate plus Compose/kind regression. See [the retained actual finding](evidence/trivy-frontend-libx11-blocked-summary.json).
+
+## Completed AWS cleanup
+
+The approved cleanup on 22 October removed the saved-plan resources, LB and database/worker disks and verified project residuals. [Actual record](AWS-CLEANUP-VERIFICATION.md). Do not rerun provisioning or the already-completed saved destroy plan to investigate a deleted endpoint. Private logs and backup remain in the user's CloudShell home; never publish state, plans or identifiers.
