@@ -1,0 +1,1 @@
+PASS: product balance and stock ledger survived PostgreSQL container restart; API pool reconnected

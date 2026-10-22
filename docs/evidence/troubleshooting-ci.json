@@ -1,0 +1,17 @@
+[
+  {
+    "issue": "empty Service",
+    "root_cause": "selector matches no Pod",
+    "before_addresses": 0,
+    "after_addresses": 2,
+    "verification": "At least two backend endpoints restored",
+    "investigation_evidence": "troubleshooting-investigation-ci.txt"
+  },
+  {
+    "issue": "bad image tag",
+    "root_cause": "nonexistent image tag",
+    "observed_reason": "ErrImagePull",
+    "investigation_evidence": "troubleshooting-investigation-ci.txt",
+    "verification": "Correct scanned SHA image starts and /health responds UP"
+  }
+]
