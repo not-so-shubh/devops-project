@@ -1,78 +1,47 @@
-# StockPilot: final demonstration script
+# Timed presenter script
 
-## Verified AWS lifecycle — 22 October 2026
+[Documentation hub](README.md) · [PowerPoint/notes](presentation/README.md) · [Capture checklist](FINAL-PRESENTATION-CHECKLIST.md) · [Recording chapters](demo/README.md)
 
-The real Sydney EKS demo was provisioned, exercised and captured on 18 October. After separate explicit approval, cleanup completed at **05:16:28 IST on 22 October**: **33 Terraform resources destroyed**, two workers terminated, three EBS disks and the ingress load balancer deleted, NAT/Elastic IP/VPC/project roles/log group absent, and Terraform state empty. The database backup was downloaded and its uploaded checksum matched. [Cleanup evidence](AWS-CLEANUP-VERIFICATION.md) · [Historical EKS captures](AWS-EKS-CAPTURE-REVIEW.md).
+Target 10–15 minutes of speaking. A fresh full pipeline can take longer. Use architecture/security discussion during waits, or transparently edit waiting time only if the instructor accepts a recorded walkthrough. **No student recording is claimed here.**
 
-The audit records **43 VERIFIED criteria / 94 technical points**, **4 READY FOR DEMO points** for the student's explanation/presentation, and **2 EXCLUDED form points**. These are evidence totals, not awarded marks. Supply any Console screenshots already saved and retain genuine terminal transcripts; deleted AWS Console pages cannot be recreated as authentic screenshots from CLI JSON.
+## Preparation
 
-[The pinned completed baseline CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39117229787) includes tests, security scans, publication and kind/Flux validation. Later sources have their own [Actions results](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml) and `evidence/<source-sha>` reports. A subsequent libx11 security failure and package remediation are recorded in [the security explanation](TRIVY-EXPLANATION.md); publication remains gated by HIGH/CRITICAL scans.
+Use an available local Compose or kind environment and synthetic products. The real AWS EKS environment was captured historically and deleted after approval. Its optional Actions deployment job stayed disabled by account OIDC policy. Install the deck's fonts if needed and rehearse the notes.
 
-Automatic EKS deployment remains disabled because account policy blocked OIDC-provider access. Use a permitted local/CI environment for a new personal demonstration and label it accurately; a new paid AWS environment requires a new reviewed cost/runtime approval. Official form: **Student action — excluded from this task**.
-The dashboard-axis change was completed and visually verified on real EKS before cleanup: the ratio now displays 0–100%. Explain its actual diff and archived before/after evidence. For a new personal commit → pipeline → deployment demonstration, make a genuine visible change in an available local/CI environment and observe that run; use the automatic kind/Flux result with its actual environment label. Your own live/accepted recorded presentation is still required.
+## Speaking plan
 
-Target: 10–15 minutes of presentation, with pipeline waiting time edited transparently in an accepted recording or filled by architecture/security discussion. A complete pipeline takes longer than the speaking time: do not promise a 15-minute uninterrupted run including AWS provisioning. No accepted student recording has been produced in this session. The historical screenshots are from disposable kind; the newly inspected real EKS captures are identified separately in [AWS-EKS-CAPTURE-REVIEW.md](AWS-EKS-CAPTURE-REVIEW.md).
-
-Use [the presentation checklist](FINAL-PRESENTATION-CHECKLIST.md) to prepare. Read [Trivy explanation](TRIVY-EXPLANATION.md) and [instructor Q&A](INSTRUCTOR-QA.md). The official form is **Student action — excluded from this task.**
-
-## 12-minute speaking plan
-
-| Time | Say and demonstrate | Actual evidence/check |
+| Time | Demonstration | Explain |
 |---|---|---|
-| 0:00–0:40 | “StockPilot helps a small business track inventory and understand why stock changed. It is my inventory application, with a React interface, FastAPI and PostgreSQL.” | Dashboard, responsive layout, navigation; distinguish original app from the reference TaskBoard domain. |
-| 0:40–2:20 | Add unique SKU `DEMO-LAMP-<date>`, opening quantity 6, threshold 3. Edit its name or price. Remove 4 with reason “Demo customer order.” Try removing 99. | Balance 2; low-stock status; rejection without an incorrect ledger entry; movement history. Open the quick guide and explain the overselling rule. |
-| 2:20–3:00 | “The database keeps data outside the application process, and Alembic versions its schema.” Show product and ledger rows, restart PostgreSQL in the disposable Compose demo, then reopen the product. | `docker compose exec postgres psql -U stockpilot -d stockpilot -c 'SELECT sku, stock_quantity FROM products;'`; follow [persistence verifier](../scripts/verify-compose-persistence.py). Do not restart an unrelated database. |
-| 3:00–4:00 | Show Swagger, health, readiness and `/metrics`; explain GET/POST/PUT/DELETE and validation. | Local backend `/docs`; `/health` proves liveness, `/ready` checks DB/schema; Ingress forwards `/api` without rewriting. Health/metrics are directly available on backend port-forward, not necessarily the frontend `/health` URL. |
-| 4:00–5:00 | Show 44 real PostgreSQL test passes and 97.67% coverage from the cited reviewed run. Show isolated test DB and Dockerfiles. | Tests run before builds; backend UID 10001; frontend UID 101 and Node→Nginx stages; Compose services healthy and migration service completed. A local SQLite run may skip the PostgreSQL concurrency test: disclose it. |
-| 5:00–6:00 | Make a useful, small UI wording change you can explain. Review its diff, lint/build, commit descriptively and push. | Capture old screen, old SHA and new SHA. Use the exact commit later when checking GHCR and Kubernetes images. The quick-guide overselling clarification is a real example in this task; do not make empty commits. |
-| 6:00–7:30 | Follow Actions quality→Compose→build/scans→publish→cluster validation. Explain the original blocked Debian scan and maintained-runtime fix. | Use the actual new run, not a prior green screenshot. Show both reports and both SHA image tags. During build waiting time discuss tools/security rather than pretending the pipeline already finished. |
-| 7:30–9:00 | Show Pods, Services, Helm, Ingress and HPA. Compare the image before/after deployment and reload the changed quick guide. | Commands below; require a successful deployment job for EKS. For the verified kind fallback, identify the cluster as disposable CI Kubernetes; source, tag and Flux revision must match. |
-| 9:00–10:00 | Show Prometheus UP targets and a populated Grafana chart after safe traffic. | Request counter, rate and p95 latency; HPA uses metrics-server CPU, not this Prometheus dashboard. Only claim scale-out if observed. |
-| 10:00–11:00 | Explain actual Terraform architecture and show real AWS evidence only if captured. | VPC ID, two public subnets in separate AZs, private workers, EKS ACTIVE, node group ACTIVE and Ready nodes. The real plan, VPC and worker-group execution are verified historically. Show saved private Console/CLI evidence and the separately approved final cleanup result. |
-| 11:00–12:00 | Explain controlled troubleshooting and cleanup. | Actual selector/EndpointSlice and image-pull investigation; repaired endpoint counts and Pod logs. Capture cloud/demo evidence first; authorize teardown separately; show actual destroy and residual checks only after execution. |
+| 0:00–1:00 | Introduce StockPilot and the dashboard | Unique SKUs, dependable stock, retained history and database-derived statistics |
+| 1:00–3:00 | Create six units, edit details, remove four, reject removal of 99, delete and inspect history | Conditional SQL, atomic balance/movement transaction, 409 conflicts and snapshots |
+| 3:00–4:30 | Open Swagger, schema and test output | FastAPI validation, Alembic ownership, separate `_test` PostgreSQL database, 44 passes and 97.67% coverage in the pinned baseline |
+| 4:30–6:00 | Show Dockerfiles/Compose and non-root runtime proof | Migration ordering, named database storage, UID 10001/101 and persistence after restart |
+| 6:00–8:00 | Make a meaningful commit and follow its actual Actions run | Quality, Compose, scans, exact SHA image promotion and a real failure stopping publication |
+| 8:00–9:30 | Explain the actual libx11 CVE/fix, inspect original scan reports and GHCR receipts | The unchanged HIGH/CRITICAL gate and point-in-time scan limits |
+| 9:30–11:30 | Inspect Helm/Pods/Services/ingress/HPA and monitoring in the chosen runtime | Two application replicas, CPU input versus Prometheus, real UP targets and populated panels |
+| 11:30–13:00 | Observe the actual Flux update and show the historical AWS lifecycle | Source SHA, Ready Helm revision 2, manual EKS distinction, captured Sydney architecture and approved cleanup |
+| 13:00–15:00 | Summarize tradeoffs and answer questions | Single DB/NAT, authentication/TLS/recovery limits, personal assessment and exact remaining formats |
 
-## Commit and deployment sequence
+The table is a planned speaking sequence, not timestamps in an existing video. An interrupted/failed new run must be described accurately until repaired.
 
-For a local demonstration first confirm the working branch and destination. Keep credentials and `.env` out of the diff. A push to main starts the full pipeline; if AWS deployment is enabled it also updates the paid cluster and requires existing cost/deployment authorization.
+## A genuine commit and deployment update
 
-```bash
-git status --short
-git log -10 --oneline
-git diff -- frontend/src/main.jsx
-npm --prefix frontend run lint
-npm --prefix frontend run build
-git add frontend/src/main.jsx
-git commit -m "docs(ui): clarify inventory adjustment guidance"
-git push origin main
-git rev-parse HEAD
-```
+1. Choose a small meaningful, visible change you understand in an available permitted environment. Do not recommit unmodified files just for a screenshot.
+2. Explain the diff, commit it and push to the intended branch using the normal gated process.
+3. Open that exact Actions run and inspect its tested source SHA. Do not substitute a different run's green status.
+4. After image scans/publication, inspect the actual Kubernetes/Flux receipt and observed configuration/release revision for the same SHA. CI kind is disposable and removed at job completion; show its genuine archived receipt if the runner has already cleaned up.
+5. If presenting a local kind environment separately, label its local release/update explicitly. A local Helm update is not a claim of successful AWS Actions deployment.
 
-Choose a meaningful change appropriate to the final source; do not repeat the already implemented sentence just to manufacture another commit. Watch that commit's run to completion. Check both published SHA images. The automated CI kind deployment and Flux reconciliation are reproducible technical evidence; they do not substitute for your personal presentation or for an AWS deployment job.
+The existing [application baseline](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574) and [Flux receipt](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/gitops-ci.json) show the technical chain. They do not prove that the student has personally demonstrated it.
 
-On an authorized connected EKS cluster, with CI ownership active and Flux suspended for this release:
+## Historical AWS explanation
 
-```bash
-kubectl config current-context
-kubectl get nodes
-kubectl get pods,deployments,services,ingress,hpa -n stockpilot
-kubectl get deployment stockpilot-backend stockpilot-frontend -n stockpilot \
-  -o custom-columns='NAME:.metadata.name,IMAGE:.spec.template.spec.containers[0].image,READY:.status.readyReplicas'
-helm list -n stockpilot
-helm history stockpilot -n stockpilot
-kubectl top pods -n stockpilot
-```
+Show genuine saved VPC/EKS/managed-worker captures from Sydney on 18 October and explain the two public/two private subnets, two Ready workers and Bound 5 GiB gp3 database. Then show the [approved cleanup receipt](AWS-CLEANUP-VERIFICATION.md) at 05:16:28 IST on 22 October: 33 Terraform resources, two workers, three EBS disks and project residuals gone.
 
-Record the original images and Helm revision before pushing, then the new SHA images, rollout completion and higher release revision after the deployment job succeeds. Open the actual Ingress hostname and show the changed UI. Do not use a localhost port-forward as proof of direct public load-balancer access. Follow [DEPLOYMENT.md](DEPLOYMENT.md) for DNS/Host routing and controller forwarding. App records in Compose and Kubernetes are separate databases.
+The operator applied a saved destruction plan. Do not claim a different literal command or that the deleted ingress endpoint is still available. Actual billing totals/credits remain unverified. If Console screenshots were never saved, state the format gap honestly.
 
-## Three-minute shortened version
+## Recording and questions
 
-1. **0:00–0:45:** Show dashboard, create/edit product, adjust stock, demonstrate rejection and retained history.
-2. **0:45–1:30:** Show actual test output, non-root builds, blocked-then-fixed Trivy history and both successful SHA images.
-3. **1:30–2:15:** Show the real new commit, its completed run, deployed image SHA, Helm revision and changed UI. A recording may jump over the wait with explicit timestamps; retain full logs.
-4. **2:15–3:00:** Show Running Pods, Ingress/HPA, UP targets/Grafana; show genuine AWS/destroy evidence if available and state outstanding items accurately.
+Check audio/legibility, hide passwords/private account identifiers and retain exact source labels. Use [the 14-chapter guide](demo/README.md) when a real video is available. [Trivy preparation](TRIVY-EXPLANATION.md) and [instructor questions](INSTRUCTOR-QA.md) support rehearsal; personal understanding is assessed by the instructor.
 
-## Recording and evidence rules
-
-Use your operating system's screen recorder with microphone if the instructor accepts remote walkthroughs. Capture browser URL bars, terminal commands and results, run URLs, timestamps, commit SHAs and cluster context. Pause before password prompts, SSO/credential pages and Secret retrieval. Never film tokens, kubeconfig, database URLs or Secret YAML. Resume after authentication. Save the unedited recording privately; publish only a reviewed copy with no secrets. Screen recordings are not automatically accepted merely because they exist: confirm the course's presentation format yourself.
-
-For a future separately authorized AWS demo, before cleanup play back the recording and confirm the required screens and audio are legible. Save command output and cloud screenshots independently. If a live cluster is required on presentation day, agree on the cost of keeping it versus recreating it; never silently destroy it early or leave it running indefinitely.
+Official form: **Student action — excluded from this task**.

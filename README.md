@@ -1,220 +1,195 @@
 # StockPilot
 
-**Inventory, under control.** StockPilot is an original inventory operations platform for small businesses. It combines a responsive React workspace with a FastAPI API, PostgreSQL persistence, and a stock ledger that keeps the history after a product leaves the catalog.
+**Inventory, under control.**
 
-[CI/CD](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml) · [Evidence](docs/EVIDENCE.md) · [Rubric audit](docs/RUBRIC-CHECKLIST.md) · [Demo script](docs/FINAL-DEMO-SCRIPT.md)
+An inventory workspace for small businesses: manage products, adjust stock safely, and keep an auditable movement history. React and FastAPI share one PostgreSQL source of truth, supported by a tested container, delivery and observability stack.
 
-## Verified submission status
+[![CI/CD](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml/badge.svg?branch=main)](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml)
 
-[Complete successful CI/CD run](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297) · [Actual screenshots and reports](docs/EVIDENCE.md) · [Final submission actions](docs/SUBMISSION.md)
+[Presentation](docs/presentation/README.md) · [Documentation](docs/README.md) · [Examiner handoff](docs/FINAL-PROJECT-HANDOFF.md) · [Evidence](docs/EVIDENCE.md) · [Rubric](docs/RUBRIC-CHECKLIST.md)
 
-The real Sydney EKS demo was provisioned and verified with two Ready workers, two backend/frontend replicas, a Bound 5 GiB database, four passed desktop/mobile browser scenarios, Prometheus and authenticated Grafana. It was then **separately approved for cleanup and deleted at 05:16:28 IST on 22 October 2026**. All 33 Terraform resources, ingress load balancer, database/worker disks and project residual checks passed; Terraform state is empty. [Real EKS captures](docs/AWS-EKS-CAPTURE-REVIEW.md) · [Verified cleanup](docs/AWS-CLEANUP-VERIFICATION.md).
+![StockPilot desktop captured on real AWS EKS on 18 October 2026](docs/evidence/eks-frontend-desktop.png)
 
-The audit supports **43 of 46 criteria / 94 technical points**, with **4 student explanation/presentation points** and **2 excluded form points** remaining. Supply saved Console/terminal screenshot formats separately. These are evidence totals, not awarded marks. The [pinned completed CI baseline](https://github.com/not-so-shubh/devops-project/actions/runs/39117229787) remains source-specific; current [Actions results](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml) and per-source evidence record later changes. AWS Actions deployment remains disabled by account OIDC policy. Official form: **Student action — excluded from this task**.
+*Genuine historical EKS capture. The Sydney environment was deleted after approved cleanup on 22 October 2026. [Mobile capture](docs/evidence/eks-frontend-mobile.png) · [Capture provenance](docs/AWS-EKS-CAPTURE-REVIEW.md).*
 
-## Screenshots
+## Quick access
 
-![Historical real AWS EKS desktop capture](docs/evidence/eks-frontend-desktop.png)
+| Evaluate | Open |
+|---|---|
+| Final PowerPoint | [Download editable slides](docs/presentation/StockPilot_Final_Presentation.pptx?raw=true) · [Preview](docs/presentation/StockPilot_Presentation_Preview.png) |
+| Demo | [Recording guide](docs/demo/README.md) — video awaiting upload · [Timed presenter script](docs/FINAL-DEMO-SCRIPT.md) |
+| CI/CD | [Workflow and current status](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml) · [Verified application baseline](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574) |
+| Container images | [Backend](https://github.com/users/not-so-shubh/packages/container/package/stockpilot-backend) · [Frontend](https://github.com/users/not-so-shubh/packages/container/package/stockpilot-frontend) · [Source-pinned receipts](docs/EVIDENCE.md#source-pinned-ci-evidence) |
+| Grading | [All 46 criteria](docs/RUBRIC-CHECKLIST.md) · [Submission status](docs/SUBMISSION.md) |
+| Run and inspect | [Deployment](docs/DEPLOYMENT.md) · [Testing](docs/TESTING.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) |
 
-[Actual EKS mobile capture](docs/evidence/eks-frontend-mobile.png) · [Real EKS capture provenance](docs/AWS-EKS-CAPTURE-REVIEW.md)
+## The product
 
-The following older monitoring links are separately pinned kind/CI evidence:
+Spreadsheets make stock changes difficult to reconcile. StockPilot gives each product a unique SKU and records every accepted quantity change with a reason and resulting balance.
 
-[Mobile view](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/frontend-mobile.png) · [Prometheus: two targets UP](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-targets.png) · [Grafana: populated live dashboard](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/grafana-dashboard.png)
+- **Catalog:** create, inspect, edit, search, filter and delete products with prices, categories and reorder thresholds.
+- **Stock control:** receive or remove units atomically. Concurrent removals cannot oversell available stock.
+- **Retained history:** opening balances and movement snapshots survive catalog deletion.
+- **Useful statistics:** product count, units, selling-price inventory value, low-stock alerts and seven-day stock flow come from the database.
+- **Responsive workflow:** desktop/mobile navigation, accessible dialogs, loading/error/empty states and formula-safe CSV export.
 
-## What you can do
+Prices use INR. Inventory value means quantity × selling price, not accounting cost valuation. The low-stock KPI includes zero balances; the table separates positive low stock from out-of-stock items. Optional demo seed records are explicit database inserts, not hardcoded dashboard figures.
 
-- See product count, total units, selling-price inventory value, reorder alerts, and seven days of real stock movements.
-- Create, inspect, search, filter, edit, and delete products with unique SKUs, categories, prices, descriptions, and reorder thresholds.
-- Receive or remove stock with an explanatory reason. Conditional database updates prevent concurrent removals from overselling.
-- Review the retained, paginated stock ledger, including opening balances and products that have been deleted.
-- Use desktop and mobile navigation, accessible focus-trapped dialogs, loading/error/empty states, notifications, and a formula-safe CSV export.
+## Verified status
 
-No chart or activity entry is hardcoded in the frontend. Optional seed data is inserted explicitly into the database, never at application startup. Prices and the dashboard use INR; inventory value is stock × selling price, not an accounting cost valuation. Low-stock KPI includes out-of-stock products; the table's Low stock filter shows positive balances at/below threshold, and Out of stock shows zero.
+| Area | Evidence-backed result |
+|---|---|
+| Backend | 44 PostgreSQL tests passed; 97.67% coverage |
+| Browser acceptance | Four desktop/mobile scenarios passed in Compose and through kind ingress |
+| Security | Both images had zero HIGH/CRITICAL findings; frontend lockfile audit reported zero vulnerabilities across 124 dependencies |
+| Delivery | SHA-tagged public GHCR images, Helm readiness, live monitoring and Flux revision-2 reconciliation passed |
+| Real AWS | Sydney VPC/EKS, managed workers, manual Helm deployment and monitoring were verified historically |
+| Cleanup | 33 Terraform resources destroyed; LB, three EBS disks, workers, VPC/NAT/EIP and project residual checks passed |
+
+These application results are pinned to [source `8944da7`](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574); later documentation commits have their own workflow runs. The [audit](docs/RUBRIC-CHECKLIST.md) covers **43 verified criteria / 94 technical points**. Another **4 points** require the student's security explanation and personal demonstration; **2 form points** are excluded from this task. Evidence coverage is not an awarded grade. Requested Console/terminal screenshot formats still depend on the genuine captures saved by the student.
+
+**Current AWS state:** the reviewed EKS environment is deleted. Optional GitHub Actions EKS deployment remains disabled because organization policy blocked OIDC-provider access. Manual EKS deployment and automatic kind/Flux validation are separately identified.
+
+## Tech stack
+
+| Layer | Implementation |
+|---|---|
+| Frontend | React, Vite, CSS and Lucide |
+| Backend | FastAPI, Pydantic, SQLAlchemy, Psycopg and Alembic |
+| Database | PostgreSQL 17 with product and movement tables |
+| Containers | Docker, Compose and unprivileged Nginx |
+| Testing | Pytest/coverage, Playwright, Ruff and frontend utility tests/ESLint |
+| Security | Trivy image/secret scans, Bandit and full frontend lockfile auditing |
+| CI/CD | GitHub Actions and source-SHA images in GHCR |
+| Infrastructure | Terraform, AWS VPC/EKS, managed nodes, IAM and EBS CSI |
+| Orchestration | Kubernetes, Helm, Traefik and Flux |
+| Observability | Prometheus, Grafana, metrics-server and HPA |
+
+Dependencies use Python hash locks and npm lockfiles. Actions and base images are pinned to commits/digests. Exact installed versions belong to the source and its scan receipts.
 
 ## Architecture
 
+Kubernetes request and metric paths:
+
 ```mermaid
 flowchart TD
-  Dev[Developer commit] --> CI[GitHub Actions]
-  CI --> Quality[PostgreSQL tests and browser acceptance]
-  Quality --> Scan[Build and Trivy gate]
-  Scan --> Registry[GHCR images with commit SHA]
-  Scan --> Kind[Disposable Kubernetes validation]
-  Registry --> EKS[EKS after explicit AWS approval]
-  Kind --> Helm[Helm release]
-  EKS --> Helm
-  Helm --> Ingress[Traefik Ingress]
-  Ingress --> UI[React and Nginx]
-  Ingress --> API[FastAPI]
-  UI --> API
-  API --> PG[PostgreSQL and Alembic]
-  API --> Prom[Prometheus]
-  Prom --> Grafana[Grafana]
+  Browser["Browser"] --> Ingress["Traefik ingress"]
+  Ingress -->|"/"| UI["React / Nginx :8080"]
+  Ingress -->|"/api"| API["FastAPI :8000"]
+  UI -->|"relative /api"| API
+  API --> DB["PostgreSQL / Alembic / PVC"]
+  API -->|"/metrics"| Prom["Prometheus"]
+  Prom --> Grafana["Grafana"]
 ```
 
-Local browser calls use relative `/api` URLs. Compose Nginx preserves the prefix when proxying to `backend:8000`. Cluster Ingress routes `/api` directly to that same backend Service, and `/` to frontend port 8080. There are no rewrite annotations or mismatched ports. Traefik is used because ingress-nginx retired in March 2026; see [the Kubernetes announcement](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/).
+| Environment | Delivery path | Current meaning |
+|---|---|---|
+| Local Compose | Nginx proxies `/api` to backend; PostgreSQL named volume | Available local workflow |
+| CI kind | Scanned images, Helm, ingress, monitoring and Flux | Automatically created and deleted on the runner |
+| Real AWS EKS | Approved Terraform provisioning and manual Helm bootstrap | Historical deployment, captured then destroyed |
+| Optional AWS Actions job | OIDC authentication and namespace-scoped release update | Disabled by the account-policy blocker |
 
-## Stack and layout
+[Architecture decisions and data model](docs/ARCHITECTURE.md) · [Flux ownership](gitops/README.md).
 
-React 19 + Vite 8, modern CSS and Lucide; Python 3.12 + FastAPI, SQLAlchemy, Pydantic, Psycopg, Alembic; PostgreSQL 17; Pytest, Ruff, Playwright; Docker/Compose; GitHub Actions, Trivy and GHCR; Terraform AWS provider 6.69; EKS 1.35; Helm, Traefik, HPA, Prometheus Operator and Grafana. Python dependencies have exact versions and hashes, npm dependencies have lockfiles, Actions use commit pins, and container bases use registry digests. See [architecture decisions](docs/ARCHITECTURE.md).
+## Quick start
 
-| Path | Purpose |
-|---|---|
-| `application/`, `docker/`, `kubernetes/` | PDF deliverable guides pointing to the canonical source/build/chart files |
-| `backend/app/` | API, validated contracts, database models and explicit seed command |
-| `backend/alembic/` | Reversible schema migration; no production `create_all` |
-| `backend/tests/`, `e2e/` | Isolated database tests and desktop/mobile acceptance |
-| `frontend/` | Original dashboard and non-root Nginx image |
-| `.github/workflows/ci-cd.yml` | Quality, infrastructure, Compose, scan, publish, kind and optional EKS |
-| `terraform/` | Two-AZ VPC, public/private subnets, NAT, EKS, workers and OIDC access |
-| `helm/stockpilot/`, `k8s/` | Application chart, namespace and EBS storage class |
-| `monitoring/` | Prometheus, Grafana dashboard, ingress and metrics-server values |
-| `scripts/`, `troubleshooting/` | Checks, secret bootstrap, traffic generation and isolated exercises |
-| `docs/` | Deployment, testing, demonstration, rubric and evidence |
-
-## Run the complete stack
-
-Prerequisites: Git, Docker Engine/Desktop and Compose v2.20+ (v2.39.4 config was checked). Allocate at least 4 GB to Docker. Ports 3000 and 8000 must be free.
+Requirements: Git, Docker with Compose v2, Python 3 for local credential generation, and available loopback ports 3000/8000. Run from the repository root after cloning:
 
 ```bash
 git clone https://github.com/not-so-shubh/devops-project.git
 cd devops-project
-cp .env.example .env
-# Replace the local development password with a long URL-safe value.
+umask 077
+python3 - <<'PY'
+from pathlib import Path
+import secrets
+p = Path('.env')
+if not p.exists():
+    p.write_text('POSTGRES_DB=stockpilot\nPOSTGRES_USER=stockpilot\n'
+                 + 'POSTGRES_PASSWORD=' + secrets.token_urlsafe(32) + '\n')
+    p.chmod(0o600)
+    print('Created private local configuration.')
+PY
 docker compose config --quiet
 docker compose up --build -d --wait --wait-timeout 180
-docker compose exec backend python -m app.seed   # optional, idempotent
+docker compose exec backend python -m app.seed
 docker compose ps
 python3 scripts/smoke.py
 ```
 
-Open [StockPilot](http://localhost:3000), [Swagger](http://localhost:8000/docs), [readiness](http://localhost:8000/ready), and [metrics](http://localhost:8000/metrics). `.env` is ignored. PostgreSQL is private to the Compose network, with a named persistent volume; both published application ports bind only to loopback.
+Open [the app](http://localhost:3000), [Swagger](http://localhost:8000/docs), [readiness](http://localhost:8000/ready) or [metrics](http://localhost:8000/metrics). The seed is optional and idempotent. Existing `.env` credentials must match any existing database volume. PostgreSQL is private to the Compose network; application ports bind only to loopback.
 
 ```bash
 docker compose logs -f backend
-docker compose exec postgres psql -U stockpilot -d stockpilot -c 'SELECT sku, stock_quantity FROM products;'
-docker compose stop
-docker compose up -d --wait           # preserves database
-# Stop the stack; retain its data:
 docker compose down
-# Explicitly delete local demonstration data only when finished:
-docker compose down -v
 ```
 
-## Configuration and migrations
-
-| Variable/config | Where | Meaning |
-|---|---|---|
-| `POSTGRES_DB`, `POSTGRES_USER` | Compose `.env` | Default `stockpilot` |
-| `POSTGRES_PASSWORD` | Compose `.env` | Required; use a URL-safe random password because Compose embeds it in a URL |
-| `DATABASE_URL` | Backend | SQLAlchemy URL, e.g. `postgresql+psycopg://USER:ENCODED_PASSWORD@HOST:5432/stockpilot` |
-| `TEST_DATABASE_URL` | Tests only | Optional PostgreSQL database **ending in `_test`**; otherwise isolated temporary SQLite |
-| `BASE_URL` | Smoke, load and browser tests | Defaults to `http://localhost:3000` |
-| `AWS_DEPLOY_ENABLED` | GitHub repository variable | Keep unset/false until costs and cluster access are authorized |
-| `AWS_ROLE_ARN`, `EKS_CLUSTER_NAME`, `INGRESS_HOST` | GitHub variables | Required only for enabled EKS deployment |
-| `AWS_REGION` | GitHub variable | EKS deployment region; defaults to `ap-south-1`. Set `ap-southeast-2` for the approved Sydney project |
-| `GHCR_PULL_SECRET` | GitHub variable | Optional existing durable registry Secret name when packages are private |
-| `DEPLOY_RUNNER` | GitHub variable | Optional runner label with access to the EKS endpoint allowlist |
-
-Alembic creates `products` and `stock_movements`. Compose runs a one-shot migration service before the API. Helm runs one ordinary migration Job per release revision; backend readiness checks both connectivity and the migrated table. Replicas do not run migrations independently. Review backwards compatibility before a migration; Helm rollback does not reverse database changes.
-
-## Develop and test
-
-Python 3.12+, Node 24, and an existing local PostgreSQL database are needed for normal development.
-
-```bash
-python3.12 -m venv .venv
-. .venv/bin/activate
-pip install --require-hashes -r backend/requirements-dev.txt
-export DATABASE_URL='postgresql+psycopg://stockpilot:YOUR_URL_SAFE_PASSWORD@localhost:5432/stockpilot'
-cd backend
-alembic upgrade head
-python -m app.seed
-uvicorn app.main:app --reload --port 8000
-```
-
-In a second terminal:
-
-```bash
-cd frontend
-npm ci --ignore-scripts
-npm run dev
-```
-
-Tests never use `DATABASE_URL` for test data. PostgreSQL test setup rejects names without the `_test` suffix. The convenient local suite uses temporary SQLite files; CI additionally runs the real PostgreSQL concurrency test.
-
-```bash
-cd backend
-../.venv/bin/pytest -v --cov=app --cov-report=term-missing
-../.venv/bin/ruff check .
-../.venv/bin/ruff format --check .
-cd ../frontend
-npm run lint && npm test && npm run build
-cd ../e2e
-npm ci
-npx playwright install --with-deps chromium
-npm test
-```
-
-See [TESTING.md](docs/TESTING.md) for results and migration/concurrency checks.
+`down` retains the named database volume. [Deployment](docs/DEPLOYMENT.md#local-compose) explains persistence, configuration, local kind and cleanup choices.
 
 ## API
 
-| Method | Endpoint | Behavior |
+| Method | Route | Purpose |
 |---|---|---|
-| GET | `/`, `/health`, `/ready`, `/metrics` | Service metadata, independent liveness, database/schema readiness, Prometheus metrics |
-| GET | `/api/products` | Search name/SKU; filter category or `all/healthy/low/out`; `offset`/`limit` pagination |
-| GET | `/api/products/{id}` | Product or 404 |
-| POST | `/api/products` | Create product and opening movement in one transaction; 201 |
-| PUT | `/api/products/{id}` | Replace product details; change quantity through adjustments instead |
-| DELETE | `/api/products/{id}` | Delete catalog record; retain ledger snapshots; 204 |
-| GET | `/api/inventory/stats` | Counts, value, categories and seven-day unit flow |
-| GET | `/api/inventory/movements` | Latest-first ledger, optional `product_id`, pagination |
-| POST | `/api/inventory/adjustments` | Signed non-zero quantity and reason; atomic update plus movement; 201 |
+| GET | `/health`, `/ready`, `/metrics` | Liveness, database/schema readiness and Prometheus exposition |
+| GET / POST | `/api/products` | Search/filter/paginate or create a product with an opening balance |
+| GET / PUT / DELETE | `/api/products/{id}` | Read, edit details or remove a catalog record |
+| POST | `/api/inventory/adjustments` | Signed stock change plus reason, committed atomically |
+| GET | `/api/inventory/movements` | Latest-first retained ledger and optional product filter |
+| GET | `/api/inventory/stats` | Counts, inventory value, categories and seven-day flow |
 
-Validation errors return 422, missing products 404, duplicate SKUs/insufficient stock 409, and database failures a sanitized 503. Maximum stock is 1,000,000 units per product. One Uvicorn worker per container keeps per-process Prometheus metrics unambiguous; scale with replicas.
+Validation returns 422; absent products 404; duplicate SKUs or insufficient stock 409; database failures a sanitized 503. Quantity changes use the adjustment endpoint, not product-detail updates. [Backend contracts](backend/README.md).
 
-## Delivery, infrastructure and monitoring
+## Delivery and proof
 
-[DEPLOYMENT.md](docs/DEPLOYMENT.md) contains the exact commands. The pipeline runs PostgreSQL migrations and tests, frontend quality/build, Compose smoke and browser tests, Terraform/Helm checks, separate frontend/backend builds, and blocking Trivy scans for OS and application HIGH/CRITICAL vulnerabilities. Only the scanned image archives are published. Both use the exact source SHA, never `latest`:
+GitHub Actions runs PostgreSQL migrations/tests, frontend quality, Terraform mock validation and Helm checks. Compose then proves real HTTP, persistence and browser behavior. Both candidate images must pass blocking Trivy HIGH/CRITICAL scans before publication. The exact scanned image archives become source-SHA GHCR tags. Kind validates Kubernetes runtime and Flux reconciliation.
 
-```text
-ghcr.io/not-so-shubh/stockpilot-backend:<40-character-commit-sha>
-ghcr.io/not-so-shubh/stockpilot-frontend:<40-character-commit-sha>
-```
+| Inspect | Source-pinned evidence |
+|---|---|
+| Tests and coverage | [44 PostgreSQL passes](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/pytest-postgres.txt) |
+| Image scans | [Backend](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/trivy-backend.json) · [Frontend](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/trivy-frontend.json) |
+| Frontend dependencies | [Full lockfile audit](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/frontend-sca.json) |
+| Image provenance | [Backend receipt](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/ghcr-backend.json) · [Frontend receipt](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/ghcr-frontend.json) |
+| GitOps update | [Flux fetched revision and Helm revision 2](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/gitops-ci.json) |
 
-The disposable kind job validates Helm, two replicas, ClusterIP Services, actual Traefik routing, metrics-server/HPA, a live Prometheus target, and a provisioned Grafana dashboard. The separate AWS deploy job is skipped until configured; it uses GitHub OIDC and namespace-scoped EKS edit access. GHCR packages initially may be private: make them public or provision a durable `read:packages` pull Secret before EKS deployment. An Actions token that expires after a job is not a durable cluster pull credential.
+The [workflow](.github/workflows/ci-cd.yml) records later runs separately. [Security](security/README.md) explains real blocked CVEs and remediation. [Testing](docs/TESTING.md) distinguishes SQLite convenience checks from PostgreSQL concurrency evidence.
 
-Terraform defines two public and two private subnets in `ap-south-1`, one NAT gateway, an EKS cluster with a restricted public API and private API, two AL2023 managed workers, EKS access entries, network addons, EBS CSI with Pod Identity, and optional GitHub deployment role. EKS creates its cluster security group; managed workers attach it for control-plane/node communication. A single NAT and single PostgreSQL replica are capstone cost/simplicity decisions, not HA production claims.
+## Historical AWS and observability
 
-**No paid AWS resources are created by CI or by the default setup.** Before `terraform apply`, obtain an account-specific regional cost estimate and explicit authorization for the intended runtime. Capture VPC/EKS evidence, finish the demo, then uninstall LoadBalancers and PVCs before an authorized `terraform destroy`.
+Terraform provisioned Sydney (`ap-southeast-2`) networking with two public/two private subnets across two AZs, EKS 1.35, managed workers, storage/IAM and logging. The verified manual deployment had two Ready `m7i-flex.large` workers, two frontend/backend replicas and a Bound 5 GiB gp3 database. Prometheus saw two UP application targets; authenticated Grafana showed four populated panels. HPA CPU metrics came from metrics-server; scale-out was not claimed.
 
-## Security and operational scope
+[Provisioning/runtime proof](docs/AWS-EKS-RUNTIME-VERIFICATION.md) · [Capture review](docs/AWS-EKS-CAPTURE-REVIEW.md) · [Approved cleanup](docs/AWS-CLEANUP-VERIFICATION.md) · [Monitoring guide](monitoring/README.md).
 
-This is a single-workspace capstone, without user authentication or RBAC in the application. Use synthetic inventory for a public demonstration; add authentication, TLS, authorization, backups and restore testing before business use. API validation, safe ORM parameters, non-negative stock constraints, non-root/read-only containers, dropped capabilities, external Kubernetes Secrets, restricted EKS access, scan gates, and dependency locks provide useful controls without claiming complete security.
+Cleanup completed at **05:16:28 IST on 22 October 2026**, beyond the original six-hour window. The executed command applied a saved `terraform plan -destroy` plan. The database backup was retained and checksum-verified. Actual billing totals/credits were not checked. No cloud operations are required to read or submit this repository.
 
-Do not commit `.env`, AWS keys, kubeconfigs, registry tokens or Terraform state. Kubernetes Secrets are base64-encoded, not encrypted by that encoding; apply account encryption/access controls. Trivy has no ignored CVEs or `continue-on-error` gate. See [the real scan status](docs/EVIDENCE.md); a scanner failure blocks publication until remediated.
+## Presentation and demo
 
-For deployment problems, start with [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md). For instructor questions and the final live commit→pipeline→deployment sequence, use [DEMO.md](docs/DEMO.md). Submit the repository URL, evidence index, complete rubric audit, and your own demonstration/recording. AWS provisioning, destroy, and presentation marks require actual evidence, not configuration files alone.
+[![Preview of the supplied final PowerPoint](docs/presentation/StockPilot_Presentation_Preview.png)](docs/presentation/README.md)
 
-## Lessons learned
+The supplied **16-slide editable PowerPoint** includes speaker notes and a dated verified project snapshot. [Download it](docs/presentation/StockPilot_Final_Presentation.pptx?raw=true), read the [presentation guide](docs/presentation/README.md), and rehearse the [timed script](docs/FINAL-DEMO-SCRIPT.md). A PowerPoint does not establish a completed personal demonstration. **The demo video is awaiting upload**; [the recording guide](docs/demo/README.md) contains the planned chapters.
 
-- Real mobile actions exposed an escaped accessible table label that screenshots alone missed; containing it restored the viewport and reliable taps.
-- A current Debian base still carried HIGH CVEs. The security gate blocked publication, and a maintained Alpine runtime passed the same gate after PostgreSQL/browser revalidation.
-- Traefik 42 moved Service type under `service.spec.type`; checking the rendered resource caught the ignored legacy setting.
-- CI evidence needs source revisions and artifact provenance. Historical screenshots must never be uploaded as proof of a new failed run.
+## Project layout
 
-GitOps uses optional Flux pull reconciliation with reviewed SHA promotion. See [GitOps](gitops/README.md), [security gates](security/README.md), and [the complete homework alignment](docs/HOMEWORK-ADDENDUM.md).
+| Path | Contents |
+|---|---|
+| [`backend/`](backend/README.md) | API, models, Alembic migrations and isolated tests |
+| [`frontend/`](frontend/README.md) | Responsive React workspace and Nginx runtime |
+| [`e2e/`](e2e/) | Desktop/mobile Playwright scenarios |
+| [`docker/`](docker/README.md), [`docker-compose.yml`](docker-compose.yml) | Container guide and complete local stack |
+| [`.github/workflows/`](.github/workflows/) | CI gates, publication and optional AWS job |
+| [`terraform/`](terraform/README.md) | AWS network/cluster/storage/IAM lifecycle |
+| [`k8s/`](k8s/), [`helm/stockpilot/`](helm/stockpilot/) | Bootstrap manifests and complete application chart |
+| [`gitops/`](gitops/README.md), [`monitoring/`](monitoring/README.md) | Flux overlays and observability configuration |
+| [`scripts/`](scripts/), [`troubleshooting/`](troubleshooting/) | Verification, traffic, bootstrap and isolated labs |
+| [`docs/`](docs/README.md) | Guides, genuine evidence, presentation and demo preparation |
+| [`application/`](application/README.md), [`kubernetes/`](kubernetes/README.md) | Coursework deliverable mappings to canonical sources |
 
-## Attribution
+## Documentation
 
-StockPilot's application/domain/schema/design are original. The reference DevOps architecture and rubric came from [Nency-Ravaliya/devops-heros](https://github.com/Nency-Ravaliya/devops-heros/tree/main/session21-python), MIT licensed. See [NOTICE.md](NOTICE.md), `LICENSE`, and `LICENSE.reference`.
+Start with the [documentation hub](docs/README.md) or [final examiner handoff](docs/FINAL-PROJECT-HANDOFF.md). The hub indexes architecture, development, containers, CI/CD, security, Terraform, Kubernetes/GitOps, monitoring, troubleshooting, evidence and grading within two clicks of this page.
 
-Before submitting, complete [the final execution and capture checklist](docs/SUBMISSION.md).
+This is a single-workspace capstone with a single database and NAT gateway. Business use would require application authentication/authorization, TLS, availability planning, durable monitoring and tested backup recovery. [Decisions and limits](docs/ARCHITECTURE.md#operational-tradeoffs).
 
-## Final presentation pack
+## Attribution and license
 
-[Trivy explanation](docs/TRIVY-EXPLANATION.md) · [12-minute and short demo scripts](docs/FINAL-DEMO-SCRIPT.md) · [Capture checklist](docs/FINAL-PRESENTATION-CHECKLIST.md) · [Instructor Q&A](docs/INSTRUCTOR-QA.md) · [AWS readiness and cost estimate](docs/AWS-READINESS.md)
+StockPilot's inventory application, schema, workflows and visual design are original. The DevOps architecture and evaluation requirements follow [Nency-Ravaliya/devops-heros, session 21](https://github.com/Nency-Ravaliya/devops-heros/tree/main/session21-python). [Originality notice](NOTICE.md) · [Project MIT license](LICENSE) · [Retained reference license](LICENSE.reference).
 
-The audit distinguishes VERIFIED historical technical execution (94 points), READY FOR DEMO (4), and EXCLUDED form submission (2). Cleanup is verified. These are evidence categories, not awarded marks. A completed full baseline is pinned above; each later main run archives its own `evidence/<source-sha>` manifest.
+Official form submission: **Student action — excluded from this task**. See [the final checklist](docs/SUBMISSION.md).

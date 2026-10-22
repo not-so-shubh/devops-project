@@ -1,5 +1,9 @@
 # Capture real EKS browser evidence privately
 
+[Documentation hub](README.md) · [Actual capture review](AWS-EKS-CAPTURE-REVIEW.md)
+
+This is the retained operator procedure for an available, separately authorized EKS environment. The historical Sydney cluster was deleted after approved cleanup; do not run these commands expecting that old environment to exist. The CloudShell storage failure/recovery below remains a dated actual observation.
+
 Run this after StockPilot, Prometheus and Grafana are healthy in the authorized Sydney cluster. The script uses the existing application and E2E scenarios. The default native runtime downloads only the version-matched Playwright Chromium headless shell, with browser and npm caches in /tmp. It requires Node 20 or later and the browser's system libraries. It does not provision AWS resources.
 
 ```bash

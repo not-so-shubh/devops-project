@@ -1,5 +1,7 @@
 # StockPilot instructor questions
 
+[Documentation hub](README.md) · [Examiner handoff](FINAL-PROJECT-HANDOFF.md) · [Presentation](presentation/README.md)
+
 Use these to rehearse your own understanding. Answers describe the implemented project and distinguish automatic kind/Flux validation from executed manual EKS deployment and the completed approved AWS cleanup.
 
 | Question | Concise answer |

@@ -1,5 +1,9 @@
 # Attached homework alignment
 
+[Documentation hub](README.md) · [Current evidence index](EVIDENCE.md)
+
+The historical supplementary receipts below retain their original source labels. The current verified application baseline is [8944da7 / run 39696800574](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574); its [manifest](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/ci-run.json) includes the same automated gate categories.
+
 The supplied “Session 21: Final DevOps Project & Troubleshooting” PDF supplements the authoritative 100-point GRADING.md. It adds SAST, SCA, secret scanning, ConfigMap, GitOps, logs and lessons learned.
 
 | PDF deliverable | Implementation / verification |

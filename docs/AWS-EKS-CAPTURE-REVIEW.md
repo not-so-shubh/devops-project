@@ -1,5 +1,7 @@
 # Reviewed real EKS evidence — 18 October 2026
 
+[Documentation hub](README.md) · [Evidence index](EVIDENCE.md) · [Examiner handoff](FINAL-PROJECT-HANDOFF.md)
+
 The user supplied a real AWS CloudShell capture archive. Its exit code is **0**, and the assistant inspected the AWS/Kubernetes JSON, test receipts and six original browser images. The archive SHA-256 is `8d356ef8daae273b6869b16d2f5da3a1b149ab884269eb1a64bc0263a6ce2128`.
 
 This is real **Sydney EKS**, not the disposable kind cluster used by CI. Capture started at **09:30:20 UTC / 15:00:20 IST**. Browser capture completed at **09:31:41 UTC**. The application images use source `84c18de84538a74a8bab92b89dc72d6e89a393d0`; the separate capture-tool checkout is `cf87b82b40151d0c21c2e03740451a1a9ed2c649`. [That tooling source's full CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536) succeeded. Its [immutable CI archive](https://github.com/not-so-shubh/devops-project/tree/405b839cd453bff6086a33b1f3ce4e68c19b3384/docs/evidence) remains separately identified.

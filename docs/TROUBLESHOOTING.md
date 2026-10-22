@@ -1,27 +1,29 @@
 # Troubleshooting
 
+[Documentation hub](README.md) · [Deployment](DEPLOYMENT.md) · [Evidence](EVIDENCE.md)
+
 Use observations to locate the failure before changing configuration. Keep the working release intact during the isolated lab.
 
-| Symptom | Check | Corrective action |
-|---|---|---|
-| UI cannot fetch inventory | Browser Network tab, `curl localhost:8000/ready`, Compose backend logs | Start DB, run Alembic, confirm relative `/api`; do not strip `/api` in proxy |
-| Product create returns 409 | Existing SKU; SKU normalization is uppercase | Use a unique SKU; do not disable the DB constraint |
-| Adjustment returns 409 | Current balance and requested signed delta | Remove no more than available, or stay below 1,000,000; rejected writes add no movement |
-| Compose DB password changed but connection fails | Existing named volume uses its original DB credentials | Restore correct password or intentionally recreate only demo data; changing `.env` does not reset an initialized database |
-| API healthy but not ready | `/health` vs `/ready`, migration service/Job logs | Restore DB access, apply reviewed migrations; never replace production migrations with `create_all` |
-| `ImagePullBackOff` | `kubectl describe pod`, image SHA and GHCR visibility | Confirm both packages/tag, public access or durable pull Secret; expired Actions tokens are unsuitable |
-| Pending PostgreSQL PVC | `kubectl describe pvc`, `kubectl get storageclass`, EBS CSI addon and Pod Identity | Use `gp3` on EKS, `standard` in kind; confirm CSI role permissions and AZ placement |
-| Helm waits until timeout | Pods/events and `kubectl logs job/stockpilot-migrate-N` | Verify DB Secret keys/URL, DNS, storage and migrations; only one concurrent upgrade |
-| Ingress 404 | Host header, ingressClassName and controller | Use configured hostname; the resource alone is not an ingress controller |
-| Ingress 502 / empty Service endpoints | Service selectors, EndpointSlices, container/Service ports | Frontend 8080, backend 8000; compare labels and named target port `http` |
-| Nginx crashes as non-root | Logs, read-only filesystem and `/tmp` mount | Use unprivileged image, 8080 and writable temporary volume |
-| HPA `<unknown>` | `kubectl top pods`, metrics APIService | Install healthy metrics-server; keep CPU requests; insecure kubelet TLS is only for disposable kind |
-| Prometheus target absent | ServiceMonitor labels, namespace selector, Service labels/port | Match `release=monitoring`, app namespace label and Service `http` port |
-| Prometheus target down | Curl backend `/metrics` from cluster, readiness/network | Fix reachable Service and route before changing dashboards |
-| Grafana has no data | Prometheus query API, datasource UID `prometheus`, traffic and time range | Generate traffic; allow >=2 scrapes; inspect request metrics, not a hardcoded graph |
-| Terraform provider cannot run locally | Executable/temp/socket permissions and recorded initialization logs | Use a normal Terraform host or CI validation; do not claim an AWS plan succeeded |
-| EKS OIDC login succeeds but kubectl fails | Access entry, namespace scope, API network allowlist | IAM authentication, Kubernetes authorization, and network access are separate requirements |
-| VPC destroy fails | Remaining Kubernetes LoadBalancers, ENIs, PVCs/volumes | Uninstall workloads/controller, delete authorized demo data, wait for external cleanup, then rerun plan/destroy |
+| Symptom | Likely cause | Diagnosis | Corrective action |
+|---|---|---|---|
+| UI cannot fetch inventory | Backend/proxy or database path unavailable | Browser Network tab, `curl localhost:8000/ready`, Compose backend logs | Start DB, run Alembic, confirm relative `/api`; do not strip `/api` in proxy |
+| Product create returns 409 | SKU uniqueness constraint | Existing SKU; SKU normalization is uppercase | Use a unique SKU; do not disable the DB constraint |
+| Adjustment returns 409 | Insufficient stock or quantity bound | Current balance and requested signed delta | Remove no more than available, or stay below 1,000,000; rejected writes add no movement |
+| Compose DB password changed but connection fails | Initialized volume retains original credentials | Existing named volume uses its original DB credentials | Restore correct password or intentionally recreate only demo data; changing `.env` does not reset an initialized database |
+| API healthy but not ready | Database/schema dependency unavailable | `/health` vs `/ready`, migration service/Job logs | Restore DB access, apply reviewed migrations; never replace production migrations with `create_all` |
+| `ImagePullBackOff` | Wrong image reference or registry authorization | `kubectl describe pod`, image SHA and GHCR visibility | Confirm both packages/tag, public access or durable pull Secret; expired Actions tokens are unsuitable |
+| Pending PostgreSQL PVC | Storage class, CSI permissions or AZ mismatch | `kubectl describe pvc`, `kubectl get storageclass`, EBS CSI addon and Pod Identity | Use `gp3` on EKS, `standard` in kind; confirm CSI role permissions and AZ placement |
+| Helm waits until timeout | Database, migration or workload readiness failure | Pods/events and `kubectl logs job/stockpilot-migrate-N` | Verify DB Secret keys/URL, DNS, storage and migrations; only one concurrent upgrade |
+| Ingress 404 | Host or controller mismatch | Host header, ingressClassName and controller | Use configured hostname; the resource alone is not an ingress controller |
+| Ingress 502 / empty Service endpoints | Selector or target-port mismatch | Service selectors, EndpointSlices, container/Service ports | Frontend 8080, backend 8000; compare labels and named target port `http` |
+| Nginx crashes as non-root | Filesystem or privileged-port permissions | Logs, read-only filesystem and `/tmp` mount | Use unprivileged image, 8080 and writable temporary volume |
+| HPA `<unknown>` | Missing CPU metric or request | `kubectl top pods`, metrics APIService | Install healthy metrics-server; keep CPU requests; insecure kubelet TLS is only for disposable kind |
+| Prometheus target absent | Discovery selector mismatch | ServiceMonitor labels, namespace selector, Service labels/port | Match `release=monitoring`, app namespace label and Service `http` port |
+| Prometheus target down | Scrape endpoint unreachable | Curl backend `/metrics` from cluster, readiness/network | Fix reachable Service and route before changing dashboards |
+| Grafana has no data | Datasource, traffic or query window mismatch | Prometheus query API, datasource UID `prometheus`, traffic and time range | Generate traffic; allow >=2 scrapes; inspect request metrics, not a hardcoded graph |
+| Terraform provider cannot run locally | Local execution environment restriction | Executable/temp/socket permissions and recorded initialization logs | Use a normal Terraform host or CI validation; do not claim an AWS plan succeeded |
+| EKS OIDC login succeeds but kubectl fails | Identity, RBAC or network restriction | Access entry, namespace scope, API network allowlist | IAM authentication, Kubernetes authorization, and network access are separate requirements |
+| VPC destroy fails | Controller-managed AWS dependencies remain | Remaining Kubernetes LoadBalancers, ENIs, PVCs/volumes | Uninstall workloads/controller, delete authorized demo data, wait for external cleanup, then review a fresh destroy plan before applying it |
 
 ## Controlled troubleshooting exercise
 
@@ -53,7 +55,6 @@ Run 39000262612 created a healthy kind cluster and a Running/Ready Traefik Pod, 
 
 Grafana integration follow-up: run 39001047463 deployed Traefik and metrics-server and reached a Running Prometheus, but Grafana remained 2/3 with repeated main-container restarts. The first capture did not include termination reason, so an OOM cause is not asserted. Grafana's main allowance was raised from 256 MiB to 768 MiB and container-state diagnostics were added. A pinned-chart render also revealed that `nodeExporter.enabled`, rather than the subchart's `enabled` key, controls exporter installation; the corrected lightweight preset now excludes it. Unused Alertmanager datasource provisioning is disabled with Alertmanager itself. Require actual readiness and dashboard evidence before claiming the monitoring repair succeeded.
 
-
 ## Verified six-step lab record
 
 Both exercises passed in [run 39045365598](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598); [original observations](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/troubleshooting-ci.json). Subsequent CI runs also preserve `troubleshooting-investigation-ci.txt` with the actual describe/EndpointSlice/Pod-label commands, image-pull events and repaired container logs before deleting the lab resources.
@@ -67,11 +68,11 @@ Both exercises passed in [run 39045365598](https://github.com/not-so-shubh/devop
 | Verify | Two backend endpoint addresses are restored. | Rollout completes and in-container /health returns UP; inspect resulting container logs. |
 | Document | JSON retains before=0, after=2 and verification. | JSON retains observed reason and health verification; lab resources are then removed. |
 
-The final successful run also verifies the controller/Grafana harness corrections described above: real Traefik Ingress, authenticated Grafana and populated dashboard capture all passed. The actual dashboard preserves startup error/latency history; those observations are not erased or represented as proof of sustained production reliability.
+The historical successful run 39045365598 also verifies the controller/Grafana harness corrections described above: real Traefik Ingress, authenticated Grafana and populated dashboard capture all passed. The actual dashboard preserves startup error/latency history; those observations are not erased or represented as proof of sustained production reliability.
 
 ## Frontend HIGH libx11 finding
 
-Run 39694461786 correctly blocked promotion on CVE-2026-88806 in libx11 1.8.13-r0. Require libx11>=1.8.14-r0 from the supported Alpine repository and rerun the unchanged gate plus Compose/kind regression. See [the retained actual finding](evidence/trivy-frontend-libx11-blocked-summary.json).
+Run 39694461786 correctly blocked promotion on CVE-2026-88806 in libx11 1.8.13-r0. Require libx11>=1.8.14-r0 from the supported Alpine repository and rerun the unchanged gate plus Compose/kind regression. The subsequent [run 39696800574](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574), source `8944da7`, passed both unchanged image gates plus Compose/kind regression. Its frontend scan reports installed `libx11` version `1.8.14-r0`. See [the retained actual finding](evidence/trivy-frontend-libx11-blocked-summary.json).
 
 ## Completed AWS cleanup
 

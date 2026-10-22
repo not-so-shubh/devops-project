@@ -1,97 +1,75 @@
-# Verified evidence and submission record
+# Evidence index
 
-## Completed cleanup — 22 October 2026
+[Documentation hub](README.md) · [Examiner handoff](FINAL-PROJECT-HANDOFF.md) · [Rubric audit](RUBRIC-CHECKLIST.md)
 
-The separately approved Sydney cleanup passed at **05:16:28 IST**: 33 Terraform resources destroyed, state empty, two workers terminated, three EBS disks and the ingress LB deleted, VPC/NAT/EIP/project roles/log group absent, zero project ENIs. The downloaded database backup's uploaded checksum matched. [Verified cleanup](AWS-CLEANUP-VERIFICATION.md) · [Aggregate receipt](evidence/aws-cleanup-summary.json). The live demo is deleted; runtime sections below are historical.
+This index distinguishes source-pinned CI/kind proof from user-executed historical AWS evidence. A successful pipeline does not establish automatic EKS deployment or a student's personal presentation.
 
-The audit supports **43 criteria / 94 technical points**, **4 READY FOR DEMO points**, and **2 EXCLUDED form points**, not awarded marks. The refreshed original Grafana image and live API confirmed the 0–100% axis. Keep any already-saved Console screenshots and genuine command logs. Actual billing totals/credits remain unverified.
+## Source-pinned CI evidence
 
-The later frontend HIGH libx11 failure blocked publication in [run 39694461786](https://github.com/not-so-shubh/devops-project/actions/runs/39694461786). [Retained finding](evidence/trivy-frontend-libx11-blocked-summary.json). The Dockerfile requires the fixed package from the same supported Alpine repository; use the remediation source's own current Actions result and security reports.
+The verified application/security baseline is **`8944da7ddf2be0845a593c2f65482eb922e6d9f7`**, [run 39696800574](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574), completed successfully on 22 October. Its immutable evidence commit is **`fa40366375c8a05edbe6a0837071e988d496e62b`**. [Manifest, source and job results](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/ci-run.json).
 
-## Inspected real EKS capture supplement
+| Claim | Original receipt |
+|---|---|
+| 44 PostgreSQL passes, 97.67% coverage | [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/pytest-postgres.txt) |
+| Compose health/non-root/HTTP proof | [compose-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/compose-ci.txt) · [smoke](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/compose-smoke.txt) |
+| Records survive PostgreSQL container restart | [persistence-ci.txt](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/persistence-ci.txt) |
+| Frontend/backend HIGH/CRITICAL findings: zero | [Backend Trivy](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/trivy-backend.json) · [Frontend Trivy](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/trivy-frontend.json) |
+| Frontend audit: 124 dependencies, zero reported vulnerabilities | [frontend-sca.json](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/frontend-sca.json) |
+| SAST/secret gates | [Bandit](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/bandit.json) · [sanitized secret report](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/secrets.json) |
+| Public SHA images and non-root identities | [Backend GHCR](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/ghcr-backend.json) · [Frontend GHCR](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/ghcr-frontend.json) |
+| Terraform mock/Helm checks | [Terraform validation](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/terraform-ci-validate.txt) · [mock topology](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/terraform-ci-mock-test.txt) |
+| Real disposable kind readiness/Helm/ingress/HPA | [Kubernetes output](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/kubernetes-ci.txt) · [cluster health](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/cluster-health-ci.json) · [resource metrics](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/hpa-metrics-ci.txt) |
+| UP targets and positive live traffic | [Targets](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/prometheus-targets.json) · [query](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/prometheus-query.json) |
+| Selector and image-pull faults repaired | [Observations](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/troubleshooting-ci.json) · [investigation](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/troubleshooting-investigation-ci.txt) |
+| Flux fetched the tested SHA; release revision 2 Ready | [gitops-ci.json](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/gitops-ci.json) |
 
-The real EKS archive captured at 09:30–09:31 UTC on 18 October was supplied and inspected: exit code zero, four browser scenarios passed, actual VPC/subnet/route/cluster/managed-worker/workload/Helm JSON checked, and six genuine app/monitoring images visually reviewed. [Capture review](AWS-EKS-CAPTURE-REVIEW.md) · [Original-file hashes and aggregate](evidence/aws-eks-capture-review.json) · [Actual EKS desktop](evidence/eks-frontend-desktop.png) · [Actual EKS mobile](evidence/eks-frontend-mobile.png).
+Current main has a [dynamic workflow status](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml). Each later source archives its own receipts on `evidence/<source-sha>`. Inspect the matching `ci-run.json` and actual job results before calling that source verified. Image tarballs have short artifact retention; immutable allowlisted report commits retain the cited proof.
 
-The application is source `84c18de84538a74a8bab92b89dc72d6e89a393d0`; capture tooling is `cf87b82b40151d0c21c2e03740451a1a9ed2c649`. That later source's [full CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39115536536) is now successful, including both zero-HIGH/CRITICAL image reports and the full frontend lockfile audit (124 dependencies, zero findings). [Its immutable archive](https://github.com/not-so-shubh/devops-project/tree/405b839cd453bff6086a33b1f3ce4e68c19b3384/docs/evidence) is distinct from the user-supplied EKS archive.
+## Genuine screenshots
 
-The original capture preceded the completed follow-up axis correction and final cleanup recorded above. AWS Actions deployment remains disabled by the account-policy blocker. Historical images/reports retain their original environment and source labels.
+| Capture | Environment and provenance |
+|---|---|
+| [EKS desktop](evidence/eks-frontend-desktop.png) / [mobile](evidence/eks-frontend-mobile.png) | Real manual Sydney EKS deployment, 18 October; [review/hashes](AWS-EKS-CAPTURE-REVIEW.md) |
+| [CI desktop](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/frontend-desktop.png) / [mobile](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/frontend-mobile.png) | Actual Compose browser capture for source `8944da7` |
+| [Prometheus Targets](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/prometheus-targets.png) | Disposable kind, same source/run |
+| [Grafana dashboard](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/grafana-dashboard.png) | Authenticated live kind dashboard, same source/run |
 
-## Real EKS runtime update — 18 October 2026
+Real EKS Prometheus/Grafana originals and raw AWS JSON remain in the private supplied archives. The public [capture aggregate](evidence/aws-eks-capture-review.json) records the reviewed hashes. The refreshed EKS archive SHA-256 is `825d31a399760031c5054cb7076c8ef0748ba827492ad50311fefa9bbbd330eb`; live API and original screenshot confirmed the corrected **0–100%** error axis and sampled **2.1333333333333333 requests/second**.
 
-The user subsequently completed the approved worker repair and deployed source `84c18de84538a74a8bab92b89dc72d6e89a393d0` to real EKS in Sydney. Its [CI run 39101728492](https://github.com/not-so-shubh/devops-project/actions/runs/39101728492) succeeded; AWS CI deployment remained skipped. Two workers are Ready, the Helm release is deployed, both application Deployments have two ready replicas, the database has a Bound 5 GiB gp3 PVC, and the HTTP ingress CRUD smoke passed. Actual Prometheus verification found two UP application targets and positive request traffic; HPA CPU metrics work. Authenticated Grafana API access, its four configured panels, datasource health and a live application query also passed.
+## Historical AWS lifecycle
 
-See [actual runtime results and provenance](AWS-EKS-RUNTIME-VERIFICATION.md), [aggregate JSON](evidence/aws-eks-runtime-summary.json), and [private browser-capture procedure](AWS-EKS-CAPTURE.md). The public aggregates omit account-specific infrastructure identifiers. Raw CloudShell evidence remains private.
+| Phase | Execution and source |
+|---|---|
+| Original plan, 18 October | Actual CloudShell Terraform 1.14.7 / AWS provider 6.69.1 plan: 33 additions; [sanitized plan](https://github.com/not-so-shubh/devops-project/blob/0d6856f41879c2d08ddec329b3765393cbecf7e6/docs/evidence/aws-sydney-plan.txt), [preflight/provenance](https://github.com/not-so-shubh/devops-project/blob/0d6856f41879c2d08ddec329b3765393cbecf7e6/docs/evidence/aws-sydney-review.json) |
+| Apply/repair | Approved Sydney provisioning; failed empty worker group repaired under separate reviewed scope; two Ready `m7i-flex.large` workers |
+| Manual app/runtime | Application source `84c18de84538a74a8bab92b89dc72d6e89a393d0`; [runtime record](AWS-EKS-RUNTIME-VERIFICATION.md) and [aggregate](evidence/aws-eks-runtime-summary.json) |
+| Original capture | Tool source `cf87b82`; archive SHA-256 `8d356ef8daae273b6869b16d2f5da3a1b149ab884269eb1a64bc0263a6ce2128`; actual start 09:30:20 UTC on 18 October |
+| Refreshed capture | Tool source `13d2bf1`; start 09:57:29 UTC / browser 09:59:03 UTC on 18 October; [exact record](AWS-EKS-CAPTURE-REVIEW.md#refreshed-monitoring-capture) |
+| Approved cleanup | Helper source `228cccd`; user-executed result at **05:16:28 IST on 22 October**; [verification](AWS-CLEANUP-VERIFICATION.md) and [actual aggregate](evidence/aws-cleanup-summary.json) |
 
-AWS organization policy explicitly denied listing OIDC providers, and a targeted GitHub-provider lookup also returned AccessDenied. The AWS deployment job remains disabled; manual Helm installation must not be described as automated EKS deployment. Real browser captures are now verified in the inspected supplement above. Personal presentation remains unverified; final cleanup was subsequently separately approved and verified as recorded above.
+Terraform state is empty. The identified EKS/LB/VPC/NAT/EIP/roles/log group and three EBS disks are gone; two workers terminated and zero matching ENIs remain. The private database dump's downloaded/uploaded SHA-256 matched. Actual billing totals/credits were not checked. The original six-hour runtime window was exceeded.
 
-## Later verification and AWS CloudShell progress
+The executed deletion command applied a saved `terraform plan -destroy` plan. The record does not claim the literal `terraform destroy` command was typed. AWS outputs were supplied by the user and reviewed; the assistant did not hold a direct authenticated AWS session.
 
-The subsequent frontend lockfile-audit source `952128e01e9afed9a0349faf7c7b58d04e5a96b5` completed [run 39071726194](https://github.com/not-so-shubh/devops-project/actions/runs/39071726194) successfully, including all enabled quality, infrastructure, Compose, image-security, publishing and Kubernetes jobs. Its [immutable final verification](https://github.com/not-so-shubh/devops-project/blob/15806a25b911c264721f2dbe0316627d102da2ac/docs/FINAL-VERIFICATION.md) preserves the source-specific audit. AWS deployment was skipped; this CI result is not AWS provisioning evidence. Later workflow changes require their own validation.
+## Preserved chronology and failed gates
 
-On **18 October 2026 IST**, the user executed Terraform in AWS CloudShell in **Sydney (`ap-southeast-2`)** and supplied screenshots plus complete terminal output. The checkout was confirmed as `952128e01e9a`. Terraform 1.14.7 initialized locked, signed AWS provider 6.69.1 and validated successfully. The actual command `terraform -chdir=terraform plan -input=false -no-color -out=aws-review.tfplan` produced **33 to add, 0 to change, 0 to destroy**. The [sanitized plan](https://github.com/not-so-shubh/devops-project/blob/0d6856f41879c2d08ddec329b3765393cbecf7e6/docs/evidence/aws-sydney-plan.txt), [provenance/preflight JSON](https://github.com/not-so-shubh/devops-project/blob/0d6856f41879c2d08ddec329b3765393cbecf7e6/docs/evidence/aws-sydney-review.json), and [regional cost review](https://github.com/not-so-shubh/devops-project/blob/0d6856f41879c2d08ddec329b3765393cbecf7e6/docs/AWS-SYDNEY-PLAN-REVIEW.md) are durable evidence for M7.3. This is user-provided actual CloudShell execution reviewed by the assistant, not independently executed AWS commands from this workspace.
+| Checkpoint | What it establishes |
+|---|---|
+| [38999948371](https://github.com/not-so-shubh/devops-project/actions/runs/38999948371) | Original backend Debian findings blocked promotion; [retained summary](evidence/trivy-backend-blocked-summary.json) |
+| [39000262612](https://github.com/not-so-shubh/devops-project/actions/runs/39000262612) | Alpine image scans passed; this was not the final fully green cluster run |
+| [39045365598](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598) | Earlier complete runtime/monitoring/troubleshooting/Flux proof, source `9462f34` |
+| [39070263226](https://github.com/not-so-shubh/devops-project/actions/runs/39070263226) | Frontend libexpat HIGH finding blocked promotion; [retained summary](evidence/trivy-frontend-blocked-summary.json) |
+| [39070661297](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297) | Source `710d146`, fixed libexpat and fully green follow-up; [original archive](https://github.com/not-so-shubh/devops-project/tree/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence) |
+| [39117229787](https://github.com/not-so-shubh/devops-project/actions/runs/39117229787) | Source `13d2bf1`, earlier complete green evidence; [archive](https://github.com/not-so-shubh/devops-project/tree/64aba88dbea754bff364e12d2fc589f4b2b0df41/docs/evidence) |
+| [39694461786](https://github.com/not-so-shubh/devops-project/actions/runs/39694461786) | Frontend libx11 HIGH finding blocked promotion; [retained summary](evidence/trivy-frontend-libx11-blocked-summary.json) |
+| [39696800574](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574) | Source `8944da7`, libx11 1.8.14-r0, both image gates and full enabled pipeline passed |
 
-The user approved the reviewed Sydney provisioning and app bootstrap at **11:04 IST**, with a proposed **$10 USD / six-hour** spending target and separate cleanup approval. A first block stopped before apply because CloudShell's egress IP had changed. The revised block refreshed only the private `/32` allowlist, regenerated the 33-create plan, verified the scope again, and reached its apply start marker at **05:42:07 UTC / 11:12:07 IST**. At that initial checkpoint the supplied transcript ended at the start marker. Later provisioning and runtime results supersede that checkpoint, as recorded in the update above; final cleanup has since passed as recorded above. Private state, real tfvars, saved binary plans and credentials are excluded from public Git. The spending target has no automatic cutoff, and costs continue until resources are deleted.
+Older workspace failures/local SQLite checks, original `.txt`/`.log` reports, screenshots and source-specific JSON remain in [`evidence/`](evidence/). They retain their original environment/date labels. [Pre-polish evidence chronology](https://github.com/not-so-shubh/devops-project/blob/8944da7ddf2be0845a593c2f65482eb922e6d9f7/docs/EVIDENCE.md) preserves the full earlier narrative. None of those files are rewritten as evidence of a fresh run.
 
-## Earlier reviewed baseline
+## Presentation and remaining assessment
 
-An earlier reviewed complete run is [StockPilot CI/CD #18](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297), **success**, executed on 17 October 2026. Its source is `710d1460abc480d8b19e2b98f648a9a5c1c23339`. Evidence is pinned to commit `a4b8d43d2125d25fc54cc702f68e8361c684fc8b` so links identify the checked snapshot. Newer source changes need their own successful run; the files below remain proof of this specified revision.
+[Real supplied PowerPoint](presentation/README.md) and its rendered preview are available. **No actual demo video was supplied**; [recording guide](demo/README.md). Adding either guide does not complete personal assessment.
 
-| Area | Actual verified result | Original evidence |
-|---|---|---|
-| Backend | 44 PostgreSQL tests passed, including concurrency; 97.67% coverage | [pytest-postgres.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/pytest-postgres.txt) |
-| Frontend | Lint, four utility tests, production build, four desktop/mobile scenarios in Compose and again through Ingress | [quality job](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297/job/117507399251), [Compose job](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297/job/117507624611) |
-| Compose | Healthy frontend/backend/PostgreSQL; completed migrations, HTTP smoke and persistence after actual database restart | [compose-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/compose-ci.txt), [compose-smoke.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/compose-smoke.txt), [persistence-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/persistence-ci.txt) |
-| SAST and secrets | Bandit and Trivy secret gates passed | [bandit.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/bandit.json), [secrets.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/secrets.json) |
-| SCA and image security | Both OS/library scans passed unchanged HIGH/CRITICAL gate | [trivy-backend.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/trivy-backend.json), [trivy-frontend.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/trivy-frontend.json) |
-| GHCR | Both exact-SHA images published; anonymous manifest/layer access and source revision verified | [ghcr-backend.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/ghcr-backend.json), [ghcr-frontend.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/ghcr-frontend.json) |
-| Terraform | Locked initialization, validation, formatting and mock topology test passed; no AWS plan/apply/destroy performed | [infrastructure job](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297/job/117507399134), [terraform-ci-mock-test.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/terraform-ci-mock-test.txt) |
-| Kubernetes and Helm | Helm deployed; two backend and two frontend replicas, PostgreSQL/PVC, Services and actual Ingress CRUD/browser checks passed | [kubernetes-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/kubernetes-ci.txt), [helm-release-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/helm-release-ci.txt) |
-| HPA | Resource metrics available and ScalingActive=True; no unobserved scale-out claimed | [hpa-metrics-ci.txt](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/hpa-metrics-ci.txt) |
-| Monitoring | Two targets UP; positive request rate; actual authenticated Grafana screenshot has populated charts | [prometheus-targets.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-targets.json), [prometheus-query.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-query.json), [grafana-dashboard.png](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/grafana-dashboard.png) |
-| Troubleshooting | Observed empty Service and ErrImagePull; corrected selector restored two endpoints; corrected image responded UP | [troubleshooting-ci.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/troubleshooting-ci.json) |
-| GitOps | Flux fetched exact tested Git revision, upgraded Helm to revision 2, rolled APP_ENV to gitops-ci and passed final HTTP smoke | [gitops-ci.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/gitops-ci.json) |
-| Provenance | All quality/build/publish/Kubernetes outcomes success, artifact origin recorded per file | [ci-run.json](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/ci-run.json) |
+The audit covers **43 criteria / 94 technical points**, with **4 personal explanation/demo points** and **2 excluded form points**, not awarded marks. The EKS Actions job remains disabled by OIDC policy; manual EKS and automatic kind evidence remain separate. Exact Console/terminal screenshot formats depend on genuine saved captures. [Submission checklist](SUBMISSION.md).
 
-## Actual screenshots
-
-These are captures of the running application and monitoring UI, not mockups. Prometheus cluster addresses are explicitly redacted in its screenshot. Grafana includes the real startup error/latency history; the graph is not edited to hide it. Compose and kind use separate synthetic databases.
-
-### Running frontend
-
-![Actual desktop frontend](https://raw.githubusercontent.com/not-so-shubh/devops-project/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/frontend-desktop.png)
-
-[Mobile frontend](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/frontend-mobile.png) · [Desktop product dialog](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/create-dialog-desktop.png) · [Mobile product dialog](https://github.com/not-so-shubh/devops-project/blob/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/create-dialog-mobile.png)
-
-### Prometheus target health
-
-![Actual Prometheus target health: two targets UP](https://raw.githubusercontent.com/not-so-shubh/devops-project/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/prometheus-targets.png)
-
-### Grafana live dashboard
-
-![Actual authenticated Grafana dashboard with populated charts](https://raw.githubusercontent.com/not-so-shubh/devops-project/a4b8d43d2125d25fc54cc702f68e8361c684fc8b/docs/evidence/grafana-dashboard.png)
-
-## GitHub page and transcript captures (earlier reviewed revision)
-
-[Green Actions summary](evidence/github-green-run.jpg) · [Backend GHCR SHA page](evidence/github-ghcr-backend.jpg) · [Frontend GHCR SHA page](evidence/github-ghcr-frontend.jpg) · [44-pass PostgreSQL transcript](evidence/github-pytest-transcript.jpg) · [Running Pods/Services/Ingress transcript](evidence/github-kubernetes-transcript.jpg) · [Healthy Compose output](evidence/github-compose-health-output.jpg)
-
-These additional JPG images retain their original prior-revision provenance (`9462f34dc3c8f6321af23a85d11296d980839595`); they are not new captures of the current reviewed revision. The PNGs and reports above are pinned to the reviewed `710d146` evidence commit. These additional images are unmodified browser captures. The transcript images show archived actual command output on GitHub, rather than a newly executed terminal. [Capture provenance](evidence/github-screen-captures.json) records every exact page URL and the verified source. Job logs in this public browser require sign-in; original authenticated reports are already preserved above. If the instructor requires literal terminal screenshots, capture those during the live demo as listed in SUBMISSION.md.
-
-## Durable evidence and history
-
-The workflow archives an explicit allowlist to `evidence/<source-sha>`. `ci-run.json` records source, run, selected artifact origins and job outcomes. Each generating job clears its historical generated files before running. Failed runs stay visibly failed and do not count as green evidence. Raw browser traces and matched secret values are excluded from Git; text/JSON identifiers are redacted without changing results, severities or numeric metrics.
-
-Earlier failed runs and the original blocked Debian image scan remain documented in [troubleshooting](TROUBLESHOOTING.md) and [security](../security/README.md). They explain the fixes, while the complete success above verifies the resulting system. Actions artifacts retain reports for 30 days and image tarballs for one day; the pinned evidence commit preserves the allowlisted outputs beyond artifact expiry.
-
-## Final submission
-
-Use [SUBMISSION.md](SUBMISSION.md) for the exact remaining actions and screenshot-format checklist, [all 46 criteria](RUBRIC-CHECKLIST.md) for the evidence-based audit, and [DEMO.md](DEMO.md) for the walkthrough. The earlier baseline audit supported 39 criteria covering 83 rubric points; that historical count predates the real AWS progress above and is neither an awarded nor guaranteed grade. AWS plan and provisioning have subsequent executed evidence. Cleanup is now verified. The AWS OIDC deployment blocker, saved presentation-format captures and student performance remain distinct limitations. Official form submission is **Student action — excluded from this task**.
-
-## Earlier workspace checks and prepared materials
-
-[Local Terraform readiness output](evidence/terraform-local-readiness.txt) preserves command results and environment limitations. [Cloud access check](evidence/cloud-access-check.json) records that no AWS identity, permission verification, plan, apply or destroy had occurred from this workspace at that earlier checkpoint. It predates the user's subsequent CloudShell execution. [Local regression output](evidence/regression-local.txt) distinguishes SQLite checks from CI PostgreSQL/container checks. [AWS readiness](AWS-READINESS.md) records architecture review, public regional pricing and the secure connection/approval requirements. These files are not AWS execution proof.
-
-The UI quick guide now explains the already enforced overselling rule. The source-pinned run above completed a real pipeline and disposable deployment with that UI change plus the libexpat security fix; its `ci-run.json` identifies the exact source and artifact origins. This technical chain does not represent a student presentation or an EKS deployment.
-
-The first presentation-pack rebuild [39070263226](https://github.com/not-so-shubh/devops-project/actions/runs/39070263226) failed the frontend security gate on libexpat CVE-2026-77214. It did not publish the images or deploy Kubernetes. The failure is preserved in [trivy-frontend-blocked-summary.json](evidence/trivy-frontend-blocked-summary.json), with a full report on its evidence branch. The subsequent source `710d146` requires the fixed Alpine package and passed the complete source-pinned run above. The failed run remains archived independently; its blocked frontend was not promoted.
-
-Final report review found the static image's Node inventory contained only the root frontend package. An additional blocking npm audit now checks the full frontend lockfile graph, including dev/build dependencies, and archives `frontend-sca.json`. The older pinned run above predates that gate; verify the added check using its final source's own `ci-run.json` and report. The image scans remain blocking and unchanged.
+Private state, plans, credentials, database contents and account/resource identifiers are excluded from this public evidence index. Official form: **Student action — excluded from this task**.

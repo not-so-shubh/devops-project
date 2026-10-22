@@ -1,5 +1,7 @@
 # AWS EKS runtime verification — captured 18 October; cleanup verified 22 October 2026
 
+[Documentation hub](README.md) · [Evidence index](EVIDENCE.md) · [Examiner handoff](FINAL-PROJECT-HANDOFF.md)
+
 **Lifecycle:** This page records historical runtime. The real Sydney environment was separately approved for deletion and cleanup passed at **05:16:28 IST on 22 October**. [Verified cleanup and residual checks](AWS-CLEANUP-VERIFICATION.md).
 
 Source: `84c18de84538a74a8bab92b89dc72d6e89a393d0`. [Successful source CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39101728492).

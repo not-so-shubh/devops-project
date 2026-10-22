@@ -1,20 +1,27 @@
-# Reviewed GitOps promotion with Flux
+# GitOps with Flux
 
-This is an optional pull-based deployment mode, in addition to the rubric's direct Actions Helm deployment. Do not let two deployment systems own one release: disable `AWS_DEPLOY_ENABLED` before enabling Flux for that cluster.
+[Documentation hub](../docs/README.md) · [Workflow](../.github/workflows/ci-cd.yml) · [Deployment](../docs/DEPLOYMENT.md)
 
-1. Install Flux controllers with the official Flux CLI: `flux check --pre && flux install` (requires cluster-admin, not AWS infrastructure creation).
-2. Bootstrap namespace, database Secret, image access, ingress, metrics-server and monitoring as documented in `docs/DEPLOYMENT.md`.
-3. Apply `kubectl apply -f gitops/source.yaml`. Flux watches `main` and reconciles `gitops/apps`.
-4. Select a **successfully scanned and published** commit SHA. Verify both GHCR manifests exist. Change both tags in `gitops/apps/release.yaml`, set `suspend: false`, and review/merge that change through a PR. The checked-in SHA `9462f34dc3c8f6321af23a85d11296d980839595` passed both image scans and public GHCR publication in [run 39045365598](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598); the operator release stays suspended until cluster bootstrap is complete.
-5. Run `flux reconcile source git stockpilot && flux reconcile kustomization stockpilot`; inspect `flux get helmreleases -A`, `kubectl rollout status deployment/stockpilot-backend -n stockpilot`, ingress and real HTTP operations.
-6. Roll back by reverting the promotion commit and reconciling. Flux restores desired state on its polling interval; it does not build or scan images.
+## What was verified
 
-The repository is the reviewable desired-state source. Git history records promotions and reversions. Secrets remain externally supplied. The disposable integration mode has been verified in the [complete successful run](https://github.com/not-so-shubh/devops-project/actions/runs/39045365598); [the original record](https://github.com/not-so-shubh/devops-project/blob/48bd7092be1c403e91fc08717f75b53c61bf4295/docs/evidence/gitops-ci.json) shows Flux fetched the tested Git revision and completed Helm revision 2 with APP_ENV=gitops-ci. The separate operator/EKS release remains suspended and is not claimed as deployed.
+In disposable kind, the direct Helm/browser checks finish first. The CI verifier then installs Flux and deliberately transfers release ownership to the committed [`ci/`](ci/) overlay. Source-controller fetches the tested branch/commit; kustomize-controller substitutes the tested image SHA; helm-controller upgrades StockPilot. A changed ConfigMap checksum rolls backend Pods.
 
-References: https://fluxcd.io/flux/guides/helmreleases/ and https://fluxcd.io/flux/components/kustomize/kustomizations/ .
+The actual [Flux receipt](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/gitops-ci.json) for source `8944da7` records the fetched source SHA, Ready HelmRelease, **Helm revision 2** and the `gitops-ci` environment. The verifier also checks the running Pod's environment and final HTTP health. This is automatic pull reconciliation in kind, not automatic deployment to AWS.
 
-## Disposable integration verification
+## Release ownership
 
-CI installs checksum-verified Flux 2.9.6 controllers after the direct Helm/browser demonstration. `scripts/verify-gitops.py` creates a Git source pinned to the tested commit and a Flux Kustomization for committed `gitops/ci/`. Flux pulls those manifests, substitutes the scanned SHA, and takes ownership of the existing release. The CI overlay changes `APP_ENV` to `gitops-ci`; a ConfigMap checksum rolls backend Pods. Verification requires the fetched Git revision, Ready HelmRelease, exact image tag, and the running Pod's new environment. A final HTTP smoke checks the reconciled app. `gitops-ci.json` is written only after these assertions succeed. This overlay is confined to the ephemeral kind cluster; the separate operator workflow remains suspended until enabled deliberately.
+Choose one continuous owner for one release. Repeated direct `helm upgrade` from Actions while Flux reconciles the same release can cause competing desired states. The CI exercise uses a controlled handoff in a disposable cluster. A permitted future operator cluster would disable direct Actions ownership before enabling Flux.
 
-Pull-request jobs consistently check out, test, build, scan and deploy the actual PR head `SOURCE_SHA`. Flux clones the source branch pinned to that same reachable commit, and the fetched artifact must match it. A synthetic merge-ref clone failed with an object-not-found error in run 39051158786; that failed run is not counted as green evidence. Main pushes still use the real main commit and run a separate complete gate before publication. Source reconciliation failures preserve describe/condition diagnostics in `gitops-diagnostics-ci.txt`. See [Flux branch plus commit pinning](https://fluxcd.io/flux/components/source/gitrepositories/#commit-example).
+Flux retrieves declared state; it does not build or scan images. Promotion must select successfully scanned and published source-SHA tags. Git history records promotion and rollback by revert. Secrets remain externally supplied.
+
+## Operator overlay
+
+[`source.yaml`](source.yaml) and [`apps/release.yaml`](apps/release.yaml) are an optional operator path. The checked-in release remains suspended and retains its own historical scanned SHA. It was not enabled against EKS. Review actual source/registry receipts, bootstrap storage/controllers/Secrets and obtain any required account/runtime approval before using a future permitted cluster.
+
+For an already authorized cluster only, the operator sequence is: install/check Flux, bootstrap prerequisites, review the exact source and release values, choose verified image tags, unsuspend deliberately, reconcile, then inspect fetched revision, Helm conditions and running Pods. See [official HelmRelease guidance](https://fluxcd.io/flux/guides/helmreleases/).
+
+## Source consistency and diagnostics
+
+PR checks use the reachable PR head SHA for tests, builds, image tags and Flux fetches. A synthetic merge commit failed to clone in historical run 39051158786; that failure is retained, not counted as green evidence. Main pushes validate their actual main SHA separately. Reconciliation errors preserve describe/condition diagnostics.
+
+Relevant implementation: [`verify-gitops.py`](../scripts/verify-gitops.py), [`ci/kustomization.yaml`](ci/kustomization.yaml) and [`ci/release.yaml`](ci/release.yaml). [Evidence manifest](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/ci-run.json) · [Troubleshooting](../docs/TROUBLESHOOTING.md).

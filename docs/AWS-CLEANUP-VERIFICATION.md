@@ -1,5 +1,7 @@
 # Verified AWS cleanup — 22 October 2026
 
+[Documentation hub](README.md) · [Evidence index](EVIDENCE.md) · [Examiner handoff](FINAL-PROJECT-HANDOFF.md)
+
 The user separately approved the reviewed StockPilot teardown and executed [cleanup source `228cccd`](https://github.com/not-so-shubh/devops-project/blob/228cccd843c65b2e9dccbe5452d980a00b889a75/scripts/cleanup-approved-eks.py) in AWS CloudShell. The supplied console output ends with **CLEANUP VERIFIED / PASS** at **05:16:28 IST on 22 October 2026** (23:46:28 UTC on 21 October).
 
 The assistant reviewed the supplied result; it did not operate a direct authenticated AWS session. [Machine-readable result and provenance](evidence/aws-cleanup-summary.json).

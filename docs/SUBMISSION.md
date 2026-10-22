@@ -1,48 +1,51 @@
-# Submission status and remaining work
+# Submission status
 
-Repository: https://github.com/not-so-shubh/devops-project
+[Documentation hub](README.md) · [Examiner handoff](FINAL-PROJECT-HANDOFF.md) · [Official rubric](https://github.com/Nency-Ravaliya/devops-heros/blob/main/session21-python/GRADING.md)
 
-The pinned completed CI baseline is `13d2bf1481ef498670637914441452367d996aa3`: [run 39117229787](https://github.com/not-so-shubh/devops-project/actions/runs/39117229787), with [durable CI evidence](https://github.com/not-so-shubh/devops-project/tree/64aba88dbea754bff364e12d2fc589f4b2b0df41/docs/evidence). Check the [current source's Actions result](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml) and its own evidence branch for later changes. Real EKS application source is `84c18de84538a74a8bab92b89dc72d6e89a393d0`. [The inspected EKS archive review](AWS-EKS-CAPTURE-REVIEW.md) records exact provenance and original-file hashes.
+## Ready to evaluate
 
-## Evidence-backed status
+- [Original application and safe local setup](../README.md#quick-start).
+- [Complete enabled application pipeline](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574), exact source `8944da7`, with [original receipts](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/ci-run.json).
+- [Historical real AWS deployment/capture](AWS-EKS-CAPTURE-REVIEW.md) and [approved final cleanup](AWS-CLEANUP-VERIFICATION.md).
+- [Editable final PowerPoint and preview](presentation/README.md), speaker notes, [timed script](FINAL-DEMO-SCRIPT.md) and [instructor Q&A](INSTRUCTOR-QA.md).
+- [All 46 criteria](RUBRIC-CHECKLIST.md), totaling 100 available points.
 
-All 46 official criteria are listed in [RUBRIC-CHECKLIST.md](RUBRIC-CHECKLIST.md). There are **43 VERIFIED criteria / 94 technical points**, **4 READY FOR DEMO points**, and **2 EXCLUDED form points**. This is evidence coverage, not an awarded grade.
+The audit records **43 verified criteria / 94 technical points**, **2 criteria / 4 points READY FOR DEMO**, and **1 criterion / 2 points EXCLUDED**. These are evidence categories, not guaranteed or instructor-awarded grades. The presentation upload does not change these totals.
 
-Real provider-backed Terraform plan, VPC with two public/two private subnets across two AZs, active routing, EKS and managed workers are executed and independently reviewed. At capture, two workers were Ready. Real EKS Helm/PVC/replicas/ingress/HPA, four desktop/mobile browser scenarios, Prometheus UP targets and authenticated populated Grafana have actual proof. The environment was subsequently deleted after explicit approval; [cleanup and residual checks passed](AWS-CLEANUP-VERIFICATION.md).
+## Student actions still required
 
-| Remaining criterion | Points | Required completion |
+| Criterion | Points | Actual remaining action |
 |---|---:|---|
-| M3.1 | 2 | **Student action — excluded from this task.** No official form opened, populated or submitted. |
-| M6.3 | 1 | Personally explain the real Trivy result and limits using [TRIVY-EXPLANATION.md](TRIVY-EXPLANATION.md). Written preparation is complete; personal understanding has not been assessed. |
-| M10.2 | 3 | Personally present live or produce an accepted remote recording of a genuine commit → green CI → observed deployment update. Automatic kind/Flux and manual real EKS proof are distinct. |
+| M6.3 | 1 | Personally explain a real CVE/clean scan and its limits using [Trivy preparation](TRIVY-EXPLANATION.md) |
+| M10.2 | 3 | Personally perform a genuine commit → CI → observed deployment update, live or in a recording the instructor accepts |
+| M3.1 | 2 | **Student action — excluded from this task.** Handle the official form independently |
 
-The mission's additional automatic AWS deployment requirement is **BLOCKED**: organization policy explicitly denied OIDC-provider listing and the exact-provider lookup also returned AccessDenied. GitHub administrator access and login succeeded. The AWS deploy job remains disabled/skipped. A permitted account-policy configuration is required; manual EKS deployment does not close that gap.
+**Recording status: awaiting upload.** No MP4/video URL was supplied. [Planned chapters and hosting](demo/README.md). A prepared deck or automated screenshot is not proof that the student's personal presentation occurred.
 
-## Required screenshot and recording formats
+Automatic GitHub Actions deployment to EKS remains blocked by organization OIDC policy and was skipped. Real manual EKS deployment and automatic disposable kind/Flux reconciliation are separate verified paths. A personal demonstration can use an available permitted local/CI environment with accurate labels; a new paid AWS deployment is outside this handoff.
 
-| Requested item | Current proof / next action |
+## Exact screenshot formats
+
+| Requested format | Genuine source / next action |
 |---|---|
-| Running app, desktop/mobile | Original real EKS screenshots inspected and linked in [capture review](AWS-EKS-CAPTURE-REVIEW.md). |
-| Terraform non-empty plan | Actual 33-create plan and private original transcript available; retain/capture the literal terminal image. |
-| AWS Console VPC / EKS | Real CLI/API resources verified. Supply pre-deletion Console screenshots already saved. The environment is deleted; CLI JSON cannot recreate genuine Console screenshots. Keep identifiers private. |
-| Ready workers / Pods / Services / Helm list | Genuine private EKS output archive available; use genuine saved output for readable historical terminal captures where accepted. |
-| Prometheus Targets / Grafana | Real EKS original UI images inspected. Prometheus addresses remain private; the refreshed original Grafana screenshot was inspected with the corrected 0–100% axis. |
-| Backend /metrics | Real application metrics were scraped and queried successfully; retain saved curl output, or label a separately performed local metric demonstration with its actual environment. |
-| Pytest / Compose / non-root / security / GHCR / Git history | Actual source-pinned CI reports and historical original screenshots retained; use their exact run/source labels. Pinned complete baseline linked above; use the current source's own run and reports. |
-| Deployment update / personal presentation | Prepared script and automatic kind/Flux evidence available; personal presentation pending, AWS Actions integration blocked. |
-| Terraform destroy | Separate approval received; saved destroy-plan apply and all project residual checks passed. [Result](AWS-CLEANUP-VERIFICATION.md). Keep genuine private command logs for terminal-format evidence. |
+| Running browser app | Public historical EKS desktop/mobile captures and source-pinned CI screenshots in [Evidence](EVIDENCE.md) |
+| `pytest -v`, Compose, non-root and Trivy | Original run logs/reports and historical terminal images; save readable actual output in the requested format |
+| Git history and GHCR SHA tags | Actual repository/package pages; preserve source labels and never call a failed run green |
+| Terraform plan | Original 33-create CloudShell output and sanitized historical plan |
+| AWS Console VPC/EKS in Sydney | Use genuine pre-deletion Console images already saved. The deleted environment cannot be recreated as authentic Console images from CLI JSON |
+| Pods, Services, Helm list | Genuine saved EKS/CI terminal output, labelled by environment/date |
+| `/metrics`, Prometheus Targets, Grafana | Original exposition, target and dashboard evidence; keep private EKS addresses out of public uploads |
+| Destroy completion | Actual saved-plan application log, empty state and [scoped residual receipt](AWS-CLEANUP-VERIFICATION.md) |
 
-Keep the full raw EKS archive and AWS Console images private unless disclosure is explicitly reviewed. Publish only the safe app captures and aggregate facts already identified. Do not substitute kind screenshots for real EKS evidence or an automated capture for a student's personal presentation.
+Technical audit coverage does not certify that every exact screenshot format has been supplied. If a required Console image was never saved, report that gap honestly rather than fabricating a replacement or recreating paid infrastructure for this documentation task.
 
-## Suggested final walkthrough
+## Before the college presentation
 
-1. Use an available local/CI environment for live app actions, and identify the real EKS captures as historical. Explain create/edit/stock adjustment, rejected overselling and retained ledger.
-2. Show 44 PostgreSQL passes/97.67% coverage, Compose persistence, non-root runtimes, both Trivy reports and SHA-tagged GHCR images from the exact cited run.
-3. Show the real AWS plan/VPC/subnets/EKS/group, Ready workers, two application replicas, Helm revision, ingress and HPA metrics.
-4. Show the genuine saved Prometheus/Grafana captures; explain the completed and verified 0–100% error-axis correction.
-5. Distinguish automatic kind/Flux deployment from manually bootstrapped EKS and disclose the OIDC-policy blocker.
-6. Present or record personally. Include the actual separately approved cleanup result and retained database backup; a new paid AWS demo needs a new reviewed cost/runtime approval.
+1. Download the [PowerPoint](presentation/StockPilot_Final_Presentation.pptx?raw=true), open it locally and rehearse the notes.
+2. Check your chosen Compose/kind environment, microphone and readable terminal/browser zoom.
+3. Demonstrate the product and personal security explanation, then observe the actual commit/run/deployment chain.
+4. Show historical AWS provisioning/runtime/cleanup with its original source/date, not as a current live endpoint.
+5. Supply the actual video if required; verify the shared URL and chapter continuity.
+6. Complete the official form yourself. **No official form was opened, populated or submitted in this work.**
 
-[Demo script](FINAL-DEMO-SCRIPT.md) · [Capture checklist](FINAL-PRESENTATION-CHECKLIST.md) · [Instructor Q&A](INSTRUCTOR-QA.md).
-
-The original six-hour window ended on 18 October. Cleanup completed **05:16:28 IST on 22 October**, beyond that window. The US$10 target was not an automatic cutoff; actual charges and credits have not been checked. The verified result concerns the identified StockPilot resources.
+The reviewed AWS resources are gone and the private database backup was retained. Cleanup finished beyond the original six-hour window; actual account charges/credits have not been checked.

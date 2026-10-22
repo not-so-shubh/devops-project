@@ -1,6 +1,30 @@
 # Architecture and decisions
 
-StockPilot is a single-workspace inventory platform. The browser reads all displayed data from the API. Database-backed seed examples are optional. Inventory, stock history, and aggregate statistics share one relational source of truth.
+[Documentation hub](README.md) · [Run the system](DEPLOYMENT.md) · [Evidence](EVIDENCE.md)
+
+StockPilot is a single-workspace inventory application. Products, stock movements and dashboard statistics share one relational source of truth. Optional seed records are inserted explicitly, never on application startup.
+
+## Request paths
+
+| Environment | Request route |
+|---|---|
+| Compose | Browser `localhost:3000` → unprivileged Nginx `:8080` → unchanged `/api` proxy to `backend:8000` |
+| Kubernetes | Traefik sends `/` to frontend `:8080` and `/api` directly to backend `:8000`; frontend also supports relative API proxying |
+
+The frontend does not embed a cluster hostname. Stable Service names support one StockPilot Helm release per namespace; use separate namespaces for separate releases.
+
+```mermaid
+flowchart TD
+  Client["Browser"] --> Ingress["Traefik"]
+  Ingress -->|"/"| Frontend["React / Nginx"]
+  Ingress -->|"/api"| Backend["FastAPI"]
+  Frontend --> Backend
+  Backend --> Database["PostgreSQL"]
+  Backend -->|"metrics"| Prometheus["Prometheus"]
+  Prometheus --> Grafana["Grafana"]
+```
+
+## Data and stock correctness
 
 ```mermaid
 erDiagram
@@ -13,9 +37,6 @@ erDiagram
     decimal selling_price
     int stock_quantity
     int reorder_threshold
-    string description
-    timestamp created_at
-    timestamp updated_at
   }
   STOCK_MOVEMENTS {
     int id PK
@@ -25,75 +46,56 @@ erDiagram
     int quantity_change
     int quantity_after
     string reason
-    timestamp created_at
   }
 ```
 
-The nullable foreign key uses `ON DELETE SET NULL`. Movement snapshots keep their original SKU/name after edits or deletion. Quantities are integers; prices use `NUMERIC(12,2)` and Decimal validation, not floating-point storage. Responses normalize timestamps to UTC, including local SQLite tests.
+The movement's nullable foreign key uses `ON DELETE SET NULL`. SKU/name snapshots preserve history after product edits or deletion. Prices use `NUMERIC(12,2)` and Decimal validation; quantities are integers bounded from zero to 1,000,000. Responses normalize timestamps to UTC.
 
-An adjustment executes `UPDATE products SET stock_quantity = stock_quantity + delta WHERE id = ... AND stock_quantity + delta BETWEEN 0 AND 1000000 RETURNING ...`, then inserts the movement and commits. PostgreSQL serializes competing writes to the row and reevaluates the condition. An insufficient balance returns 409 without a movement. A failure before commit rolls back both operations. Product creation similarly commits its opening balance with the product.
+An adjustment conditionally updates the row only when `stock_quantity + delta` is within bounds, obtains the resulting balance, inserts the movement and commits once. PostgreSQL serializes competing row writes and reevaluates the condition. Insufficient balance returns 409 without a false ledger event; a failed transaction rolls back both changes. The [PostgreSQL concurrency test](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/pytest-postgres.txt) verifies simultaneous removals.
 
-The API imports models but never creates tables on startup. Alembic is the production schema owner. Readiness runs a real query and checks the products table; liveness stays independent of a database outage. The migration service/Job is the sole migration runner for a deployment. Release migrations must be backward compatible during rolling updates. Database recovery requires tested backups; Helm rollback alone is insufficient.
+Alembic owns deployed schema changes. Compose runs a one-shot migration service; Helm runs a revisioned migration Job. Backend readiness checks the database and migrated products table, while liveness is independent of database availability. Helm rollback cannot restore database state or reverse migrations safely by itself.
 
-The frontend keeps URLs relative, avoiding build-time cluster hostnames. Nginx uses 8080 as UID 101 and proxies `/api/` unchanged to Service `backend:8000`; Ingress handles `/api` directly, then `/` to frontend. The chart intentionally supports one StockPilot release per namespace because these Service DNS names are stable. Use separate namespaces for dev/prod or additional instances.
-
-Kubernetes runs two frontend replicas and a backend HPA with minimum two and maximum six at 65% of the 100m CPU request. Limits protect the node; requests make scheduling and CPU utilization meaningful. Metrics-server supplies resource metrics for HPA. Prometheus is a separate metrics system for observation, not the HPA CPU data provider.
-
-The demonstration PostgreSQL StatefulSet has a PVC. EKS uses encrypted gp3 via the EBS CSI driver, with Pod Identity granting only the CSI role EBS permissions. The CSI role, EKS roles and access entries are defined in Terraform. CNI permissions are attached to the demo node role; a production hardening step is a dedicated CNI Pod Identity/IRSA role. Single NAT and a single DB are documented availability tradeoffs.
-
-HTTP counters and latency histograms use route-template labels, including status codes, and exclude `/metrics` requests. The Grafana dashboard aggregates all backend replicas. ServiceMonitor selection is explicit on namespace, release label and Service labels/port. Its namespace label must exist before monitoring installation.
-
-The CI path is reproducible and gated: quality → Compose → build/scan → publish and kind integration → optional EKS. Candidate image tar archives ensure the pushed bytes are the scanned bytes. AWS OIDC trusts the exact repository's `production` environment. IAM permits describing only the intended EKS cluster; EKS access grants edit only in `stockpilot`, while a human operator bootstraps namespace, storage, monitoring and secrets.
-
-## Delivery architecture for the presentation
+## Delivery environments
 
 ```mermaid
 flowchart TD
-  Git[Git source commit] --> CI[GitHub Actions gates]
-  CI --> Images[Scanned SHA images in GHCR]
-  CI --> Kind[Disposable kind validation]
-  Images --> Deploy[Helm release]
-  Terraform[Terraform after AWS approval] --> EKS[EKS and private workers]
-  EKS --> Deploy
-  Kind --> Deploy
-  Deploy --> Ingress[Traefik routing]
-  Ingress --> Frontend[React and Nginx]
-  Ingress --> Backend[FastAPI]
-  Backend --> DB[PostgreSQL PVC]
-  Backend --> Prometheus[Prometheus scraping]
-  Prometheus --> Grafana[Grafana dashboard]
+  Source["Source commit"] --> Quality["Quality / tests"]
+  Source --> Infra["Terraform mock / Helm checks"]
+  Quality --> Compose["Compose / browser / persistence"]
+  Compose --> Scan["Build / blocking image scans"]
+  Infra --> Scan
+  Scan --> GHCR["Exact scanned SHA images"]
+  Scan --> Kind["Disposable kind / Helm / Flux"]
 ```
 
-This diagram describes the intended paths. The kind branch has actual executed evidence; the AWS Terraform/EKS branch remains unexecuted until authentication and approval. Production Actions ownership and Flux reconciliation are alternatives for a release; the CI exercise hands ownership to Flux in its disposable cluster.
+Images are exported after scanning and those exact archives are published to GHCR. Pull requests validate a reachable PR head SHA without publishing; main pushes validate the resulting main SHA. Flux fetches that same commit in its disposable CI overlay. [GitOps details](../gitops/README.md).
 
-## Tool responsibilities
+The real Sydney EKS environment followed a separately approved Terraform and **manual Helm** path, verified on 18 October and destroyed after separate approval on 22 October. The optional Actions EKS job stayed disabled because AWS organization policy blocked OIDC-provider access. [Runtime record](AWS-EKS-RUNTIME-VERIFICATION.md) · [Cleanup](AWS-CLEANUP-VERIFICATION.md).
 
-| Tool | Purpose in StockPilot |
+## Kubernetes and metrics
+
+The production-values demo uses two frontend/backend replicas. Backend HPA has minimum two, maximum six, and a 65% CPU target against its CPU request. Metrics-server supplies HPA resource metrics. Prometheus independently scrapes HTTP counters and latency histograms; route-template labels avoid unbounded product-ID cardinality. Grafana aggregates backend replicas. The observed low-load EKS HPA stayed at two; metrics availability is not evidence of scale-out.
+
+EKS gp3 storage used encryption and EBS CSI with a dedicated Pod Identity role. ServiceMonitor discovery matches the application namespace, `release=monitoring`, backend Service labels and named `http` port. [Monitoring configuration and queries](../monitoring/README.md).
+
+## Security boundaries
+
+- Backend UID 10001 and frontend UID 101, read-only filesystems, writable temporary mounts, dropped capabilities and no privilege escalation.
+- Locked Python/npm dependencies, pinned Actions/base images, Bandit, secret scanning, separate lockfile SCA and blocking image vulnerability scans.
+- Kubernetes Secret references instead of committed credentials; restricted EKS operator `/32` plus private API access.
+- Optional CI role design permits cluster description and namespace-scoped edits, not infrastructure bootstrap. It was not enabled in the policy-restricted account.
+
+## Operational tradeoffs
+
+| Decision | Consequence |
 |---|---|
-| Git / GitHub | Source history, reviewable changes and repository hosting. |
-| React / Vite | Browser interactions and a reproducible static frontend build. |
-| FastAPI / Pydantic | REST routing, input validation and API documentation. |
-| SQLAlchemy / Psycopg | Transactional database access and PostgreSQL connectivity. |
-| PostgreSQL / Alembic | Durable inventory/ledger records and versioned schema migrations. |
-| Pytest / coverage | API/database behavior checks and measurement of exercised Python statements. |
-| Ruff / ESLint | Python/JavaScript static quality checks and consistent Python formatting. |
-| Playwright | Real desktop/mobile browser acceptance and screenshots. |
-| Docker / Compose | Reproducible images and the local application/database stack. |
-| Nginx | Non-root static frontend serving and local API proxy. |
-| GitHub Actions | Ordered quality, infrastructure, Compose, build, scan, publish and cluster checks. |
-| Bandit / Trivy / npm audit | Python security analysis, secret detection, image OS/library scans and a separate frontend lockfile vulnerability gate. |
-| GHCR | Published backend/frontend images identified by tested source SHA. |
-| Terraform / AWS provider | Declarative AWS network, EKS, workers, IAM, storage driver and logging lifecycle. |
-| AWS IAM / OIDC | Scoped identities/access; short-lived GitHub deployment credentials. |
-| EKS / EC2 managed nodes | Proposed AWS control plane and worker compute; not yet provisioned here. |
-| kind | Actual disposable Kubernetes environment used in CI without paid AWS infrastructure. |
-| kubectl | Apply/inspect Kubernetes objects, rollout state, metrics and debugging information. |
-| Helm | Versioned app/controller/monitoring packages and release upgrades. |
-| Traefik | Ingress controller routing `/` to frontend and `/api` to backend. |
-| EBS CSI / Pod Identity | Proposed EKS gp3 volume provisioning with a separate AWS storage role. |
-| metrics-server / HPA | Resource CPU metrics and backend replica adjustment. |
-| Prometheus Operator / ServiceMonitor | Monitoring resource management and application scrape discovery. |
-| Prometheus / Grafana | Metrics collection/querying and dashboards with real request/latency data. |
-| Flux | Git source retrieval and Helm desired-state reconciliation, verified in CI. |
+| Single PostgreSQL replica/PVC | Persistence for the capstone, without database HA or a proven full restore rehearsal |
+| Single NAT gateway | Smaller demo footprint, with an AZ dependency and possible cross-AZ traffic |
+| CNI policy on node role | Dedicated CNI Pod Identity/IRSA would narrow permissions further |
+| One Uvicorn worker per container | Clear per-process metrics; capacity scales through replicas |
+| Ephemeral monitoring storage | Good for a demo; business retention/backups need separate design |
+| No application login/RBAC | Use synthetic data; business operation needs authentication and authorization |
+| HTTP EKS demo ingress | A real certificate and TLS configuration remain production work |
+| Scoped cleanup audit | Confirms reviewed project resources; it does not certify account-wide billing or credits |
 
-See [FINAL-DEMO-SCRIPT.md](FINAL-DEMO-SCRIPT.md) for the timed walkthrough and [INSTRUCTOR-QA.md](INSTRUCTOR-QA.md) for tradeoffs and remaining limits.
+[Security controls](../security/README.md) · [Instructor questions](INSTRUCTOR-QA.md) · [Tool/application source guide](../application/README.md).

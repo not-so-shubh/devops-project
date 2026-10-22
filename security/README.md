@@ -1,33 +1,39 @@
-# Security gates
+# Security controls and evidence
 
-The attached homework also requires SAST, SCA and secret scanning.
+[Documentation hub](../docs/README.md) · [Student Trivy explanation](../docs/TRIVY-EXPLANATION.md) · [Evidence](../docs/EVIDENCE.md)
 
-* Bandit 1.9.4 analyzes Python application syntax for security defects. Medium/high findings block quality. Low findings remain in JSON for review.
-* Trivy filesystem secret scanning blocks detected credentials before builds.
-* Trivy scans both final images and detected OS/language packages, blocking HIGH/CRITICAL findings including unfixed issues. The static frontend image's Node inventory contains only its root package; retained manifests are not proof that all bundled dependencies were scanned.
-* A separate blocking `npm audit --audit-level=high --include=dev --json` checks the frontend lockfile's dependency graph, including build dependencies, against npm advisories. The report is archived as `frontend-sca.json`; HIGH/CRITICAL findings or audit-command errors fail quality before image builds.
-* Reports are retained as Actions artifacts and allowlisted evidence. No suppression file, exit-zero or continue-on-error bypass is configured.
+## Blocking gates
 
-Run `bandit -r backend/app -ll -f json -o /tmp/bandit.json` and `trivy fs --scanners secret --exit-code 1 .`. A clean result describes this scan and database version, not an assurance that software has no vulnerabilities. Review reports and update dependencies regularly. Never paste credentials into manifests or screenshots.
+| Gate | Scope and behavior |
+|---|---|
+| Ruff / frontend quality | Static checks before integration/build promotion |
+| Bandit | Python application SAST; configured findings fail quality |
+| Trivy secrets | Repository credential scanning; detected secrets fail quality |
+| npm audit | Full frontend lockfile graph, including build/dev dependencies; HIGH/CRITICAL or command errors fail quality |
+| Trivy images | Both final runtime images, OS/supported dependency inventory; HIGH/CRITICAL, including unfixed findings, block promotion |
 
-## Actual blocked scan and remediation
+There is no CVE suppression, `continue-on-error`, exit-zero workaround or weakened severity threshold. Secret evidence strips matched credential values/code while retaining finding severity/location; sanitization never changes the scanner's blocking status.
 
-Run [38999948371](https://github.com/not-so-shubh/devops-project/actions/runs/38999948371) scanned both images. Frontend Alpine/Node dependency results had zero HIGH/CRITICAL entries. Backend Python libraries were clean at that threshold, but Debian 13.7 OS packages caused a genuine failure. Publication was blocked. The report included CVE-2026-76642 in util-linux-derived packages (installed 2.41.5); its distro FixedVersion field was empty. The [upstream advisory](https://github.com/util-linux/util-linux/security/advisories/GHSA-m25x-3hj9-m26f) describes privileged mount post-hooks running despite a failed helper; upstream patched releases include 2.41.6/2.42.3. Other findings affected ncurses, systemd, ACL and Perl base packages.
+## Verified application baseline
 
-We replaced the runtime with a maintained Python Alpine base, removing the Debian package set, and retained the blocking scan with unfixed findings included. Binary musllinux wheels support Psycopg/Pydantic on the new libc; real Compose/PostgreSQL/browser checks must pass again. This is an actual runtime change, not deleting package metadata or suppressing CVEs. Subsequent run [39000262612](https://github.com/not-so-shubh/devops-project/actions/runs/39000262612) passed both image scans: backend Alpine 3.24.2 (38 OS packages plus Python inventory) and frontend Alpine/Node inventory had zero HIGH/CRITICAL entries. The earlier scan remains documented as failed. See [blocked findings summary](../docs/evidence/trivy-backend-blocked-summary.json) and the actual JSON reports on the run evidence branch.
+[Source `8944da7`, run 39696800574](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574) passed all enabled jobs. [Backend scan](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/trivy-backend.json) and [frontend scan](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/trivy-frontend.json) have **zero HIGH/CRITICAL findings**. The frontend report inventories **libx11 1.8.14-r0**. The separate [full lockfile audit](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/frontend-sca.json) reports zero vulnerabilities across 124 dependencies.
 
-Secret scan evidence retains rule IDs, severities and file/line locations while stripping matched credential values and code snippets before artifact upload. Sanitization never changes Trivy’s blocking exit status. The redaction regression check also verifies that finding severity and count remain intact.
+A filtered image report is not proof that every bundled JavaScript dependency was inventoried; the separate lockfile gate covers that graph. Scan results describe known findings at the source/database timestamp. Logic flaws, future advisories and operational misconfiguration need their own checks.
 
-For the written rubric response, timed student explanations, current source-pinned reports and five instructor questions, see [TRIVY-EXPLANATION.md](../docs/TRIVY-EXPLANATION.md). Personal explanation remains READY FOR DEMO until the student demonstrates understanding.
+## Actual failed scans and remediation
 
-## Later frontend package fix
+| Failed run | Finding | Repair and follow-up |
+|---|---|---|
+| [38999948371](https://github.com/not-so-shubh/devops-project/actions/runs/38999948371) | Backend Debian OS HIGH findings, including util-linux CVE-2026-76642 | Replaced the runtime with maintained Python Alpine and revalidated PostgreSQL/Compose/browser behavior; [retained summary](../docs/evidence/trivy-backend-blocked-summary.json) |
+| [39070263226](https://github.com/not-so-shubh/devops-project/actions/runs/39070263226) | Frontend HIGH CVE-2026-77214, libexpat 2.8.5-r0 | Required libexpat>=2.9.0-r0 in the supported Alpine release; [full green follow-up](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297) and [retained finding](../docs/evidence/trivy-frontend-blocked-summary.json) |
+| [39694461786](https://github.com/not-so-shubh/devops-project/actions/runs/39694461786) | Frontend HIGH CVE-2026-88806, libx11 1.8.13-r0 | Required libx11>=1.8.14-r0; [full green follow-up](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574) and [retained finding](../docs/evidence/trivy-frontend-libx11-blocked-summary.json) |
 
-Run [39070263226](https://github.com/not-so-shubh/devops-project/actions/runs/39070263226) blocked frontend publication on HIGH CVE-2026-77214 in `libexpat 2.8.5-r0`; the report identifies `2.9.0-r0` as fixed. The Dockerfile now installs `libexpat>=2.9.0-r0` from the same supported Alpine repository during the build and restores runtime UID 101. No advisory is ignored and the HIGH/CRITICAL gate is unchanged. The remediation commit must pass its own full scans, Compose and cluster checks; use its actual evidence branch to verify the result. [Retained finding](../docs/evidence/trivy-frontend-blocked-summary.json).
+The Dockerfile temporarily uses root for the supported package updates and restores UID 101. It does not remove package metadata to hide a finding. The libx11 advisory describes malicious XKB reply handling; [upstream advisory context](https://access.redhat.com/security/cve/cve-2026-88806) and [supported Alpine package](https://pkgs.alpinelinux.org/package/v3.24/main/x86_64/libx11) complement the project's actual scan. Historical clean scans remain historical; each later build must pass its own gate.
 
-Remediation verified: [run 39070661297](https://github.com/not-so-shubh/devops-project/actions/runs/39070661297), source `710d1460abc480d8b19e2b98f648a9a5c1c23339`, passed both image scans and the full Compose/Kubernetes/monitoring/Flux regression. Its frontend build log confirms the upgrade to 2.9.0-r0, and the public image receipt confirms runtime UID 101.
+## Runtime and credential boundaries
 
-## Subsequent libx11 gate failure and repair — 22 October 2026
+Application runtimes are non-root/read-only, with dropped capabilities and no privilege escalation. Secrets, kubeconfig, AWS credentials, actual tfvars, state and plans stay outside Git. Kubernetes Secret base64 encoding alone is not encryption. The application has no login/RBAC; use synthetic data and add authentication, TLS, tested recovery and availability planning before business use.
 
-Source `228cccd843c65b2e9dccbe5452d980a00b889a75`, [run 39694461786](https://github.com/not-so-shubh/devops-project/actions/runs/39694461786), passed quality, infrastructure, Compose and the backend image scan. The frontend scan reported **HIGH CVE-2026-88806** in **libx11 1.8.13-r0**, with **1.8.14-r0** as FixedVersion. Publication and Kubernetes jobs were skipped. [Source-pinned blocked finding](../docs/evidence/trivy-frontend-libx11-blocked-summary.json).
+The optional AWS OIDC job remains disabled because organization policy blocked provider access. No permanent-key bypass or overly broad trust change is part of this work. [AWS account boundary](../docs/AWS-READINESS.md).
 
-The frontend Dockerfile now requires `libx11>=1.8.14-r0` alongside the existing libexpat fix, from the same supported Alpine repository, and restores UID 101. The [official Alpine package page](https://pkgs.alpinelinux.org/package/v3.24/main/x86_64/libx11) lists the fixed package. [Red Hat's advisory](https://access.redhat.com/security/cve/cve-2026-88806) describes the upstream XKB-reply heap overflow; the project finding and package version are established by its actual Trivy report. No advisory suppression, reduced severity threshold, `ignore-unfixed` change or exit-zero bypass was added. The source's own complete CI run must establish the repaired image result; each main run archives its reports on `evidence/<source-sha>`.
+For M6.3, the written explanation and rehearsal guide are prepared. The student must personally demonstrate understanding; a clean automated scan or uploaded PowerPoint does not assess that point.

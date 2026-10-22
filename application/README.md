@@ -1,7 +1,9 @@
 # Application deliverable
 
-The application source is maintained in [`backend/`](../backend/) and [`frontend/`](../frontend/) to match the session's graded layout. This directory maps the homework PDF's `application/` entry to those canonical sources without maintaining duplicate implementations.
+[Documentation hub](../docs/README.md) · [Run StockPilot](../README.md#quick-start)
 
-StockPilot is an original inventory application: product CRUD, atomic stock adjustments, retained movement ledger and live inventory statistics. FastAPI/SQLAlchemy/Alembic use PostgreSQL; React calls relative `/api` endpoints. See [API/setup](../README.md), [tests](../docs/TESTING.md) and [actual app captures](../docs/EVIDENCE.md).
+This directory maps the coursework's `application/` deliverable to the canonical [`backend/`](../backend/README.md) and [`frontend/`](../frontend/README.md) sources. There is one implementation, with no duplicate application tree.
 
-From the repository root: copy `.env.example` to `.env`, set your local password, run `docker compose up --build -d --wait`, then optionally `docker compose exec backend python -m app.seed`. Open http://localhost:3000.
+StockPilot provides product CRUD, unique SKUs, atomic signed stock adjustments, retained movement history and database-backed statistics. FastAPI/SQLAlchemy/Alembic use PostgreSQL; React uses relative `/api` routes. [Architecture](../docs/ARCHITECTURE.md) · [Tests](../docs/TESTING.md) · [Actual captures](../docs/EVIDENCE.md).
+
+Use the root quick start to generate private local credentials and start Compose. Open localhost:3000. Optional `python -m app.seed` runs inside the backend container and is idempotent.

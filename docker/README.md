@@ -1,7 +1,27 @@
-# Docker deliverable
+# Docker and Compose
 
-Canonical build definitions: [`backend/Dockerfile`](../backend/Dockerfile), [`frontend/Dockerfile`](../frontend/Dockerfile) and [`docker-compose.yml`](../docker-compose.yml). This directory supplies the homework PDF's `docker/` entry while keeping build contexts with their component sources.
+[Documentation hub](../docs/README.md) · [Quick start](../README.md#quick-start) · [Deployment](../docs/DEPLOYMENT.md#local-compose)
 
-Run commands from the repository root. Copy `.env.example` to `.env`, replace the local password, then `docker compose config --quiet` and `docker compose up --build -d --wait --wait-timeout 180`. Inspect `docker compose ps`, run `python3 scripts/smoke.py`, and open http://localhost:3000. The migration service completes before the backend starts; PostgreSQL uses a named persistent volume. Both application runtimes run as non-root with read-only filesystems and dropped capabilities; frontend uses a Node builder and unprivileged Nginx runtime.
+Canonical definitions are [`backend/Dockerfile`](../backend/Dockerfile), [`frontend/Dockerfile`](../frontend/Dockerfile) and [`docker-compose.yml`](../docker-compose.yml). This guide maps the coursework's `docker/` deliverable without duplicating build contexts.
 
-See [deployment and cleanup](../docs/DEPLOYMENT.md), [persistence verification](../scripts/verify-compose-persistence.py) and [real CI evidence](../docs/EVIDENCE.md).
+| Service | Behavior |
+|---|---|
+| PostgreSQL | Private network, health check and persistent named volume |
+| Migration | One-shot Alembic upgrade after database health |
+| Backend | Starts after migration, UID 10001, port 8000, database-aware readiness |
+| Frontend | Node builder/Nginx runtime, UID 101, internal 8080 mapped to loopback 3000 |
+
+Both application runtimes have read-only filesystems, temporary writable mounts, dropped capabilities and no privilege escalation. Base images are digest-pinned and dependencies locked.
+
+After the secure root setup, from the repository root:
+
+```bash
+docker compose config --quiet
+docker compose up --build -d --wait --wait-timeout 180
+docker compose ps
+python3 scripts/smoke.py
+```
+
+`docker compose down` retains database data. Deleting volumes with `down -v` is destructive and should be an explicit local-demo decision. Changing `.env` does not change the password already stored in an initialized database volume.
+
+CI also runs [`verify-compose-persistence.py`](../scripts/verify-compose-persistence.py): it creates a synthetic product/movement, restarts PostgreSQL, verifies both records and cleans up its catalog probe. [Source-pinned result](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/persistence-ci.txt).
