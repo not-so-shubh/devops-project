@@ -1,0 +1,106 @@
+{
+  "source_sha": "8944da7ddf2be0845a593c2f65482eb922e6d9f7",
+  "run_id": "39696800574",
+  "run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/39696800574",
+  "files": [
+    "bandit.json",
+    "cluster-events-ci.txt",
+    "cluster-health-ci.json",
+    "cluster-pods-ci.txt",
+    "cluster-services-ci.txt",
+    "compose-ci.log",
+    "compose-ci.txt",
+    "compose-smoke.txt",
+    "create-dialog-desktop.png",
+    "create-dialog-mobile.png",
+    "frontend-desktop.png",
+    "frontend-mobile.png",
+    "frontend-sca.json",
+    "ghcr-backend.json",
+    "ghcr-frontend.json",
+    "gitops-ci.json",
+    "grafana-dashboard.png",
+    "grafana-errors-ci.log",
+    "helm-release-ci.txt",
+    "hpa-metrics-ci.txt",
+    "kubernetes-ci.txt",
+    "metrics.txt",
+    "migration-ci.log",
+    "persistence-ci.txt",
+    "prometheus-query.json",
+    "prometheus-targets.json",
+    "prometheus-targets.png",
+    "pytest-postgres.txt",
+    "secrets.json",
+    "terraform-ci-mock-test.txt",
+    "terraform-ci-validate.txt",
+    "trivy-backend.json",
+    "trivy-frontend.json",
+    "troubleshooting-ci.json",
+    "troubleshooting-investigation-ci.txt"
+  ],
+  "artifact_origins": {
+    "trivy-frontend.json": "trivy-frontend/trivy-frontend.json",
+    "trivy-backend.json": "trivy-backend/trivy-backend.json",
+    "ghcr-frontend.json": "registry-frontend-evidence/ghcr-frontend.json",
+    "terraform-ci-mock-test.txt": "infrastructure-evidence/terraform-ci-mock-test.txt",
+    "terraform-ci-validate.txt": "infrastructure-evidence/terraform-ci-validate.txt",
+    "ghcr-backend.json": "registry-backend-evidence/ghcr-backend.json",
+    "pytest-postgres.txt": "quality-evidence/docs/evidence/pytest-postgres.txt",
+    "secrets.json": "quality-evidence/docs/evidence/secrets.json",
+    "frontend-sca.json": "quality-evidence/docs/evidence/frontend-sca.json",
+    "bandit.json": "quality-evidence/docs/evidence/bandit.json",
+    "compose-ci.txt": "compose-browser-evidence/docs/evidence/compose-ci.txt",
+    "compose-ci.log": "compose-browser-evidence/docs/evidence/compose-ci.log",
+    "compose-smoke.txt": "compose-browser-evidence/docs/evidence/compose-smoke.txt",
+    "create-dialog-mobile.png": "kubernetes-monitoring-evidence/docs/evidence/create-dialog-mobile.png",
+    "create-dialog-desktop.png": "kubernetes-monitoring-evidence/docs/evidence/create-dialog-desktop.png",
+    "frontend-desktop.png": "kubernetes-monitoring-evidence/docs/evidence/frontend-desktop.png",
+    "metrics.txt": "compose-browser-evidence/docs/evidence/metrics.txt",
+    "persistence-ci.txt": "compose-browser-evidence/docs/evidence/persistence-ci.txt",
+    "frontend-mobile.png": "kubernetes-monitoring-evidence/docs/evidence/frontend-mobile.png",
+    "kubernetes-ci.txt": "kubernetes-monitoring-evidence/docs/evidence/kubernetes-ci.txt",
+    "hpa-metrics-ci.txt": "kubernetes-monitoring-evidence/docs/evidence/hpa-metrics-ci.txt",
+    "prometheus-targets.png": "kubernetes-monitoring-evidence/docs/evidence/prometheus-targets.png",
+    "grafana-dashboard.png": "kubernetes-monitoring-evidence/docs/evidence/grafana-dashboard.png",
+    "cluster-services-ci.txt": "kubernetes-monitoring-evidence/docs/evidence/cluster-services-ci.txt",
+    "grafana-errors-ci.log": "kubernetes-monitoring-evidence/docs/evidence/grafana-errors-ci.log",
+    "migration-ci.log": "kubernetes-monitoring-evidence/docs/evidence/migration-ci.log",
+    "prometheus-query.json": "kubernetes-monitoring-evidence/docs/evidence/prometheus-query.json",
+    "gitops-ci.json": "kubernetes-monitoring-evidence/docs/evidence/gitops-ci.json",
+    "cluster-health-ci.json": "kubernetes-monitoring-evidence/docs/evidence/cluster-health-ci.json",
+    "cluster-pods-ci.txt": "kubernetes-monitoring-evidence/docs/evidence/cluster-pods-ci.txt",
+    "helm-release-ci.txt": "kubernetes-monitoring-evidence/docs/evidence/helm-release-ci.txt",
+    "cluster-events-ci.txt": "kubernetes-monitoring-evidence/docs/evidence/cluster-events-ci.txt",
+    "prometheus-targets.json": "kubernetes-monitoring-evidence/docs/evidence/prometheus-targets.json",
+    "troubleshooting-ci.json": "kubernetes-monitoring-evidence/docs/evidence/troubleshooting-ci.json",
+    "troubleshooting-investigation-ci.txt": "kubernetes-monitoring-evidence/docs/evidence/troubleshooting-investigation-ci.txt"
+  },
+  "scope": "Actual CI evidence; consult job results for success/failure. AWS apply/destroy not performed.",
+  "job_results": {
+    "quality": {
+      "result": "success",
+      "outputs": {}
+    },
+    "infrastructure": {
+      "result": "success",
+      "outputs": {}
+    },
+    "compose": {
+      "result": "success",
+      "outputs": {}
+    },
+    "build-security": {
+      "result": "success",
+      "outputs": {}
+    },
+    "publish": {
+      "result": "success",
+      "outputs": {}
+    },
+    "kubernetes": {
+      "result": "success",
+      "outputs": {}
+    }
+  }
+}

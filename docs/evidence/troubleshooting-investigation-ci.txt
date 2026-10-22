@@ -1,0 +1,156 @@
+Actual kubectl investigation of isolated troubleshooting resources
+
+## Incorrect Service selector
+$ kubectl -n stockpilot describe svc stockpilot-lab-empty-service
+Name:                     stockpilot-lab-empty-service
+Namespace:                stockpilot
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app.kubernetes.io/component=deliberately-no-matching-pod
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       <REDACTED_CLUSTER_IP>
+IPs:                      <REDACTED_CLUSTER_IP>
+Port:                     http  8000/TCP
+TargetPort:               8000/TCP
+Endpoints:                
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+
+
+## Actual backend Pod labels
+$ kubectl -n stockpilot get pods --show-labels
+NAME                                   READY   STATUS      RESTARTS   AGE     LABELS
+stockpilot-backend-7f64466959-n7tnd    1/1     Running     0          2m43s   app.kubernetes.io/component=backend,app.kubernetes.io/instance=stockpilot,app.kubernetes.io/managed-by=Helm,app.kubernetes.io/name=stockpilot,pod-template-hash=7f64466959
+stockpilot-backend-7f64466959-sv5wg    1/1     Running     0          2m58s   app.kubernetes.io/component=backend,app.kubernetes.io/instance=stockpilot,app.kubernetes.io/managed-by=Helm,app.kubernetes.io/name=stockpilot,pod-template-hash=7f64466959
+stockpilot-frontend-7647b4cb5b-q9k6c   1/1     Running     0          2m58s   app.kubernetes.io/component=frontend,app.kubernetes.io/instance=stockpilot,app.kubernetes.io/managed-by=Helm,app.kubernetes.io/name=stockpilot,pod-template-hash=7647b4cb5b
+stockpilot-frontend-7647b4cb5b-xnbck   1/1     Running     0          2m58s   app.kubernetes.io/component=frontend,app.kubernetes.io/instance=stockpilot,app.kubernetes.io/managed-by=Helm,app.kubernetes.io/name=stockpilot,pod-template-hash=7647b4cb5b
+stockpilot-migrate-1-kpqgx             0/1     Completed   0          2m58s   app.kubernetes.io/component=migration,app.kubernetes.io/instance=stockpilot,app.kubernetes.io/managed-by=Helm,app.kubernetes.io/name=stockpilot,batch.kubernetes.io/controller-uid=<REDACTED_RUNNER_ID>,batch.kubernetes.io/job-name=stockpilot-migrate-1,controller-uid=<REDACTED_RUNNER_ID>,job-name=stockpilot-migrate-1
+stockpilot-postgres-0                  1/1     Running     0          2m58s   app.kubernetes.io/component=postgres,app.kubernetes.io/instance=stockpilot,app.kubernetes.io/managed-by=Helm,app.kubernetes.io/name=stockpilot,apps.kubernetes.io/pod-index=0,controller-revision-hash=stockpilot-postgres-65bb9cd5d6,statefulset.kubernetes.io/pod-name=stockpilot-postgres-0
+
+
+## Empty endpoint resources before repair
+$ kubectl -n stockpilot get endpointslice -l kubernetes.io/service-name=stockpilot-lab-empty-service -o yaml
+apiVersion: v1
+items:
+- addressType: IPv4
+  apiVersion: discovery.k8s.io/v1
+  endpoints: null
+  kind: EndpointSlice
+  metadata:
+    annotations:
+      endpoints.kubernetes.io/last-change-trigger-time: "2026-10-22T00:07:51Z"
+    creationTimestamp: "2026-10-22T00:07:51Z"
+    generateName: stockpilot-lab-empty-service-
+    generation: 1
+    labels:
+      endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+      kubernetes.io/service-name: stockpilot-lab-empty-service
+    name: stockpilot-lab-empty-service-xhs2z
+    namespace: stockpilot
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Service
+      name: stockpilot-lab-empty-service
+      uid: <REDACTED_RUNNER_ID>
+    resourceVersion: "1488"
+    uid: <REDACTED_RUNNER_ID>
+  ports: null
+kind: List
+metadata:
+  resourceVersion: ""
+
+
+## Repaired Service endpoints
+$ kubectl -n stockpilot describe svc stockpilot-lab-empty-service
+Name:                     stockpilot-lab-empty-service
+Namespace:                stockpilot
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app.kubernetes.io/component=backend,app.kubernetes.io/instance=stockpilot
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       <REDACTED_CLUSTER_IP>
+IPs:                      <REDACTED_CLUSTER_IP>
+Port:                     http  8000/TCP
+TargetPort:               8000/TCP
+Endpoints:                <REDACTED_CLUSTER_IP>:8000,<REDACTED_CLUSTER_IP>:8000
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+
+
+## Image-pull failure and kubelet events
+$ kubectl -n stockpilot describe pods -l app=stockpilot-lab
+Name:             stockpilot-lab-bad-image-86c999df8b-h9n8f
+Namespace:        stockpilot
+Priority:         0
+Service Account:  default
+Node:             stockpilot-control-plane/<REDACTED_CLUSTER_IP>
+Start Time:       Thu, 22 Oct 2026 00:07:56 +0000
+Labels:           app=stockpilot-lab
+                  pod-template-hash=86c999df8b
+Annotations:      <none>
+Status:           Pending
+SeccompProfile:   RuntimeDefault
+IP:               <REDACTED_CLUSTER_IP>
+IPs:
+  IP:           <REDACTED_CLUSTER_IP>
+Controlled By:  ReplicaSet/stockpilot-lab-bad-image-86c999df8b
+Containers:
+  lab:
+    Container ID:   
+    Image:          ghcr.io/not-so-shubh/stockpilot-backend:deliberately-missing-lab-tag
+    Image ID:       
+    Port:           <none>
+    Host Port:      <none>
+    State:          Waiting
+      Reason:       ErrImagePull
+    Ready:          False
+    Restart Count:  0
+    Limits:
+      cpu:     250m
+      memory:  128Mi
+    Requests:
+      cpu:        25m
+      memory:     32Mi
+    Readiness:    http-get http://:8000/health delay=0s timeout=2s period=2s successThreshold=1 failureThreshold=30
+    Environment:  <none>
+    Mounts:       <none>
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:                      <none>
+QoS Class:                    Burstable
+Node-Selectors:               <none>
+Tolerations:                  node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age   From               Message
+  ----     ------     ----  ----               -------
+  Normal   Scheduled  4s    default-scheduler  Successfully assigned stockpilot/stockpilot-lab-bad-image-86c999df8b-h9n8f to stockpilot-control-plane
+  Normal   Pulling    3s    kubelet            spec.containers{lab}: Pulling image "ghcr.io/not-so-shubh/stockpilot-backend:deliberately-missing-lab-tag"
+  Warning  Failed     3s    kubelet            spec.containers{lab}: Failed to pull image "ghcr.io/not-so-shubh/stockpilot-backend:deliberately-missing-lab-tag": rpc error: code = NotFound desc = failed to pull and unpack image "ghcr.io/not-so-shubh/stockpilot-backend:deliberately-missing-lab-tag": failed to resolve reference "ghcr.io/not-so-shubh/stockpilot-backend:deliberately-missing-lab-tag": ghcr.io/not-so-shubh/stockpilot-backend:deliberately-missing-lab-tag: not found
+  Warning  Failed     3s    kubelet            spec.containers{lab}: Error: ErrImagePull
+  Normal   BackOff    2s    kubelet            spec.containers{lab}: Back-off pulling image "ghcr.io/not-so-shubh/stockpilot-backend:deliberately-missing-lab-tag"
+  Warning  Failed     2s    kubelet            spec.containers{lab}: Error: ImagePullBackOff
+
+
+## Running container logs after image repair
+$ kubectl -n stockpilot logs deployment/stockpilot-lab-bad-image --tail=30
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://<REDACTED_CLUSTER_IP>:8000 (Press CTRL+C to quit)
+INFO:     <REDACTED_CLUSTER_IP>:58414 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33962 - "GET /health HTTP/1.1" 200 OK
+

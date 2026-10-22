@@ -1,0 +1,26 @@
+{
+  "source_sha": "8944da7ddf2be0845a593c2f65482eb922e6d9f7",
+  "source_branch": "main",
+  "source_repository": "not-so-shubh/devops-project",
+  "fetched_revision": "main@sha1:8944da7ddf2be0845a593c2f65482eb922e6d9f7",
+  "deployment_environment": "gitops-ci",
+  "release_conditions": [
+    {
+      "lastTransitionTime": "2026-10-22T00:08:42Z",
+      "message": "Helm upgrade succeeded for release stockpilot/stockpilot.v2 with chart stockpilot@1.0.0+8944da7ddf2b.1",
+      "observedGeneration": 1,
+      "reason": "UpgradeSucceeded",
+      "status": "True",
+      "type": "Ready"
+    },
+    {
+      "lastTransitionTime": "2026-10-22T00:08:42Z",
+      "message": "Helm upgrade succeeded for release stockpilot/stockpilot.v2 with chart stockpilot@1.0.0+8944da7ddf2b.1",
+      "observedGeneration": 1,
+      "reason": "UpgradeSucceeded",
+      "status": "True",
+      "type": "Released"
+    }
+  ],
+  "method": "Flux source-controller pulls committed gitops/ci; kustomize-controller substitutes tested SHA; helm-controller upgrades release and config checksum rolls Pods"
+}
