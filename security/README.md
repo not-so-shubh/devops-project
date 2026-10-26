@@ -37,3 +37,9 @@ Application runtimes are non-root/read-only, with dropped capabilities and no pr
 The optional AWS OIDC job remains disabled because organization policy blocked provider access. No permanent-key bypass or overly broad trust change is part of this work. [AWS account boundary](../docs/AWS-READINESS.md).
 
 For M6.3, the written explanation and rehearsal guide are prepared. The student must personally demonstrate understanding; a clean automated scan or uploaded PowerPoint does not assess that point.
+
+## Recording preparation: new frontend gate on 27 October
+
+[Run 40412248303](https://github.com/not-so-shubh/devops-project/actions/runs/40412248303), source `9e90c29`, failed the unchanged frontend HIGH/CRITICAL gate on CVE-2026-111497 (`brotli-libs` 1.2.0-r1, fixed 1.2.1-r0) and CVE-2026-92392 (`curl`/`libcurl` 8.22.0-r0, fixed 8.23.0-r0). Publication and Kubernetes jobs were skipped. [Source-pinned finding summary](../docs/evidence/trivy-frontend-20261027-blocked-summary.json).
+
+The Dockerfile now requires those supported fixed packages alongside the existing libexpat/libx11 fixes. The application and blocking scan remain unchanged. This is a repair candidate until its own complete workflow succeeds; older green reports are historical evidence.

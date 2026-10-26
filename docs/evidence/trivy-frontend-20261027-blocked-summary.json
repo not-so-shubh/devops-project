@@ -1,0 +1,33 @@
+{
+  "source_sha": "9e90c29ca9ffc399034fe5aa491f464b7f02214e",
+  "run_id": "40412248303",
+  "run_url": "https://github.com/not-so-shubh/devops-project/actions/runs/40412248303",
+  "evidence_commit": "6548b9a978783743b4f211a128c02133fcf74e60",
+  "result": "Frontend blocking scan failed; publication and Kubernetes validation skipped.",
+  "findings": [
+    {
+      "id": "CVE-2026-111497",
+      "package": "brotli-libs",
+      "installed": "1.2.0-r1",
+      "fixed": "1.2.1-r0",
+      "severity": "HIGH",
+      "title": "brotli: Out-of-Bounds Write in Google Brotli Decoder"
+    },
+    {
+      "id": "CVE-2026-92392",
+      "package": "curl",
+      "installed": "8.22.0-r0",
+      "fixed": "8.23.0-r0",
+      "severity": "HIGH",
+      "title": "curl: curl: HTTP/2 upload Use-After-Free"
+    },
+    {
+      "id": "CVE-2026-92392",
+      "package": "libcurl",
+      "installed": "8.22.0-r0",
+      "fixed": "8.23.0-r0",
+      "severity": "HIGH",
+      "title": "curl: curl: HTTP/2 upload Use-After-Free"
+    }
+  ]
+}

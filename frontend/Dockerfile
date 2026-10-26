@@ -7,10 +7,11 @@ COPY src ./src
 RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:stable-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01
-# Require fixes for CVE-2026-77214 (libexpat) and CVE-2026-88806 (libx11)
+# Require supported fixes for libexpat, libx11, Brotli and curl vulnerabilities
 # from the same supported Alpine repository; retain the blocking image scan.
 USER root
-RUN apk add --no-cache 'libexpat>=2.9.0-r0' 'libx11>=1.8.14-r0'
+RUN apk add --no-cache 'libexpat>=2.9.0-r0' 'libx11>=1.8.14-r0' \
+    'brotli-libs>=1.2.1-r0' 'curl>=8.23.0-r0' 'libcurl>=8.23.0-r0'
 COPY --chown=101:101 --from=build /app/dist /usr/share/nginx/html
 # Retain dependency manifests outside the web root so Trivy also inventories JS packages.
 COPY --chown=101:101 package.json package-lock.json /usr/share/stockpilot/
