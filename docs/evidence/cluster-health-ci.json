@@ -1,0 +1,1289 @@
+{
+  "pods": [
+    {
+      "namespace": "flux-system",
+      "name": "helm-controller-68cf87bcdb-74tm4",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "manager",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:42:51Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:52Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:48Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:52Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:52Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:48Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "flux-system",
+      "name": "kustomize-controller-5cbd55fc45-twggc",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "manager",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:42:54Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:54Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:48Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:55Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:55Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:48Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "flux-system",
+      "name": "source-controller-96584dff-t896f",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "manager",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:42:57Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:57Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:48Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:58Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:58Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:42:48Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "ingress-system",
+      "name": "traefik-78c8959cf6-vs7nk",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "traefik",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:38:40Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:41Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:37Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:42Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:42Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:37Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "kube-system",
+      "name": "coredns-7d764666f9-kc995",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "coredns",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:38:24Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:25Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:22Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:26Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:26Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:22Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "kube-system",
+      "name": "coredns-7d764666f9-tkb5c",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "coredns",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:38:24Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:25Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:22Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:25Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:25Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:22Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "kube-system",
+      "name": "etcd-stockpilot-control-plane",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "etcd",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:38:00Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:18Z",
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:18Z",
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "kube-system",
+      "name": "kindnet-bhstx",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kindnet-cni",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:38:12Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:12Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:10Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:12Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:12Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:10Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "kube-system",
+      "name": "kube-apiserver-stockpilot-control-plane",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kube-apiserver",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:38:00Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:18Z",
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:18Z",
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "kube-system",
+      "name": "kube-controller-manager-stockpilot-control-plane",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kube-controller-manager",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:38:00Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:20Z",
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:20Z",
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "kube-system",
+      "name": "kube-proxy-jghn7",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kube-proxy",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:38:11Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:12Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:10Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:12Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:12Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:10Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "kube-system",
+      "name": "kube-scheduler-stockpilot-control-plane",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kube-scheduler",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:37:59Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:20Z",
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:20Z",
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:03Z",
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "kube-system",
+      "name": "metrics-server-6cb9fcf6ff-mghjj",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "metrics-server",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:38:45Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:46Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:44Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:07Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:07Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:44Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "local-path-storage",
+      "name": "local-path-provisioner-67b778fdf6-prjxk",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "local-path-provisioner",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:38:24Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:24Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:22Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:24Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:24Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:38:22Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "monitoring",
+      "name": "monitoring-grafana-6cd7db856-gmgfl",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "grafana",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:39:36Z"
+            }
+          },
+          "lastState": {}
+        },
+        {
+          "name": "grafana-sc-dashboard",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:39:24Z"
+            }
+          },
+          "lastState": {}
+        },
+        {
+          "name": "grafana-sc-datasources",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:39:24Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:36Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:19Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:47Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:47Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:19Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "monitoring",
+      "name": "monitoring-kube-prometheus-operator-5c5d48fdd8-qslt2",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kube-prometheus-stack",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:39:21Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:21Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:19Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:21Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:21Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:19Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "monitoring",
+      "name": "prometheus-monitoring-kube-prometheus-prometheus-0",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "config-reloader",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:39:41Z"
+            }
+          },
+          "lastState": {}
+        },
+        {
+          "name": "prometheus",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:39:41Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:25Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:26Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:53Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:53Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:22Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "stockpilot",
+      "name": "stockpilot-backend-796fbb7cc9-h2f88",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "backend",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:43:07Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:08Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:07Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:13Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:13Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:07Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "stockpilot",
+      "name": "stockpilot-backend-796fbb7cc9-xv87f",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "backend",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:43:14Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:15Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:14Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:20Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:20Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:14Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "stockpilot",
+      "name": "stockpilot-frontend-6c5dbff6fb-kt8t8",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "frontend",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:43:08Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:08Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:07Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:13Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:13Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:07Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "stockpilot",
+      "name": "stockpilot-frontend-6c5dbff6fb-n69nb",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "frontend",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:43:14Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:15Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:14Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:20Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:20Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:14Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "stockpilot",
+      "name": "stockpilot-migrate-2-mq5ws",
+      "phase": "Succeeded",
+      "containers": [
+        {
+          "name": "migrate",
+          "ready": false,
+          "restartCount": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://f79bef210c882961a8f06224e85ffbc6b2ca7393262b9ba3a9b071250b2e3ac5",
+              "exitCode": 0,
+              "finishedAt": "2026-10-26T22:43:13Z",
+              "reason": "Completed",
+              "startedAt": "2026-10-26T22:43:07Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:15Z",
+          "observedGeneration": 1,
+          "status": "False",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:07Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:14Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:14Z",
+          "observedGeneration": 1,
+          "reason": "PodCompleted",
+          "status": "False",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:43:07Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    },
+    {
+      "namespace": "stockpilot",
+      "name": "stockpilot-postgres-0",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "postgres",
+          "ready": true,
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-26T22:40:02Z"
+            }
+          },
+          "lastState": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:40:02Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:58Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:40:09Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:40:09Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-26T22:39:58Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ]
+    }
+  ]
+}
