@@ -2,9 +2,11 @@
 
 [Documentation hub](../README.md) · [Examiner handoff](../FINAL-PROJECT-HANDOFF.md) · [Presenter script](../FINAL-DEMO-SCRIPT.md)
 
-[**Download the PowerPoint**](StockPilot_Final_Presentation.pptx?raw=true) · [Open the file page](StockPilot_Final_Presentation.pptx) · [Full-size preview](StockPilot_Presentation_Preview.png)
+[**Download the PowerPoint**](../../demo/StockPilot_Final_Presentation.pptx?raw=true) · [Open the file page](../../demo/StockPilot_Final_Presentation.pptx) · [Full-size preview](StockPilot_Presentation_Preview.png)
 
 ![Actual PowerPoint cover preview](StockPilot_Presentation_Preview.png)
+
+The instructor requires both media files in the root [`demo/` folder](../../demo/README.md). The actual PowerPoint is now present there; the mandatory MP4 is still missing. The existing copy in `docs/presentation/` is retained for older links, with identical bytes.
 
 ## What is included
 

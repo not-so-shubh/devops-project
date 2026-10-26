@@ -5,7 +5,7 @@
 ## A short assessment route
 
 1. Read the product overview and open the genuine [desktop](evidence/eks-frontend-desktop.png)/[mobile](evidence/eks-frontend-mobile.png) captures.
-2. Download the [editable presentation](presentation/StockPilot_Final_Presentation.pptx?raw=true) and use its speaker notes.
+2. Download the [editable presentation](../demo/StockPilot_Final_Presentation.pptx?raw=true) and use its speaker notes.
 3. Inspect [the verified application CI run](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574), [test output](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/pytest-postgres.txt), [scan reports](EVIDENCE.md#source-pinned-ci-evidence) and [Flux receipt](https://github.com/not-so-shubh/devops-project/blob/fa40366375c8a05edbe6a0837071e988d496e62b/docs/evidence/gitops-ci.json).
 4. Review the separate real [AWS runtime](AWS-EKS-RUNTIME-VERIFICATION.md) and [approved cleanup](AWS-CLEANUP-VERIFICATION.md).
 5. Assess the student's own explanation/demo and the exact [46-row rubric](RUBRIC-CHECKLIST.md).
@@ -48,7 +48,7 @@ ghcr.io/not-so-shubh/stockpilot-frontend:8944da7ddf2be0845a593c2f65482eb922e6d9f
 
 The [16-slide PowerPoint](presentation/README.md) preserves editable content, notes and the supplied black/white/red design. The [preview](presentation/StockPilot_Presentation_Preview.png) is rendered from its actual cover. The deck is a dated application-evidence snapshot at `8944da7`.
 
-**Demo video: awaiting upload.** No recording was supplied or fabricated. [Planned chapters and hosting guide](demo/README.md) · [Timed script](FINAL-DEMO-SCRIPT.md) · [Presenter checklist](FINAL-PRESENTATION-CHECKLIST.md).
+**Mandatory demo MP4: awaiting upload.** The instructor requires both actual media files in the root [`demo/` folder](../demo/README.md). The deck is present; `demo/StockPilot_Final_Demo.mp4` is still missing, so the media submission is incomplete. No recording was supplied or fabricated. [Planned chapters and file instructions](demo/README.md) · [Timed script](FINAL-DEMO-SCRIPT.md) · [Presenter checklist](FINAL-PRESENTATION-CHECKLIST.md).
 
 ## Real AWS lifecycle
 
@@ -79,7 +79,7 @@ The capstone uses synthetic inventory, one database, one NAT and ephemeral monit
 - [ ] Download the deck and rehearse its notes using [the instructor questions](INSTRUCTOR-QA.md).
 - [ ] Personally explain one real CVE and the scan limits using [Trivy preparation](TRIVY-EXPLANATION.md).
 - [ ] Perform a real commit → CI → observed deployment update in an available permitted local/CI environment.
-- [ ] Supply the actual recording if remote assessment requires one; verify its link and audio.
+- [ ] Add the mandatory recording as `demo/StockPilot_Final_Demo.mp4` alongside the deck; verify playback and audio.
 - [ ] Retain the genuine required screenshots and private AWS/backup evidence with correct environment labels.
 - [ ] Handle the official submission form yourself. **Student action — excluded from this task.**
 

@@ -4,7 +4,7 @@
 
 ## Prepared
 
-- [x] Editable 16-slide PowerPoint and actual cover preview available, with speaker notes preserved.
+- [x] Editable 16-slide PowerPoint is present at `demo/StockPilot_Final_Presentation.pptx`, with speaker notes preserved; the actual cover preview is available.
 - [x] Verified application baseline: tests, image gates, GHCR, kind/Helm/monitoring and Flux.
 - [x] Real historical EKS provisioning/runtime captured separately from kind evidence.
 - [x] Separate cleanup approval, retained database backup, saved destroy-plan apply and project residual checks completed.
@@ -16,8 +16,8 @@
 - [ ] Start an available permitted local/CI runtime; confirm product actions and microphone/terminal readability.
 - [ ] Explain the actual Trivy finding and scan limits in your own words.
 - [ ] Perform and observe a genuine commit → CI → deployment-update chain.
-- [ ] Supply a real recording if required. **No video was provided for this handoff.**
-- [ ] Check the final shared video link and audio from another browser.
+- [ ] Add the mandatory actual `demo/StockPilot_Final_Demo.mp4` alongside the deck in the root [`demo/` folder](../demo/README.md). **No video was provided; media submission is incomplete.**
+- [ ] Check the committed MP4’s playback and audio from another browser.
 
 ## Required proof formats
 

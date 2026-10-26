@@ -1,8 +1,8 @@
 # Final demo recording
 
-[Documentation hub](../README.md) · [PowerPoint](../presentation/README.md) · [Timed script](../FINAL-DEMO-SCRIPT.md)
+[Required submission media](../../demo/README.md) · [Documentation hub](../README.md) · [PowerPoint](../presentation/README.md) · [Timed script](../FINAL-DEMO-SCRIPT.md)
 
-**Status: awaiting the student's recording.** No MP4 or working video URL was supplied for this handoff. There is no watch/download link because no actual recording is available. Preferred filename: `StockPilot_Final_Demo.mp4`.
+**Status: mandatory MP4 awaiting upload.** The instructor requires the actual recording at `demo/StockPilot_Final_Demo.mp4` in the repository root, alongside the PowerPoint. No actual recording was supplied; the media submission remains incomplete. This `docs/demo/` page is the chapter guide.
 
 The presentation and this chapter plan are preparation. They do not establish completion of the student's personal explanation or live/accepted recorded demonstration.
 
@@ -38,8 +38,10 @@ These are planned chapters, not fabricated timestamps in a nonexistent video. Ai
 - Use only genuine pre-deletion AWS Console images already saved; do not fabricate replacement Console screens.
 - Check the recording and its final link from another browser before sharing it.
 
-## Add the actual video later
+## Add the required video
 
-Attach the original `StockPilot_Final_Demo.mp4` in the Work session or supply the exact existing unlisted video URL. Inspect the actual file size first. A reasonably small clip can live in this directory; a larger recording should use a GitHub Release asset or a verified existing video host rather than adding unnecessary binary history.
+Attach the original `StockPilot_Final_Demo.mp4` in the Work session so it can be inspected and committed to the root `demo/` folder beside the deck. Check the actual size, playback/audio and private information before publication. Preserve its quality; do not silently re-encode or replace it with a different recording.
 
-Preserve the original quality. No re-encoding is needed merely to organize the link. Once an actual asset is available, replace this pending status with its verified watch/download URL, size/duration and genuine chapter timestamps, then add that same link to the root README and handoff. No empty video file or placeholder URL belongs in Git.
+The instructor’s follow-up supersedes the earlier suggestion to use a separate Release or an external video host. Both actual media files must be in `demo/` in the submitted repository. If a size limit prevents that, resolve the acceptable format/storage with the instructor before using an alternative.
+
+Once the genuine MP4 is available and committed, add its verified file/download link, actual duration and real chapter timestamps, then update the root README and handoff. No empty video file or placeholder URL belongs in Git.
