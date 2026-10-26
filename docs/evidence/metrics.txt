@@ -1,0 +1,164 @@
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 446.0
+python_gc_objects_collected_total{generation="1"} 67.0
+python_gc_objects_collected_total{generation="2"} 0.0
+# HELP python_gc_objects_uncollectable_total Uncollectable objects found during GC
+# TYPE python_gc_objects_uncollectable_total counter
+python_gc_objects_uncollectable_total{generation="0"} 0.0
+python_gc_objects_uncollectable_total{generation="1"} 0.0
+python_gc_objects_uncollectable_total{generation="2"} 0.0
+# HELP python_gc_collections_total Number of times this generation was collected
+# TYPE python_gc_collections_total counter
+python_gc_collections_total{generation="0"} 211.0
+python_gc_collections_total{generation="1"} 19.0
+python_gc_collections_total{generation="2"} 1.0
+# HELP python_info Python platform information
+# TYPE python_info gauge
+python_info{implementation="CPython",major="3",minor="12",patchlevel="15",version="3.12.15"} 1.0
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 9.5752192e+07
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 8.3939328e+07
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.79305361661e+09
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 1.7999999999999998
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 10.0
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 65536.0
+# HELP stockpilot_http_requests_total HTTP requests
+# TYPE stockpilot_http_requests_total counter
+stockpilot_http_requests_total{method="GET",route="/ready",status="200"} 1.0
+stockpilot_http_requests_total{method="POST",route="/api/products",status="201"} 1.0
+stockpilot_http_requests_total{method="POST",route="/api/inventory/adjustments",status="201"} 1.0
+stockpilot_http_requests_total{method="GET",route="/api/products/{product_id}",status="200"} 1.0
+stockpilot_http_requests_total{method="GET",route="/api/inventory/stats",status="200"} 1.0
+stockpilot_http_requests_total{method="DELETE",route="/api/products/{product_id}",status="204"} 1.0
+# HELP stockpilot_http_requests_created HTTP requests
+# TYPE stockpilot_http_requests_created gauge
+stockpilot_http_requests_created{method="GET",route="/ready",status="200"} 1.7930536232360594e+09
+stockpilot_http_requests_created{method="POST",route="/api/products",status="201"} 1.7930536303945327e+09
+stockpilot_http_requests_created{method="POST",route="/api/inventory/adjustments",status="201"} 1.7930536304043386e+09
+stockpilot_http_requests_created{method="GET",route="/api/products/{product_id}",status="200"} 1.7930536304092658e+09
+stockpilot_http_requests_created{method="GET",route="/api/inventory/stats",status="200"} 1.7930536304226987e+09
+stockpilot_http_requests_created{method="DELETE",route="/api/products/{product_id}",status="204"} 1.7930536304275875e+09
+# HELP stockpilot_http_request_duration_seconds HTTP latency
+# TYPE stockpilot_http_request_duration_seconds histogram
+stockpilot_http_request_duration_seconds_bucket{le="0.005",method="GET",route="/ready"} 0.0
+stockpilot_http_request_duration_seconds_bucket{le="0.01",method="GET",route="/ready"} 0.0
+stockpilot_http_request_duration_seconds_bucket{le="0.025",method="GET",route="/ready"} 0.0
+stockpilot_http_request_duration_seconds_bucket{le="0.05",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.075",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.1",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.25",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.5",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.75",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="1.0",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="2.5",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="5.0",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="7.5",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="10.0",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_count{method="GET",route="/ready"} 1.0
+stockpilot_http_request_duration_seconds_sum{method="GET",route="/ready"} 0.036417607999993606
+stockpilot_http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/products"} 0.0
+stockpilot_http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.075",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.75",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="1.0",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="5.0",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="7.5",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="10.0",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_count{method="POST",route="/api/products"} 1.0
+stockpilot_http_request_duration_seconds_sum{method="POST",route="/api/products"} 0.009069003999996994
+stockpilot_http_request_duration_seconds_bucket{le="0.005",method="POST",route="/api/inventory/adjustments"} 0.0
+stockpilot_http_request_duration_seconds_bucket{le="0.01",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.025",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.05",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.075",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.1",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.25",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.5",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.75",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="1.0",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="2.5",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="5.0",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="7.5",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="10.0",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_count{method="POST",route="/api/inventory/adjustments"} 1.0
+stockpilot_http_request_duration_seconds_sum{method="POST",route="/api/inventory/adjustments"} 0.007863261000011335
+stockpilot_http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.075",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.75",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="1.0",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="5.0",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="7.5",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="10.0",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_count{method="GET",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_sum{method="GET",route="/api/products/{product_id}"} 0.003097156999984918
+stockpilot_http_request_duration_seconds_bucket{le="0.005",method="GET",route="/api/inventory/stats"} 0.0
+stockpilot_http_request_duration_seconds_bucket{le="0.01",method="GET",route="/api/inventory/stats"} 0.0
+stockpilot_http_request_duration_seconds_bucket{le="0.025",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.05",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.075",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.1",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.25",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.5",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.75",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="1.0",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="2.5",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="5.0",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="7.5",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="10.0",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_count{method="GET",route="/api/inventory/stats"} 1.0
+stockpilot_http_request_duration_seconds_sum{method="GET",route="/api/inventory/stats"} 0.011751896999982137
+stockpilot_http_request_duration_seconds_bucket{le="0.005",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.01",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.025",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.05",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.075",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.1",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.25",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.5",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="0.75",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="1.0",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="2.5",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="5.0",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="7.5",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="10.0",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_bucket{le="+Inf",method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_count{method="DELETE",route="/api/products/{product_id}"} 1.0
+stockpilot_http_request_duration_seconds_sum{method="DELETE",route="/api/products/{product_id}"} 0.0031206909999923482
+# HELP stockpilot_http_request_duration_seconds_created HTTP latency
+# TYPE stockpilot_http_request_duration_seconds_created gauge
+stockpilot_http_request_duration_seconds_created{method="GET",route="/ready"} 1.7930536232360897e+09
+stockpilot_http_request_duration_seconds_created{method="POST",route="/api/products"} 1.7930536303945594e+09
+stockpilot_http_request_duration_seconds_created{method="POST",route="/api/inventory/adjustments"} 1.7930536304043596e+09
+stockpilot_http_request_duration_seconds_created{method="GET",route="/api/products/{product_id}"} 1.7930536304092855e+09
+stockpilot_http_request_duration_seconds_created{method="GET",route="/api/inventory/stats"} 1.793053630422719e+09
+stockpilot_http_request_duration_seconds_created{method="DELETE",route="/api/products/{product_id}"} 1.793053630427608e+09
