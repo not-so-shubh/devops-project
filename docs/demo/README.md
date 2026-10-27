@@ -2,7 +2,7 @@
 
 [Required submission media](../../demo/README.md) · [Documentation hub](../README.md) · [PowerPoint](../presentation/README.md) · [Timed script](../FINAL-DEMO-SCRIPT.md)
 
-**Status: mandatory MP4 awaiting upload.** The instructor requires the actual recording at `demo/StockPilot_Final_Demo.mp4` in the repository root, alongside the PowerPoint. No actual recording was supplied; the media submission remains incomplete. This `docs/demo/` page is the chapter guide.
+**Status: [supplied MP4 uploaded](../../demo/StockPilot_Final_Demo.mp4?raw=true).** Both required files are present in the root `demo/` folder. The video runs 11:00.56 at 1920 × 1080 and has no audio track. [File details and checksum](../../demo/README.md). Personal explanation and instructor acceptance remain to be assessed. This `docs/demo/` page is the chapter guide.
 
 The presentation and this chapter plan are preparation. They do not establish completion of the student's personal explanation or live/accepted recorded demonstration.
 
@@ -27,7 +27,7 @@ Use local Compose or an available local/CI Kubernetes environment for live produ
 | 13 | Present the approved saved destroy-plan execution, empty state and scoped residual checks |
 | 14 | Perform a genuine meaningful commit, observe its real CI run and the corresponding deployment-update proof |
 
-These are planned chapters, not fabricated timestamps in a nonexistent video. Aim for 10–15 minutes of speaking; a fresh pipeline can take longer. If the instructor accepts an edited recording, disclose waiting-time cuts and retain the actual commit/run/deployment continuity.
+These are planned chapters, not verified timestamps or a coverage assessment of the supplied video. Aim for 10–15 minutes of speaking; a fresh pipeline can take longer. If the instructor accepts an edited recording, disclose waiting-time cuts and retain the actual commit/run/deployment continuity.
 
 ## Capture checklist
 
@@ -38,10 +38,8 @@ These are planned chapters, not fabricated timestamps in a nonexistent video. Ai
 - Use only genuine pre-deletion AWS Console images already saved; do not fabricate replacement Console screens.
 - Check the recording and its final link from another browser before sharing it.
 
-## Add the required video
+## Supplied recording
 
-Attach the original `StockPilot_Final_Demo.mp4` in the Work session so it can be inspected and committed to the root `demo/` folder beside the deck. Check the actual size, playback/audio and private information before publication. Preserve its quality; do not silently re-encode or replace it with a different recording.
+The original [StockPilot_Final_Demo.mp4](../../demo/StockPilot_Final_Demo.mp4?raw=true) is committed beside the PowerPoint without re-encoding. [Media details](../../demo/README.md) record its size, duration, codec and checksum. Full-file decoding completed without reported errors; there is no audio stream.
 
-The instructor’s follow-up supersedes the earlier suggestion to use a separate Release or an external video host. Both actual media files must be in `demo/` in the submitted repository. If a size limit prevents that, resolve the acceptable format/storage with the instructor before using an alternative.
-
-Once the genuine MP4 is available and committed, add its verified file/download link, actual duration and real chapter timestamps, then update the root README and handoff. No empty video file or placeholder URL belongs in Git.
+Review chapter coverage and instructor acceptance separately. Add verified chapter timestamps only after reviewing the actual recording. If spoken explanation is required, arrange it separately or supply a replacement recording with audio.

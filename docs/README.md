@@ -13,12 +13,12 @@ Start with the handoff for a short assessment route. The complete guides below d
 
 ## Presentation and demo
 
-- [Required root `demo/` submission folder](../demo/README.md) — deck present; mandatory MP4 still missing
+- [Required root `demo/` submission folder](../demo/README.md) — deck and supplied MP4 present; video has no audio track
 
 - [Presentation guide and speaker-note instructions](presentation/README.md)
 - [Download the editable PowerPoint](../demo/StockPilot_Final_Presentation.pptx?raw=true)
 - [Presentation preview](presentation/StockPilot_Presentation_Preview.png)
-- [Demo recording guide and planned chapters](demo/README.md) — recording awaiting upload
+- [Demo recording guide and planned chapters](demo/README.md) — supplied recording linked; chapter plan remains unverified
 - [Demonstration overview](DEMO.md)
 - [Timed presenter script](FINAL-DEMO-SCRIPT.md)
 - [Final presentation/capture checklist](FINAL-PRESENTATION-CHECKLIST.md)

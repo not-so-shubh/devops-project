@@ -48,7 +48,7 @@ ghcr.io/not-so-shubh/stockpilot-frontend:8944da7ddf2be0845a593c2f65482eb922e6d9f
 
 The [16-slide PowerPoint](presentation/README.md) preserves editable content, notes and the supplied black/white/red design. The [preview](presentation/StockPilot_Presentation_Preview.png) is rendered from its actual cover. The deck is a dated application-evidence snapshot at `8944da7`.
 
-**Mandatory demo MP4: awaiting upload.** The instructor requires both actual media files in the root [`demo/` folder](../demo/README.md). The deck is present; `demo/StockPilot_Final_Demo.mp4` is still missing, so the media submission is incomplete. No recording was supplied or fabricated. [Planned chapters and file instructions](demo/README.md) · [Timed script](FINAL-DEMO-SCRIPT.md) · [Presenter checklist](FINAL-PRESENTATION-CHECKLIST.md).
+**Supplied demo MP4: uploaded.** Both actual media files are present in the root [`demo/` folder](../demo/README.md). The [video](../demo/StockPilot_Final_Demo.mp4?raw=true) runs 11:00.56 at 1920 × 1080 and has no audio track. Personal explanation and instructor acceptance remain to be assessed. [Planned chapters and file instructions](demo/README.md) · [Timed script](FINAL-DEMO-SCRIPT.md) · [Presenter checklist](FINAL-PRESENTATION-CHECKLIST.md).
 
 ## Real AWS lifecycle
 
@@ -79,7 +79,8 @@ The capstone uses synthetic inventory, one database, one NAT and ephemeral monit
 - [ ] Download the deck and rehearse its notes using [the instructor questions](INSTRUCTOR-QA.md).
 - [ ] Personally explain one real CVE and the scan limits using [Trivy preparation](TRIVY-EXPLANATION.md).
 - [ ] Perform a real commit → CI → observed deployment update in an available permitted local/CI environment.
-- [ ] Add the mandatory recording as `demo/StockPilot_Final_Demo.mp4` alongside the deck; verify playback and audio.
+- [x] Add the supplied recording as `demo/StockPilot_Final_Demo.mp4` alongside the deck; original bytes preserved and full-file decoding checked. No audio track is present.
+- [ ] Review recording coverage and instructor acceptance; arrange any required spoken explanation.
 - [ ] Retain the genuine required screenshots and private AWS/backup evidence with correct environment labels.
 - [ ] Handle the official submission form yourself. **Student action — excluded from this task.**
 

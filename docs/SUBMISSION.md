@@ -7,9 +7,9 @@
 The instructor’s follow-up requires **both the actual MP4 and the PPT/PDF in the root [`demo/` folder](../demo/README.md) of the same submitted repository**.
 
 - [x] `demo/StockPilot_Final_Presentation.pptx`: actual editable deck present.
-- [ ] `demo/StockPilot_Final_Demo.mp4`: mandatory recording still missing.
+- [x] [demo/StockPilot_Final_Demo.mp4](../demo/StockPilot_Final_Demo.mp4?raw=true): supplied recording present; 11:00.56, 1920 × 1080, no audio track.
 
-**Media submission is incomplete.** An external video link, a separate Release or the recording guide does not replace the requested in-folder MP4. This folder correction does not change the rubric audit or establish a completed personal demonstration.
+**Both required media files are present in `demo/`.** The supplied MP4 has no audio track. Its presence does not change the rubric audit or establish completion of a personal explanation or an instructor-accepted demonstration.
 
 ## Ready to evaluate
 
@@ -29,7 +29,7 @@ The audit records **43 verified criteria / 94 technical points**, **2 criteria /
 | M10.2 | 3 | Personally perform a genuine commit → CI → observed deployment update, live or in a recording the instructor accepts |
 | M3.1 | 2 | **Student action — excluded from this task.** Handle the official form independently |
 
-**Recording status: mandatory MP4 awaiting upload to root `demo/`.** No actual recording was supplied. [Recording chapters and file instructions](demo/README.md). A prepared deck or automated screenshot is not proof that the student's personal presentation occurred.
+**Recording status: supplied MP4 present in root `demo/`; no audio track.** Personal explanation and instructor acceptance remain to be assessed. [Recording chapters and file instructions](demo/README.md). A prepared deck or automated screenshot is not proof that the student's personal presentation occurred.
 
 Automatic GitHub Actions deployment to EKS remains blocked by organization OIDC policy and was skipped. Real manual EKS deployment and automatic disposable kind/Flux reconciliation are separate verified paths. A personal demonstration can use an available permitted local/CI environment with accurate labels; a new paid AWS deployment is outside this handoff.
 
@@ -54,7 +54,7 @@ Technical audit coverage does not certify that every exact screenshot format has
 2. Check your chosen Compose/kind environment, microphone and readable terminal/browser zoom.
 3. Demonstrate the product and personal security explanation, then observe the actual commit/run/deployment chain.
 4. Show historical AWS provisioning/runtime/cleanup with its original source/date, not as a current live endpoint.
-5. Add the mandatory actual recording as `demo/StockPilot_Final_Demo.mp4`; verify the committed file’s playback, audio and chapter continuity.
+5. Review the supplied `demo/StockPilot_Final_Demo.mp4` for chapter continuity and instructor acceptance; it has no audio track, so arrange any required spoken explanation.
 6. Complete the official form yourself. **No official form was opened, populated or submitted in this work.**
 
 The reviewed AWS resources are gone and the private database backup was retained. Cleanup finished beyond the original six-hour window; actual account charges/credits have not been checked.

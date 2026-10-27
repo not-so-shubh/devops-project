@@ -6,7 +6,7 @@
 
 ![Actual PowerPoint cover preview](StockPilot_Presentation_Preview.png)
 
-The instructor requires both media files in the root [`demo/` folder](../../demo/README.md). The actual PowerPoint is now present there; the mandatory MP4 is still missing. The existing copy in `docs/presentation/` is retained for older links, with identical bytes.
+The instructor requires both media files in the root [`demo/` folder](../../demo/README.md). Both the actual PowerPoint and [supplied MP4](../../demo/StockPilot_Final_Demo.mp4?raw=true) are present there. The video has no audio track; personal explanation and instructor acceptance remain to be assessed. The existing copy in `docs/presentation/` is retained for older links, with identical bytes.
 
 ## What is included
 

@@ -2,7 +2,7 @@
 
 [Documentation hub](README.md) · [PowerPoint](presentation/README.md) · [Timed script](FINAL-DEMO-SCRIPT.md) · [Recording chapters](demo/README.md)
 
-The personal presentation should explain the product and prove the delivery chain. The deck is ready; **no actual recording was supplied**. Personal explanation/demo assessment remains outstanding.
+The personal presentation should explain the product and prove the delivery chain. The deck and [supplied recording](../demo/StockPilot_Final_Demo.mp4?raw=true) are present. The video has no audio track. Personal explanation/demo assessment remains outstanding.
 
 ## Choose a truthful runtime
 

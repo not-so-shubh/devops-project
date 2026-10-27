@@ -17,7 +17,7 @@ An inventory workspace for small businesses: manage products, adjust stock safel
 | Evaluate | Open |
 |---|---|
 | Final PowerPoint | [Download editable slides](demo/StockPilot_Final_Presentation.pptx?raw=true) · [Preview](docs/presentation/StockPilot_Presentation_Preview.png) |
-| Demo | [Required `demo/` folder](demo/README.md) — mandatory MP4 awaiting upload · [Timed presenter script](docs/FINAL-DEMO-SCRIPT.md) |
+| Demo | [Download demo video](demo/StockPilot_Final_Demo.mp4?raw=true) · [Media details](demo/README.md) · [Timed presenter script](docs/FINAL-DEMO-SCRIPT.md) |
 | CI/CD | [Workflow and current status](https://github.com/not-so-shubh/devops-project/actions/workflows/ci-cd.yml) · [Verified application baseline](https://github.com/not-so-shubh/devops-project/actions/runs/39696800574) |
 | Container images | [Backend](https://github.com/users/not-so-shubh/packages/container/package/stockpilot-backend) · [Frontend](https://github.com/users/not-so-shubh/packages/container/package/stockpilot-frontend) · [Source-pinned receipts](docs/EVIDENCE.md#source-pinned-ci-evidence) |
 | Grading | [All 46 criteria](docs/RUBRIC-CHECKLIST.md) · [Submission status](docs/SUBMISSION.md) |
@@ -164,7 +164,7 @@ Cleanup completed at **05:16:28 IST on 22 October 2026**, beyond the original si
 
 [![Preview of the supplied final PowerPoint](docs/presentation/StockPilot_Presentation_Preview.png)](docs/presentation/README.md)
 
-The supplied **16-slide editable PowerPoint** includes speaker notes and a dated verified project snapshot. [Download it](demo/StockPilot_Final_Presentation.pptx?raw=true), read the [presentation guide](docs/presentation/README.md), and rehearse the [timed script](docs/FINAL-DEMO-SCRIPT.md). A PowerPoint does not establish a completed personal demonstration. **The mandatory demo MP4 is awaiting upload.** The instructor requires both actual files in the root [`demo/` folder](demo/README.md); the media submission remains incomplete until the video is added. [The recording guide](docs/demo/README.md) contains the planned chapters.
+The supplied **16-slide editable PowerPoint** includes speaker notes and a dated verified project snapshot. [Download it](demo/StockPilot_Final_Presentation.pptx?raw=true), read the [presentation guide](docs/presentation/README.md), and rehearse the [timed script](docs/FINAL-DEMO-SCRIPT.md). A PowerPoint does not establish a completed personal demonstration. The supplied [demo MP4](demo/StockPilot_Final_Demo.mp4?raw=true) is now present alongside the deck in the root [`demo/` folder](demo/README.md). It runs 11:00.56 at 1920 × 1080 and has no audio track; personal explanation and instructor acceptance remain to be assessed. [The recording guide](docs/demo/README.md) contains the planned chapters.
 
 ## Project layout
 
@@ -179,7 +179,7 @@ The supplied **16-slide editable PowerPoint** includes speaker notes and a dated
 | [`k8s/`](k8s/), [`helm/stockpilot/`](helm/stockpilot/) | Bootstrap manifests and complete application chart |
 | [`gitops/`](gitops/README.md), [`monitoring/`](monitoring/README.md) | Flux overlays and observability configuration |
 | [`scripts/`](scripts/), [`troubleshooting/`](troubleshooting/) | Verification, traffic, bootstrap and isolated labs |
-| [`demo/`](demo/README.md) | Required submission media: editable deck present; mandatory MP4 still missing |
+| [`demo/`](demo/README.md) | Required submission media: editable deck and supplied MP4 present; video has no audio track |
 | [`docs/`](docs/README.md) | Guides, genuine evidence, presentation notes and recording preparation |
 | [`application/`](application/README.md), [`kubernetes/`](kubernetes/README.md) | Coursework deliverable mappings to canonical sources |
 
